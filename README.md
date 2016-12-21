@@ -1,12 +1,12 @@
-# Project Name
+# Trail Angel
 
-> Pithy project description
+> Break new trails and share with your friends.  The holy grail of trail apps.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: [Andrew Cookro](https://github.com/orgs/hrr20-nebula/people/galaxode)
+  - __Scrum Master__: [Wyatt Lindsey](https://github.com/orgs/hrr20-nebula/people/wyattlindsey)
+  - __Development Team Members__: [Prithvi Anantharaj](https://github.com/orgs/hrr20-nebula/people/Prithvi-A), [Johanna Tchon](https://github.com/orgs/hrr20-nebula/people/JotheElephant)
 
 ## Table of Contents
 
@@ -24,11 +24,7 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 0.12.x
 
 ## Development
 
@@ -37,14 +33,13 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
+webpack
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://waffle.io/hrr20-nebula/trail-angel)
 
 
 ## Contributing
