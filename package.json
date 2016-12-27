@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hrr20-nebula/trail-angel.git"
+    "url": "https://github.com/hrr20-nebula/trail-angel.git"
   },
   "author": "",
   "license": "ISC",
@@ -23,10 +23,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "enzyme": "^2.7.0",
-    "jest": "^18.0.0",
     "mocha": "^3.2.0",
-    "nightwatch": "^0.9.11",
     "sinon": "^1.17.6",
     "supertest": "^2.0.1"
   }
