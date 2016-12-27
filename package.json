@@ -15,5 +15,19 @@
   "bugs": {
     "url": "https://github.com/hrr20-nebula/trail-angel/issues"
   },
-  "homepage": "https://github.com/hrr20-nebula/trail-angel#readme"
+  "homepage": "https://github.com/hrr20-nebula/trail-angel#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "redis": "^2.6.3",
+    "sequelize": "^3.28.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "enzyme": "^2.7.0",
+    "jest": "^18.0.0",
+    "mocha": "^3.2.0",
+    "nightwatch": "^0.9.11",
+    "sinon": "^1.17.6",
+    "supertest": "^2.0.1"
+  }
 }
