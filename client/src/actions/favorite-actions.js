@@ -1,17 +1,17 @@
 import * as actions from './';
 
-export default function addFavorite() {
+export function addFavorite() {
   return {
     type: actions.ADD_FAVORITE,
     userId,
-    trailId
+    itemId
   };
 }
 
-export default function removeFavorite() {
+export function removeFavorite() {
   return {
     type: actions.REMOVE_FAVORITE,
     userId,
-    trailId
+    itemId
   };
 }

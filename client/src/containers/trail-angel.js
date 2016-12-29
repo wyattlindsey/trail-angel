@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions';
+import * as testActions from '../actions/test-actions';
+import Test from '../components/test.component';
 
 // import any top level presentational components here
 
@@ -16,21 +16,28 @@ class TrailAngel extends Component {
 
   render() {
     const { state, actions } = this.props;
-
     return (
-      <View>
-        <Text>
-          Hello, World!!!!
-        </Text>
-      </View>
-    )
+      <Test
+        foo={state.testReducer.foo}
+        bar={state.testReducer.bar}
+        { ...actions } />
+    );
   }
 }
 
-export default connect((state) => ({
-  state: state
-}),
-  (dispatch) => ({
-    actions: bindActionCreators(actions, dispatch)
-  })
+const mapStateToProps = function(state) {
+  return {
+    state: state
+  };
+};
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    actions: bindActionCreators(testActions, dispatch)
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(TrailAngel);
