@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/hrr20-nebula/trail-angel#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "morgan": "^1.7.0",
     "redis": "^2.6.3",
     "sequelize": "^3.28.0"
   },
