@@ -1,4 +1,5 @@
-export const TEST_ACTION = 'TEST_ACTION';
+export const TEST_INCREMENT = 'TEST_INCREMENT';
+export const TEST_DECREMENT = 'TEST_DECREMENT';
 
 export const CREATE_USER = 'CREATE_USER';
 export const UPDATE_USER = 'UPDATE_USER';

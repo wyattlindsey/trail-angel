@@ -20,6 +20,7 @@ class TrailAngel extends Component {
       <Test
         foo={state.foo}
         bar={state.bar}
+        custom={state.custom}
         { ...actions } />
     );
   }

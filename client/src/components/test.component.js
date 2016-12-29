@@ -6,10 +6,17 @@ const styles = StyleSheet.create({
     width: 100,
     height: 30,
     padding: 10,
-    backgroundColor: 'lightgray',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 3
+  },
+
+  red: {
+    backgroundColor: 'red'
+  },
+
+  green: {
+    backgroundColor: 'lightgreen'
   }
 });
 
@@ -19,16 +26,27 @@ export default class Test extends Component {
   }
 
   render() {
-    const { foo, bar, testAction } = this.props;
+    const { foo, bar, custom, testIncrement, testDecrement } = this.props;
     return (
       <View style={ { flex: 1, alignItems: 'center', justifyContent: 'center' } }>
-        <TouchableOpacity title='test'
-                style={styles.button}
-                onPress={testAction}>
-          <Text>Press me</Text>
+
+        <TouchableOpacity
+                style={[styles.button, styles.green]}
+                onPress={testIncrement.bind(null, 'moar')}>
+          <Text>more</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+                style={[styles.button, styles.red]}
+                onPress={testDecrement.bind(null, 'lessss')}>
+          <Text>less</Text>
+        </TouchableOpacity>
+
+
         <Text>{foo}</Text>
         <Text>{bar}</Text>
+        <Text>{custom}</Text>
+
       </View>
     );
   }
