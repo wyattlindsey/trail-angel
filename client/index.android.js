@@ -3,4 +3,4 @@
 import React, { AppRegistry } from 'react-native';
 import App from './src/containers/app';
 
-AppRegistry.registerComponent('client', () => App);
+AppRegistry.registerComponent('trailangel', () => App);

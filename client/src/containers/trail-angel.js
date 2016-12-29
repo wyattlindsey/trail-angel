@@ -20,7 +20,7 @@ class TrailAngel extends Component {
     return (
       <View>
         <Text>
-          Hello, World!!!
+          Hello, World!!!!
         </Text>
       </View>
     )
