@@ -9,7 +9,7 @@ import createLogger from 'redux-logger';
 import * as reducers from '../reducers';
 import TrailAngel from './trail-angel';
 
-const logger = createLogger();
+const logger = createLogger();    // todo: need to disable this for production builds
 const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
 const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
