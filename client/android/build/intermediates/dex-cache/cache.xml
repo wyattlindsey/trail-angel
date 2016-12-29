@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.39.2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="035e9c4ef05bd4e0f34f48fbfb073f98fcf58af0">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-986b810f33e158423a86f668fad8a08946b03d91.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/javax.inject-1-2c85260cf38ab60fcd5c046ece673479a92346f5.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1-94c34d0abdf4071790240e090b65370d5ec8ff5b.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-ws/3.4.1/8ace66ef7002d98f633377c9e67daeeb196d8c3b/okhttp-ws-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8ace66ef7002d98f633377c9e67daeeb196d8c3b">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/okhttp-ws-3.4.1-69fec018437d2c05a1e2aa8e951dc387ee93823e.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2b8a01ad9da5d26d0067894c22e87597bca2c500">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-cf1e02964e76388bf3d7bf6a8096a325b3cb7612.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.39.2/jars/libs/infer-annotations-1.5.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5268ed090600db4ceb72b055927f4f9cbd79465c">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/infer-annotations-1.5-ff613ac77538373b0c95862cd968062523bb9801.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.1/support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.1-ab687c154ecb5c9c00aa043e8811e476fcc00bdd.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ca63c521b5745ae9a09629d7ca67ff6bc2a967fe">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-060ae07827103af5d872c7a3aa4e224de7f6e2ce.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/okio-1.9.0-9ab49208efa9150c902a1437e7c9ce64d3230139.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-e3d3c98629045d898277e9df55cb966b850151f8.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0-d02976fb884583683a6eb39d6186843012874465.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.1-02e0628ca077a104e26d94d32ff7487b12a16661.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d31aadf33187c37a7cd63dc1b769f8c6e33f78c3">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-885071345dee79f47fb074c91d127d35c0564792.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.3/1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14/jackson-core-2.2.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/jackson-core-2.2.3-0a5ed01b4b56b5d4ff1962215963f5b4b2e3b28b.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3341b66c54367e777a0647e2db96c045329bfeab">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-5dcf372849f5aa8cbfa3c2a40e678ee09b0c5c67.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-0e26351f5a4dcad51dfab967a41f2d4d8120bec8.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1137942adeb03984c1311b662363dd38fc238fd3">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-54f4b2543bf446acf2e0fedc080d0f1ec46ae574.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="98786c1770b531b9194fb6448b2a2692c64074b6">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-0a27855b5abff7b97c7a0e05e8899a003719fbe1.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-c24f4e890e07b69470676e4b8839f31822d30bad.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.4.1/63994437f62bc861bc20c605d12962f7246116d1/okhttp-urlconnection-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="63994437f62bc861bc20c605d12962f7246116d1">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.4.1-5840569ea61b4c6e8b2898b982c26bccabbe585f.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/library-2.4.0-074b4842a55e6ce15ce7cee18ff20d3d8b879f8b.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/classes-d727924609069e08057b3fa6c16f6345fdedee56.jar" />
+    </item>
+    <item
+        jar="/Users/wyatt/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/wyatt/Development/HRR/thesis/trail-angel/client/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0-f1248a455a2961c7054012726245afdb66666d6f.jar" />
+    </item>
+
+</items>

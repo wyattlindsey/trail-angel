@@ -28,5 +28,3 @@ dist/
 node_modules/
 bower_components/
 .idea
-client/android
-client/ios
