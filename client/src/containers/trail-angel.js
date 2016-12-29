@@ -18,8 +18,8 @@ class TrailAngel extends Component {
     const { state, actions } = this.props;
     return (
       <Test
-        foo={state.testReducer.foo}
-        bar={state.testReducer.bar}
+        foo={state.foo}
+        bar={state.bar}
         { ...actions } />
     );
   }
@@ -27,7 +27,7 @@ class TrailAngel extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    state: state
+    state: state.testReducer
   };
 };
 
