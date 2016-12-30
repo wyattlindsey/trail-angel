@@ -6,21 +6,13 @@ const getUrl = (lat, lng, dataFeature = 'conditions') => {
   return `https://api.wunderground.com/api/${apiKey}/forecast/geolookup/${dataFeature}/q/${lat},${lng}.json`;
 }
 
-// gets current weather conditions for the specified location
 export const getWeatherForGeolocation = (lat, lng) => {
   return http.get(getUrl(lat, lng))
     .then((response) => response.json())
     .then((responseJSON) => {
-      return responseJSON.current_observation;
-    });
-};
-
-// pulls 3 day forecast as an array of 4 days including the current
-export const getForecastForGeolocation = (lat, lng) => {
-  return http.get(getUrl(lat, lng, 'forecast'))
-    .then((response) => response.json())
-    .then((responseJSON) => {
-      debugger;
-      return responseJSON.forecast.simpleforecast.forecastday;
+      return {
+        current: responseJSON.current_observation,
+        forecast: responseJSON.forecast.simpleforecast.forecastday
+      }
     });
 };
