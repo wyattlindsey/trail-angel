@@ -1,14 +1,14 @@
+//This is for testing purposes only please go ahead and edit this file as needed.
+
 'use strict';
 
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as testActions from '../actions/test-actions';
 import * as userActions from '../actions/user-actions';
 
-import Test from '../components/test.component';
-import TabBar from '../components/common/footer.component';
+import Login from '../components/auth/login.component';
 
 // import any top level presentational components here
 
@@ -20,25 +20,20 @@ class TrailAngel extends Component {
   render() {
     const { state, actions } = this.props;
     return (
-      <TabBar/>
-      // <Test
-        // foo={state.foo}s
-        // bar={state.bar}
-        // custom={state.custom}
-        // { ...actions } />
+     <Login username={state.username} password={state.password} {...actions} />
     );
   }
 }
 
 const mapStateToProps = function(state) {
   return {
-    state: state.testReducer
+    state: state.user
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators(testActions, dispatch)
+    actions: bindActionCreators(userActions, dispatch)
   }
 };
 

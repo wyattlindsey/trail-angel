@@ -1,6 +1,6 @@
 import * as actions from './';
 
-export function createUser() {
+export function createUser(data) {
   return {
     type: actions.CREATE_USER,
     data
