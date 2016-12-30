@@ -11,3 +11,5 @@ Object {
   "type": "TEST_INCREMENT",
 }
 `;
+
+exports[`testActions dispatches a TEST_INCREMENT action asynchronously 1`] = `Array []`;
