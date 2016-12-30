@@ -1,4 +1,4 @@
-exports[`test renders a test component view using Snapshots 1`] = `
+exports[`test component renders correctly 1`] = `
 <View
   style={
     Object {
@@ -71,6 +71,39 @@ exports[`test renders a test component view using Snapshots 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail">
       less
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "lightgreen",
+        "height": 30,
+        "justifyContent": "center",
+        "margin": 3,
+        "opacity": 1,
+        "padding": 10,
+        "width": 100,
+      }
+    }
+    testID={undefined}>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail">
+      more async
     </Text>
   </View>
   <Text

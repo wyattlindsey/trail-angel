@@ -2,7 +2,8 @@
 
 import * as actionTypes from '../actions/action-types';
 
-const initialState = {
+// exporting for testing purposes
+export const initialState = {
   foo: 42,
   bar: 'hello',
   custom: 'nullllll'

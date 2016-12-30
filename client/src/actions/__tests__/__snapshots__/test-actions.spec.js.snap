@@ -1,0 +1,13 @@
+exports[`testActions creates a TEST_DECREMENT action 1`] = `
+Object {
+  "custom": undefined,
+  "type": "TEST_DECREMENT",
+}
+`;
+
+exports[`testActions creates a TEST_INCREMENT action 1`] = `
+Object {
+  "custom": undefined,
+  "type": "TEST_INCREMENT",
+}
+`;
