@@ -1,4 +1,4 @@
-import * as http from '../utils/http';
+import * as request from '../utils/request';
 
 const apiKey = '42dec93e32e6a8d2';
 
@@ -7,7 +7,7 @@ const getUrl = (lat, lng, dataFeature = 'conditions') => {
 }
 
 export const getWeatherForGeolocation = (lat, lng) => {
-  return http.get(getUrl(lat, lng))
+  return request.get(getUrl(lat, lng))
     .then((response) => response.json())
     .then((responseJSON) => {
       return {
