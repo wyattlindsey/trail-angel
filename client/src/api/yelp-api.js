@@ -6,7 +6,6 @@
 
 'use strict';
 
-import Yelp from 'yelp';
 import secrets from './config';
 
 const yelp = new Yelp(secrets.yelp);
@@ -38,5 +37,4 @@ export const searchYelp = ({ term = '',
     }
   }
 
-  return yelp.search(options);
 };
