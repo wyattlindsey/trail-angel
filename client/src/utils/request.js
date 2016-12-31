@@ -1,9 +1,9 @@
 
 
-export const show = (url, id) => {
-  return fetch(`${url}/${id}`);
+export const show = (url, id, options) => {
+  return fetch(`${url}/${id}`, options);
 };
 
-export const get = (url) => {
-  return fetch(url);
+export const get = (url, options) => {
+  return fetch(url, options);
 }
