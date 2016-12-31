@@ -8,15 +8,31 @@ const update = (custom, actionType) => {
 }
 
 export const testIncrement = (custom) => {
-  return (dispatch, getState) => {
-    // you could do something async here before dispatching
-    dispatch(update(custom, actionTypes.TEST_INCREMENT));
-  };
+  // traditional action creator style
+  return {
+    type: actionTypes.TEST_INCREMENT,
+    custom: custom
+  }
 };
 
 export const testDecrement = (custom) => {
+  // traditional action creator style
+  return {
+    type: actionTypes.TEST_DECREMENT,
+    custom: custom
+  }
+};
+
+export const testIncrementAsync = (custom) => {
+  // by returning a function, the Thunk middleware is invoked
   return (dispatch, getState) => {
     // you could do something async here before dispatching
-    dispatch(update(custom, actionTypes.TEST_DECREMENT));
+    // or only dispatch conditionally
+    setTimeout(() => {
+      dispatch({
+        type: 'TEST_INCREMENT',
+        custom: 'a little late'
+      })
+    }, 1000);
   };
 }

@@ -26,13 +26,13 @@ export default class Test extends Component {
   }
 
   render() {
-    const { foo, bar, custom, testIncrement, testDecrement } = this.props;
+    const { foo, bar, custom, testIncrement, testDecrement, testIncrementAsync } = this.props;
     return (
       <View style={ { flex: 1, alignItems: 'center', justifyContent: 'center' } }>
 
         <TouchableOpacity
-                style={[styles.button, styles.green]}
-                onPress={testIncrement.bind(null, 'moar')}>
+          style={[styles.button, styles.green]}
+          onPress={testIncrement.bind(null, 'moar')}>
           <Text>more</Text>
         </TouchableOpacity>
 
@@ -40,6 +40,12 @@ export default class Test extends Component {
                 style={[styles.button, styles.red]}
                 onPress={testDecrement.bind(null, 'lessss')}>
           <Text>less</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.green]}
+          onPress={testIncrementAsync}>
+          <Text>more async</Text>
         </TouchableOpacity>
 
 
