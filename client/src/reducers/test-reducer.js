@@ -25,6 +25,8 @@ export default function testReducer(state = initialState, action = {}) {
         bar: state.bar.length < 6 ? 'hi' : state.bar.substring(0, state.bar.length - 1),
         custom: action.custom
       }
+    case actionTypes.GET_YELP_DATA:
+      return state;
     default:
       return state;
   }
