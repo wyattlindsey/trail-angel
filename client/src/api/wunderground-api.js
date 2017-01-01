@@ -1,13 +1,13 @@
-import * as http from '../utils/http';
+import * as request from '../utils/request';
+import * as config from './config';
+const apiKey = config.secrets.wunderground.apiKey;
 
-const apiKey = '42dec93e32e6a8d2';
-
-const getUrl = (lat, lng, dataFeature = 'conditions') => {
+const getUrl = (latitude, longitude, dataFeature = 'conditions') => {
   return `https://api.wunderground.com/api/${apiKey}/forecast/geolookup/${dataFeature}/q/${lat},${lng}.json`;
 }
 
-export const getWeatherForGeolocation = (lat, lng) => {
-  return http.get(getUrl(lat, lng))
+export const getWeatherForGeolocation = (latitude, longitude) => {
+  return request.get(getUrl(latitude, longitude))
     .then((response) => response.json())
     .then((responseJSON) => {
       return {
