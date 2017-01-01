@@ -21,6 +21,7 @@
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
     "enzyme": "^2.7.0",
+    "fetch-mock": "^5.8.0",
     "jest": "18.0.0",
     "jest-react-native": "^18.0.0",
     "nock": "^9.0.2",
