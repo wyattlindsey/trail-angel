@@ -25,16 +25,17 @@
 ## Requirements
 
 - Node 0.12.x
+- XCode 7.0 or greater
 
 ## Development
 
-### Installing Dependencies
+### Building the project for the iOS simulator
 
 From within the root directory:
 
 ```sh
-npm install
-webpack
+cd client
+react-native run-ios
 ```
 
 ### Roadmap
