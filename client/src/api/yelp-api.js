@@ -7,8 +7,6 @@ const oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.ye
 
 export const searchYelp = (options = {}) => {
 
-  debugger;
-
   if (options.location === undefined &&
       (options.latitude === undefined || options.longitude === undefined)) {
     options.location = 'San Francisco';
