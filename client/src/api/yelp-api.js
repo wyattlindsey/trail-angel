@@ -50,10 +50,5 @@ export const searchYelp = (options = {}) => {
     }
   });
 
-  return request.get(signedRequest.signed_url)
-    .then((response) => response.json())
-    .then((responseJSON) => {
-      return responseJSON;
-    });
-
+  return request.get(signedRequest.signed_url);
 };
