@@ -1,9 +1,12 @@
 const request = {
-  show: (url, id, options) => {
-    return fetch(`${url}/${id}`, options)
+  show: (url, id) => {
+    return fetch(`${url}/${id}`)
       .then((response) => response.json())
       .then((responseJSON) => {
         return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
       });
   },
 
@@ -12,19 +15,52 @@ const request = {
       .then((response) => response.json())
       .then((responseJSON) => {
         return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
       });
   },
 
-  add: () => {
-
+  add: (url, options) => {
+    return fetch(url, {
+      method: 'POST',
+      body: options
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
 
   update: () => {
-
+    return fetch(url, {
+      method: 'PUT',
+      body: options
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
 
   remove: () => {
-
+    return fetch(url, {
+      method: 'DELETE',
+      body: options
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 };
 
