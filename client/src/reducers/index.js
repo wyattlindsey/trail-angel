@@ -1,12 +1,12 @@
 'use strict';
 
 import testReducer from './test-reducer';
-import trail from './trail';
+import trailsReducer from './trails-reducer';
 import user from './user';
 import favorite from './favorite';
 
 const reducers = {
-  trail,
+  trailsReducer,
   testReducer,
   user,
   favorite

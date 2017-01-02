@@ -38,16 +38,12 @@ const shouldFetchTrails = (state) => {
   }
 };
 
-const trailActions = {
-  fetchTrailsIfNeeded: (options) => {
-    return (dispatch, getState) => {
-      if (shouldFetchTrails(getState(), options)) {
-        return dispatch(fetchTrails(options));
-      } else {
-        return Promise.resolve();
-      }
+export const fetchTrailsIfNeeded = (options) => {
+  return (dispatch, getState) => {
+    if (shouldFetchTrails(getState(), options)) {
+      return dispatch(fetchTrails(options));
+    } else {
+      return Promise.resolve();
     }
   }
 };
-
-export default trailActions;
