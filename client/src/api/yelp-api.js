@@ -5,7 +5,7 @@ import * as request from '../utils/request';
 import OAuthSimple from 'oauthsimple';
 const oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
 
-export const searchYelp = (options = {}) => {
+const yelp = (options = {}) => {
 
   if (options.location === undefined &&
       (options.latitude === undefined || options.longitude === undefined)) {
@@ -52,3 +52,5 @@ export const searchYelp = (options = {}) => {
 
   return request.get(signedRequest.signed_url);
 };
+
+export default yelp;
