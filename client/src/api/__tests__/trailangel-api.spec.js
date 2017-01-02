@@ -1,7 +1,7 @@
 fetch = jest.fn(() => new Promise(resolve => resolve()));
 jest.mock('../../utils/request');
 request = require.requireMock('../../utils/request');
-import * as trailAngelApi from '../trailangel-api';
+import trailAngelApi from '../trailangel-api';
 
 const baseUrl = trailAngelApi.baseUrl;
 
@@ -15,15 +15,19 @@ describe('trail angel client-side api', () => {
 
     expect(request.get).toHaveBeenCalled();
     expect(request.get)
-      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves/`, { userId: 1 });
+      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves`, { userId: 1 });
   });
 
-  it('adds a trail favorite', () => {
-    trailAngelApi.addFavorite(1, { userId: 1 });
+  it('makes a request to add a trail favorite', () => {
+    trailAngelApi.addFavorite({ userId: 1, trailName: 'Strawberry Hill' });
 
-    expect(request.update).toHaveBeenCalled();
-    expect(request.update)
-      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves/1}`, { userId: 1 });
+    expect(request.create).toHaveBeenCalled();
+    expect(request.create)
+      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves/1}`,
+        {
+          userId: 1,
+          trailName: 'Strawberry Hill'
+        });
   });
 
   it('removes a trail favorite', () => {
@@ -31,6 +35,10 @@ describe('trail angel client-side api', () => {
 
     expect(request.remove).toHaveBeenCalled();
     expect(request.remove)
-      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves/1}`, { userId: 1 });
+      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves/1}`,
+        {
+          userId: 1,
+          trailName: 'Strawberry Hill'
+        });
   });
 });
