@@ -8,6 +8,7 @@ import createLogger from 'redux-logger';
 
 import * as reducers from '../reducers';
 import TrailAngel from './trail-angel';
+import Nav from '../components/common/nav.component';
 
 const logger = createLogger();    // todo: need to disable this for production builds
 const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
@@ -17,9 +18,11 @@ const store = createStoreWithMiddleware(reducer);
 export default class App extends Component {
   render() {
     return (
+      <Nav>
       <Provider store={store}>
         <TrailAngel />
       </Provider>
+      </Nav>
     );
   }
 };

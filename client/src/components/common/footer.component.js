@@ -24,7 +24,7 @@ export default class TabBarExample extends Component {
     return (
       <View style={[styles.tabContent, {backgroundColor: color}]}>
         <Text style={styles.tabText}>{pageText}</Text>
-        <Text style={styles.tabText}>Renders of the {pageText}</Text>
+        <Text style={styles.tabText}>Renders {pageText} Page</Text>
       </View>
     );
   };
@@ -54,7 +54,7 @@ export default class TabBarExample extends Component {
               selectedTab: 'blackTab',
             });
           }}>
-          <SearchBar/>
+           {this._renderContent('#333333', 'Search')}
         </TabBarIOS.Item>
         <TabBarIOS.Item
         systemIcon ="favorites"
@@ -64,7 +64,7 @@ export default class TabBarExample extends Component {
               selectedTab: 'greyTab',
             });
           }}>
-          {this._renderContent('#333333', 'Grey Tab')}
+          {this._renderContent('#333333', 'Favorites')}
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="more"
@@ -74,7 +74,7 @@ export default class TabBarExample extends Component {
               selectedTab: 'beigeTab',
             });
           }}>
-          {this._renderContent('#d7c797', 'Beige Tab')}
+          {this._renderContent('#d7c797', 'Settings/More')}
         </TabBarIOS.Item>
       </TabBarIOS>
     );
