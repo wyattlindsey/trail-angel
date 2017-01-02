@@ -10,3 +10,9 @@ export const secrets = {
     tokenSecret: 'pcrkmZkSCDJhjzzkMVt25Ip61j8'
   }
 };
+
+export const paths = {
+  trailAngel: {
+    baseUrl: 'http://localhost:4000'
+  }
+};
