@@ -1,8 +1,7 @@
-import * as yelp from '../yelp-api';
 fetch = jest.fn(() => new Promise(resolve => resolve()));
 jest.mock('../../utils/request');
-// const request = require('../../utils/request');
 request = require.requireMock('../../utils/request');
+import * as yelp from '../yelp-api';
 
 describe('yelp api', () => {
 
