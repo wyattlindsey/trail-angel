@@ -2,6 +2,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
+const db = require('./config');
+const model = require('./api/model/model.js');
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
