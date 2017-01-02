@@ -3,7 +3,6 @@ import { View, ListView, StyleSheet, Text } from 'react-native';
 import Row from './trailListItem.component';
 
 const styles = StyleSheet.create({
-
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
