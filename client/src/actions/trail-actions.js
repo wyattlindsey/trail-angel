@@ -8,10 +8,10 @@ const requestTrails = (options) => {
   };
 };
 
-const receiveTrails = (trails) => {
+const receiveTrails = (items) => {
   return {
     type: actionTypes.RECEIVE_TRAILS,
-    trails,
+    items: items,
     receivedAt: Date.now()
   };
 };
@@ -22,19 +22,19 @@ const fetchTrails = (options) => {
 
     return dataApi.yelp(options)
       .then((json) => {
-        dispatch(receiveTrails(json));
+        return dispatch(receiveTrails(json));
       });
   };
 };
 
 const shouldFetchTrails = (state) => {
-  const trails = state.trails;
-  if (!trails) {
+  const items = state.items;
+  if (!items) {
     return true;
-  } else if (trails.isFetching) {
+  } else if (state.isFetching) {
     return false;
   } else {
-    return trails.didInvalidate
+    return state.didInvalidate
   }
 };
 

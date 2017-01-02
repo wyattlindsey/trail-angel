@@ -6,7 +6,7 @@ const initialState = {
   isFetching: false,
   didInvalidate: false,
   lastUpdated: null,
-  items: ['test1', 'test2']
+  items: []
 }
 
 export default function trailsReducer(state = initialState, action = {}) {
@@ -27,7 +27,7 @@ export default function trailsReducer(state = initialState, action = {}) {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: action.trails,
+        items: action.items,
         lastUpdated: action.receivedAt
       }
     default:

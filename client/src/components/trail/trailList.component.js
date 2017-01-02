@@ -16,23 +16,22 @@ export default class TrailList extends React.Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
       trails: [],
-      dataSource: ds.cloneWithRows(['hi']),
-      // dataSource: ds.cloneWithRows(trailActions.fetchTrailsIfNeeded({
-      //   location: 'San Francisco'
-      // }))
+      dataSource: this.ds.cloneWithRows(['hi']),
     };
   }
 
   componentDidMount() {
     this.props.fetchTrailsIfNeeded({})
-      .then((trails) => {
+      .then((data) => {
+        debugger;
         this.setState({
-          trails,
-          dataSource: ds.cloneWithRows(trails)    // ds not defined here
+          trails: data.items.businesses,  // not ideal for this component to have to know about
+                                          // yelp `.businesses` field
+          dataSource: this.ds.cloneWithRows(data.items.businesses)
         });
       });
   }
