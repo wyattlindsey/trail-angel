@@ -7,10 +7,49 @@ const baseUrl = trailAngelApi.baseUrl;
 
 describe('trail angel client-side api', () => {
   beforeEach(() => {
+    request.show = jest.fn(() => new Promise(resolve => resolve()));
     request.get = jest.fn(() => new Promise(resolve => resolve()));
     request.add = jest.fn(() => new Promise(resolve => resolve()));
     request.update = jest.fn(() => new Promise(resolve => resolve()));
     request.remove = jest.fn(() => new Promise(resolve => resolve()));
+  });
+
+  it('makes a request for a user', () => {
+    trailAngelApi.getUser(1);
+
+    expect(request.show).toHaveBeenCalled();
+
+    expect(request.show)
+      .toHaveBeenCalledWith(`${baseUrl}/api/users/1`);
+  });
+
+  it('adds a user', () => {
+    trailAngelApi.updateUser(1,
+      { firstName: 'Bertram', middleName: 'Wilberforce', lastName: 'Wooster'});
+
+    expect(request.update).toHaveBeenCalled();
+
+    expect(request.update)
+      .toHaveBeenCalledWith(`${baseUrl}/api/users/1`,
+        { firstName: 'Bertram', middleName: 'Wilberforce', lastName: 'Wooster'});
+  });
+
+  it('updates a user', () => {
+    trailAngelApi.updateUser(1, { firstName: 'Bertie' });
+
+    expect(request.update).toHaveBeenCalled();
+
+    expect(request.update)
+      .toHaveBeenCalledWith(`${baseUrl}/api/users/1`, { firstName: 'Bertie' });
+  });
+
+  it('removes a user', () => {
+    trailAngelApi.removeUser(1);
+
+    expect(request.remove).toHaveBeenCalled();
+
+    expect(request.remove)
+      .toHaveBeenCalledWith(`${baseUrl}/api/users/1`);
   });
 
   it('makes a request for favorites', () => {
