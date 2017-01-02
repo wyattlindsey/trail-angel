@@ -1,5 +1,5 @@
 import * as request from '../utils/request';
-import * as config from './config';
+import * as config from '../../config';
 const apiKey = config.secrets.wunderground.apiKey;
 
 const getUrl = (latitude, longitude, dataFeature = 'conditions') => {

@@ -30,4 +30,4 @@ bower_components/
 .idea
 
 **/build
-/client/src/api/config.js
+/client/config.js
