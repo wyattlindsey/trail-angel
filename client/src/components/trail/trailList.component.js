@@ -20,7 +20,7 @@ export default class TrailList extends React.Component {
 
     this.state = {
       trails: [],
-      dataSource: ds.cloneWithRows([]),
+      dataSource: ds.cloneWithRows(['hi']),
       // dataSource: ds.cloneWithRows(trailActions.fetchTrailsIfNeeded({
       //   location: 'San Francisco'
       // }))
@@ -28,12 +28,11 @@ export default class TrailList extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
-    this.props.actions.fetchTrailsIfNeeded({})
+    this.props.fetchTrailsIfNeeded({})
       .then((trails) => {
-        setState({
+        this.setState({
           trails,
-          dataSource: ds.cloneWithRows(trails)
+          dataSource: ds.cloneWithRows(trails)    // ds not defined here
         });
       });
   }

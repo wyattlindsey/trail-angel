@@ -1,7 +1,7 @@
 'use strict';
 
 import * as config from '../../config';
-import * as request from '../utils/request';
+import request from '../utils/request';
 import OAuthSimple from 'oauthsimple';
 const oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
 

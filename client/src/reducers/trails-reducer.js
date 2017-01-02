@@ -6,10 +6,10 @@ const initialState = {
   isFetching: false,
   didInvalidate: false,
   lastUpdated: null,
-  trails: []
+  items: ['test1', 'test2']
 }
 
-export default function trails(state = initialState, action = {}) {
+export default function trailsReducer(state = initialState, action = {}) {
   switch (action.type) {
     case actionTypes.INVALIDATE_TRAILS:
       return {
@@ -27,7 +27,7 @@ export default function trails(state = initialState, action = {}) {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        trails: action.trails,
+        items: action.trails,
         lastUpdated: action.receivedAt
       }
     default:

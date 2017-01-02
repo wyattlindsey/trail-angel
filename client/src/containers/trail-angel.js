@@ -4,34 +4,31 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import actions from '../actions';
+import * as trailActions from '../actions/trail-actions';
 
-import TabBar from '../components/common/footer.component';
+// import TabBar from '../components/common/footer.component';
 import TrailList from '../components/trail/trailList.component';
 
-class TrailAngel extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { state, actions } = this.props;
-    return (
-      <TabBar trails={state.trails}
-              actions={actions} />
-    );
-  }
-}
+const TrailAngel = (props) => {
+  const { state, actions } = props;
+  return (
+    <TrailList isFetching={state.isFetching}
+               didInvalidate={state.didInvalidate}
+               lastUpdated={state.lastUpdated}
+               items={state.items}
+               {...actions} />
+  );
+};
 
 const mapStateToProps = function(state) {
   return {
-    state: state
+    state: state.trailsReducer
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(trailActions, dispatch)
   }
 };
 
@@ -39,9 +36,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(TrailAngel);
-
-// <Test
-// foo={state.foo}s
-// bar={state.bar}
-// custom={state.custom}
-// { ...actions } />

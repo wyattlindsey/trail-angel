@@ -18,11 +18,9 @@ const store = createStoreWithMiddleware(reducer);
 export default class App extends Component {
   render() {
     return (
-      <Nav>
       <Provider store={store}>
         <TrailAngel />
       </Provider>
-      </Nav>
     );
   }
 };
