@@ -30,6 +30,8 @@ export default class TabBarExample extends Component {
   };
 
   render() {
+    const { trails, actions } = this.props;
+    debugger;
     return (
       <TabBarIOS
         unselectedTintColor="yellow"
@@ -44,7 +46,8 @@ export default class TabBarExample extends Component {
               selectedTab: 'redTab',
             });
           }}>
-          <TrailList/>
+          <TrailList trails={trails}
+                     actions={this.props.actions} />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon="search"
