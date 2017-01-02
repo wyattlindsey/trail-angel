@@ -1,9 +1,67 @@
+const request = {
+  show: (url, id) => {
+    return fetch(`${url}/${id}`)
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 
+  get: (url, options) => {
+    return fetch(url, options)
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 
-export const show = (url, id, options) => {
-  return fetch(`${url}/${id}`, options);
+  add: (url, options) => {
+    return fetch(url, {
+      method: 'POST',
+      body: options
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  update: () => {
+    return fetch(url, {
+      method: 'PUT',
+      body: options
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  remove: () => {
+    return fetch(url, {
+      method: 'DELETE',
+      body: options
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        return responseJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 };
 
-export const get = (url, options) => {
-  return fetch(url, options);
-}
+export default request;
