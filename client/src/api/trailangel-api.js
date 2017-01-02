@@ -13,7 +13,7 @@ const trailAngelApi = {
 
   addFavorite: (userId, trailName) => {
 
-    return request.post(`${baseUrl}/api/trailfaves`, { userId, trailName });
+    return request.add(`${baseUrl}/api/trailfaves`, { userId, trailName });
   },
 
   removeFavorite: (userId, trailName) => {

@@ -8,6 +8,9 @@ const baseUrl = trailAngelApi.baseUrl;
 describe('trail angel client-side api', () => {
   beforeEach(() => {
     request.get = jest.fn(() => new Promise(resolve => resolve()));
+    request.add = jest.fn(() => new Promise(resolve => resolve()));
+    request.update = jest.fn(() => new Promise(resolve => resolve()));
+    request.remove = jest.fn(() => new Promise(resolve => resolve()));
   });
 
   it('makes a request for favorites', () => {
@@ -19,11 +22,11 @@ describe('trail angel client-side api', () => {
   });
 
   it('makes a request to add a trail favorite', () => {
-    trailAngelApi.addFavorite({ userId: 1, trailName: 'Strawberry Hill' });
+    trailAngelApi.addFavorite(1, 'Strawberry Hill');
 
-    expect(request.create).toHaveBeenCalled();
-    expect(request.create)
-      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves/1}`,
+    expect(request.add).toHaveBeenCalled();
+    expect(request.add)
+      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves`,
         {
           userId: 1,
           trailName: 'Strawberry Hill'
@@ -31,11 +34,11 @@ describe('trail angel client-side api', () => {
   });
 
   it('removes a trail favorite', () => {
-    trailAngelApi.removeFavorite(1, { userId: 1 });
+    trailAngelApi.removeFavorite(1, 'Strawberry Hill');
 
     expect(request.remove).toHaveBeenCalled();
     expect(request.remove)
-      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves/1}`,
+      .toHaveBeenCalledWith(`${baseUrl}/api/trailfaves`,
         {
           userId: 1,
           trailName: 'Strawberry Hill'
