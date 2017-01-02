@@ -12,15 +12,30 @@ const styles = StyleSheet.create({
 
 
 
-export default class TraillistView extends React.Component {
+export default class TrailList extends React.Component {
   constructor(props) {
     super(props);
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      dataSource: ds.cloneWithRows(['Stanford Dish Trails', 'Shoreline Trails' ]),
+      trails: [],
+      dataSource: ds.cloneWithRows([]),
+      // dataSource: ds.cloneWithRows(trailActions.fetchTrailsIfNeeded({
+      //   location: 'San Francisco'
+      // }))
     };
+  }
+
+  componentDidMount() {
+    debugger;
+    this.props.actions.fetchTrailsIfNeeded({})
+      .then((trails) => {
+        setState({
+          trails,
+          dataSource: ds.cloneWithRows(trails)
+        });
+      });
   }
 
   render() {

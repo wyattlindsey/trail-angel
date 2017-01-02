@@ -4,13 +4,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as testActions from '../actions/test-actions';
-import * as userActions from '../actions/user-actions';
+import actions from '../actions';
 
-import Test from '../components/test.component';
 import TabBar from '../components/common/footer.component';
-
-// import any top level presentational components here
+import TrailList from '../components/trail/trailList.component';
 
 class TrailAngel extends Component {
   constructor(props) {
@@ -20,25 +17,21 @@ class TrailAngel extends Component {
   render() {
     const { state, actions } = this.props;
     return (
-      <TabBar/>
-      // <Test
-        // foo={state.foo}s
-        // bar={state.bar}
-        // custom={state.custom}
-        // { ...actions } />
+      <TabBar trails={state.trails}
+              actions={actions} />
     );
   }
 }
 
 const mapStateToProps = function(state) {
   return {
-    state: state.testReducer
+    state: state
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators(testActions, dispatch)
+    actions: bindActionCreators(actions, dispatch)
   }
 };
 
@@ -46,3 +39,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(TrailAngel);
+
+// <Test
+// foo={state.foo}s
+// bar={state.bar}
+// custom={state.custom}
+// { ...actions } />

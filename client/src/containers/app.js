@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import * as reducers from '../reducers';
+import reducers from '../reducers';
 import TrailAngel from './trail-angel';
 import Nav from '../components/common/nav.component';
 

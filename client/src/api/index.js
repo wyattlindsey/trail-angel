@@ -1,7 +1,11 @@
 import * as weather from './wunderground-api';
-import * as yelp from './yelp-api';
+import yelp from './yelp-api';
+import trailAngelApi from './trailangel-api';
 
-export {
+const dataApi = {
   weather,
-  yelp
+  yelp,
+  trailAngelApi
 };
+
+export default dataApi;
