@@ -34,13 +34,17 @@
 From within the root directory:
 
 ```sh
+npm install
 cd client
+npm install
+sudo gem install cocoapods
+rnpm link react-native-lock
 react-native run-ios
 ```
 
 ### Roadmap
 
-View the project roadmap [here](https://waffle.io/hrr20-nebula/trail-angel)
+View the project roadmap [here](https://trello.com/b/H5WO0MyA/mvp)
 
 
 ## Contributing
