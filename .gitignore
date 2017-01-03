@@ -31,3 +31,6 @@ bower_components/
 
 **/build
 /client/config.js
+
+**/Podfile.lock
+**/Pods/
