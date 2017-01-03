@@ -4,10 +4,9 @@ import Nav from '../common/footer.component';
 import App from '../../containers/app';
 
 import Auth0Lock from 'react-native-lock';
+import { auth0Credentials } from '../../../config';
 
-var credentials = require('./auth0-credentials');
-
-var lock = new Auth0Lock(credentials);
+var lock = new Auth0Lock(auth0Credentials);
 
 const styles = StyleSheet.create({
   container: {
@@ -65,19 +64,19 @@ export default class LoginWithRedux extends Component {
         return;
       }
 
-      this.props.navigator.push({
-        title: 'From Login',
-        component: App
-      });
-
       // this.props.navigator.push({
       //   title: 'From Login',
-      //   component: Nav,
-      //   passProps: {
-      //     profile: profile,
-      //     token: token,
-      //   },
+      //   component: App
       // });
+      console.log('token: ', token, 'profile: ', profile);
+      this.props.navigator.push({
+        title: 'From Login',
+        component: App,
+        passProps: {
+          profile: profile,
+          token: token,
+        },
+      });
     });
   }
 
