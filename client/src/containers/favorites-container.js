@@ -4,24 +4,22 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as trailActions from '../actions/trail-actions';
+import * as trailActions from '../actions/favorite-actions';
 
-import TrailList from '../components/trail/trailList.component';
+import FavoriteList from '../components/favorite/favoriteList.component';
 
-const Trails = (props) => {
+const Favorites = (props) => {
   const { state, actions } = props;
   return (
-    <TrailList isFetching={state.isFetching}
-               didInvalidate={state.didInvalidate}
-               lastUpdated={state.lastUpdated}
-               items={state.items}
-               {...actions} />
+    <FavoriteList isFetching={state.isFetching}
+                  items={state.items}
+                  {...actions} />
   );
 };
 
 const mapStateToProps = function(state) {
   return {
-    state: state.trailsReducer
+    state: state.favoritesReducer
   };
 };
 
@@ -34,4 +32,4 @@ const mapDispatchToProps = function(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Trails);
+)(Favorites);
