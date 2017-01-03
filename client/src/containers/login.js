@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import * as userActions from '../actions/user-actions';
 
-import Login from '../components/auth/login.component';
+import Nav from '../common/footer.component';
 
 // import any top level presentational components here
 
