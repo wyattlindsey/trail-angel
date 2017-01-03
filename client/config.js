@@ -1,6 +1,6 @@
 export const secrets = {
   wunderground: {
-    apiKey: '42dec93e32e6a8d2'
+    apiKey: '42dec93e32e6a8d2' 
   },
 
   yelp: {

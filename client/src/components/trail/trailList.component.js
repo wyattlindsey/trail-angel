@@ -19,8 +19,22 @@ export default class TrailList extends React.Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
+
       trails: [],
-      dataSource: this.ds.cloneWithRows(['hi']),
+      dataSource: this.ds.cloneWithRows([ 
+              { trailName: 'Stanford Dish Trails',
+                distance: 'Distance',
+                location: 'Location', 
+                description: 'Description',
+                ratings: '*****',
+              }, 
+              { trailName: 'Shoreline Trails',
+                distance: 'Distance',
+                location: 'Location',  
+                description: 'Description',
+                 ratings: '*****',  
+              } 
+            ]),
     };
   }
 
@@ -40,7 +54,8 @@ export default class TrailList extends React.Component {
       <ListView
         style={styles.container}
         dataSource={this.state.dataSource}
-        renderRow={(data) => <Row {...data} />}
+        renderRow={(data) => <Row {...data}/>}
+
         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
       />
     );
