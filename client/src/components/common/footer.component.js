@@ -20,7 +20,7 @@ export default class TabBarExample extends Component {
     selectedTab: 'redTab',
   };
 
-  _renderContent = (color: string, pageText: string ) => {
+  _renderContent = (color: 'string', pageText: 'string' ) => {
     return (
       <View style={[styles.tabContent, {backgroundColor: color}]}>
         <Text style={styles.tabText}>{pageText}</Text>

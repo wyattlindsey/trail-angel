@@ -1,38 +1,88 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
 
-import * as trailActions from '../actions/trail-actions';
+import icons from '../components/icons';
+import Trails from './trails-container';
 
-// import TabBar from '../components/common/footer.component';
-import TrailList from '../components/trail/trailList.component';
+export default class TabBarExample extends Component {
+  static title = '<TabBarIOS>';
+  static description = 'Trail Angel Navigation';
+  static displayName = 'TrailAngel';
 
-const TrailAngel = (props) => {
-  const { state, actions } = props;
-  return (
-    <TrailList isFetching={state.isFetching}
-               didInvalidate={state.didInvalidate}
-               lastUpdated={state.lastUpdated}
-               items={state.items}
-               {...actions} />
-  );
-};
-
-const mapStateToProps = function(state) {
-  return {
-    state: state.trailsReducer
+  state = {
+    selectedTab: 'redTab',
   };
-};
 
-const mapDispatchToProps = function(dispatch) {
-  return {
-    actions: bindActionCreators(trailActions, dispatch)
+  _renderContent = (color: 'string', pageText: 'string' ) => {
+    return (
+      <View style={[styles.tabContent, {backgroundColor: color}]}>
+        <Text style={styles.tabText}>{pageText}</Text>
+        <Text style={styles.tabText}>Renders {pageText} Page</Text>
+      </View>
+    );
+  };
+
+  render() {
+    return (
+      <TabBarIOS
+        unselectedTintColor="yellow"
+        tintColor="white"
+        barTintColor="darkgreen">
+        <TabBarIOS.Item
+          title ="Home"
+          icon={{uri: icons.homeIcon, scale: 5}}
+          selected={this.state.selectedTab === 'redTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'redTab',
+            });
+          }}>
+          <Trails />
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          systemIcon="search"
+          selected={this.state.selectedTab === 'blackTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'blackTab',
+            });
+          }}>
+          {this._renderContent('#333333', 'Search')}
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          systemIcon ="favorites"
+          selected={this.state.selectedTab === 'greyTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'greyTab',
+            });
+          }}>
+          {this._renderContent('#333333', 'Favorites')}
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          systemIcon ="more"
+          selected={this.state.selectedTab === 'beigeTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'beigeTab',
+            });
+          }}>
+          {this._renderContent('#d7c797', 'Settings/More')}
+        </TabBarIOS.Item>
+      </TabBarIOS>
+    );
   }
-};
+}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TrailAngel);
+const styles = StyleSheet.create({
+  tabContent: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  tabText: {
+    color: 'white',
+    margin: 50,
+  },
+});
