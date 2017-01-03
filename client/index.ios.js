@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { AppRegistry } from 'react-native';
-import App from './src/containers/app';
+import Nav from './src/containers/nav-wrapper';
 
 
 
-AppRegistry.registerComponent('trailangel', () => App);
+AppRegistry.registerComponent('trailangel', () => Nav);

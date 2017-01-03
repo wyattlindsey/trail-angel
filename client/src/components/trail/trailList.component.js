@@ -27,7 +27,6 @@ export default class TrailList extends React.Component {
   componentDidMount() {
     this.props.fetchTrailsIfNeeded({})
       .then((data) => {
-        debugger;
         this.setState({
           trails: data.items.businesses,  // not ideal for this component to have to know about
                                           // yelp `.businesses` field

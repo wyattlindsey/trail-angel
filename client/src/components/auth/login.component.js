@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image } from 'react-native';
 import Nav from '../common/footer.component';
+import App from '../../containers/app';
 
 import Auth0Lock from 'react-native-lock';
 
@@ -66,7 +67,7 @@ export default class LoginWithRedux extends Component {
 
       this.props.navigator.push({
         title: 'From Login',
-        component: Nav
+        component: App
       });
 
       // this.props.navigator.push({
