@@ -7,14 +7,10 @@ import { connect } from 'react-redux';
 import * as trailActions from '../actions/trail-actions';
 
 // import TabBar from '../components/common/footer.component';
-import Nav from '../components/common/nav.component';
 import TrailList from '../components/trail/trailList.component';
 
 const TrailAngel = (props) => {
   const { state, actions } = props;
-  /**
-   * temporarily rendering TrailList directly in order to work on trail list view
-   */
   return (
     <TrailList isFetching={state.isFetching}
                didInvalidate={state.didInvalidate}
