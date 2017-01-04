@@ -28,7 +28,7 @@ export default function trailsReducer(state = initialState, action = {}) {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: action.items.businesses,
+        trails: action.trails,
         lastUpdated: action.receivedAt
       }
     default:

@@ -27,7 +27,7 @@ export default class TrailList extends React.Component {
     this.props.fetchTrailsIfNeeded({})
       .then((data) => {
         this.setState({
-          dataSource: this.ds.cloneWithRows(data.items)
+          dataSource: this.ds.cloneWithRows(data.trails)
         });
       });
   }
@@ -45,8 +45,7 @@ export default class TrailList extends React.Component {
       <ListView
         style={styles.container}
         dataSource={this.state.dataSource}
-        renderRow={(data) => <Row addFavorite={() => { this.props.addFavorite()}}
-                                  {...data}/>}
+        renderRow={(data) => <Row {...data}/>}
 
         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
       />

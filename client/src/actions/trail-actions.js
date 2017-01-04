@@ -8,10 +8,10 @@ const requestTrails = (options) => {
   };
 };
 
-const receiveTrails = (items) => {
+const receiveTrails = (results) => {
   return {
     type: actionTypes.RECEIVE_TRAILS,
-    items: items,
+    trails: results.businesses,
     receivedAt: Date.now()
   };
 };
@@ -28,8 +28,8 @@ const fetchTrails = (options) => {
 };
 
 const shouldFetchTrails = (state) => {
-  const items = state.items;
-  if (!items) {
+  const trails = state.trails;
+  if (!trails) {
     return true;
   } else if (state.isFetching) {
     return false;
