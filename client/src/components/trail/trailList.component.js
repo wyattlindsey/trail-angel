@@ -26,6 +26,7 @@ export default class TrailList extends React.Component {
   componentDidMount() {
     this.props.fetchTrailsIfNeeded({})
       .then((data) => {
+        debugger;
         this.setState({
           dataSource: this.ds.cloneWithRows(data.items)
         });
@@ -44,6 +45,7 @@ export default class TrailList extends React.Component {
         style={styles.container}
         dataSource={this.state.dataSource}
         renderRow={(data) => <Row {...data}/>}
+
         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
       />
     );
