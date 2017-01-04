@@ -33,7 +33,11 @@ const trailAngelApi = {
    */
 
   getFavorites: (userId) => {
-    return request.get(`${baseUrl}/api/trailfaves`, { userId });
+    // return request.get(`${baseUrl}/api/trailfaves/${ userId }`);
+    return request.get(`${baseUrl}/api/users/${ userId }`)
+            .then((data) => {
+              return data.favorites;
+            });
   },
 
   addFavorite: (userId, trailName) => {
