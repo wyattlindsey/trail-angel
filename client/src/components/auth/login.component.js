@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image } from 'react-native';
+import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
 import Nav from '../common/footer.component';
 import App from '../../containers/app';
 
@@ -7,6 +7,9 @@ import Auth0Lock from 'react-native-lock';
 import { auth0Credentials } from '../../../config';
 
 var lock = new Auth0Lock(auth0Credentials);
+var lockAPI = lock.authenticationAPI();
+const tokenKey = 'whatGoesHere';
+const profileKey = 'thisIsAGreatProfile'
 
 const styles = StyleSheet.create({
   container: {
@@ -53,6 +56,80 @@ export default class LoginWithRedux extends Component {
   constructor(props) {
     super(props);
     this._onLogin = this._onLogin.bind(this);
+
+    this.state = {
+      hasToken: false
+    }
+
+  }
+
+  componentDidMount() {
+
+    this.getToken();
+  }
+
+  async getToken() {
+    try {
+      //const tok = await AsyncStorage.removeItem(tokenKey); //This is used to get rid of a token for debuggin
+      const tok = await AsyncStorage.getItem(tokenKey);
+      if (tok !== null){
+        // this means we have a valid token. fetch profile info from auth0 here?
+        console.log('We have a pre-existing valid token!!!!!!: ', tok);
+        this.setState({'hasToken': true}, () => this.getProfile(tok));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getProfile(token) {
+    // lock.getProfile(token, (err, profile) => {
+    //   if (err) {
+    //     console.log('-----error getting profile------', err.message);
+    //   }
+    //   console.log('---------GOT A PROFILE----------', profile);
+    //   this.reroute(profile, token)
+    // });
+
+    try {
+      const prof = await AsyncStorage.getItem(profileKey);
+      if (prof !== null){
+
+        this.reroute(prof, token);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
+  reroute(profile, token) {
+    this.props.navigator.push({
+      title: 'TrailAngel',
+      component: App,
+      passProps: {
+        profile: profile,
+        token: token
+      },
+    });
+  }
+
+  async setToken(token) {
+    try {
+        await AsyncStorage.setItem(tokenKey, JSON.stringify(token));
+        console.log('A TOKEN WAS SET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      } catch (err) {
+        console.log(err);
+      }
+  }
+
+  async setProfile(profile) {
+    try {
+        await AsyncStorage.setItem(profileKey, JSON.stringify(profile));
+        console.log('A PROFILE WAS SET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      } catch (err) {
+        console.log(err);
+      }
   }
 
   _onLogin() {
@@ -63,12 +140,9 @@ export default class LoginWithRedux extends Component {
         console.log(err);
         return;
       }
+      this.setToken(token);
+      this.setProfile(profile);
 
-      // this.props.navigator.push({
-      //   title: 'From Login',
-      //   component: App
-      // });
-      console.log('token: ', token, 'profile: ', profile);
       this.props.navigator.push({
         title: 'From Login',
         component: App,
@@ -79,13 +153,6 @@ export default class LoginWithRedux extends Component {
       });
     });
   }
-
-  // onPress() {
-    // this.props.navigator.push({
-    //     title: 'From Login',
-    //     component: Nav
-    // });
-  // }
 
   render() {
     const { username, password } = this.props;
@@ -100,23 +167,19 @@ export default class LoginWithRedux extends Component {
           <Text style={styles.title}>TrailAngel</Text>
           <Text style={styles.subtitle}>Hike your heart out on your favorite trails.</Text>
         </View>
-        <TouchableHighlight
-          style={styles.signInButton}
-          underlayColor='#949494'
-          onPress={this._onLogin}>
-          <Text>Log In</Text>
-        </TouchableHighlight>
+
+        {this.state.hasToken ?
+            <Text>...Logging In...</Text> :
+
+            <TouchableHighlight
+              style={styles.signInButton}
+              underlayColor='#949494'
+              onPress={this._onLogin}>
+              <Text>Log In</Text>
+            </TouchableHighlight>
+        }
       </View>
     );
   }
-
-      // <View style={styles.container}>
-      //   <TextInput style={styles.textInput} placeholder="Username"/>
-      //   <TextInput style={styles.textInput} placeholder="Password"/>
-
-      //   <TouchableHighlight style={[styles.button, styles.green]} onPress={this.onPress}>
-      //       <Text>Login</Text>
-      //   </TouchableHighlight>
-      // </View>
 
 }
