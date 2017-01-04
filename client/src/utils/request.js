@@ -10,7 +10,7 @@ const request = {
       });
   },
 
-  get: (url, options) => {
+  get: (url, options = {}) => {
     return fetch(url, options)
       .then((response) => response.json())
       .then((responseJSON) => {
