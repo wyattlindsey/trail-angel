@@ -34,10 +34,18 @@ const trailAngelApi = {
 
   getFavorites: (userId) => {
     // return request.get(`${baseUrl}/api/trailfaves/${ userId }`);
-    return request.get(`${baseUrl}/api/users/${ userId }`)
-            .then((data) => {
-              return data.favorites;
-            });
+    // return request.get(`${baseUrl}/api/users/${ userId }`)
+    //         .then((data) => {
+    //           return data.favorites;
+    //         });
+
+    // for testing:
+    return Promise.resolve([
+      "bernal-heights-park-san-francisco",
+      "andy-goldsworthys-wood-line-san-francisco",
+      "strawberry-hill-san-francisco",
+      "batteries-to-bluffs-trail-san-francisco"
+    ]);
   },
 
   addFavorite: (userId, trailName) => {

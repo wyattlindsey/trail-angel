@@ -4,7 +4,7 @@ import actionTypes from '../actions/action-types';
 
 const initialState = {
   isFetching: false,
-  items: []
+  favorites: []
 }
 
 export default function favoritesReducer(state = initialState, action = {}) {
@@ -18,21 +18,21 @@ export default function favoritesReducer(state = initialState, action = {}) {
       return {
         ...state,
         isFetching: false,
-        items: action.items
+        favorites: action.items
       };
     case actionTypes.ADD_FAVORITE:
       return {
         ...state,
-        items: state.items.push(action.item)
+        favorites: state.favorites.push(action.item)
       };
     case actionTypes.REMOVE_FAVORITE:
-      const index = state.items.findIndex(action.item);
+      const index = state.favorites.findIndex(action.item);
       const copy = state.items.slice();
       copy.splice(index, 1)
 
       return {
         ...state,
-        items: copy
+        favorites: copy
       };
     default:
       return state;

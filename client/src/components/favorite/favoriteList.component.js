@@ -19,36 +19,25 @@ export default class FavoriteList extends React.Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      dataSource: this.ds.cloneWithRows([
-        { trailName: 'Stanford Dish Trails',
-          distance: 'Distance',
-          location: 'Location',
-          description: 'Description',
-          ratings: '*****',
-        },
-        { trailName: 'Shoreline Trails',
-          distance: 'Distance',
-          location: 'Location',
-          description: 'Description',
-          ratings: '*****',
-        }
-      ]),
+      dataSource: this.ds
     };
   }
 
   componentDidMount() {
-    this.props.fetchFavorites('5eeb9d7c-3f5e-4a93-9379-c2c03c2055e6')    // todo import the userid from store
+    this.props.fetchFavorites('8e3ad55c-1e89-46b3-8608-d7a7a7f545c9')    // todo import the userid from store
       .then((data) => {
         this.setState({
-          dataSource: this.ds.cloneWithRows(data.items)
+          dataSource: this.ds.cloneWithRows(data.favorites)
         });
       });
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: this.ds.cloneWithRows(nextProps.items)
-    });
+    if (nextProps.favorites !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(nextProps.favorites)
+      });
+    }
   }
 
   render() {

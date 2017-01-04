@@ -8,10 +8,10 @@ const requestFavorites = (userId) => {
   };
 };
 
-const receiveFavorites = (items) => {
+const receiveFavorites = (favorites) => {
   return {
     type: actionTypes.RECEIVE_FAVORITES,
-    items
+    favorites
   };
 };
 
@@ -22,26 +22,33 @@ export const fetchFavorites = (userId) => {
     // get favorites for user from the server
     return dataApi.trailAngelApi.getFavorites(userId)
       .then((data) => {
-        let promises = data.map((item) => {
-          // todo: check to see if the favorite is already in trailsReducer.items
-          // todo: can this just use existing functionality in trail-actions.js?
-          // todo: for now, just pull directly from yelp
-          return dataApi.yelp({ id: item });
-        });
-
-        return Promise.all(promises)
-          .then((results) => {
-            return dispatch(receiveFavorites(results));
+        if (data !== undefined) {
+          let promises = data.map((item) => {
+            // todo: check to see if the favorite is already in trailsReducer.trails
+            // todo: can this just use existing functionality in trail-actions.js?
+            // todo: for now, just pull directly from yelp
+            return dataApi.yelp({ id: item });
           });
+
+          return Promise.all(promises)
+            .then((results) => {
+              return dispatch(receiveFavorites(results));
+            });
+        } // else Promise.reject()?
       });
   };
 };
 
 export const addFavorite = (userId, itemId) => {
-  return {
-    type: actions.ADD_FAVORITE,
-    userId,
-    itemId
+  return (dispatch) => {
+    return data.trailAngelApi.addFavorite(userId, itemId)
+      .then(() => {
+        dispatch({
+          type: actions.ADD_FAVORITE,
+          userId,
+          itemId
+        });
+      });
   };
 };
 

@@ -5,14 +5,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as favoriteActions from '../actions/favorite-actions';
-
 import FavoriteList from '../components/favorite/favoriteList.component';
 
 const Favorites = (props) => {
   const { state, actions } = props;
   return (
     <FavoriteList isFetching={state.isFetching}
-                  items={state.items}
+                  favorites={state.items}
                   {...actions} />
   );
 };
