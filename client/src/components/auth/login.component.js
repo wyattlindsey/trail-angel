@@ -29,12 +29,12 @@ export default class LoginWithRedux extends Component {
 
   async getToken() {
     try {
-      //const tok = await AsyncStorage.removeItem(tokenKey); //This is used to get rid of a token for debuggin
-      const tok = await AsyncStorage.getItem(tokenKey);
-      if (tok !== null){
+      //const token = await AsyncStorage.removeItem(tokenKey); //This is used to get rid of a token for debuggin
+      const token = await AsyncStorage.getItem(tokenKey);
+      if (token !== null){
         // this means we have a valid token. fetch profile info from auth0 here?
-        console.log('We have a pre-existing valid token!!!!!!: ', tok);
-        this.setState({'hasToken': true}, () => this.getProfile(tok));
+        console.log('We have a pre-existing valid token!!!!!!: ', token);
+        this.setState({'hasToken': true}, () => this.getProfile(token));
       }
     } catch (err) {
       console.log(err);
@@ -51,10 +51,10 @@ export default class LoginWithRedux extends Component {
     // });
 
     try {
-      const prof = await AsyncStorage.getItem(profileKey);
-      if (prof !== null){
+      const profile = await AsyncStorage.getItem(profileKey);
+      if (profile !== null){
 
-        this.reroute(prof, token);
+        this.reroute(profile, token);
       }
     } catch (err) {
       console.log(err);
