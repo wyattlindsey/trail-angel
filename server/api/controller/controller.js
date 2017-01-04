@@ -1,79 +1,136 @@
-const db = require('./user.model');
+'use strict';
+
+const db = require('../model/model.js');
 
 module.exports = {
   users: {
-    //get all users (return all users in users table)
-    //use this when we can add friends
-    /*get: function (req, res) {
-
-    },*/
-
-    //create a user account (creates user instance in users table)
+    //create a user to link with trails (creates user instance in users table)
+    /**********body should contain*******/
+      //req.body.user (email address or any user identifier, stored at login/signup)
     post: function (req, res) {
-      db.User.find({
+      db.User.findOrCreate({
         where: {
-          username: 'username'/*username*/
+          user: req.body.user
         }
       }).then( (user) => {
-        if (!user) {
-          db.User.create({
-            where: {
-              username: 'username'/*username*/,
-              firstname: 'firstname'/*firstname*/,
-              lastname: 'lastname'/*lastname*/
-            }
-          }).then( (results) => {
-            res.statusCode(201);
-          });
-        }
+        // console.log(user);
+        res.sendStatus(201);
       });
     },
     //delete user account (removes instance from users table)
+    /**********body should contain*******/
+      //req.body.user (email address or any user identifier, stored at login/signup)
     delete: function(req, res) {
-      db.User.destroy({
+      db.User.find({
         where: {
-          username: /* current username*/
+          user: req.body.user
         }
-      }).then( (results) => {
-        res.statusCode(202)
+      }).then( (userID) => {
+        // console.log("-----------", userID);
+        db.UsersFavorites.destroy({
+          where: {
+            userId: userID.dataValues.id
+          }
+        }).then( (userfavorite) => {
+          // console.log('userfavorite----------', userfavorite);
+          db.User.destroy({
+            where: {
+              id: userID.dataValues.id
+            }
+          }).then( (user) => {
+            console.log('user destroyed');
+          });
+          res.sendStatus(202);
+        });
       });
     },
-    //update user account (updates instance in users table)
-    put: function(req, res) {
-
-    }
   },
   trailfaves: {
     //get trailfaves for specific user (return all specific user's trail ids in usersfavorites table then obtain all trail names)
+    /****************body should contain*************/
+      //req.body.user (email address or any user identifier, stored at login/signup)
     get: function(req, res) {
-      db.UsersFavorites.findAll({
+      db.User.find({
         where: {
-          userId: 'userId'/*userId*/
+          user: req.params.id
         }
-      }).then( (favorites) => {
-        res.json(favorites);
+      }).then( (userID) => {
+        db.UsersFavorites.findAll({
+          where: {
+            userId: userID.dataValues.id
+          }
+        }).then( (favorites) => {
+          var ids = [];
+          favorites.forEach( (favoriteID) => {
+            ids.push(favoriteID.dataValues.favoriteId);
+          });
+          db.Favorite.findAll({
+            where: {
+              id: {
+                $or: ids
+              }
+            }
+          }).then( (favoriteNames) => {
+            var trailNames = [];
+            favoriteNames.forEach( (favoriteName) => {
+              trailNames.push(favoriteName.dataValues.favorite);
+            });
+            res.json(trailNames);
+          });
+        });
       });
     },
     //save trail as a favorite for specific user (create instance to usersfavorites)
+    /******************body should contain**********/
+      //req.body.user (email address or any user identifier, stored at login/signup)
+      //req.body.favorite (name of the trail)
     post: function(req, res) {
-      db.UsersFavorites.findOrCreate({
+      db.User.find({
         where: {
-          userId: 'userId'/*userId*/,
-          favoriteId: 'favoriteId'/*favoriteId*/
+          user: req.body.user
         }
-      }).then( (results) => {
-        res.statusCode(201);
+      }).then( (userID) => {
+        db.Favorite.findOrCreate({
+          where: {
+            favorite: req.body.favorite
+          }
+        }).then( (favoriteID) => {
+          db.UsersFavorites.findOrCreate({
+            where: {
+              userId: userID.dataValues.id,
+              favoriteId: favoriteID[0].dataValues.id
+            }
+          }).then( (results) => {
+            res.sendStatus(201).json('Created');
+          });
+        });
       });
     },
     //removes instance from usersfavorites table
+    /***********body should contain*******/
+      //req.body.user (email address or any user identifier, stored at login/signup)
+      //req.body.favorite (name of the trail)
     delete: function(req, res) {
-      db.UsersFavorites.destroy({
+      db.User.find({
         where: {
-          userId: 'userId'/*userId*/,
-          favoriteId: 'favoriteId'/*favoriteId*/
+          user: req.body.user
         }
-      }).then( (userfavorite) => {
-        res.statusCode(202);
+      }).then( (userID) => {
+        db.Favorite.find({
+          where: {
+            favorite: req.body.favorite
+          }
+        }).then( (favoriteID) => {
+          // console.log("this is favoriteID ============", favoriteID)
+          db.UsersFavorites.destroy({
+            where: {
+              userId: userID.dataValues.id,
+              favoriteId: favoriteID.dataValues.id
+            }
+          }).then( (userfavorite) => {
+            res.sendStatus(202);
+          });
+        });
       });
     }
   }

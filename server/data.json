@@ -1,0 +1,18 @@
+[
+  {
+    "user":"jo@jo.com",
+    "favorite":"Shoreline Trails"
+  },
+  {
+    "user":"jo@jo.com",
+    "favorite":"Hollywood Trails"
+  },
+  {
+    "user":"me@me.com",
+    "favorite":"Strawberry Peak"
+  },
+  {
+    "user":"you@you.com",
+    "favorite":"Strawberry Peak"
+  }
+]
