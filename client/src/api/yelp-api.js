@@ -3,9 +3,13 @@
 import * as config from '../../config';
 import request from '../utils/request';
 import OAuthSimple from 'oauthsimple';
-const oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
 
 const yelp = (options = {}) => {
+  let oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
+
+  if (options.id !== undefined) {
+    return fetchById(options.id);
+  }
 
   if (options.location === undefined &&
       (options.latitude === undefined || options.longitude === undefined)) {
@@ -28,15 +32,14 @@ const yelp = (options = {}) => {
 
   const keys = Object.keys(options);
 
-
-
-  const parameters = keys.reduce((memo, k, i) => {
+  let parameters = keys.reduce((memo, k, i) => {
     if (!options[k]) {
       return memo;
     } else {
       return memo += `${k}=${options[k] || ''}${i === keys.length - 1 ? '' : '&'}`;
     }
   }, '');
+
 
   const signedRequest = oauth.sign({
     action: 'GET',
@@ -50,6 +53,21 @@ const yelp = (options = {}) => {
     }
   });
 
+  return request.get(signedRequest.signed_url);
+};
+
+const fetchById = (id) => {
+  let oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
+  const signedRequest = oauth.sign({
+    action: 'GET',
+    path: `https://api.yelp.com/v2/business/${id}`,
+    signatures: {
+      api_key: config.secrets.yelp.consumerKey,
+      shared_secret: config.secrets.yelp.consumerSecret,
+      access_token: config.secrets.yelp.token,
+      access_secret: config.secrets.yelp.tokenSecret
+    }
+  });
   return request.get(signedRequest.signed_url);
 };
 
