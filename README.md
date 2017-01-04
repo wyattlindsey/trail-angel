@@ -35,12 +35,19 @@ From within the root directory:
 
 ```sh
 npm install
-cd client
+nodemon server/server.js
+```
+
+From within the client directory:
+
+```sh
 npm install
 sudo gem install cocoapods
 rnpm link react-native-lock
 react-native run-ios
 ```
+
+
 
 ### Roadmap
 
