@@ -1,5 +1,5 @@
 import { paths } from '../../config';
-import * as request from '../utils/request';
+import request from '../utils/request';
 
 const baseUrl = paths.trailAngel.baseUrl;
 
