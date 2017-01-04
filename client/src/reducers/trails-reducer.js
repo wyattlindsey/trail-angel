@@ -6,7 +6,7 @@ const initialState = {
   isFetching: false,
   didInvalidate: false,
   lastUpdated: null,
-  items: []
+  trails: []
 }
 
 export default function trailsReducer(state = initialState, action = {}) {
@@ -23,11 +23,12 @@ export default function trailsReducer(state = initialState, action = {}) {
         didInvalidate: false
       };
     case actionTypes.RECEIVE_TRAILS:
+
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: action.items,
+        items: action.items.businesses,
         lastUpdated: action.receivedAt
       }
     default:

@@ -5,8 +5,9 @@ import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
 
 import icons from '../components/icons';
 import Trails from './trails-container';
+import Favorites from './favorites-container';
 
-export default class TabBarExample extends Component {
+export default class TrailAngel extends Component {
   static title = '<TabBarIOS>';
   static description = 'Trail Angel Navigation';
   static displayName = 'TrailAngel';
@@ -59,7 +60,7 @@ export default class TabBarExample extends Component {
               selectedTab: 'greyTab',
             });
           }}>
-          {this._renderContent('#333333', 'Favorites')}
+          <Favorites />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="more"

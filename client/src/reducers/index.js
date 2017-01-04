@@ -2,14 +2,14 @@
 
 import testReducer from './test-reducer';
 import trailsReducer from './trails-reducer';
+import favoritesReducer from './favorites-reducer';
 import user from './user';
-import favorite from './favorite';
 
 const reducers = {
   trailsReducer,
+  favoritesReducer,
   testReducer,
-  user,
-  favorite
+  user
 };
 
 export default reducers;
