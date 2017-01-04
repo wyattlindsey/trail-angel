@@ -31,6 +31,14 @@
 
 ### Building the project for the iOS simulator
 
+Setting up the database server:
+
+```sh
+mysql.server start
+mysql -u root -p
+```
+When prompted for a password, press enter.  In the MySQL command line, enter the command ```sh create database trailangel; ```.
+
 From within the root directory:
 
 ```sh
