@@ -126,15 +126,7 @@ export default class LoginWithRedux extends Component {
       this.addOrFindUser(profile);
       this.setToken(token);
       this.setProfile(profile);
-
-      this.props.navigator.push({
-        title: 'From Login',
-        component: App,
-        passProps: {
-          profile: profile,
-          token: token,
-        },
-      });
+      this.reroute(profile, token);
     });
   }
 
