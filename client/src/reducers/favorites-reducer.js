@@ -27,12 +27,12 @@ export default function favoritesReducer(state = initialState, action = {}) {
       };
     case actionTypes.REMOVE_FAVORITE:
       const index = state.items.findIndex(action.item);
-      const arr = state.items.slice();
-      arr.splice(index, 1)
+      const copy = state.items.slice();
+      copy.splice(index, 1)
 
       return {
         ...state,
-        items: arr
+        items: copy
       };
     default:
       return state;

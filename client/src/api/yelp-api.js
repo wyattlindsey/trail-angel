@@ -8,7 +8,7 @@ const yelp = (options = {}) => {
   let oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
 
   if (options.id !== undefined) {
-    return fetchById(options.id);
+    return fetchById(options.id, oauth);
   }
 
   if (options.location === undefined &&
@@ -56,8 +56,7 @@ const yelp = (options = {}) => {
   return request.get(signedRequest.signed_url);
 };
 
-const fetchById = (id) => {
-  let oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
+const fetchById = (id, oauth) => {
   const signedRequest = oauth.sign({
     action: 'GET',
     path: `https://api.yelp.com/v2/business/${id}`,

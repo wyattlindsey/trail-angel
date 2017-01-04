@@ -4,7 +4,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as trailActions from '../actions/favorite-actions';
+import * as favoriteActions from '../actions/favorite-actions';
 
 import FavoriteList from '../components/favorite/favoriteList.component';
 
@@ -25,7 +25,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators(trailActions, dispatch)
+    actions: bindActionCreators(favoriteActions, dispatch)
   }
 };
 

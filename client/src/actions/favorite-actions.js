@@ -11,7 +11,7 @@ const requestFavorites = (userId) => {
 const receiveFavorites = (items) => {
   return {
     type: actionTypes.RECEIVE_FAVORITES,
-    userId
+    items
   };
 };
 
@@ -26,10 +26,10 @@ export const fetchFavorites = (userId) => {
           // todo: check to see if the favorite is already in trailsReducer.items
           // todo: can this just use existing functionality in trail-actions.js?
           // todo: for now, just pull directly from yelp
-          return dataApi.yelp({ term: item });
+          return dataApi.yelp({ id: item });
         });
 
-        Promise.all(promises)
+        return Promise.all(promises)
           .then((results) => {
             return dispatch(receiveFavorites(results));
           });
