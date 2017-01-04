@@ -24,7 +24,7 @@ export default class FavoriteList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchFavorites('8e3ad55c-1e89-46b3-8608-d7a7a7f545c9')    // todo import the userid from store
+    this.props.fetchFavorites('9c04a591-37b9-4371-b226-38a48f467ac8')    // todo import the userid from store
       .then((data) => {
         this.setState({
           dataSource: this.ds.cloneWithRows(data.favorites)

@@ -33,19 +33,22 @@ const trailAngelApi = {
    */
 
   getFavorites: (userId) => {
-    // return request.get(`${baseUrl}/api/trailfaves/${ userId }`);
-    // return request.get(`${baseUrl}/api/users/${ userId }`)
-    //         .then((data) => {
-    //           return data.favorites;
-    //         });
+    // eventually use this call for live server but return thenabble data like below
+    // return request.get(`${baseUrl}/api/trailfaves/user/${ userId }`);
+
+    // just while using json-server for testing
+    return request.get(`${baseUrl}/api/users/${ userId }`)
+            .then((data) => {
+              return data.favorites;
+            });
 
     // for testing:
-    return Promise.resolve([
-      "bernal-heights-park-san-francisco",
-      "andy-goldsworthys-wood-line-san-francisco",
-      "strawberry-hill-san-francisco",
-      "batteries-to-bluffs-trail-san-francisco"
-    ]);
+    // return Promise.resolve([
+    //   "bernal-heights-park-san-francisco",
+    //   "andy-goldsworthys-wood-line-san-francisco",
+    //   "strawberry-hill-san-francisco",
+    //   "batteries-to-bluffs-trail-san-francisco"
+    // ]);
   },
 
   addFavorite: (userId, trailName) => {
