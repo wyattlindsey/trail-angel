@@ -52,7 +52,7 @@ module.exports = {
     get: function(req, res) {
       db.User.find({
         where: {
-          user: req.params.id
+          user: req.body.user
         }
       }).then( (userID) => {
         db.UsersFavorites.findAll({
