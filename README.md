@@ -37,7 +37,7 @@ Setting up the database server:
 mysql.server start
 mysql -u root -p
 ```
-When prompted for a password, press enter.  In the MySQL command line, enter the command ```sh create database trailangel; ```.
+When prompted for a password, press enter.  In the MySQL command line, enter the command ```create database trailangel; ```.
 
 From within the root directory:
 
