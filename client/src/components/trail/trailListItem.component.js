@@ -57,9 +57,8 @@ export default class TraillistItem extends React.Component {
         <View style={styles.rowContainer}>
           <Image source={{ uri: base64Icon, scale: 4}} style={styles.photo} />
               <View><Text style={styles.distance}> {this.props.distance} miles </Text></View>
-          <View  style={styles.textContainer}>
+          <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
-
             <Text> {this.props.location.city} </Text>
             <Text> {this.props.rating} </Text>
             <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
