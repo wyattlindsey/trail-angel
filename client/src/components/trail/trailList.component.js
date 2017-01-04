@@ -19,22 +19,7 @@ export default class TrailList extends React.Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-
-      trails: [],
-      dataSource: this.ds.cloneWithRows([ 
-              { trailName: 'Stanford Dish Trails',
-                distance: 'Distance',
-                location: 'Location', 
-                description: 'Description',
-                ratings: '*****',
-              }, 
-              { trailName: 'Shoreline Trails',
-                distance: 'Distance',
-                location: 'Location',  
-                description: 'Description',
-                 ratings: '*****',  
-              } 
-            ]),
+      dataSource: this.ds
     };
   }
 
@@ -42,11 +27,15 @@ export default class TrailList extends React.Component {
     this.props.fetchTrailsIfNeeded({})
       .then((data) => {
         this.setState({
-          trails: data.items.businesses,  // not ideal for this component to have to know about
-                                          // yelp `.businesses` field
-          dataSource: this.ds.cloneWithRows(data.items.businesses)
+          dataSource: this.ds.cloneWithRows(data.items)
         });
       });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: this.ds.cloneWithRows(nextProps.items)
+    });
   }
 
   render() {
@@ -55,7 +44,6 @@ export default class TrailList extends React.Component {
         style={styles.container}
         dataSource={this.state.dataSource}
         renderRow={(data) => <Row {...data}/>}
-
         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
       />
     );

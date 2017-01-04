@@ -8,10 +8,10 @@ const requestTrails = (options) => {
   };
 };
 
-const receiveTrails = (items) => {
+const receiveTrails = (results) => {
   return {
     type: actionTypes.RECEIVE_TRAILS,
-    items: items,
+    items: results.businesses,
     receivedAt: Date.now()
   };
 };
