@@ -4,53 +4,12 @@ import Nav from '../common/footer.component';
 import App from '../../containers/app';
 
 import Auth0Lock from 'react-native-lock';
-import { auth0Credentials } from '../../../config';
+import { auth0Credentials, paths } from '../../../config';
 
 var lock = new Auth0Lock(auth0Credentials);
 var lockAPI = lock.authenticationAPI();
 const tokenKey = 'whatGoesHere';
 const profileKey = 'thisIsAGreatProfile'
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  messageBox: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  badge: {
-    alignSelf: 'center',
-    height: 169,
-    width: 151,
-  },
-  title: {
-    fontSize: 17,
-    textAlign: 'center',
-    marginTop: 8,
-  },
-  subtitle: {
-    fontSize: 17,
-    textAlign: 'center',
-    marginTop: 4,
-  },
-  welcome: {
-    color: 'white'
-  },
-  signInButton: {
-    height: 50,
-    alignSelf: 'stretch',
-    backgroundColor: '#D9DADF',
-    margin: 10,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default class LoginWithRedux extends Component {
   constructor(props) {
@@ -132,6 +91,30 @@ export default class LoginWithRedux extends Component {
       }
   }
 
+  addOrFindUser(profile) {
+    var userId = profile.identities[0].userId;
+    // Should use redux action here?  not sure how to do this yet
+    const userEndpoint = paths.trailAngel.baseUrl + '/api/users';
+    return fetch(userEndpoint, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: userId
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Add or find user request: ', response.status);
+      }
+    })
+    .catch(err => {
+      console.log('Add or find user request error: ', err);
+    });
+  }
+
   _onLogin() {
     lock.show({
       closable: true,
@@ -140,6 +123,7 @@ export default class LoginWithRedux extends Component {
         console.log(err);
         return;
       }
+      this.addOrFindUser(profile);
       this.setToken(token);
       this.setProfile(profile);
 
@@ -183,3 +167,44 @@ export default class LoginWithRedux extends Component {
   }
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  messageBox: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  badge: {
+    alignSelf: 'center',
+    height: 169,
+    width: 151,
+  },
+  title: {
+    fontSize: 17,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  subtitle: {
+    fontSize: 17,
+    textAlign: 'center',
+    marginTop: 4,
+  },
+  welcome: {
+    color: 'white'
+  },
+  signInButton: {
+    height: 50,
+    alignSelf: 'stretch',
+    backgroundColor: '#D9DADF',
+    margin: 10,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
