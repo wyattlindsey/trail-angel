@@ -60,7 +60,6 @@ export default class TrailAngel extends Component {
               selectedTab: 'greyTab',
             });
           }}>
-          {this._renderContent('#333333', 'Favorites')}
           <Favorites />
         </TabBarIOS.Item>
         <TabBarIOS.Item
