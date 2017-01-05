@@ -10,8 +10,13 @@ const initialState = {
 
 export default function usersReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case actionTypes.LOGIN_USER:
-      return {...state, userId: action.userId, email: action.email, avatarUrl: action.avatarUrl}
+    case actionTypes.REGISTER_USER:
+      return {
+        ...state,
+        userId: action.profile.userId,
+        email: action.profile.email,
+        avatarUrl: action.profile.avatarUrl
+      };
     default:
       return state;
   }

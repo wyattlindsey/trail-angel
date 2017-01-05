@@ -32,7 +32,11 @@ export const fetchFavorites = (userId) => {
 
           return Promise.all(promises)
             .then((results) => {
+              console.log('success!!!!!')
               return dispatch(receiveFavorites(results));
+            })
+            .catch((err) => {
+              console.log('error!!!!!');
             });
         } // else Promise.reject()?
       });
