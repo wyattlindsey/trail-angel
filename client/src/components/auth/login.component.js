@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
 import Nav from '../common/footer.component';
 import App from '../../containers/app';
+
 import * as userActions from '../../actions/user-actions';
 
 import Auth0Lock from 'react-native-lock';
@@ -15,7 +16,7 @@ const profileKey = 'thisIsAGreatProfile'
 export default class LoginWithRedux extends Component {
   constructor(props) {
     super(props);
-    this.onLogin = this._onLogin.bind(this);
+    this.onLogin = this.onLogin.bind(this);
     //this.removeToken = this.removeToken.bind(this);
     //this.removeProfile = this.removeProfile.bind(this);
 
@@ -31,7 +32,6 @@ export default class LoginWithRedux extends Component {
 
   async getToken() {
     try {
-      //const token = await AsyncStorage.removeItem(tokenKey); //This is used to get rid of a token for debuggin
       const token = await AsyncStorage.getItem(tokenKey);
       if (token !== null){
         // this means we have a valid token. fetch profile info from auth0 here?
@@ -70,6 +70,7 @@ export default class LoginWithRedux extends Component {
   }
 
   rerouteToLogin() {
+    this.props.navigator.pop();
     this.props.navigator.pop();
   }
 
@@ -175,7 +176,7 @@ export default class LoginWithRedux extends Component {
             <TouchableHighlight
               style={styles.signInButton}
               underlayColor='#949494'
-              onPress={this._onLogin}>
+              onPress={this.onLogin}>
               <Text>Log In</Text>
             </TouchableHighlight>
         }
