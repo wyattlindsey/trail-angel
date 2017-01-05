@@ -176,7 +176,7 @@ export default class LoginWithRedux extends Component {
           <View style={styles.messageBox}>
             <Image
               style={styles.badge}
-              source={require('../../../img/badge.png')}
+              source={require('../../../img/backpack.png')}
             />
             <Text style={styles.title}>TrailAngel</Text>
             <Text style={styles.subtitle}>Hike your heart out on your favorite trails.</Text>
@@ -207,8 +207,8 @@ const styles = StyleSheet.create({
   },
   badge: {
     alignSelf: 'center',
-    height: 169,
-    width: 151,
+    height: 200,
+    width: 200,
   },
   title: {
     fontSize: 17,
