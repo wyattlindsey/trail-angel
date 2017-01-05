@@ -1,5 +1,6 @@
 import actionTypes from './action-types';
 import dataApi from '../api';
+import * as _ from 'lodash';
 
 const requestFavorites = (userId) => {
   return {
@@ -45,7 +46,12 @@ export const fetchFavorites = () => {
 
 export const addFavorite = (trailId) => {
   return (dispatch, getState) => {
-    userId = getState().userReducer.userId;
+    const userId = getState().userReducer.userId;
+    const favorites = getState().favoritesReducer.favorites;
+    debugger;
+    if (_.findIndex(favorites, { id: trailId }) !== -1) {
+      return;
+    }
     return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
         dispatch({
@@ -58,8 +64,23 @@ export const addFavorite = (trailId) => {
 };
 
 export const removeFavorite = (trailId) => {
-  return {
-    type: actionTypes.REMOVE_FAVORITE,
-    trailId
+  return (dispatch, getState) => {
+    userId = getState().userReducer.userId;
+    return dataApi.trailAngelApi.removeFavorite(userId, trailId)
+      .then(() => {
+        dispatch({
+          type: actionTypes.REMOVE_FAVORITE,
+          userId,
+          trailId
+        })
+      .then((favorites) => {
+        const receiveFavorites = (favorites) => {
+          return {
+            type: actionTypes.RECEIVE_FAVORITES,
+            favorites
+          };
+        };
+      });
+    });
   };
 };

@@ -1,3 +1,8 @@
+const headers = {
+  'Accept': 'application/json',
+    'Content-Type': 'application/json',
+}
+
 const request = {
   show: (url, id) => {
     return fetch(`${url}/${id}`)
@@ -24,10 +29,7 @@ const request = {
   add: (url, options) => {
     return fetch(url, {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(options)
     })
       .catch((err) => {
@@ -35,10 +37,11 @@ const request = {
       });
   },
 
-  update: () => {
+  update: (url, options) => {
     return fetch(url, {
       method: 'PUT',
-      body: options
+      body: JSON.stringify(options),
+      headers
     })
       .then((response) => response.json())
       .then((responseJSON) => {
@@ -49,10 +52,11 @@ const request = {
       });
   },
 
-  remove: () => {
+  remove: (url, options) => {
     return fetch(url, {
       method: 'DELETE',
-      body: options
+      body: JSON.stringify(options),
+      headers
     })
       .then((response) => response.json())
       .then((responseJSON) => {

@@ -63,21 +63,17 @@ export default class TraillistItem extends React.Component {
     super(props);
   }
 
-  _onPressFavorite(e) {
-    debugger;
-  }
-
   render() {
     let imagePath = this.props.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
-    const addFavorite = () => { this.props.addFavorite(this.props.id) };
-    const removeFavorite = () => { this.props.removeFavorite(this.props.id) };
+    const addFavorite = this.props.addFavorite.bind(this, this.props.id);
+    const removeFavorite = this.props.removeFavorite.bind(this.props.id);
 
     return (
       <View>
         <View style={styles.rowContainer}>
           <View style={styles.leftColumn}>
             <Image source={{uri: this.props.image_url}} style={styles.photo} />
-            <TouchableHighlight onPress={removeFavorite}>
+            <TouchableHighlight onPress={this.props.addFavorite.bind(this, this.props.id)}>
               <Image
                 style={styles.favorite}
                 source={require('../../../img/heart.png')} />
