@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text } from 'react-native';
+import { View, ListView, StyleSheet,
+          Text, ActivityIndicator } from 'react-native';
 import Row from './trailListItem.component';
 
 const styles = StyleSheet.create({
@@ -8,6 +9,9 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#8E8E8E',
   },
+  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
+  gray: { backgroundColor: '#cccccc', },
+  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
 });
 
 
@@ -43,16 +47,22 @@ export default class TrailList extends React.Component {
 
   render() {
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={(data) => <Row addFavorite={this.props.addFavorite}
-                                  removeFavorite={this.props.removeFavorite}
-                                  {...data}/>}
-        enableEmptySections={true}
-        renderSeparator={(sectionId, rowId) => <View key={rowId}
-                                                     style={styles.separator} />}
-      />
+      <View>
+        <ActivityIndicator animating={true}
+                           style={[styles.centering, styles.horizontal, { height: this.props.isFetching ? 260 : 0 }]}
+                           color='darkgreen'
+                           size='large' />
+        <ListView
+          style={styles.container}
+          dataSource={this.state.dataSource}
+          renderRow={(data) => <Row addFavorite={this.props.addFavorite}
+                                    removeFavorite={this.props.removeFavorite}
+                                    {...data}/>}
+          enableEmptySections={true}
+          renderSeparator={(sectionId, rowId) => <View key={rowId}
+                                                       style={styles.separator} />}
+        />
+      </View>
     );
   }
 }
