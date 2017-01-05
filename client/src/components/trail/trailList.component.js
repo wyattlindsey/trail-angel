@@ -30,6 +30,7 @@ export default class TrailList extends React.Component {
           dataSource: this.ds.cloneWithRows(data.trails)
         });
       });
+    this.props.fetchFavorites();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,6 +47,7 @@ export default class TrailList extends React.Component {
         style={styles.container}
         dataSource={this.state.dataSource}
         renderRow={(data) => <Row addFavorite={this.props.addFavorite}
+                                  removeFavorite={this.props.removeFavorite}
                                   {...data}/>}
         enableEmptySections={true}
         renderSeparator={(sectionId, rowId) => <View key={rowId}

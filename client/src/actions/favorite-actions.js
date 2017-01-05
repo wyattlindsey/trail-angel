@@ -15,14 +15,14 @@ const receiveFavorites = (favorites) => {
   };
 };
 
-export const fetchFavorites = (userId) => {
-  return (dispatch) => {
+export const fetchFavorites = () => {
+  return (dispatch, getState) => {
+    const userId = getState().userReducer.userId;
     dispatch(requestFavorites(userId));
 
     // get favorites for user from the server
     return dataApi.trailAngelApi.getFavorites(userId)
       .then((data) => {
-        debugger;
         if (data !== undefined && Array.isArray(data)) {
           let promises = data.map((item) => {
             // todo: check to see if the favorite is already in trailsReducer.trails
@@ -57,10 +57,9 @@ export const addFavorite = (trailId) => {
   };
 };
 
-export const removeFavorite = (userId, itemId) => {
+export const removeFavorite = (trailId) => {
   return {
     type: actionTypes.REMOVE_FAVORITE,
-    userId,
-    itemId
+    trailId
   };
 };

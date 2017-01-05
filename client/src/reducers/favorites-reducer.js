@@ -1,4 +1,5 @@
 'use strict';
+import * as _ from 'lodash';
 
 import actionTypes from '../actions/action-types';
 
@@ -21,21 +22,27 @@ export default function favoritesReducer(state = initialState, action = {}) {
         favorites: action.favorites
       };
     case actionTypes.ADD_FAVORITE:
-      debugger;
       const favoritesCopy = state.favorites.slice();
       return {
         ...state,
         favorites: favoritesCopy.push(action.item)
       };
     case actionTypes.REMOVE_FAVORITE:
-      const index = state.favorites.findIndex(action.item);
-      const copy = state.favorites.slice();
-      copy.splice(index, 1)
+      debugger;
+      const index = _.findIndex(state.favorites, { id: action.trailId });
+      if (index !== -1) {
+        const copy = state.favorites.slice();
+        copy.splice(index, 1)
+        debugger;
+        return {
+          ...state,
+          favorites: copy
+        };
+      } else {
+        return {
 
-      return {
-        ...state,
-        favorites: copy
-      };
+        }
+      }
     default:
       return state;
   }
