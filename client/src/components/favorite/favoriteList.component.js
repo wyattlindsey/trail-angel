@@ -48,7 +48,7 @@ export default class FavoriteList extends React.Component {
   render() {
     return (
       <View>
-        <ActivityIndicator animating={true}
+        <ActivityIndicator animating={this.props.isFetching}
                            style={[styles.centering, styles.horizontal, { height: this.props.isFetching ? 260 : 0 }]}
                            color='darkgreen'
                            size='large' />
