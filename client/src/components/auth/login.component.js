@@ -149,11 +149,12 @@ export default class LoginWithRedux extends Component {
         console.log(err);
         return;
       }
-      this.addOrFindUser(profile);
-      //userActions.loginUser({email: profile.email, userId: profile.identities[0].userId, avatarUrl: profile.picture});
       this.setToken(token);
       this.setProfile(profile);
+      this.addOrFindUser(profile);
+      //userActions.loginUser({email: profile.email, userId: profile.identities[0].userId, avatarUrl: profile.picture});
       this.reroute(profile, token);
+
     });
   }
 
@@ -167,27 +168,26 @@ export default class LoginWithRedux extends Component {
     const { username, password } = this.props;
 
     return (
+      this.state.hasToken ?
+
+        <Text>...Logging In...</Text> :
+
         <View style={styles.container}>
-        <View style={styles.messageBox}>
-          <Image
-            style={styles.badge}
-            source={require('../../../img/badge.png')}
-          />
-          <Text style={styles.title}>TrailAngel</Text>
-          <Text style={styles.subtitle}>Hike your heart out on your favorite trails.</Text>
-        </View>
-
-        {this.state.hasToken ?
-            <Text>...Logging In...</Text> :
-
+          <View style={styles.messageBox}>
+            <Image
+              style={styles.badge}
+              source={require('../../../img/badge.png')}
+            />
+            <Text style={styles.title}>TrailAngel</Text>
+            <Text style={styles.subtitle}>Hike your heart out on your favorite trails.</Text>
+          </View>
             <TouchableHighlight
               style={styles.signInButton}
               underlayColor='#949494'
               onPress={this.onLogin}>
               <Text>Log In</Text>
             </TouchableHighlight>
-        }
-      </View>
+        </View>
     );
   }
 
