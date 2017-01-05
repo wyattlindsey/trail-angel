@@ -23,18 +23,30 @@ export default class TrailList extends React.Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      dataSource: this.ds
+      dataSource: this.ds,
+      initialPosition: null
     };
   }
 
   componentDidMount() {
-    this.props.fetchTrailsIfNeeded({})
-      .then((data) => {
-        this.setState({
-          dataSource: this.ds.cloneWithRows(data.trails)
-        });
-      });
-    this.props.fetchFavorites();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var initialPosition = JSON.stringify(position);
+        this.setState({initialPosition});
+        this.props.fetchTrailsIfNeeded({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+          .then((data) => {
+            this.setState({
+              dataSource: this.ds.cloneWithRows(data.trails)
+            });
+          });
+        this.props.fetchFavorites();
+      },
+      (error) => alert(JSON.stringify((error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
+      );
   }
 
   componentWillReceiveProps(nextProps) {

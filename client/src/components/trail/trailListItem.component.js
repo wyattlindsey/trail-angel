@@ -100,7 +100,7 @@ export default class TraillistItem extends React.Component {
             <Text style={styles.rating}> Rating: {this.props.rating} </Text>
             <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
-              <View><Text style={styles.distance}> {this.props.distance} miles </Text></View>
+              <View><Text style={styles.distance}> {Number(this.props.distance / 1000).toFixed(1)} miles </Text></View>
         </View>
         <View style={styles.separator}/>
       </View>
