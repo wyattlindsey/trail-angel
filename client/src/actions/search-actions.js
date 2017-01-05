@@ -15,11 +15,10 @@ const receiveSearchResults = (results) => {
   };
 };
 
-export const search = (term) => {
+export const search = (options) => {
   return (dispatch) => {
-    dispatch(submitSearch(term));
-
-    return dataApi.yelp({term})
+    dispatch(submitSearch(options));
+    return dataApi.yelp(options)
       .then((json) => {
         return dispatch(receiveSearchResults(json));
       });

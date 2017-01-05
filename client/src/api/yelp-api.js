@@ -6,11 +6,9 @@ import OAuthSimple from 'oauthsimple';
 
 const yelp = (options = {}) => {
   let oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
-
   if (options.id !== undefined) {
     return fetchById(options.id, oauth);
   }
-
   if (options.location === undefined &&
       (options.latitude === undefined || options.longitude === undefined)) {
     options.location = 'San Francisco';
@@ -23,12 +21,19 @@ const yelp = (options = {}) => {
     options.ll = `${options.latitude},${options.longitude}`;
   }
 
+  // if (options.location !== undefined) {
+  //   options.term = options.location;
+  //   delete options.location;
+  // }
+
   // don't need these temp value as they're now encoded in the `cll` or `ll` keys
   delete options.latitude;
   delete options.longitude;
 
   options.limit = options.limit || 10;
   options.category_filter = options.category_filter || 'hiking';
+
+
 
   const keys = Object.keys(options);
 
