@@ -6,6 +6,8 @@ import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
 import icons from '../components/icons';
 import Trails from './trails-container';
 import Favorites from './favorites-container';
+import TrailSearch from '../components/trail/trailSearch.component';
+import Settings from '../components/trail/trailSettings.component';
 
 export default class TrailAngel extends Component {
   static title = '<TabBarIOS>';
@@ -50,7 +52,7 @@ export default class TrailAngel extends Component {
               selectedTab: 'blackTab',
             });
           }}>
-          {this._renderContent('#333333', 'Search')}
+        <TrailSearch />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="favorites"
@@ -70,7 +72,7 @@ export default class TrailAngel extends Component {
               selectedTab: 'beigeTab',
             });
           }}>
-          {this._renderContent('#d7c797', 'Settings/More')}
+          <Settings />
         </TabBarIOS.Item>
       </TabBarIOS>
     );

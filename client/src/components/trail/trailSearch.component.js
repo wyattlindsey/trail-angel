@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#C1C1C1',
+    marginTop: 65
   },
   input: {
     height: 30,
@@ -30,7 +31,6 @@ export default class SearchBar extends React.Component {
         <TextInput
           style={styles.input}
           placeholder="Search..."
-          onChangeText={(text) => console.log('searching for ', text)}
         />
       </View>
     );
