@@ -121,7 +121,7 @@ export default class TrailAngel extends Component {
               selectedTab: 'beigeTab',
             });
           }}>
-          <Settings />
+          <Settings profile={this.props.profile} />
         </TabBarIOS.Item>
       </TabBarIOS>
     );

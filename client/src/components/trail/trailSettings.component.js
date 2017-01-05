@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     height: 50
   },
   photo: {
-    height: 50,
-    width: 50,
+    height: 120,
+    width: 120,
     marginRight: 20,
     borderRadius: 20
   },
@@ -40,10 +40,11 @@ export default class TrailSettings extends React.Component {
   }
 
   render() {
+    let profile = JSON.parse(this.props.profile);
     return (
       <View style={styles.rowContainer}>
-        <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} style={styles.photo} />
-        <Text style={styles.title}> John Doe </Text>
+        <Image source={{uri: profile.picture}} style={styles.photo} />
+        <Text style={styles.title}>{profile.nickname}</Text>
         <Text style={styles.location}> San Francisco </Text>
         <Text style={styles.rating}> Favorites: 10 </Text>
         <Text> Logout </Text>
