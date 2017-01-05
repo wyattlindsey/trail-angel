@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
 import Nav from '../common/footer.component';
 import App from '../../containers/app';
+import Login from './login.component';
 
 import * as userActions from '../../actions/user-actions';
 
@@ -34,7 +35,6 @@ export default class LoginWithRedux extends Component {
     try {
       const token = await AsyncStorage.getItem(tokenKey);
       if (token !== null){
-        // this means we have a valid token. fetch profile info from auth0 here?
         console.log('We have a pre-existing valid token!!!!!!: ', token);
         this.setState({'hasToken': true}, () => this.getProfile(token));
       }
@@ -70,8 +70,12 @@ export default class LoginWithRedux extends Component {
   }
 
   rerouteToLogin() {
+    // this.props.navigator.push({
+    //   title: 'TrailAngel',
+    //   component: Login
+    // });
     this.props.navigator.pop();
-    this.props.navigator.pop();
+
   }
 
   async setToken(token) {
@@ -95,6 +99,7 @@ export default class LoginWithRedux extends Component {
   async removeToken() {
     try {
         await AsyncStorage.removeItem(tokenKey);
+        this.setState({hasToken: false});
         console.log('A TOKEN WAS REMOVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       } catch (err) {
         console.log('Error removing token from AsyncStorage: ', err);
