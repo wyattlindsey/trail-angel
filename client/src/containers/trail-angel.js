@@ -6,9 +6,8 @@ import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
 import icons from '../components/icons';
 import Trails from './trails-container';
 import Favorites from './favorites-container';
-import TrailSearch from '../components/trail/trailSearch.component';
+import Search from '../containers/search-container';
 import Settings from '../components/trail/trailSettings.component';
-import { registerUser } from '../actions/user-actions';
 import * as userActions from '../actions/user-actions';
 
 const styles = StyleSheet.create({
@@ -102,7 +101,7 @@ export default class TrailAngel extends Component {
               selectedTab: 'blackTab',
             });
           }}>
-        <TrailSearch />
+        <Search />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="favorites"
