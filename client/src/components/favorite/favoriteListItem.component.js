@@ -82,7 +82,6 @@ export default class FavoriteListItem extends React.Component {
             <Text style={styles.rating}> Rating: {this.props.rating} </Text>
           </View>
         </View>
-        <View style={styles.separator}/>
       </View>
     );
   }
