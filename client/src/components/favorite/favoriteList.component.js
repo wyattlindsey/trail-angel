@@ -24,11 +24,13 @@ export default class FavoriteList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchFavorites(this.props.userId)    // todo import the userid from store
+    this.props.fetchFavorites(this.props.userId)
       .then((data) => {
-        this.setState({
-          dataSource: this.ds.cloneWithRows(data.favorites)
-        });
+        if (data !== undefined) {
+          this.setState({
+            dataSource: this.ds.cloneWithRows(data.favorites)
+          });
+        }
       });
   }
 
