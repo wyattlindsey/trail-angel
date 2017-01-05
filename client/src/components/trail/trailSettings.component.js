@@ -40,7 +40,7 @@ export default class TrailSettings extends React.Component {
   }
 
   render() {
-    let profile = JSON.parse(this.props.profile);
+    let profile = this.props.profile;
     return (
       <View style={styles.rowContainer}>
         <Image source={{uri: profile.picture}} style={styles.photo} />
