@@ -1,4 +1,5 @@
 import * as actions from './';
+import trailAngelApi from '../api/trailangel-api';
 
 export function createUser(data) {
   return {
@@ -22,7 +23,9 @@ export function deleteUser() {
   };
 }
 
-export function loginUser() {
+export function loginUser(data) {
+  trailAngelApi.addUser({userId: data.userId});
+
   return {
     type: actions.LOGIN_USER,
     data

@@ -3,13 +3,13 @@
 import testReducer from './test-reducer';
 import trailsReducer from './trails-reducer';
 import favoritesReducer from './favorites-reducer';
-import user from './user';
+import usersReducer from './users-reducer';
 
 const reducers = {
   trailsReducer,
   favoritesReducer,
   testReducer,
-  user
+  usersReducer
 };
 
 export default reducers;

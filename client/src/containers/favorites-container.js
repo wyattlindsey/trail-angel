@@ -10,15 +10,16 @@ import FavoriteList from '../components/favorite/favoriteList.component';
 const Favorites = (props) => {
   const { state, actions } = props;
   return (
-    <FavoriteList isFetching={state.isFetching}
-                  favorites={state.items}
+    <FavoriteList isFetching={state.favoritesReducer.isFetching}
+                  favorites={state.favoritesReducer.items}
+                  userId={state.usersReducer.userId}
                   {...actions} />
   );
 };
 
 const mapStateToProps = function(state) {
   return {
-    state: state.favoritesReducer
+    state: state
   };
 };
 
