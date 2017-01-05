@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import { View, NavigatorIOS, StyleSheet } from 'react-native';
-import Login from '../components/auth/login.component';
+
+import TrailAngel from './trail-angel';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -21,7 +22,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <TrailAngel />
+        <TrailAngel profile={this.props.profile} />
       </Provider>
     );
   }

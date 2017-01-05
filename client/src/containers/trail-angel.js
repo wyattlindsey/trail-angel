@@ -8,15 +8,28 @@ import Trails from './trails-container';
 import Favorites from './favorites-container';
 import TrailSearch from '../components/trail/trailSearch.component';
 import Settings from '../components/trail/trailSettings.component';
+import { registerUser } from '../actions/user-actions';
 
 export default class TrailAngel extends Component {
   static title = '<TabBarIOS>';
   static description = 'Trail Angel Navigation';
   static displayName = 'TrailAngel';
 
-  state = {
-    selectedTab: 'redTab',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedTab: 'redTab',
+    };
+  }
+
+  componentDidMount() {
+    const profile = JSON.parse(this.props.profile);
+    registerUser({
+      id: profile.identities[0].userId,
+      email: profile.email,
+      avatarUrl: profile.picture
+    });
+  }
 
   _renderContent = (color: 'string', pageText: 'string' ) => {
     return (

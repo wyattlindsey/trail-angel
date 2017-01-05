@@ -31,3 +31,14 @@ export function loginUser(data) {
     data
   };
 }
+
+const receiveUserData = (profile) => {
+  return
+}
+
+export const registerUser = (profile) => {
+  return {
+    type: actionsTypes.REGISTER_USER,
+    profile
+  };
+};
