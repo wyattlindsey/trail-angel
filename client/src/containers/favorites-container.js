@@ -12,7 +12,7 @@ const Favorites = (props) => {
   return (
     <FavoriteList isFetching={state.favoritesReducer.isFetching}
                   favorites={state.favoritesReducer.items}
-                  userId={state.usersReducer.userId}
+                  userId={state.userReducer.userId}
                   {...actions} />
   );
 };

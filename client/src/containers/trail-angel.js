@@ -9,26 +9,38 @@ import Favorites from './favorites-container';
 import TrailSearch from '../components/trail/trailSearch.component';
 import Settings from '../components/trail/trailSettings.component';
 import { registerUser } from '../actions/user-actions';
+import * as userActions from '../actions/user-actions';
+
+const styles = StyleSheet.create({
+  tabContent: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  tabText: {
+    color: 'white',
+    margin: 50,
+  },
+});
 
 export default class TrailAngel extends Component {
   static title = '<TabBarIOS>';
   static description = 'Trail Angel Navigation';
   static displayName = 'TrailAngel';
+  static contextTypes = {
+    store: React.PropTypes.object.isRequired,
+  }
 
   constructor(props) {
     super(props);
+
+    this.registered = false;
     this.state = {
-      selectedTab: 'redTab',
+      selectedTab: 'redTab'
     };
   }
 
   componentDidMount() {
-    const profile = JSON.parse(this.props.profile);
-    registerUser({
-      id: profile.identities[0].userId,
-      email: profile.email,
-      avatarUrl: profile.picture
-    });
+
   }
 
   _renderContent = (color: 'string', pageText: 'string' ) => {
@@ -41,6 +53,23 @@ export default class TrailAngel extends Component {
   };
 
   render() {
+    // todo kind of hacky - had to be done
+
+    if (!this.registered) {
+      this.registered = true;
+
+      const { dispatch } = this.context.store;
+
+      if (this.props.profile !== undefined) {
+        const profile = JSON.parse(this.props.profile);
+        dispatch(userActions.registerUser({
+          userId: profile.identities[0].userId,
+          email: profile.email,
+          avatarUrl: profile.picture
+        }));
+      }
+    }
+
     return (
       <TabBarIOS
         unselectedTintColor="yellow"
@@ -92,13 +121,4 @@ export default class TrailAngel extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  tabContent: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabText: {
-    color: 'white',
-    margin: 50,
-  },
-});
+

@@ -34,13 +34,16 @@ const trailAngelApi = {
 
   getFavorites: (userId) => {
     // eventually use this call for live server but return thenabble data like below
-    // return request.get(`${baseUrl}/api/trailfaves/user/${ userId }`);
+    return request.get(`${baseUrl}/api/trailfaves/user/${ userId }`)
+      .then((data) => {
+        return data.favorites;
+      });
 
     // just while using json-server for testing
-    return request.get(`${baseUrl}/api/users/${ userId }`)
-            .then((data) => {
-              return data.favorites;
-            });
+    // return request.get(`${baseUrl}/api/users/${ userId }`)
+    //         .then((data) => {
+    //           return data.favorites;
+    //         });
 
     // for testing:
     // return Promise.resolve([

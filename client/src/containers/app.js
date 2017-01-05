@@ -11,7 +11,6 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
 import reducers from '../reducers';
-import TrailAngel from './trail-angel';
 
 const logger = createLogger();    // todo: need to disable this for production builds
 const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);

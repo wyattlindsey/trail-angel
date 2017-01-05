@@ -1,16 +1,16 @@
-import * as actions from './';
+import actionTypes from './action-types';
 import trailAngelApi from '../api/trailangel-api';
 
 export function createUser(data) {
   return {
-    type: actions.CREATE_USER,
+    type: actionTypes.CREATE_USER,
     data
   };
 }
 
 export function updateUser() {
   return {
-    type: actions.UPDATE_USER,
+    type: actionTypes.UPDATE_USER,
     userId,
     data
   };
@@ -18,7 +18,7 @@ export function updateUser() {
 
 export function deleteUser() {
   return {
-    type: actions.DELETE_USER,
+    type: actionTypes.DELETE_USER,
     userId
   };
 }
@@ -27,18 +27,21 @@ export function loginUser(data) {
   trailAngelApi.addUser({userId: data.userId});
 
   return {
-    type: actions.LOGIN_USER,
+    type: actionTypes.LOGIN_USER,
     data
   };
 }
 
 const receiveUserData = (profile) => {
-  return
+  return {
+    type: actionTypes.REGISTER_USER,
+    profile
+  };
 }
 
 export const registerUser = (profile) => {
   return {
-    type: actionsTypes.REGISTER_USER,
+    type: actionTypes.REGISTER_USER,
     profile
   };
 };
