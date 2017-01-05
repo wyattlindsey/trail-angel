@@ -75,21 +75,12 @@ export default class FavoriteListItem extends React.Component {
     return (
       <View>
         <View style={styles.rowContainer}>
-          <View style={styles.leftColumn}>
             <Image source={{uri: this.props.image_url}} style={styles.photo} />
-            <TouchableHighlight onPress={removeFavorite}>
-              <Image
-                style={styles.favorite}
-                source={require('../../../img/heart.png')} />
-            </TouchableHighlight>
-          </View>
           <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
             <Text style={styles.location}> {this.props.location.city} </Text>
             <Text style={styles.rating}> Rating: {this.props.rating} </Text>
-            <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
-          <View><Text style={styles.distance}> {this.props.distance} miles </Text></View>
         </View>
         <View style={styles.separator}/>
       </View>

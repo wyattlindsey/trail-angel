@@ -48,7 +48,6 @@ export const addFavorite = (trailId) => {
   return (dispatch, getState) => {
     const userId = getState().userReducer.userId;
     const favorites = getState().favoritesReducer.favorites;
-    debugger;
     if (_.findIndex(favorites, { id: trailId }) !== -1) {
       return;
     }
@@ -59,6 +58,14 @@ export const addFavorite = (trailId) => {
           userId,
           trailId
         });
+      })
+      .then((favorites) => {
+        const receiveFavorites = (favorites) => {
+          return {
+            type: actionTypes.RECEIVE_FAVORITES,
+            favorites
+          };
+        };
       });
   };
 };

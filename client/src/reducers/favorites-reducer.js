@@ -23,12 +23,13 @@ export default function favoritesReducer(state = initialState, action = {}) {
       };
     case actionTypes.ADD_FAVORITE:
       const favoritesCopy = state.favorites.slice();
+      favoritesCopy.push({
+        userId: action.userId,
+        trailId: action.trailId
+      });
       return {
         ...state,
-        favorites: favoritesCopy.push({
-          userId: action.userId,
-          trailId: action.trailId
-        })
+        favorites: favoritesCopy
       };
     case actionTypes.REMOVE_FAVORITE:
       const index = _.findIndex(state.favorites, { id: action.trailId });

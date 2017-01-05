@@ -61,22 +61,37 @@ const styles = StyleSheet.create({
 export default class TraillistItem extends React.Component {
   constructor(props) {
     super(props);
+
+    // this should be coming from the store, not here
+    this.state = {
+      isFavorite: false
+    }
+  }
+
+  _handlePress(e) {
+    if (!this.state.isFavorite) {
+      this.props.addFavorite(this.props.id);
+    } else {
+      this.props.removeFavorite.bind(this.props.id);
+    }
+    this.setState({
+      isFavorite: !this.state.isFavorite
+    });
+
   }
 
   render() {
-    let imagePath = this.props.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
-    const addFavorite = this.props.addFavorite.bind(this, this.props.id);
-    const removeFavorite = this.props.removeFavorite.bind(this.props.id);
+    let imagePath = this.state.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
 
     return (
       <View>
         <View style={styles.rowContainer}>
           <View style={styles.leftColumn}>
             <Image source={{uri: this.props.image_url}} style={styles.photo} />
-            <TouchableHighlight onPress={this.props.addFavorite.bind(this, this.props.id)}>
+            <TouchableHighlight onPress={this._handlePress.bind(this)}>
               <Image
                 style={styles.favorite}
-                source={require('../../../img/heart.png')} />
+                source={this.state.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
             </TouchableHighlight>
           </View>
           <View style={styles.textContainer}>
