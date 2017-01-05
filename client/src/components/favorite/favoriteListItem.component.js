@@ -59,14 +59,6 @@ const styles = StyleSheet.create({
 });
 
 export default class FavoriteListItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  _onPressFavorite(e) {
-    debugger;
-  }
-
   render() {
     let imagePath = this.props.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
     const addFavorite = () => { this.props.addFavorite(this.props.id) };
@@ -75,14 +67,20 @@ export default class FavoriteListItem extends React.Component {
     return (
       <View>
         <View style={styles.rowContainer}>
-            <Image source={{uri: this.props.image_url}} style={styles.photo} />
+          <Image source={{uri: this.props.image_url}} style={styles.photo} />
           <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
             <Text style={styles.location}> {this.props.location.city} </Text>
             <Text style={styles.rating}> Rating: {this.props.rating} </Text>
           </View>
         </View>
+        <View style={styles.separator}/>
       </View>
-    );
+
+  );
+  }
+
+  constructor(props) {
+    super(props);
   }
 }
