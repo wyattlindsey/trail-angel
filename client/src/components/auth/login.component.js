@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
 import Nav from '../common/footer.component';
 import App from '../../containers/app';
+import * as userActions from '../../actions/user-actions';
 
 import Auth0Lock from 'react-native-lock';
 import { auth0Credentials, paths } from '../../../config';
@@ -15,6 +16,8 @@ export default class LoginWithRedux extends Component {
   constructor(props) {
     super(props);
     this._onLogin = this._onLogin.bind(this);
+    //this.removeToken = this.removeToken.bind(this);
+    //this.removeProfile = this.removeProfile.bind(this);
 
     this.state = {
       hasToken: false
@@ -70,6 +73,15 @@ export default class LoginWithRedux extends Component {
         profile: profile,
         token: token
       },
+      rightButtonTitle: 'Logout',
+      onRightButtonPress: this.onRightButtonPress.bind(this)
+    });
+  }
+
+  rerouteToLogin() {
+    this.props.navigator.push({
+      title: 'TrailAngel',
+      component: Login,
     });
   }
 
@@ -88,6 +100,24 @@ export default class LoginWithRedux extends Component {
         console.log('A PROFILE WAS SET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       } catch (err) {
         console.log(err);
+      }
+  }
+
+  async removeToken() {
+    try {
+        await AsyncStorage.removeItem(tokenKey);
+        console.log('A TOKEN WAS REMOVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      } catch (err) {
+        console.log('Error removing token from AsyncStorage: ', err);
+      }
+  }
+
+  async removeProfile() {
+    try {
+        await AsyncStorage.removeItem(profileKey);
+        console.log('A PROFILE WAS REMOVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      } catch (err) {
+        console.log('Error removing profile from AsyncStorage: ', err);
       }
   }
 
@@ -124,10 +154,16 @@ export default class LoginWithRedux extends Component {
         return;
       }
       this.addOrFindUser(profile);
+      //userActions.loginUser({email: profile.email, userId: profile.identities[0].userId, avatarUrl: profile.picture});
       this.setToken(token);
       this.setProfile(profile);
       this.reroute(profile, token);
     });
+  }
+
+  onRightButtonPress() {
+    this.removeToken();
+    this.removeProfile();
   }
 
   render() {
