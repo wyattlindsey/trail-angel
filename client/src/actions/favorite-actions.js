@@ -1,5 +1,6 @@
 import actionTypes from './action-types';
 import dataApi from '../api';
+import * as _ from 'lodash';
 
 const requestFavorites = (userId) => {
   return {
@@ -15,8 +16,9 @@ const receiveFavorites = (favorites) => {
   };
 };
 
-export const fetchFavorites = (userId) => {
-  return (dispatch) => {
+export const fetchFavorites = () => {
+  return (dispatch, getState) => {
+    const userId = getState().userReducer.userId;
     dispatch(requestFavorites(userId));
 
     // get favorites for user from the server
@@ -32,34 +34,60 @@ export const fetchFavorites = (userId) => {
 
           return Promise.all(promises)
             .then((results) => {
-              console.log('success!!!!!')
               return dispatch(receiveFavorites(results));
             })
             .catch((err) => {
-              console.log('error!!!!!');
+              console.log(err);
             });
         } // else Promise.reject()?
       });
   };
 };
 
-export const addFavorite = (userId, itemId) => {
-  return (dispatch) => {
-    return data.trailAngelApi.addFavorite(userId, itemId)
+export const addFavorite = (trailId) => {
+  return (dispatch, getState) => {
+    const userId = getState().userReducer.userId;
+    const favorites = getState().favoritesReducer.favorites;
+    if (_.findIndex(favorites, { id: trailId }) !== -1) {
+      return;
+    }
+    return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
         dispatch({
-          type: actions.ADD_FAVORITE,
+          type: actionTypes.ADD_FAVORITE,
           userId,
-          itemId
+          trailId
         });
+      })
+      .then((favorites) => {
+        const receiveFavorites = (favorites) => {
+          return {
+            type: actionTypes.RECEIVE_FAVORITES,
+            favorites
+          };
+        };
       });
   };
 };
 
-export const removeFavorite = (userId, itemId) => {
-  return {
-    type: actions.REMOVE_FAVORITE,
-    userId,
-    itemId
+export const removeFavorite = (trailId) => {
+  return (dispatch, getState) => {
+    userId = getState().userReducer.userId;
+    return dataApi.trailAngelApi.removeFavorite(userId, trailId)
+      .then(() => {
+        dispatch({
+          type: actionTypes.REMOVE_FAVORITE,
+          userId,
+          trailId
+        })
+      .then((favorites) => {
+        const receiveFavorites = (favorites) => {
+          return {
+            type: actionTypes.RECEIVE_FAVORITES,
+            favorites
+          };
+        };
+      });
+    });
   };
 };

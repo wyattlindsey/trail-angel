@@ -40,7 +40,6 @@ const yelp = (options = {}) => {
     }
   }, '');
 
-
   const signedRequest = oauth.sign({
     action: 'GET',
     path: 'https://api.yelp.com/v2/search',

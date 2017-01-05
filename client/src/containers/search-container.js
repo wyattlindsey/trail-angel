@@ -4,19 +4,16 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as trailActions from '../actions/trail-actions';
+import * as searchActions from '../actions/search-actions';
 
-import TrailList from '../components/trail/trailList.component';
+import TrailSearch from '../components/trail/trailSearch.component';
 
-const Trails = (props) => {
+const Search = (props) => {
   const { state, actions } = props;
   return (
-    <TrailList isFetching={state.trailsReducer.isFetching}
-               didInvalidate={state.trailsReducer.didInvalidate}
-               lastUpdated={state.trailsReducer.lastUpdated}
-               trails={state.trailsReducer.items}
-               favorites={state.favoritesReducer.items}
-               {...actions} />
+    <TrailSearch  isFetching={state.searchReducer.isFetching}
+                  results={state.searchReducer.results}
+                  {...actions} />
   );
 };
 
@@ -28,11 +25,11 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators(trailActions, dispatch)
+    actions: bindActionCreators(searchActions, dispatch)
   }
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Trails);
+)(Search);
