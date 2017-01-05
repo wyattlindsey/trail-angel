@@ -45,7 +45,8 @@ export default class TrailList extends React.Component {
       <ListView
         style={styles.container}
         dataSource={this.state.dataSource}
-        renderRow={(data) => <Row {...data}/>}
+        renderRow={(data) => <Row addFavorite={this.props.addFavorite}
+                                  {...data}/>}
         enableEmptySections={true}
         renderSeparator={(sectionId, rowId) => <View key={rowId}
                                                      style={styles.separator} />}

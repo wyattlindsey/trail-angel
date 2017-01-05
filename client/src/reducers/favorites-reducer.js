@@ -18,16 +18,18 @@ export default function favoritesReducer(state = initialState, action = {}) {
       return {
         ...state,
         isFetching: false,
-        favorites: action.items
+        favorites: action.favorites
       };
     case actionTypes.ADD_FAVORITE:
+      debugger;
+      const favoritesCopy = state.favorites.slice();
       return {
         ...state,
-        favorites: state.favorites.push(action.item)
+        favorites: favoritesCopy.push(action.item)
       };
     case actionTypes.REMOVE_FAVORITE:
       const index = state.favorites.findIndex(action.item);
-      const copy = state.items.slice();
+      const copy = state.favorites.slice();
       copy.splice(index, 1)
 
       return {

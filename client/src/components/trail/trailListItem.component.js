@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
  rowContainer: {
@@ -18,11 +18,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600'
   },
+  leftColumn: {
+  },
   photo: {
     height: 40,
     width: 40,
     marginRight: 20,
     borderRadius: 20,
+  },
+  favorite: {
+    height: 20,
+    width: 20,
+    marginRight: 20,
+    marginTop: 80,
+    opacity: 0.5
   },
   location: {
     color: '#786048'
@@ -54,15 +63,25 @@ export default class TraillistItem extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    // this.props.addFavorite(null, null);    // just trying to test the action
+  _onPressFavorite(e) {
+    debugger;
   }
 
   render() {
+    let imagePath = this.props.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
     return (
       <View>
         <View style={styles.rowContainer}>
-          <Image source={{uri: this.props.image_url}} style={styles.photo} />
+          <View style={styles.leftColumn}>
+            <Image source={{uri: this.props.image_url}} style={styles.photo} />
+            <TouchableHighlight onPress={
+              () => { this.props.addFavorite(this.props.id)
+            }}>
+              <Image
+                style={styles.favorite}
+                source={require('../../../img/heart.png')} />
+            </TouchableHighlight>
+          </View>
           <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
             <Text style={styles.location}> {this.props.location.city} </Text>

@@ -90,7 +90,8 @@ module.exports = {
               favoriteId: favoriteID[0].dataValues.id
             }
           }).then( (results) => {
-            res.sendStatus(201).json('Created');
+            res.sendStatus(201);    // json('Created'); <-- this seems to generate some
+                                    // errors related to headers being sent again
           });
         });
       });

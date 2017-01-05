@@ -53,21 +53,29 @@ export default class TrailAngel extends Component {
   };
 
   render() {
-    // todo kind of hacky - had to be done
+    // todo kind of hacky, both the fn below and the one if-block below that
 
-    if (!this.registered) {
-      this.registered = true;
-
-      const { dispatch } = this.context.store;
-
-      if (this.props.profile !== undefined) {
-        const profile = JSON.parse(this.props.profile);
-        dispatch(userActions.registerUser({
-          userId: profile.identities[0].userId,
-          email: profile.email,
-          avatarUrl: profile.picture
-        }));
+    function isJsonString(str) {
+      try {
+        JSON.parse(str);
+      } catch (e) {
+        return false;
       }
+      return true;
+    }
+
+    if (!this.registered
+        && this.props.profile !== undefined
+        && isJsonString(this.props.profile))
+    {
+          this.registered = true;
+          const { dispatch } = this.context.store;
+          const profile = JSON.parse(this.props.profile);
+          dispatch(userActions.registerUser({
+            userId: profile.identities[0].userId,
+            email: profile.email,
+            avatarUrl: profile.picture
+          }));
     }
 
     return (

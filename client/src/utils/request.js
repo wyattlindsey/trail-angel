@@ -24,12 +24,12 @@ const request = {
   add: (url, options) => {
     return fetch(url, {
       method: 'POST',
-      body: options
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(options)
     })
-      .then((response) => response.json())
-      .then((responseJSON) => {
-        return responseJSON;
-      })
       .catch((err) => {
         console.error(err);
       });

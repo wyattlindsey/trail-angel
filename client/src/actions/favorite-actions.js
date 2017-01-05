@@ -22,6 +22,7 @@ export const fetchFavorites = (userId) => {
     // get favorites for user from the server
     return dataApi.trailAngelApi.getFavorites(userId)
       .then((data) => {
+        debugger;
         if (data !== undefined && Array.isArray(data)) {
           let promises = data.map((item) => {
             // todo: check to see if the favorite is already in trailsReducer.trails
@@ -32,25 +33,25 @@ export const fetchFavorites = (userId) => {
 
           return Promise.all(promises)
             .then((results) => {
-              console.log('success!!!!!')
               return dispatch(receiveFavorites(results));
             })
             .catch((err) => {
-              console.log('error!!!!!');
+              console.log(err);
             });
         } // else Promise.reject()?
       });
   };
 };
 
-export const addFavorite = (userId, itemId) => {
-  return (dispatch) => {
-    return data.trailAngelApi.addFavorite(userId, itemId)
+export const addFavorite = (trailId) => {
+  return (dispatch, getState) => {
+    userId = getState().userReducer.userId;
+    return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
         dispatch({
-          type: actions.ADD_FAVORITE,
+          type: actionTypes.ADD_FAVORITE,
           userId,
-          itemId
+          trailId
         });
       });
   };
@@ -58,7 +59,7 @@ export const addFavorite = (userId, itemId) => {
 
 export const removeFavorite = (userId, itemId) => {
   return {
-    type: actions.REMOVE_FAVORITE,
+    type: actionTypes.REMOVE_FAVORITE,
     userId,
     itemId
   };
