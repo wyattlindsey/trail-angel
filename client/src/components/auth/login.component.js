@@ -64,6 +64,8 @@ export default class LoginWithRedux extends Component {
         profile: profile,
         token: token
       },
+      // hack to remove back button leading to login page
+      leftButtonTitle: ' ',
       rightButtonTitle: 'Logout',
       onRightButtonPress: this.onRightButtonPress.bind(this)
     });
