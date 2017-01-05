@@ -15,7 +15,7 @@ const profileKey = 'thisIsAGreatProfile'
 export default class LoginWithRedux extends Component {
   constructor(props) {
     super(props);
-    this._onLogin = this._onLogin.bind(this);
+    this.onLogin = this._onLogin.bind(this);
     //this.removeToken = this.removeToken.bind(this);
     //this.removeProfile = this.removeProfile.bind(this);
 
@@ -26,7 +26,6 @@ export default class LoginWithRedux extends Component {
   }
 
   componentDidMount() {
-
     this.getToken();
   }
 
@@ -45,14 +44,6 @@ export default class LoginWithRedux extends Component {
   }
 
   async getProfile(token) {
-    // lock.getProfile(token, (err, profile) => {
-    //   if (err) {
-    //     console.log('-----error getting profile------', err.message);
-    //   }
-    //   console.log('---------GOT A PROFILE----------', profile);
-    //   this.reroute(profile, token)
-    // });
-
     try {
       const profile = await AsyncStorage.getItem(profileKey);
       if (profile !== null){
@@ -79,10 +70,7 @@ export default class LoginWithRedux extends Component {
   }
 
   rerouteToLogin() {
-    this.props.navigator.push({
-      title: 'TrailAngel',
-      component: Login,
-    });
+    this.props.navigator.pop();
   }
 
   async setToken(token) {
@@ -145,7 +133,7 @@ export default class LoginWithRedux extends Component {
     });
   }
 
-  _onLogin() {
+  onLogin() {
     lock.show({
       closable: true,
     }, (err, profile, token) => {
@@ -164,6 +152,7 @@ export default class LoginWithRedux extends Component {
   onRightButtonPress() {
     this.removeToken();
     this.removeProfile();
+    this.rerouteToLogin();
   }
 
   render() {
