@@ -4,7 +4,7 @@
   "description": "> Break new trails and share with your friends.  The holy grail of trail apps.",
   "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha server/api/spec/user.spec.js server/api/spec/trailfaves.spec.js"
   },
   "repository": {
     "type": "git",
