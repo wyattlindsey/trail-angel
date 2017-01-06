@@ -3,7 +3,7 @@ var Sequelize = require('sequelize');
 
 
 var User = db.define('user', {
-  user: { type: Sequelize.STRING, field: 'user', unique: 'user' },
+  user: { type: Sequelize.STRING, field: 'user', unique: 'user' }
 });
 
 var Favorite = db.define('favorite', {

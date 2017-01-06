@@ -55,6 +55,11 @@ rnpm link react-native-lock
 react-native run-ios
 ```
 
+To run backend tests
+```sh
+npm test
+```
+
 
 
 ### Roadmap
