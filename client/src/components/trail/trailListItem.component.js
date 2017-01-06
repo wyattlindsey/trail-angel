@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     flexDirection: 'column',
-    width: 50
-    // height: 100
+    width: 50,
+    height: 100
   },
   title: {
     color: '#3D728E',

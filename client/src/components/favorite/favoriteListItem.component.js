@@ -60,9 +60,6 @@ const styles = StyleSheet.create({
 
 export default class FavoriteListItem extends React.Component {
   render() {
-    let imagePath = this.props.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
-    const addFavorite = () => { this.props.addFavorite(this.props.id) };
-    const removeFavorite = () => { this.props.removeFavorite(this.props.id) };
 
     return (
       <View>
