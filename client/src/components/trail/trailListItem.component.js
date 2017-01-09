@@ -61,11 +61,6 @@ const styles = StyleSheet.create({
 export default class TraillistItem extends React.Component {
   constructor(props) {
     super(props);
-
-    // this should be coming from the store, not here
-    this.state = {
-      isFavorite: false
-    }
   }
 
   _handlePress(e) {
@@ -74,10 +69,6 @@ export default class TraillistItem extends React.Component {
     } else {
       this.props.removeFavorite(this.props.id);
     }
-    this.setState({
-      isFavorite: !this.state.isFavorite
-    });
-
   }
 
   render() {
@@ -91,7 +82,7 @@ export default class TraillistItem extends React.Component {
             <TouchableHighlight onPress={this._handlePress.bind(this)}>
               <Image
                 style={styles.favorite}
-                source={this.state.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
+                source={this.props.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
             </TouchableHighlight>
           </View>
           <View style={styles.textContainer}>

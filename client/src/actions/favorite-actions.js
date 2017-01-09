@@ -26,7 +26,6 @@ export const fetchFavorites = () => {
       .then((data) => {
         if (data !== undefined && Array.isArray(data)) {
           let promises = data.map((item) => {
-            debugger;
             const cachedTrail = _.find(getState().trailsReducer.trails, { id: item });
             if (cachedTrail !== undefined) {
               return Promise.resolve(cachedTrail);

@@ -1,6 +1,4 @@
 import actionTypes from './action-types';
-import * as favoriteActions from './favorite-actions';
-import trailAngelApi from '../api/trailangel-api';
 
 export function createUser(data) {
   return {
@@ -33,7 +31,6 @@ const receiveUserData = (profile) => {
 
 export const loginUser = (profile) => {
   return (dispatch) => {
-    favoriteActions.fetchFavorites(profile.userId);
     dispatch(receiveUserData(profile));
   };
 };

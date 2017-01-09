@@ -33,16 +33,18 @@ export default class TrailList extends React.Component {
       (position) => {
         var initialPosition = JSON.stringify(position);
         this.setState({initialPosition});
-        this.props.fetchTrails({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        })
+        this.props.fetchFavorites()
+          .then(() => {
+            return this.props.fetchTrails({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            });
+          })
           .then((data) => {
             this.setState({
               dataSource: this.ds.cloneWithRows(data.trails)
             });
           });
-        this.props.fetchFavorites();
       },
       (error) => alert(JSON.stringify((error)),
         {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
