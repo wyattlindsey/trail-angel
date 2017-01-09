@@ -19,7 +19,6 @@ const receiveTrails = (results) => {
 
 // mutates the trail to include a isFavorite flag
 const associateFavorites = (trails, favorite) => {
-  debugger;
   return _.map(trails, (trail) => {
     trail.isFavorite = _.findIndex(favorite, { id: trail.id }) !== -1;
   });

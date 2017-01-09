@@ -73,7 +73,6 @@ export default class TraillistItem extends React.Component {
 
   render() {
     let imagePath = this.state.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
-
     return (
       <View>
         <View style={styles.rowContainer}>
