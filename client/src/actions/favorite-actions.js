@@ -51,24 +51,20 @@ export const addFavorite = (trailId) => {
     const userId = getState().userReducer.userId;
     return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
-        return dataApi.yelp({id: trailId});   // todo make an action to fetch a single favorite
-      })
-      .then((trailData) => {
+        let trail = _.find(getState().trailsReducer.trails, {id: trailId});
+        // todo check for undefined
         return dispatch({
           type: actionTypes.ADD_FAVORITE,
-          trailData
+          trailData: trail
         });
       })
       .then((data) => {
         return dispatch({
           type: actionTypes.UPDATE_TRAIL,
-          trailId: data.trailId,
+          trailId: data.trailData.id,
           attribute: 'isFavorite',
           newValue: true
         });
-      })
-      .then(() => {
-        return dispatch(fetchFavorites());
       });
   };
 };
