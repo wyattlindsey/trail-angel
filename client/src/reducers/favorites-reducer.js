@@ -23,10 +23,7 @@ export default function favoritesReducer(state = initialState, action = {}) {
       };
     case actionTypes.ADD_FAVORITE:
       const favoritesCopy = state.favorites.slice();
-      favoritesCopy.push({
-        userId: action.userId,
-        trailId: action.trailId
-      });
+      favoritesCopy.push(action.trailData);
       return {
         ...state,
         favorites: favoritesCopy

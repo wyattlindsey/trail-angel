@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
 
 export default class FavoriteListItem extends React.Component {
   render() {
-
+    if (this.props.location === undefined) {
+      debugger;
+    }
     return (
       <View>
         <View style={styles.rowContainer}>

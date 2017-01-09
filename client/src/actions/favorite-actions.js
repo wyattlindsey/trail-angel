@@ -46,35 +46,29 @@ export const fetchFavorites = () => {
   };
 };
 
-// todo this is copy-pasta from trails-reducer: factor it out
-const associateFavorites = (trails, favorite) => {
-  return _.map(trails, (trail) => {
-    trail.isFavorite = _.findIndex(favorite, { id: trail.id }) !== -1;
-  });
-};
-
 export const addFavorite = (trailId) => {
   return (dispatch, getState) => {
     const userId = getState().userReducer.userId;
-    const favorites = getState().favoritesReducer.favorites;
-    if (_.findIndex(favorites, { id: trailId }) !== -1) {
-      return;
-    }
     return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
+        return dataApi.yelp({id: trailId});   // todo make an action to fetch a single favorite
+      })
+      .then((trailData) => {
         return dispatch({
           type: actionTypes.ADD_FAVORITE,
-          userId,
-          trailId
+          trailData
         });
       })
       .then((data) => {
-        dispatch({
+        return dispatch({
           type: actionTypes.UPDATE_TRAIL,
           trailId: data.trailId,
           attribute: 'isFavorite',
           newValue: true
         });
+      })
+      .then(() => {
+        return dispatch(fetchFavorites());
       });
   };
 };
@@ -90,12 +84,15 @@ export const removeFavorite = (trailId) => {
         });
       })
       .then((data) => {
-        dispatch({
+        return dispatch({
           type: actionTypes.UPDATE_TRAIL,
           trailId: data.trailId,
           attribute: 'isFavorite',
           newValue: false
         });
+      })
+      .then(() => {
+        return dispatch(fetchFavorites());
       });
   };
 };
