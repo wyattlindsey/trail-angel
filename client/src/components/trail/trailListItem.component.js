@@ -64,7 +64,7 @@ export default class TraillistItem extends React.Component {
   }
 
   _handlePress(e) {
-    if (!this.state.isFavorite) {
+    if (!this.props.isFavorite) {
       this.props.addFavorite(this.props.id);
     } else {
       this.props.removeFavorite(this.props.id);
@@ -72,7 +72,9 @@ export default class TraillistItem extends React.Component {
   }
 
   render() {
-    let imagePath = this.state.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
+    // if (this.props.id === 'strawberry-hill-san-francisco') {
+    //   debugger;
+    // }
     return (
       <View>
         <View style={styles.rowContainer}>

@@ -2,14 +2,14 @@
 
 import React, { Component } from 'react';
 import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 
 import icons from '../components/icons';
 import Trails from './trails-container';
 import Favorites from './favorites-container';
 import Search from '../containers/search-container';
 import Settings from '../components/trail/trailSettings.component';
-import * as userActions from '../actions/user-actions';
-import * as favoriteActions from '../actions/favorite-actions';
 import * as appActions from '../actions/app-actions';
 
 const styles = StyleSheet.create({
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class TrailAngel extends Component {
+class TrailAngel extends Component {
   static title = '<TabBarIOS>';
   static description = 'Trail Angel Navigation';
   static displayName = 'TrailAngel';
@@ -34,7 +34,26 @@ export default class TrailAngel extends Component {
   constructor(props) {
     super(props);
 
-    this.registered = false;
+    let profile = {};
+
+    // it seems like sometimes the profile is still a string, especially when using pre-existing
+    // token
+    if (typeof this.props.profile === 'string') {
+      profile = JSON.parse(this.props.profile);
+    } else {
+      profile = this.props.profile;
+    }
+
+    this.props.actions.initializeApp({
+      userId: profile.identities[0].userId,
+      email: profile.email,
+      avatarUrl: profile.picture
+    })
+      .then(() => {
+        // how can we tell the TrailList component to render with new data?
+      });
+
+    // this.registered = false;
     this.state = {
       selectedTab: 'redTab'
     };
@@ -43,7 +62,7 @@ export default class TrailAngel extends Component {
   }
 
   componentDidMount() {
-    appActions.initializeApp(this.props.profile);
+
   }
 
   _renderContent = (color: 'string', pageText: 'string' ) => {
@@ -131,5 +150,13 @@ export default class TrailAngel extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(appActions, dispatch)
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TrailAngel);
 
 

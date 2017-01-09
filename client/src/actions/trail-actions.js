@@ -22,7 +22,7 @@ const associateFavorites = (trails, favorite) => {
   return _.map(trails, (trail) => {
     trail.isFavorite = _.findIndex(favorite, { id: trail.id }) !== -1;
   });
-}
+};
 
 export const fetchTrails = (options) => {
   return (dispatch, getState) => {
@@ -33,5 +33,14 @@ export const fetchTrails = (options) => {
         associateFavorites(results, getState().favoritesReducer.favorites);
         return dispatch(receiveTrails(results));
       });
+  };
+};
+
+export const updateTrail = (trailId, attribute, newValue) => {
+  return {
+    type: actionTypes.UPDATE_TRAIL,
+    trailId,
+    attribute,
+    newValue
   };
 };

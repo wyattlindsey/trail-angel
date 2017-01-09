@@ -7,18 +7,12 @@ import * as favoriteActions from './favorite-actions';
 
 export const initializeApp = (profile) => {
   return (dispatch, getState) => {
-    return new Promise((resolve, reject) => {
-      dispatch(userActions.loginUser(profile))
-        .then(() => {
-          return dispatch(favoriteActions.fetchFavorites());
-        })
-        .then(() => {
-          resolve();
-        })
-        .catch((err) => {
-          console.error(err);
-          reject(err);
-        });
-    });
+    return dispatch(userActions.loginUser(profile))
+      .then(() => {
+        return dispatch(favoriteActions.fetchFavorites());
+      })    // need to get location somewhere in here
+      .then(() => {
+        return dispatch(trailActions.fetchTrails());
+      });
   };
 };

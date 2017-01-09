@@ -29,6 +29,17 @@ export default class TrailList extends React.Component {
   }
 
   componentDidMount() {
+    // if (this.props.trails !== undefined) {
+    //   this.setState({
+    //     dataSource: this.ds.cloneWithRows(this.props.trails)
+    //   });
+    // } else {
+    //   setTimeout(() => {
+    //     this.setState({
+    //       dataSource: this.ds.cloneWithRows(this.props.trails)
+    //     });
+    //   }, 3000);
+    // }
     // navigator.geolocation.getCurrentPosition(
     //   (position) => {
     //     var initialPosition = JSON.stringify(position);

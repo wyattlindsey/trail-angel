@@ -15,7 +15,7 @@ const Trails = (props) => {
     <TrailList isFetching={state.trailsReducer.isFetching}
                didInvalidate={state.trailsReducer.didInvalidate}
                lastUpdated={state.trailsReducer.lastUpdated}
-               trails={state.trailsReducer.items}
+               trails={state.trailsReducer.trails}
                favorites={state.favoritesReducer.items}
                {...actions} />
   );

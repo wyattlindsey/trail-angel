@@ -13,7 +13,7 @@ export default function searchReducer(state = initialState, action = {}) {
       return {
         ...state,
         isFetching: false,
-        results: action.results.businesses
+        results: action.results
       }
     case actionTypes.SUBMIT_SEARCH:
       return {

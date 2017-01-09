@@ -46,6 +46,13 @@ export const fetchFavorites = () => {
   };
 };
 
+// todo this is copy-pasta from trails-reducer: factor it out
+const associateFavorites = (trails, favorite) => {
+  return _.map(trails, (trail) => {
+    trail.isFavorite = _.findIndex(favorite, { id: trail.id }) !== -1;
+  });
+};
+
 export const addFavorite = (trailId) => {
   return (dispatch, getState) => {
     const userId = getState().userReducer.userId;
@@ -55,19 +62,19 @@ export const addFavorite = (trailId) => {
     }
     return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
-        dispatch({
+        return dispatch({
           type: actionTypes.ADD_FAVORITE,
           userId,
           trailId
         });
       })
-      .then((favorites) => {
-        const receiveFavorites = (favorites) => {
-          return {
-            type: actionTypes.RECEIVE_FAVORITES,
-            favorites
-          };
-        };
+      .then((data) => {
+        dispatch({
+          type: actionTypes.UPDATE_TRAIL,
+          trailId: data.trailId,
+          attribute: 'isFavorite',
+          newValue: true
+        });
       });
   };
 };
@@ -77,10 +84,18 @@ export const removeFavorite = (trailId) => {
     const userId = getState().userReducer.userId;
     return dataApi.trailAngelApi.removeFavorite(userId, trailId)
       .then(() => {
-        dispatch({
+        return dispatch({
           type: actionTypes.REMOVE_FAVORITE,
           trailId
         });
-    });
+      })
+      .then((data) => {
+        dispatch({
+          type: actionTypes.UPDATE_TRAIL,
+          trailId: data.trailId,
+          attribute: 'isFavorite',
+          newValue: false
+        });
+      });
   };
 };
