@@ -45,28 +45,25 @@ export default class SearchBar extends React.Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      dataSource: this.ds,
-      initialPosition: null
+      dataSource: this.ds
     };
   }
 
   handleInput(text) {
     this.props.search({
-      location: text,
-      latitude: this.state.initialPosition.coords.latitude,
-      longitude: this.state.initialPosition.coords.longitude
+      location: text
     });
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var initialPosition = position;
-        this.setState({initialPosition: position});
-      },
-      (error) => alert(JSON.stringify((error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
-    );
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     var initialPosition = position;
+    //     this.setState({initialPosition: position});
+    //   },
+    //   (error) => alert(JSON.stringify((error)),
+    //     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
+    // );
   }
 
   componentWillReceiveProps(nextProps) {
