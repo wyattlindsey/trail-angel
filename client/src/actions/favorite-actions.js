@@ -72,22 +72,13 @@ export const addFavorite = (trailId) => {
 
 export const removeFavorite = (trailId) => {
   return (dispatch, getState) => {
-    userId = getState().userReducer.userId;
+    const userId = getState().userReducer.userId;
     return dataApi.trailAngelApi.removeFavorite(userId, trailId)
       .then(() => {
         dispatch({
           type: actionTypes.REMOVE_FAVORITE,
-          userId,
           trailId
-        })
-      .then((favorites) => {
-        const receiveFavorites = (favorites) => {
-          return {
-            type: actionTypes.RECEIVE_FAVORITES,
-            favorites
-          };
-        };
-      });
+        });
     });
   };
 };

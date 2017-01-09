@@ -33,7 +33,7 @@ export default class TrailList extends React.Component {
       (position) => {
         var initialPosition = JSON.stringify(position);
         this.setState({initialPosition});
-        this.props.fetchTrailsIfNeeded({
+        this.props.fetchTrails({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         })

@@ -27,6 +27,7 @@ export default class FavoriteList extends React.Component {
   }
 
   componentDidMount() {
+    const that = this;
     this.props.fetchFavorites(this.props.userId)
       .then((data) => {
         if (data !== undefined) {

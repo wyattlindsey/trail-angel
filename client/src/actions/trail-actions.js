@@ -11,13 +11,13 @@ const requestTrails = (options) => {
 const receiveTrails = (results) => {
   return {
     type: actionTypes.RECEIVE_TRAILS,
-    trails: results.businesses,
-    receivedAt: Date.now()
+    trails: results.businesses   // todo factor out the .businesses part - the api should return
+                                // todo results ready to go
   };
 };
 
-const fetchTrails = (options) => {
-  return (dispatch) => {
+export const fetchTrails = (options) => {
+  return (dispatch, getState) => {
     dispatch(requestTrails(options));
 
     return dataApi.yelp(options)
@@ -25,25 +25,4 @@ const fetchTrails = (options) => {
         return dispatch(receiveTrails(json));
       });
   };
-};
-
-const shouldFetchTrails = (state) => {
-  const trails = state.trails;
-  if (!trails) {
-    return true;
-  } else if (state.isFetching) {
-    return false;
-  } else {
-    return state.didInvalidate
-  }
-};
-
-export const fetchTrailsIfNeeded = (options) => {
-  return (dispatch, getState) => {
-    if (shouldFetchTrails(getState(), options)) {
-      return dispatch(fetchTrails(options));
-    } else {
-      return Promise.resolve();
-    }
-  }
 };
