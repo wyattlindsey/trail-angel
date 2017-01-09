@@ -9,6 +9,8 @@ import Favorites from './favorites-container';
 import Search from '../containers/search-container';
 import Settings from '../components/trail/trailSettings.component';
 import * as userActions from '../actions/user-actions';
+import * as favoriteActions from '../actions/favorite-actions';
+import * as appActions from '../actions/app-actions';
 
 const styles = StyleSheet.create({
   tabContent: {
@@ -36,10 +38,12 @@ export default class TrailAngel extends Component {
     this.state = {
       selectedTab: 'redTab'
     };
+
+
   }
 
   componentDidMount() {
-
+    appActions.initializeApp(this.props.profile);
   }
 
   _renderContent = (color: 'string', pageText: 'string' ) => {
@@ -54,28 +58,28 @@ export default class TrailAngel extends Component {
   render() {
     // todo kind of hacky, both the fn below and the one if-block below that
 
-    function isJsonString(str) {
-      try {
-        JSON.parse(str);
-      } catch (e) {
-        return false;
-      }
-      return true;
-    }
-
-    if (!this.registered
-        && this.props.profile !== undefined
-        && isJsonString(this.props.profile))
-    {
-          this.registered = true;
-          const { dispatch } = this.context.store;
-          const profile = JSON.parse(this.props.profile);
-          dispatch(userActions.loginUser({
-            userId: profile.identities[0].userId,
-            email: profile.email,
-            avatarUrl: profile.picture
-          }));
-    }
+    // function isJsonString(str) {
+    //   try {
+    //     JSON.parse(str);
+    //   } catch (e) {
+    //     return false;
+    //   }
+    //   return true;
+    // }
+    //
+    // if (!this.registered
+    //     && this.props.profile !== undefined
+    //     && isJsonString(this.props.profile))
+    // {
+    //       this.registered = true;
+    //       const { dispatch } = this.context.store;
+    //       const profile = JSON.parse(this.props.profile);
+    //       dispatch(appActions.initializeApp({
+    //         userId: profile.identities[0].userId,
+    //         email: profile.email,
+    //         avatarUrl: profile.picture
+    //       }));
+    // }
 
     return (
       <TabBarIOS
