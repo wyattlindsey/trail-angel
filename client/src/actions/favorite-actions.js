@@ -26,10 +26,13 @@ export const fetchFavorites = () => {
       .then((data) => {
         if (data !== undefined && Array.isArray(data)) {
           let promises = data.map((item) => {
-            // todo: check to see if the favorite is already in trailsReducer.trails
-            // todo: can this just use existing functionality in trail-actions.js?
-            // todo: for now, just pull directly from yelp
-            return dataApi.yelp({ id: item });
+            debugger;
+            const cachedTrail = _.find(getState().trailsReducer.trails, { id: item });
+            if (cachedTrail !== undefined) {
+              return Promise.resolve(cachedTrail);
+            } else {
+              return dataApi.yelp({ id: item });
+            }
           });
 
           return Promise.all(promises)

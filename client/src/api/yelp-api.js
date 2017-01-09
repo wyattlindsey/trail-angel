@@ -64,6 +64,7 @@ const yelp = (options = {}) => {
 };
 
 const fetchById = (id, oauth) => {
+  debugger;
   const signedRequest = oauth.sign({
     action: 'GET',
     path: `https://api.yelp.com/v2/business/${id}`,
