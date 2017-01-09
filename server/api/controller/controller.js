@@ -79,6 +79,7 @@ module.exports = {
           user: req.body.userId
         }
       }).then( (userID) => {
+        console.log('============userID from ', userID, req.body.userId)
         db.Favorite.findOrCreate({
           where: {
             favorite: req.params.id
