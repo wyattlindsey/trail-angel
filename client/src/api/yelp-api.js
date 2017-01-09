@@ -57,7 +57,10 @@ const yelp = (options = {}) => {
     }
   });
 
-  return request.get(signedRequest.signed_url);
+  return request.get(signedRequest.signed_url)
+    .then((results) => {
+      return results.businesses;
+    });
 };
 
 const fetchById = (id, oauth) => {
@@ -71,7 +74,10 @@ const fetchById = (id, oauth) => {
       access_secret: config.secrets.yelp.tokenSecret
     }
   });
-  return request.get(signedRequest.signed_url);
+  return request.get(signedRequest.signed_url)
+    .then((results) => {
+      return results.businesses;
+    });
 };
 
 export default yelp;
