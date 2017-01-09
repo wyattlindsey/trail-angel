@@ -37,7 +37,7 @@ export const fetchFavorites = () => {
               return dispatch(receiveFavorites(results));
             })
             .catch((err) => {
-              console.log(err);
+              console.error(err);
             });
         } // else Promise.reject()?
       });

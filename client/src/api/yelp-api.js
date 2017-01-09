@@ -74,10 +74,7 @@ const fetchById = (id, oauth) => {
       access_secret: config.secrets.yelp.tokenSecret
     }
   });
-  return request.get(signedRequest.signed_url)
-    .then((results) => {
-      return results.businesses;
-    });
+  return request.get(signedRequest.signed_url);
 };
 
 export default yelp;

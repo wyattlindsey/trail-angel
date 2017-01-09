@@ -70,7 +70,7 @@ export default class TrailAngel extends Component {
           this.registered = true;
           const { dispatch } = this.context.store;
           const profile = JSON.parse(this.props.profile);
-          dispatch(userActions.registerUser({
+          dispatch(userActions.loginUser({
             userId: profile.identities[0].userId,
             email: profile.email,
             avatarUrl: profile.picture

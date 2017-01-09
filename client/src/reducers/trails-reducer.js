@@ -15,7 +15,6 @@ export default function trailsReducer(state = initialState, action = {}) {
         isFetching: true,
       };
     case actionTypes.RECEIVE_TRAILS:
-
       return {
         ...state,
         isFetching: false,
