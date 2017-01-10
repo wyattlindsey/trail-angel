@@ -8,21 +8,19 @@ var server = supertest.agent("http://localhost:4000");
 
 describe("Users: ",function(){
 
-  // after(function() {
-  //   db.User.find({
-  //     where: 'joh@jo.com'
-  //   }).then( () => {
-  //     db.User.destroy({
-  //       where: 'joh@jo.com'
-  //     });
-  //   });
-  // });
+  after(function() {
+    db.User.create({
+      user: '1038222134277651122'
+    }).then( () => {
+      /* do nothing */
+    });
+  });
 
-  it("should post favorite to users and return 201",function(done){
+  it("should post user to users and return 201",function(done){
 
     server
     .post("/api/users/")
-    .send({ user: 'joh@jo.com'})
+    .send({ user: '1038222134277651122'})
     .expect(201)
     .end(function(err,res){
       expect(res.status).to.equal(201);
@@ -34,7 +32,7 @@ describe("Users: ",function(){
   it("should delete user from users and return 200",function(done){
 
     server
-    .delete("/api/users/joh@jo.com")
+    .delete("/api/users/1038222134277651122")
     .expect(200)
     .end(function(err,res){
       expect(res.status).to.equal(200);
