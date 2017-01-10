@@ -3,23 +3,21 @@ import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStor
 import Nav from '../common/footer.component';
 import App from '../../containers/app';
 import Login from './login.component';
+import TrailAngel from '../../containers/trail-angel.js';
 
 import * as userActions from '../../actions/user-actions';
 
 import Auth0Lock from 'react-native-lock';
-import { auth0Credentials, paths } from '../../../config';
+import { secrets, paths } from '../../../config';
 
-var lock = new Auth0Lock(auth0Credentials);
-var lockAPI = lock.authenticationAPI();
-const tokenKey = 'whatGoesHere';
-const profileKey = 'thisIsAGreatProfile'
+const lock = new Auth0Lock(secrets.auth0);
+//const lockAPI = lock.authenticationAPI();
+const tokenKey = secrets.asyncstorage.tokenKey;
+const profileKey = secrets.asyncstorage.profileKey;
 
 export default class LoginWithRedux extends Component {
   constructor(props) {
     super(props);
-    this.onLogin = this.onLogin.bind(this);
-    //this.removeToken = this.removeToken.bind(this);
-    //this.removeProfile = this.removeProfile.bind(this);
 
     this.state = {
       hasToken: false
@@ -47,7 +45,6 @@ export default class LoginWithRedux extends Component {
     try {
       const profile = await AsyncStorage.getItem(profileKey);
       if (profile !== null){
-
         this.reroute(profile, token);
       }
     } catch (err) {
@@ -59,7 +56,7 @@ export default class LoginWithRedux extends Component {
   reroute(profile, token) {
     this.props.navigator.push({
       title: 'TrailAngel',
-      component: App,
+      component: TrailAngel,
       passProps: {
         profile: profile,
         token: token
@@ -152,7 +149,6 @@ export default class LoginWithRedux extends Component {
       this.setToken(token);
       this.setProfile(profile);
       this.addOrFindUser(profile);
-      //userActions.loginUser({email: profile.email, userId: profile.identities[0].userId, avatarUrl: profile.picture});
       this.reroute(profile, token);
 
     });
@@ -184,7 +180,7 @@ export default class LoginWithRedux extends Component {
             <TouchableHighlight
               style={styles.signInButton}
               underlayColor='#949494'
-              onPress={this.onLogin}>
+              onPress={this.onLogin.bind(this)}>
               <Text>Log In</Text>
             </TouchableHighlight>
         </View>

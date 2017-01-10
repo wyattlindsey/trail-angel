@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { View, NavigatorIOS, StyleSheet } from 'react-native';
 
 import TrailAngel from './trail-angel';
+import Login from '../components/auth/login.component';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -18,11 +19,28 @@ const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
 
 export default class App extends Component {
+
+
   render() {
     return (
       <Provider store={store}>
-        <TrailAngel profile={this.props.profile} />
+      <NavigatorIOS ref="nav"
+                    style={styles.container}
+                    initialRoute={{
+                      component: Login,
+                      title: 'Welcome to TrailAngel'
+                    }}
+      />
       </Provider>
     );
   }
 };
+
+//<TrailAngel profile={this.props.profile} />
+
+let styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: '#111111'
+      }
+});
