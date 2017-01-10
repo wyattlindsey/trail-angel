@@ -2,13 +2,15 @@
 
 import React, { Component } from 'react';
 import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 
 import icons from '../components/icons';
 import Trails from './trails-container';
 import Favorites from './favorites-container';
 import Search from '../containers/search-container';
 import Settings from '../components/trail/trailSettings.component';
-import * as userActions from '../actions/user-actions';
+import * as appActions from '../actions/app-actions';
 
 const styles = StyleSheet.create({
   tabContent: {
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class TrailAngel extends Component {
+class TrailAngel extends Component {
   static title = '<TabBarIOS>';
   static description = 'Trail Angel Navigation';
   static displayName = 'TrailAngel';
@@ -32,10 +34,31 @@ export default class TrailAngel extends Component {
   constructor(props) {
     super(props);
 
-    this.registered = false;
+    let profile = {};
+
+    // it seems like sometimes the profile is still a string, especially when using pre-existing
+    // token
+    if (typeof this.props.profile === 'string') {
+      profile = JSON.parse(this.props.profile);
+    } else {
+      profile = this.props.profile;
+    }
+
+    this.props.actions.initializeApp({
+      userId: profile.identities[0].userId,
+      email: profile.email,
+      avatarUrl: profile.picture
+    })
+      .then(() => {
+        // how can we tell the TrailList component to render with new data?
+      });
+
+    // this.registered = false;
     this.state = {
       selectedTab: 'redTab'
     };
+
+
   }
 
   componentDidMount() {
@@ -54,28 +77,28 @@ export default class TrailAngel extends Component {
   render() {
     // todo kind of hacky, both the fn below and the one if-block below that
 
-    function isJsonString(str) {
-      try {
-        JSON.parse(str);
-      } catch (e) {
-        return false;
-      }
-      return true;
-    }
-
-    if (!this.registered
-        && this.props.profile !== undefined
-        && isJsonString(this.props.profile))
-    {
-          this.registered = true;
-          const { dispatch } = this.context.store;
-          const profile = JSON.parse(this.props.profile);
-          dispatch(userActions.registerUser({
-            userId: profile.identities[0].userId,
-            email: profile.email,
-            avatarUrl: profile.picture
-          }));
-    }
+    // function isJsonString(str) {
+    //   try {
+    //     JSON.parse(str);
+    //   } catch (e) {
+    //     return false;
+    //   }
+    //   return true;
+    // }
+    //
+    // if (!this.registered
+    //     && this.props.profile !== undefined
+    //     && isJsonString(this.props.profile))
+    // {
+    //       this.registered = true;
+    //       const { dispatch } = this.context.store;
+    //       const profile = JSON.parse(this.props.profile);
+    //       dispatch(appActions.initializeApp({
+    //         userId: profile.identities[0].userId,
+    //         email: profile.email,
+    //         avatarUrl: profile.picture
+    //       }));
+    // }
 
     return (
       <TabBarIOS
@@ -127,5 +150,13 @@ export default class TrailAngel extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(appActions, dispatch)
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TrailAngel);
 
 

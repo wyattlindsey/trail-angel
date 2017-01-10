@@ -61,28 +61,20 @@ const styles = StyleSheet.create({
 export default class TraillistItem extends React.Component {
   constructor(props) {
     super(props);
-
-    // this should be coming from the store, not here
-    this.state = {
-      isFavorite: false
-    }
   }
 
   _handlePress(e) {
-    if (!this.state.isFavorite) {
+    if (!this.props.isFavorite) {
       this.props.addFavorite(this.props.id);
     } else {
-      this.props.removeFavorite.bind(this.props.id);
+      this.props.removeFavorite(this.props.id);
     }
-    this.setState({
-      isFavorite: !this.state.isFavorite
-    });
-
   }
 
   render() {
-    let imagePath = this.state.isFavorite ? '../../../img/heart_filled.png' : '../../../img/heart.png';
-
+    // if (this.props.id === 'strawberry-hill-san-francisco') {
+    //   debugger;
+    // }
     return (
       <View>
         <View style={styles.rowContainer}>
@@ -91,7 +83,7 @@ export default class TraillistItem extends React.Component {
             <TouchableHighlight onPress={this._handlePress.bind(this)}>
               <Image
                 style={styles.favorite}
-                source={this.state.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
+                source={this.props.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
             </TouchableHighlight>
           </View>
           <View style={styles.textContainer}>

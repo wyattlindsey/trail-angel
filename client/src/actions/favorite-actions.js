@@ -26,10 +26,12 @@ export const fetchFavorites = () => {
       .then((data) => {
         if (data !== undefined && Array.isArray(data)) {
           let promises = data.map((item) => {
-            // todo: check to see if the favorite is already in trailsReducer.trails
-            // todo: can this just use existing functionality in trail-actions.js?
-            // todo: for now, just pull directly from yelp
-            return dataApi.yelp({ id: item });
+            const cachedTrail = _.find(getState().trailsReducer.trails, { id: item });
+            if (cachedTrail !== undefined) {
+              return Promise.resolve(cachedTrail);
+            } else {
+              return dataApi.yelp({ id: item });
+            }
           });
 
           return Promise.all(promises)
@@ -37,7 +39,7 @@ export const fetchFavorites = () => {
               return dispatch(receiveFavorites(results));
             })
             .catch((err) => {
-              console.log(err);
+              console.error(err);
             });
         } // else Promise.reject()?
       });
@@ -47,47 +49,46 @@ export const fetchFavorites = () => {
 export const addFavorite = (trailId) => {
   return (dispatch, getState) => {
     const userId = getState().userReducer.userId;
-    const favorites = getState().favoritesReducer.favorites;
-    if (_.findIndex(favorites, { id: trailId }) !== -1) {
-      return;
-    }
     return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
-        dispatch({
+        let trail = _.find(getState().trailsReducer.trails, {id: trailId});
+        // todo check for undefined
+        return dispatch({
           type: actionTypes.ADD_FAVORITE,
-          userId,
-          trailId
+          trailData: trail
         });
       })
-      .then((favorites) => {
-        const receiveFavorites = (favorites) => {
-          return {
-            type: actionTypes.RECEIVE_FAVORITES,
-            favorites
-          };
-        };
+      .then((data) => {
+        return dispatch({
+          type: actionTypes.UPDATE_TRAIL,
+          trailId: data.trailData.id,
+          attribute: 'isFavorite',
+          newValue: true
+        });
       });
   };
 };
 
 export const removeFavorite = (trailId) => {
   return (dispatch, getState) => {
-    userId = getState().userReducer.userId;
+    const userId = getState().userReducer.userId;
     return dataApi.trailAngelApi.removeFavorite(userId, trailId)
       .then(() => {
-        dispatch({
+        return dispatch({
           type: actionTypes.REMOVE_FAVORITE,
-          userId,
           trailId
-        })
-      .then((favorites) => {
-        const receiveFavorites = (favorites) => {
-          return {
-            type: actionTypes.RECEIVE_FAVORITES,
-            favorites
-          };
-        };
+        });
+      })
+      .then((data) => {
+        return dispatch({
+          type: actionTypes.UPDATE_TRAIL,
+          trailId: data.trailId,
+          attribute: 'isFavorite',
+          newValue: false
+        });
+      })
+      .then(() => {
+        return dispatch(fetchFavorites());
       });
-    });
   };
 };

@@ -58,10 +58,6 @@ const request = {
       body: JSON.stringify(options),
       headers
     })
-      .then((response) => response.json())
-      .then((responseJSON) => {
-        return responseJSON;
-      })
       .catch((err) => {
         console.error(err);
       });

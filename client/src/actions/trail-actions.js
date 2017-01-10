@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 import actionTypes from './action-types';
 import dataApi from '../api';
 
@@ -11,39 +13,34 @@ const requestTrails = (options) => {
 const receiveTrails = (results) => {
   return {
     type: actionTypes.RECEIVE_TRAILS,
-    trails: results.businesses,
-    receivedAt: Date.now()
+    trails: results
   };
 };
 
-const fetchTrails = (options) => {
-  return (dispatch) => {
+// mutates the trail to include a isFavorite flag
+const associateFavorites = (trails, favorite) => {
+  return _.map(trails, (trail) => {
+    trail.isFavorite = _.findIndex(favorite, { id: trail.id }) !== -1;
+  });
+};
+
+export const fetchTrails = (options) => {
+  return (dispatch, getState) => {
     dispatch(requestTrails(options));
 
     return dataApi.yelp(options)
-      .then((json) => {
-        return dispatch(receiveTrails(json));
+      .then((results) => {
+        associateFavorites(results, getState().favoritesReducer.favorites);
+        return dispatch(receiveTrails(results));
       });
   };
 };
 
-const shouldFetchTrails = (state) => {
-  const trails = state.trails;
-  if (!trails) {
-    return true;
-  } else if (state.isFetching) {
-    return false;
-  } else {
-    return state.didInvalidate
-  }
-};
-
-export const fetchTrailsIfNeeded = (options) => {
-  return (dispatch, getState) => {
-    if (shouldFetchTrails(getState(), options)) {
-      return dispatch(fetchTrails(options));
-    } else {
-      return Promise.resolve();
-    }
-  }
+export const updateTrail = (trailId, attribute, newValue) => {
+  return {
+    type: actionTypes.UPDATE_TRAIL,
+    trailId,
+    attribute,
+    newValue
+  };
 };

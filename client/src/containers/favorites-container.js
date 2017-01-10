@@ -11,7 +11,7 @@ const Favorites = (props) => {
   const { state, actions } = props;
   return (
     <FavoriteList isFetching={state.favoritesReducer.isFetching}
-                  favorites={state.favoritesReducer.items}
+                  favorites={state.favoritesReducer.favorites}
                   userId={state.userReducer.userId}
                   {...actions} />
   );

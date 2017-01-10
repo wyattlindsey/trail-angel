@@ -57,7 +57,10 @@ const yelp = (options = {}) => {
     }
   });
 
-  return request.get(signedRequest.signed_url);
+  return request.get(signedRequest.signed_url)
+    .then((results) => {
+      return results.businesses;
+    });
 };
 
 const fetchById = (id, oauth) => {

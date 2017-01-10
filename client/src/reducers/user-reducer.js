@@ -10,7 +10,7 @@ const initialState = {
 
 export default function usersReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case actionTypes.REGISTER_USER:
+    case actionTypes.RECEIVE_USER_DATA:
       return {
         ...state,
         userId: action.profile.userId,

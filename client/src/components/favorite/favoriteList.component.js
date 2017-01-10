@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#8E8E8E',
   },
+  container: {
+
+  },
   centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
   gray: { backgroundColor: '#cccccc', },
   horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, }
@@ -27,6 +30,7 @@ export default class FavoriteList extends React.Component {
   }
 
   componentDidMount() {
+    const that = this;
     this.props.fetchFavorites(this.props.userId)
       .then((data) => {
         if (data !== undefined) {
