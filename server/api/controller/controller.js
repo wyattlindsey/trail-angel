@@ -52,23 +52,28 @@ module.exports = {
             userId: userID.dataValues.id
           }
         }).then( (favorites) => {
-          var ids = [];
-          favorites.forEach( (favoriteID) => {
-            ids.push(favoriteID.dataValues.favoriteId);
-          });
-          db.Favorite.findAll({
-            where: {
-              id: {
-                $or: ids
-              }
-            }
-          }).then( (favoriteNames) => {
-            var trailNames = [];
-            favoriteNames.forEach( (favoriteName) => {
-              trailNames.push(favoriteName.dataValues.favorite);
+          console.log(favorites);
+          if (favorites.length === 0) {
+            res.json([]);
+          } else {
+            var ids = [];
+            favorites.forEach( (favoriteID) => {
+              ids.push(favoriteID.dataValues.favoriteId);
             });
-            res.json(trailNames);
-          });
+            db.Favorite.findAll({
+              where: {
+                id: {
+                  $or: ids
+                }
+              }
+            }).then( (favoriteNames) => {
+              var trailNames = [];
+              favoriteNames.forEach( (favoriteName) => {
+                trailNames.push(favoriteName.dataValues.favorite);
+              });
+              res.json(trailNames);
+            });
+          }
         });
       });
     },
