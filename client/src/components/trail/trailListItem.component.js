@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
  rowContainer: {
@@ -72,19 +73,15 @@ export default class TraillistItem extends React.Component {
   }
 
   render() {
-    // if (this.props.id === 'strawberry-hill-san-francisco') {
-    //   debugger;
-    // }
+    const FavoriteIcon = this.props.isFavorite ? <Icon name='star' size={20} color='darkgreen' /> : <Icon name='star-o' size={20} color='darkgreen' />;
     return (
       <View>
         <View style={styles.rowContainer}>
           <View style={styles.leftColumn}>
             <Image source={{uri: this.props.image_url}} style={styles.photo} />
-            <TouchableHighlight onPress={this._handlePress.bind(this)}>
-              <Image
-                style={styles.favorite}
-                source={this.props.isFavorite ?
-                  require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
+            <TouchableHighlight onPress={this._handlePress.bind(this)}
+                                style={styles.favorite}>
+              {FavoriteIcon}
             </TouchableHighlight>
           </View>
           <View style={styles.textContainer}>
@@ -101,3 +98,6 @@ export default class TraillistItem extends React.Component {
   }
 }
 
+{/*<Image*/}
+  {/*style={styles.favorite}*/}
+  {/*source={this.props.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />*/}
