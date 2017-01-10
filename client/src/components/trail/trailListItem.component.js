@@ -83,7 +83,8 @@ export default class TraillistItem extends React.Component {
             <TouchableHighlight onPress={this._handlePress.bind(this)}>
               <Image
                 style={styles.favorite}
-                source={this.props.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
+                source={this.props.isFavorite ?
+                  require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />
             </TouchableHighlight>
           </View>
           <View style={styles.textContainer}>

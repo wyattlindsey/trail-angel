@@ -30,7 +30,6 @@ export default class FavoriteList extends React.Component {
   }
 
   componentDidMount() {
-    const that = this;
     this.props.fetchFavorites(this.props.userId)
       .then((data) => {
         if (data !== undefined) {
@@ -38,6 +37,9 @@ export default class FavoriteList extends React.Component {
             dataSource: this.ds.cloneWithRows(data.favorites)
           });
         }
+      })
+      .catch((err) => {
+        console.error('error fetching favorites from favoritesList component', err);
       });
   }
 

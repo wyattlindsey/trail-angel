@@ -60,6 +60,9 @@ const yelp = (options = {}) => {
   return request.get(signedRequest.signed_url)
     .then((results) => {
       return results.businesses;
+    })
+    .catch((err) => {
+      console.log('error getting yelp data', err);
     });
 };
 
