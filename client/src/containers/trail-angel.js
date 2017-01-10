@@ -51,9 +51,11 @@ class TrailAngel extends Component {
     })
       .then(() => {
         // how can we tell the TrailList component to render with new data?
+      })
+      .catch((err) => {
+        console.error('error initializing application', err);
       });
 
-    // this.registered = false;
     this.state = {
       selectedTab: 'redTab'
     };
@@ -75,30 +77,6 @@ class TrailAngel extends Component {
   };
 
   render() {
-    // todo kind of hacky, both the fn below and the one if-block below that
-
-    // function isJsonString(str) {
-    //   try {
-    //     JSON.parse(str);
-    //   } catch (e) {
-    //     return false;
-    //   }
-    //   return true;
-    // }
-    //
-    // if (!this.registered
-    //     && this.props.profile !== undefined
-    //     && isJsonString(this.props.profile))
-    // {
-    //       this.registered = true;
-    //       const { dispatch } = this.context.store;
-    //       const profile = JSON.parse(this.props.profile);
-    //       dispatch(appActions.initializeApp({
-    //         userId: profile.identities[0].userId,
-    //         email: profile.email,
-    //         avatarUrl: profile.picture
-    //       }));
-    // }
 
     return (
       <TabBarIOS

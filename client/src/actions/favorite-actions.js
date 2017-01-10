@@ -39,7 +39,7 @@ export const fetchFavorites = () => {
               return dispatch(receiveFavorites(results));
             })
             .catch((err) => {
-              console.error(err);
+              console.error('error fetching favorites', err);
             });
         } // else Promise.reject()?
       });
@@ -65,6 +65,9 @@ export const addFavorite = (trailId) => {
           attribute: 'isFavorite',
           newValue: true
         });
+      })
+      .catch((err) => {
+        console.error('error adding favorite', err);
       });
   };
 };
@@ -87,8 +90,8 @@ export const removeFavorite = (trailId) => {
           newValue: false
         });
       })
-      .then(() => {
-        return dispatch(fetchFavorites());
+      .catch((err) => {
+        console.error('error removing favorite', err);
       });
   };
 };

@@ -38,7 +38,7 @@ const trailAngelApi = {
         return data;
       })
       .catch((err) => {
-        console.error('Error fetching favorites: ', err);
+        console.error('error fetching favorites: ', err);
       });
   },
 

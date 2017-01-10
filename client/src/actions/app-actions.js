@@ -13,6 +13,9 @@ export const initializeApp = (profile) => {
       })    // need to get location somewhere in here
       .then(() => {
         return dispatch(trailActions.fetchTrails());
+      })
+      .catch((err) => {
+        console.error('error initializing application', err);
       });
   };
 };

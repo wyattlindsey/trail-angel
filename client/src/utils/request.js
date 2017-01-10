@@ -11,7 +11,7 @@ const request = {
         return responseJSON;
       })
       .catch((err) => {
-        console.error(err);
+        console.error('error retreiving data from server', err);
       });
   },
 
@@ -22,7 +22,7 @@ const request = {
         return responseJSON;
       })
       .catch((err) => {
-        console.error(err);
+        console.error('error retreiving data from server', err);
       });
   },
 
@@ -33,7 +33,7 @@ const request = {
       body: JSON.stringify(options)
     })
       .catch((err) => {
-        console.error(err);
+        console.error('error adding record on server', err);
       });
   },
 
@@ -48,7 +48,7 @@ const request = {
         return responseJSON;
       })
       .catch((err) => {
-        console.error(err);
+        console.error('error updating data on server', err);
       });
   },
 
@@ -59,7 +59,7 @@ const request = {
       headers
     })
       .catch((err) => {
-        console.error(err);
+        console.error('error removing data on server', err);
       });
   }
 };

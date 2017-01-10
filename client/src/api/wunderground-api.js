@@ -14,5 +14,8 @@ export const getWeatherForGeolocation = (latitude, longitude) => {
         current: responseJSON.current_observation,
         forecast: responseJSON.forecast.simpleforecast.forecastday
       }
+    })
+    .catch((err) => {
+      console.error('error getting weather underground data', err);
     });
 };
