@@ -21,6 +21,9 @@ export const search = (options) => {
     return dataApi.yelp(options)
       .then((json) => {
         return dispatch(receiveSearchResults(json));
+      })
+      .catch((err) => {
+        console.error('error retrieving search data', err);
       });
   }
 };

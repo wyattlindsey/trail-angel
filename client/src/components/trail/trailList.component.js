@@ -28,40 +28,6 @@ export default class TrailList extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // if (this.props.trails !== undefined) {
-    //   this.setState({
-    //     dataSource: this.ds.cloneWithRows(this.props.trails)
-    //   });
-    // } else {
-    //   setTimeout(() => {
-    //     this.setState({
-    //       dataSource: this.ds.cloneWithRows(this.props.trails)
-    //     });
-    //   }, 3000);
-    // }
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     var initialPosition = JSON.stringify(position);
-    //     this.setState({initialPosition});
-        // this.props.fetchFavorites()
-        //   .then(() => {
-        //     return this.props.fetchTrails({
-        //       latitude: position.coords.latitude,
-        //       longitude: position.coords.longitude
-        //     });
-        //   })
-        //   .then((data) => {
-        //     this.setState({
-        //       dataSource: this.ds.cloneWithRows(data.trails)
-        //     });
-        //   });
-      // },
-      // (error) => alert(JSON.stringify((error)),
-      //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
-      // );
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.trails !== undefined) {
       this.setState({
@@ -74,7 +40,8 @@ export default class TrailList extends React.Component {
     return (
       <View>
         <ActivityIndicator animating={this.props.isFetching}
-                           style={[styles.centering, styles.horizontal, { height: this.props.isFetching ? 260 : 0 }]}
+                           style={[styles.centering, styles.horizontal,
+                                  { height: this.props.isFetching ? 260 : 0 }]}
                            color='darkgreen'
                            size='large' />
         <ListView

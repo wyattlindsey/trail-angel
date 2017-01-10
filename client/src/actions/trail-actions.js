@@ -32,6 +32,9 @@ export const fetchTrails = (options) => {
       .then((results) => {
         associateFavorites(results, getState().favoritesReducer.favorites);
         return dispatch(receiveTrails(results));
+      })
+      .catch((err) => {
+        console.error('error retrieving trail data', err);
       });
   };
 };
