@@ -19,12 +19,13 @@ export default function usersReducer(state = initialState, action = {}) {
         email: action.profile.email,
         nickname: action.profile.nickname,
         avatarUrl: action.profile.avatarUrl,
+        hasToken: true
       };
 
     case actionTypes.LOGIN_USER:
       return {
         ...state,
-        hasToken: true
+
       };
 
     case actionTypes.LOGOUT_USER:
