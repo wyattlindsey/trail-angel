@@ -14,12 +14,17 @@ export default function searchReducer(state = initialState, action = {}) {
         ...state,
         isFetching: false,
         results: action.results
-      }
+      };
     case actionTypes.SUBMIT_SEARCH:
       return {
         ...state,
         isFetching: true
       };
+    case actionTypes.CLEAR_SEARCH_RESULTS:
+      return {
+        ...state,
+        results: []
+      }
     default:
       return state;
   }

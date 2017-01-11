@@ -15,6 +15,12 @@ const receiveSearchResults = (results) => {
   };
 };
 
+export const clearSearchResults = () => {
+  return {
+    type: actionTypes.CLEAR_SEARCH_RESULTS
+  }
+}
+
 export const search = (options) => {
   return (dispatch) => {
     dispatch(submitSearch(options));

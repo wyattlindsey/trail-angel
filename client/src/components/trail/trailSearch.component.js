@@ -50,6 +50,9 @@ export default class SearchBar extends React.Component {
   }
 
   handleInput(text) {
+    if (text === '') {
+      this.props.clearSearchResults();
+    }
     this.props.search({
       location: text
     });
