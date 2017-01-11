@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
   rowContainer: {
@@ -55,22 +56,36 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
     // justifyContent: 'flex-end',
-  }
+  },
+  removeButton: {
+    height: 20,
+    width: 20,
+    marginRight: 20,
+    marginTop: 80
+  },
 });
 
 export default class FavoriteListItem extends React.Component {
+  _handleRemoveFavorite() {
+    this.props.removeFavorite(this.props.id);
+  }
+
   render() {
-    if (this.props.location === undefined) {
-      debugger;
-    }
     return (
       <View>
         <View style={styles.rowContainer}>
-          <Image source={{uri: this.props.image_url}} style={styles.photo} />
+          <View>
+            <Image source={{uri: this.props.image_url}} style={styles.photo} />
+            <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
+                                style={styles.removeButton}>
+              <Icon name='minus-circle' size={20} color='darkgreen' />
+            </TouchableHighlight>
+          </View>
           <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
             <Text style={styles.location}> {this.props.location.city} </Text>
             <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+            <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
         </View>
         <View style={styles.separator}/>

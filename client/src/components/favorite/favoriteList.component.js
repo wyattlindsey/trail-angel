@@ -60,8 +60,10 @@ export default class FavoriteList extends React.Component {
                            size='large' />
         <ListView
           style={styles.container}
+          enableEmptySections={true}
           dataSource={this.state.dataSource}
-          renderRow={(data) => <Row {...data}/>}
+          renderRow={(data) => <Row removeFavorite={this.props.removeFavorite}
+                                    {...data} />}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         />
       </View>
