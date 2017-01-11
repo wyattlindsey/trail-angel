@@ -34,8 +34,7 @@ const receiveUserData = (profile) => {
 
 export const loginUser = (profile) => {
   return (dispatch) => {
-    dispatch({type: actionTypes.LOGIN_USER})
-      return dispatch(receiveUserData(profile));
+      return Promise.resolve(dispatch(receiveUserData(profile)));
   };
 };
 
