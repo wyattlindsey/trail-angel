@@ -18,9 +18,9 @@ const receiveTrails = (results) => {
 };
 
 // mutates the trail to include a isFavorite flag
-const associateFavorites = (trails, favorite) => {
-  return _.map(trails, (trail) => {
-    trail.isFavorite = _.findIndex(favorite, { id: trail.id }) !== -1;
+const associateFavorites = (trails, favorites) => {
+  _.map(trails, (trail) => {
+    trail.isFavorite = _.findIndex(favorites, { id: trail.id }) !== -1;
   });
 };
 
@@ -30,7 +30,7 @@ export const fetchTrails = (options) => {
 
     return dataApi.yelp(options)
       .then((results) => {
-        associateFavorites(results, getState().favoritesReducer.favorites);
+        // associateFavorites(results, getState().favoritesReducer.favorites);
         return dispatch(receiveTrails(results));
       })
       .catch((err) => {

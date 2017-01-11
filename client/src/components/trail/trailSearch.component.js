@@ -67,6 +67,7 @@ export default class SearchBar extends React.Component {
   }
 
   render() {
+    const search = { search: true };
     return(
       <View>
         <View style={styles.container}>
@@ -86,7 +87,9 @@ export default class SearchBar extends React.Component {
                              size='large' />
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={(data) => <Row {...data}/>}
+            renderRow={(data) => <Row addFavorite={this.props.addFavorite}
+                                      removeFavorite={this.props.removeFavorite}
+                                      {...data} />}
             enableEmptySections={true}
             style={styles.searchResults}
             renderSeparator={(sectionId, rowId) => <View key={rowId}

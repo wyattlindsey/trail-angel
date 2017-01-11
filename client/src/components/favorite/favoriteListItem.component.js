@@ -66,8 +66,11 @@ export default class FavoriteListItem extends React.Component {
   }
 
   render() {
-    return (
-      <View>
+    let view;
+    if (this.props.location === undefined) {
+      view = <View />
+    } else {
+      view = <View>
         <View style={styles.rowContainer}>
           <View>
             <Image source={{uri: this.props.image_url}} style={styles.photo} />
@@ -78,7 +81,7 @@ export default class FavoriteListItem extends React.Component {
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}> {this.props.location.city} </Text>
+            <Text style={styles.location}> this.props.location.city </Text>
             <Text style={styles.rating}> Rating: {this.props.rating} </Text>
             <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
@@ -88,8 +91,13 @@ export default class FavoriteListItem extends React.Component {
         </View>
         <View style={styles.separator} />
       </View>
+    }
+    return (
+      <View>
+        {view}
+      </View>
+    );
 
-  );
   }
 
   constructor(props) {
