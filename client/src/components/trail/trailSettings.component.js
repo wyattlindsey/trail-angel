@@ -1,5 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight, NavigatorIOS } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect  } from 'react-redux';
+import * as userActions from '../../actions/user-actions';
+import Login from '../auth/login.component';
 
 const styles = StyleSheet.create({
   rowContainer: {
@@ -31,25 +35,74 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#909060',
     height: 50
-  }
+  },
+  menuItem: {
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderBottomColor: 'black',
+    //flex: 1,
+    //alignItems: 'center'
+
+  },
 });
 
-export default class TrailSettings extends React.Component {
+class TrailSettings extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  _logoutPress() {
+    console.log("Pressed the logout menu option");
+    this.props.actions.logoutUser()
+    .then(() => {
+      this.props.navigator.push({
+      title: 'Welcome to TrailAngel',
+      component: Login,
+      // hack to remove back button leading to login page
+      leftButtonTitle: ' ',
+      });
+    })
+  }
+
   render() {
-    let profile = this.props.profile;
+    let profile = {
+      avatarUrl: this.props.state.userReducer.avatarUrl,
+      nickname: this.props.state.userReducer.nickname,
+    }
     return (
+    <View>
+
+
       <View style={styles.rowContainer}>
-        <Image source={{uri: profile.picture}} style={styles.photo} />
+        <Image source={{uri: profile.avatarUrl}} style={styles.photo} />
         <Text style={styles.title}>{profile.nickname}</Text>
         <Text style={styles.location}> San Francisco </Text>
         <Text style={styles.rating}> Favorites: 10 </Text>
         <Text> Logout </Text>
       </View>
+      <TouchableHighlight
+              style={styles.menuItem}
+              underlayColor='#949494'
+              onPress={this._logoutPress.bind(this)}>
+              <View>
+              <Text style={styles.title}>Logout</Text>
+              </View>
+      </TouchableHighlight>
+      </View>
     );
   }
 }
 
+const mapStateToProps = function(state) {
+  return {
+    state: state
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(userActions, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrailSettings);
