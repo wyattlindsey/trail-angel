@@ -22,6 +22,7 @@ export const fetchFavorites = () => {
     dispatch(requestFavorites(userId));
 
     // get favorites for user from the server
+    // todo cancel this if everything is cached so spinner doesn't appear on cache hit
     return dataApi.trailAngelApi.getFavorites(userId)
       .then((data) => {
         if (data !== undefined && Array.isArray(data)) {
