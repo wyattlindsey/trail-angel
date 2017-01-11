@@ -1,15 +1,15 @@
 'use strict';
 
-import testReducer from './test-reducer';
+import appReducer from './app-reducer';
 import trailsReducer from './trails-reducer';
 import favoritesReducer from './favorites-reducer';
 import userReducer from './user-reducer';
 import searchReducer from './search-reducer';
 
 const reducers = {
+  appReducer,
   trailsReducer,
   favoritesReducer,
-  testReducer,
   userReducer,
   searchReducer
 };

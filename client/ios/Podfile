@@ -1,5 +1,7 @@
+source 'https://github.com/CocoaPods/Specs.git'
+install! 'cocoapods', :deterministic_uuids => false
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 target 'trailangel' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -11,6 +13,26 @@ target 'trailangel' do
     inherit! :search_paths
     # Pods for testing
   end
+
+  pod 'React', path: '../node_modules/react-native', :subspecs => [
+    'Core',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket'
+  ]
+
+  pod 'GoogleMaps'  # <~~ remove this line if you do not want to support GoogleMaps on iOS
+
+  # when not using frameworks  we can do this instead of including the source files in our project (1/4):
+  #  pod 'react-native-maps', path: '../../'
+  #  pod 'react-native-google-maps', path: '../../'  # <~~ if you need GoogleMaps support on iOS
 
 end
 

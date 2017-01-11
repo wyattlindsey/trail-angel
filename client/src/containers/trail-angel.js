@@ -51,6 +51,7 @@ class TrailAngel extends Component {
     })
       .then(() => {
         // how can we tell the TrailList component to render with new data?
+        return;
       })
       .catch((err) => {
         console.error('error initializing application', err);

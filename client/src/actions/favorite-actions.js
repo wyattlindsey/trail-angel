@@ -22,6 +22,7 @@ export const fetchFavorites = () => {
     dispatch(requestFavorites(userId));
 
     // get favorites for user from the server
+    // todo cancel this if everything is cached so spinner doesn't appear on cache hit
     return dataApi.trailAngelApi.getFavorites(userId)
       .then((data) => {
         if (data !== undefined && Array.isArray(data)) {
@@ -51,8 +52,16 @@ export const addFavorite = (trailId) => {
     const userId = getState().userReducer.userId;
     return dataApi.trailAngelApi.addFavorite(userId, trailId)
       .then(() => {
-        let trail = _.find(getState().trailsReducer.trails, {id: trailId});
-        // todo check for undefined
+        let trail = _.find(getState().trailsReducer.trails, { id: trailId });
+
+        if (trail === undefined) {
+          trail = _.find(getState().searchReducer.results, { id: trailId });
+        }
+
+        if (trail === undefined) {
+          return Promise.reject('unable to find trail');
+        }
+
         return dispatch({
           type: actionTypes.ADD_FAVORITE,
           trailData: trail
@@ -60,7 +69,9 @@ export const addFavorite = (trailId) => {
       })
       .then((data) => {
         return dispatch({
-          type: actionTypes.UPDATE_TRAIL,
+          type: data.trailData.isSearchResult ?
+                actionTypes.UPDATE_SEARCH_RESULT :
+                actionTypes.UPDATE_TRAIL,
           trailId: data.trailData.id,
           attribute: 'isFavorite',
           newValue: true
@@ -83,8 +94,20 @@ export const removeFavorite = (trailId) => {
         });
       })
       .then((data) => {
+        let trail = _.find(getState().trailsReducer.trails, { id: trailId });
+
+        if (trail === undefined) {
+          trail = _.find(getState().searchReducer.results, { id: trailId });
+        }
+
+        if (trail === undefined) {
+          return;
+        }
+
         return dispatch({
-          type: actionTypes.UPDATE_TRAIL,
+          type: trail.isSearchResult ?
+                actionTypes.UPDATE_SEARCH_RESULT :
+                actionTypes.UPDATE_TRAIL,
           trailId: data.trailId,
           attribute: 'isFavorite',
           newValue: false

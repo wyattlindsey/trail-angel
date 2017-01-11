@@ -1,24 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
-    padding: 20,
-    flex: 1
+    padding: 15
   },
   textContainer: {
     flex: 1,
     flexDirection: 'column',
     width: 50
-    // height: 100
   },
   title: {
     color: '#3D728E',
     fontSize: 16,
     fontWeight: '600'
-  },
-  leftColumn: {
   },
   photo: {
     height: 40,
@@ -47,7 +44,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   separator: {
-    height: 1,
     backgroundColor: '#E3E0D7'
   },
   distance: {
@@ -55,28 +51,53 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
     // justifyContent: 'flex-end',
-  }
+  },
+  removeButton: {
+    height: 20,
+    width: 20,
+    marginRight: 20,
+    marginTop: 80
+  },
 });
 
 export default class FavoriteListItem extends React.Component {
+  _handleRemoveFavorite() {
+    this.props.removeFavorite(this.props.id);
+  }
+
   render() {
+    let view;
     if (this.props.location === undefined) {
-      debugger;
+      view = <View />
+    } else {
+      view = <View>
+        <View style={styles.rowContainer}>
+          <View>
+            <Image source={{uri: this.props.image_url}} style={styles.photo} />
+            <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
+                                style={styles.removeButton}>
+              <Icon name='minus-circle' size={20} color='darkgreen' />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{this.props.name}</Text>
+            <Text style={styles.location}> this.props.location.city </Text>
+            <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+            <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
+          </View>
+          <View>
+            <Text style={styles.distance}> {Number(this.props.distance / 1000).toFixed(1)} miles </Text>
+          </View>
+        </View>
+        <View style={styles.separator} />
+      </View>
     }
     return (
       <View>
-        <View style={styles.rowContainer}>
-          <Image source={{uri: this.props.image_url}} style={styles.photo} />
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}> {this.props.location.city} </Text>
-            <Text style={styles.rating}> Rating: {this.props.rating} </Text>
-          </View>
-        </View>
-        <View style={styles.separator}/>
+        {view}
       </View>
+    );
 
-  );
   }
 
   constructor(props) {
