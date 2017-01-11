@@ -47,7 +47,8 @@ class TrailAngel extends Component {
     this.props.actions.initializeApp({
       userId: profile.identities[0].userId,
       email: profile.email,
-      avatarUrl: profile.picture
+      avatarUrl: profile.picture,
+      nickname: profile.nickname
     })
       .then(() => {
         // how can we tell the TrailList component to render with new data?
