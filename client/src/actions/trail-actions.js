@@ -1,3 +1,5 @@
+'use strict';
+
 import * as _ from 'lodash';
 
 import actionTypes from './action-types';
@@ -24,6 +26,14 @@ const associateFavorites = (trails, favorite) => {
   });
 };
 
+const getDistances = (trails) => {
+  _.each(trails, (trail) => {
+    trail.distance = false;
+    // calculate distance with google api
+    // update the trail afterwards
+  });
+};
+
 export const fetchTrails = (options) => {
   return (dispatch, getState) => {
     dispatch(requestTrails(options));
@@ -31,6 +41,8 @@ export const fetchTrails = (options) => {
     return dataApi.yelp(options)
       .then((results) => {
         associateFavorites(results, getState().favoritesReducer.favorites);
+        getDistances(results);
+
         return dispatch(receiveTrails(results));
       })
       .catch((err) => {
