@@ -78,7 +78,6 @@ class TrailAngel extends Component {
   };
 
   render() {
-
     return (
       <TabBarIOS
         unselectedTintColor="yellow"
@@ -123,7 +122,7 @@ class TrailAngel extends Component {
               selectedTab: 'beigeTab',
             });
           }}>
-          <Settings profile={this.props.profile} />
+          <Settings navigator={this.props.navigator} />
         </TabBarIOS.Item>
       </TabBarIOS>
     );

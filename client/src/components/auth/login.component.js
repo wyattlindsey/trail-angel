@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
-import Nav from '../common/footer.component';
-import App from '../../containers/app';
-import Login from './login.component';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import TrailAngel from '../../containers/trail-angel.js';
 
 import * as userActions from '../../actions/user-actions';
@@ -15,7 +15,7 @@ const lock = new Auth0Lock(secrets.auth0);
 const tokenKey = secrets.asyncstorage.tokenKey;
 const profileKey = secrets.asyncstorage.profileKey;
 
-export default class LoginWithRedux extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -30,25 +30,29 @@ export default class LoginWithRedux extends Component {
   }
 
   async getToken() {
+
     try {
       const token = await AsyncStorage.getItem(tokenKey);
+
       if (token !== null){
-        console.log('We have a pre-existing valid token!!!!!!: ', token);
-        this.setState({'hasToken': true}, () => this.getProfile(token));
+        console.log('Successfully retrieved existing valid token: ', token);
+        this.getProfile(token);
       }
     } catch (err) {
-      console.log(err);
+      console.error('Error retrieving token from AsyncStorage: ', err);
     }
   }
 
   async getProfile(token) {
+
     try {
       const profile = await AsyncStorage.getItem(profileKey);
       if (profile !== null){
+        //this.props.actions.loginUser(profile);
         this.reroute(profile, token);
       }
     } catch (err) {
-      console.log(err);
+      console.error('Error retrieving profile from AsyncStorage: ', err);
     }
 
   }
@@ -58,64 +62,63 @@ export default class LoginWithRedux extends Component {
       title: 'TrailAngel',
       component: TrailAngel,
       passProps: {
-        profile: profile,
-        token: token
+          profile: profile,
+          token: token
       },
       // hack to remove back button leading to login page
       leftButtonTitle: ' ',
-      rightButtonTitle: 'Logout',
-      onRightButtonPress: this.onRightButtonPress.bind(this)
+      // rightButtonTitle: 'Logout',
+      // onRightButtonPress: this.onRightButtonPress.bind(this)
     });
   }
 
-  rerouteToLogin() {
-    // this.props.navigator.push({
-    //   title: 'TrailAngel',
-    //   component: Login
-    // });
-    this.props.navigator.pop();
+  // rerouteToLogin() {
+  //   this.props.navigator.pop();
 
-  }
+  // }
 
   async setToken(token) {
     try {
         await AsyncStorage.setItem(tokenKey, JSON.stringify(token));
-        console.log('A TOKEN WAS SET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        console.log('Token successfully added to AsyncStorage.');
       } catch (err) {
-        console.log(err);
+        console.error('Error setting token to AsyncStorage: ', err);
       }
   }
 
   async setProfile(profile) {
     try {
         await AsyncStorage.setItem(profileKey, JSON.stringify(profile));
-        console.log('A PROFILE WAS SET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        console.log('Profile successfully added to AsyncStorage.', profile);
+        //this.actions.loginUser(profile);
       } catch (err) {
-        console.log(err);
+        console.error('Error setting profile to AsyncStorage: ', err);
       }
   }
 
   async removeToken() {
     try {
         await AsyncStorage.removeItem(tokenKey);
-        this.setState({hasToken: false});
-        console.log('A TOKEN WAS REMOVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        //this.setState({hasToken: false});
+        console.log('Token successfully removed from AsyncStorage.');
       } catch (err) {
-        console.log('Error removing token from AsyncStorage: ', err);
+        console.error('Error removing token from AsyncStorage: ', err);
       }
   }
 
   async removeProfile() {
     try {
         await AsyncStorage.removeItem(profileKey);
-        console.log('A PROFILE WAS REMOVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        console.log('Profile successfully removed from AsyncStorage.');
       } catch (err) {
-        console.log('Error removing profile from AsyncStorage: ', err);
+        console.error('Error removing profile from AsyncStorage: ', err);
       }
   }
 
   addOrFindUser(profile) {
+
     var userId = profile.identities[0].userId;
+    console.log(userId);
     // Should use redux action here?  not sure how to do this yet
     const userEndpoint = paths.trailAngel.baseUrl + '/api/users';
     return fetch(userEndpoint, {
@@ -134,7 +137,7 @@ export default class LoginWithRedux extends Component {
       }
     })
     .catch(err => {
-      console.log('Add or find user request error: ', err);
+      console.error('Add or find user request error: ', err);
     });
   }
 
@@ -143,28 +146,31 @@ export default class LoginWithRedux extends Component {
       closable: true,
     }, (err, profile, token) => {
       if (err) {
-        console.log(err);
+        console.error('Error logging in via Auth0 Lock: ', err);
         return;
       }
       this.setToken(token);
       this.setProfile(profile);
       this.addOrFindUser(profile);
       this.reroute(profile, token);
-
     });
   }
 
-  onRightButtonPress() {
-    this.removeToken();
-    this.removeProfile();
-    this.rerouteToLogin();
-  }
+  // onRightButtonPress() {
+  //   this.removeToken();
+  //   this.removeProfile();
+  //   this.rerouteToLogin();
+  // }
+
+  //this.props.state.userReducer.hasToken ?
 
   render() {
     const { username, password } = this.props;
 
     return (
-      this.state.hasToken ?
+
+
+      this.props.state.userReducer.hasToken ?
 
         <Text>...Logging In...</Text> :
 
@@ -186,8 +192,21 @@ export default class LoginWithRedux extends Component {
         </View>
     );
   }
-
 }
+
+const mapStateToProps = function(state) {
+  return {
+    state: state
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(userActions, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 const styles = StyleSheet.create({
   container: {
