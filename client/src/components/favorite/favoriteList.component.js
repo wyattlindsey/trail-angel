@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#8E8E8E',
   },
   container: {
-    top: 60
+    marginTop: 65,
+    marginBottom: 40
   },
   centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
   gray: { backgroundColor: '#cccccc', },

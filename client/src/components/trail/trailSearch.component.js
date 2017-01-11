@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput,
           ListView, ActivityIndicator } from 'react-native';
 import * as _ from 'lodash';
 
-import Row from '../favorite/favoriteListItem.component';
+import Row from '../trail/trailListItem.component';
 
 const styles = StyleSheet.create({
   container: {
