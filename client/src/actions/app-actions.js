@@ -5,17 +5,61 @@ import * as userActions from './user-actions';
 import * as trailActions from './trail-actions';
 import * as favoriteActions from './favorite-actions';
 
+
+export const getGeolocation = (options = {
+                                            enableHighAccuracy: true,
+                                            timeout: 20000,
+                                            maximumAge: 1000}
+                                    ) => {
+
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_GEOLOCATION
+    });
+
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve(dispatch(receiveGeolocation(position)));
+        },
+        (err) => {
+          console.error('Error obtaining geolocation: ', err);
+          reject(err);
+        },
+        options
+      );
+    });
+
+  };
+};
+
+const receiveGeolocation = (geolocation) => {
+  return {
+    type: actionTypes.RECEIVE_GEOLOCATION,
+    geolocation
+  };
+};
+
 export const initializeApp = (profile) => {
   return (dispatch, getState) => {
-    return dispatch(userActions.loginUser(profile))
+    dispatch({
+      type: actionTypes.INITIALIZE_APP
+    });
+    return dispatch(userActions.loginUser(profile)) // todo remove this after Andrew's PR is merged
       .then(() => {
         return dispatch(favoriteActions.fetchFavorites());
-      })    // need to get location somewhere in here
+      })
       .then(() => {
-        return dispatch(trailActions.fetchTrails());
+        return dispatch(getGeolocation());
+      })
+      .then(() => {
+        return dispatch(trailActions.fetchTrails({
+          latitude: getState().appReducer.geolocation.coords.latitude,
+          longitude: getState().appReducer.geolocation.coords.longitude
+        }));
       })
       .catch((err) => {
-        console.error('error initializing application', err);
+        console.error('Error initializing application: ', err);
       });
   };
 };
