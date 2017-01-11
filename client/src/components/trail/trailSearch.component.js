@@ -50,22 +50,12 @@ export default class SearchBar extends React.Component {
 
   handleInput(text) {
     if (text === '') {
-      this.props.clearSearchResults();
+      this.props.cancelSearch();
+    } else {
+      this.props.search({
+        location: text
+      });
     }
-    this.props.search({
-      location: text
-    });
-  }
-
-  componentDidMount() {
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     var initialPosition = position;
-    //     this.setState({initialPosition: position});
-    //   },
-    //   (error) => alert(JSON.stringify((error)),
-    //     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
-    // );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -76,7 +66,7 @@ export default class SearchBar extends React.Component {
     }
   }
 
-  render(props) {
+  render() {
     return(
       <View>
         <View style={styles.container}>
