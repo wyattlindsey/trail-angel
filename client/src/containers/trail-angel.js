@@ -77,7 +77,6 @@ class TrailAngel extends Component {
   };
 
   render() {
-    debugger;
     return (
       <TabBarIOS
         unselectedTintColor="yellow"
