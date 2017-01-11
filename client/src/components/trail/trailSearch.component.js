@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
 export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.debouncedHandleInput = _.debounce(this.handleInput, 300);
 
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
@@ -84,7 +83,7 @@ export default class SearchBar extends React.Component {
           <TextInput
             style={styles.input}
             placeholder='Search...'
-            onChangeText={(text) => {this.debouncedHandleInput(text)}}
+            onChangeText={(text) => {this.handleInput(text)}}
             autoCapitalize='none'
             autoCorrect={false}
             autoFocus={true}
