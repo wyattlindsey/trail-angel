@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as searchActions from '../actions/search-actions';
+import * as favoriteActions from '../actions/favorite-actions';
 
 import TrailSearch from '../components/trail/trailSearch.component';
 
@@ -25,7 +26,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators(searchActions, dispatch)
+    actions: bindActionCreators({ ...searchActions, ...favoriteActions }, dispatch)
   }
 };
 

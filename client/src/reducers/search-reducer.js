@@ -1,4 +1,5 @@
 'use strict';
+import * as _ from 'lodash';
 
 import actionTypes from '../actions/action-types';
 
@@ -26,6 +27,19 @@ export default function searchReducer(state = initialState, action = {}) {
       return {
         ...state,
         isCancelled: true
+      }
+    case actionTypes.UPDATE_SEARCH_RESULT:
+      const updatedResult = _.find(state.results, { id: action.trailId });
+      if (updatedResult === undefined) {
+        return state;
+      } else {
+        updatedResult[action.attribute] = action.newValue;
+        let results = state.results.slice();
+        results.splice(_.indexOf(results, { id: action.trailId }), 1, updatedResult);
+        return {
+          ...state,
+          results
+        }
       }
     default:
       return state;

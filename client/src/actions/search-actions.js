@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 import actionTypes from './action-types';
 import dataApi from '../api';
 
@@ -15,6 +17,14 @@ const receiveSearchResults = (results) => {
   };
 };
 
+// mutates the trail to include a isFavorite flag
+const associateFavorites = (trails, favorites) => {
+  _.map(trails, (trail) => {
+    trail.isFavorite = _.findIndex(favorites, { id: trail.id }) !== -1;
+    trail.isSearchResult = true;
+  });
+};
+
 export const cancelSearch = () => {
   return (dispatch) => {
     dispatch({
@@ -29,8 +39,9 @@ export const search = (options) => {
     if (!getState().searchReducer.isCancelled) {
       dispatch(submitSearch(options));
       return dataApi.yelp(options)
-        .then((json) => {
-          return dispatch(receiveSearchResults(json));
+        .then((results) => {
+          associateFavorites(results, getState().favoritesReducer.favorites);
+          return dispatch(receiveSearchResults(results));
         })
         .catch((err) => {
           console.error('error retrieving search data', err);
