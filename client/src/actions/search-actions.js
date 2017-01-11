@@ -15,15 +15,26 @@ const receiveSearchResults = (results) => {
   };
 };
 
-export const search = (options) => {
+export const cancelSearch = () => {
   return (dispatch) => {
-    dispatch(submitSearch(options));
-    return dataApi.yelp(options)
-      .then((json) => {
-        return dispatch(receiveSearchResults(json));
-      })
-      .catch((err) => {
-        console.error('error retrieving search data', err);
-      });
-  }
+    dispatch({
+      type: actionTypes.CANCEL_SEARCH
+    });
+    dispatch(receiveSearchResults([]));
+  };
+}
+
+export const search = (options) => {
+  return (dispatch, getState) => {
+    if (!getState().searchReducer.isCancelled) {
+      dispatch(submitSearch(options));
+      return dataApi.yelp(options)
+        .then((json) => {
+          return dispatch(receiveSearchResults(json));
+        })
+        .catch((err) => {
+          console.error('error retrieving search data', err);
+        });
+    }
+  };
 };

@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
 export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.debouncedHandleInput = _.debounce(this.handleInput, 300);
 
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
@@ -50,20 +49,13 @@ export default class SearchBar extends React.Component {
   }
 
   handleInput(text) {
-    this.props.search({
-      location: text
-    });
-  }
-
-  componentDidMount() {
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     var initialPosition = position;
-    //     this.setState({initialPosition: position});
-    //   },
-    //   (error) => alert(JSON.stringify((error)),
-    //     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
-    // );
+    if (text === '') {
+      this.props.cancelSearch();
+    } else {
+      this.props.search({
+        location: text
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -74,14 +66,17 @@ export default class SearchBar extends React.Component {
     }
   }
 
-  render(props) {
+  render() {
     return(
       <View>
         <View style={styles.container}>
           <TextInput
             style={styles.input}
-            placeholder="Search..."
-            onChangeText={(text) => {this.debouncedHandleInput(text)}}
+            placeholder='Search...'
+            onChangeText={(text) => {this.handleInput(text)}}
+            autoCapitalize='none'
+            autoCorrect={false}
+            autoFocus={true}
           />
         </View>
         <View style={styles.searchResults}>
