@@ -6,13 +6,11 @@ const styles = StyleSheet.create({
  rowContainer: {
     flexDirection: 'row',
     padding: 20,
-    flex: 1
   },
   textContainer: {
     flex: 1,
     flexDirection: 'column',
-    width: 50,
-    height: 100
+    width: 50
   },
   title: {
     color: '#3D728E',
