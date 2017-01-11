@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8E8E8E',
   },
   container: {
-
+    top: 60
   },
   centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
   gray: { backgroundColor: '#cccccc', },
@@ -53,14 +53,14 @@ export default class FavoriteList extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <ActivityIndicator animating={this.props.isFetching}
                            style={[styles.centering, styles.horizontal, { height: this.props.isFetching ? 260 : 0 }]}
                            color='darkgreen'
                            size='large' />
         <ListView
-          style={styles.container}
           enableEmptySections={true}
+          automaticallyAdjustContentInsets={false}
           dataSource={this.state.dataSource}
           renderRow={(data) => <Row removeFavorite={this.props.removeFavorite}
                                     {...data} />}

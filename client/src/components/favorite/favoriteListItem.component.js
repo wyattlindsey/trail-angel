@@ -5,21 +5,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
-    padding: 20,
-    flex: 1
+    padding: 15
   },
   textContainer: {
     flex: 1,
     flexDirection: 'column',
     width: 50
-    // height: 100
   },
   title: {
     color: '#3D728E',
     fontSize: 16,
     fontWeight: '600'
-  },
-  leftColumn: {
   },
   photo: {
     height: 40,
@@ -48,7 +44,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   separator: {
-    height: 1,
     backgroundColor: '#E3E0D7'
   },
   distance: {
@@ -87,8 +82,11 @@ export default class FavoriteListItem extends React.Component {
             <Text style={styles.rating}> Rating: {this.props.rating} </Text>
             <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
+          <View>
+            <Text style={styles.distance}> {Number(this.props.distance / 1000).toFixed(1)} miles </Text>
+          </View>
         </View>
-        <View style={styles.separator}/>
+        <View style={styles.separator} />
       </View>
 
   );
