@@ -83,6 +83,8 @@ export default class SearchBar extends React.Component {
             placeholder='Search...'
             onChangeText={(text) => {this.debouncedHandleInput(text)}}
             autoCapitalize='none'
+            autoCorrect={false}
+            autoFocus={true}
           />
         </View>
         <View style={styles.searchResults}>
