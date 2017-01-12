@@ -172,6 +172,7 @@ class TrailSettings extends React.Component {
                 underlayColor='#949494'
                 onPress={this._logoutPress.bind(this)}>
                 <View style={styles.logoutContainer}>
+                  <Icon  name='sign-out' size={20} color={'#9E9E9E'} />
                   <Text style={styles.logoutText}>Log Out</Text>
                   <Icon style={styles.chevronRight3} name='chevron-right' size={12} color={'#9E9E9E'} />
                 </View>
