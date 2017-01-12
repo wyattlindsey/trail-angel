@@ -50,11 +50,11 @@ export default class TraillistDetail extends React.Component {
 
   render() {
       return (
-        <View>
-          <View style={styles.textContainer}>
-           <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.rating}> {this.props.rating} </Text>
-            <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>}
+        <View style={{marginTop: 100 }}>
+          <View>
+           <Text>{this.props.name}</Text>
+            <Text> {this.props.rating} </Text>
+            <Text numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
         </View>    
       );

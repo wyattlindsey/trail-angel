@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Details from './trailDetail.component';
 
 const styles = StyleSheet.create({
  rowContainer: {
@@ -50,10 +51,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#E3E0D7'
   },
   distance: {
-    // width: 100,
     flex: 1,
     flexDirection: 'column'
-    // justifyContent: 'flex-end',
   }
 });
 
@@ -70,28 +69,42 @@ export default class TraillistItem extends React.Component {
     }
   }
 
+  _selectTrail(e) {
+    this.props.navigator.push({
+      title: 'Trail Detail',
+      component: Details,
+      passProps: {
+        ...this.props
+      }
+    }); 
+  }
+
   render() {
     const FavoriteIcon = this.props.isFavorite ? <Icon name='star' size={20} color='darkgreen' /> : <Icon name='star-o' size={20} color='darkgreen' />;
     return (
-      <View>
-        <View style={styles.rowContainer}>
-          <View style={styles.leftColumn}>
-            <Image source={{uri: this.props.image_url}} style={styles.photo} />
-            <TouchableHighlight onPress={this._handlePress.bind(this)}
-                                style={styles.favorite}>
-              {FavoriteIcon}
-            </TouchableHighlight>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}> {this.props.location.city} </Text>
-            <Text style={styles.rating}> Rating: {this.props.rating} </Text>
-            <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
-          </View>
+        <View>
+          <TouchableHighlight  onPress={this._selectTrail.bind(this)}>
+          <View>
+            <View style={styles.rowContainer}>
+              <View style={styles.leftColumn}>
+                <Image source={{uri: this.props.image_url}} style={styles.photo} />
+                <TouchableHighlight onPress={this._handlePress.bind(this)}
+                                    style={styles.favorite}>
+                  {FavoriteIcon}
+                </TouchableHighlight>
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={styles.title}>{this.props.name}</Text>
+                <Text style={styles.location}> {this.props.location.city} </Text>
+                <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+                <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
+              </View>
               <View><Text style={styles.distance}> {Number(this.props.distance / 1000).toFixed(1)} miles </Text></View>
+            </View>
+            <View style={styles.separator}/>
+            </View>
+          </TouchableHighlight>
         </View>
-        <View style={styles.separator}/>
-      </View>
     );
   }
 }
