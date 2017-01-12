@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight, MapView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MapView from 'react-native-maps';
+import TrailMap from './map.component';
 
 const styles = StyleSheet.create({
 
@@ -40,7 +42,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
     textAlign: 'left',
   },
-
+  map: {
+    flexGrow: 1,
+    height: 250
+  },
 });
 
 export default class TraillistDetail extends React.Component {
@@ -48,17 +53,52 @@ export default class TraillistDetail extends React.Component {
     super(props);
   }
 
+  _selectMap(e) {
+    this.props.navigator.push({
+      title: 'Map View',
+      component: TrailMap,
+      passProps: {
+        ...this.props
+      }
+    });
+  }
+
   render() {
-      return (
-        <View style={{marginTop: 100 }}>
-          <View>
-           <Text>{this.props.name}</Text>
-            <Text>{this.props.rating}</Text>
-            <Text numberOfLines={0}>{this.props.snippet_text}</Text>
-          </View>
-        </View>    
-      );
-    } 
+    let marker = {
+      coordinate: this.props.location.coordinate,
+      title: this.props.name,
+      description: this.props.snippet_text
+    };
+    let region = {
+      latitude: this.props.location.coordinate.latitude,
+      longitude: this.props.location.coordinate.longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+    };
+    return (
+      <View style={{marginTop: 100 }}>
+        <View>
+          <TouchableHighlight onPress={this._selectMap.bind(this)}>
+            <View>
+              <MapView
+                style={styles.map}
+                region={region}
+                onRegionChange={this.onRegionChange}
+              >
+                <MapView.Marker
+                  coordinate={marker.coordinate}
+                  title={marker.title}
+                />
+              </MapView>
+            </View>
+          </TouchableHighlight>
+          <Text>{this.props.name}</Text>
+          <Text>{this.props.rating}</Text>
+          <Text numberOfLines={0}>{this.props.snippet_text}</Text>
+        </View>
+      </View>
+    );
+  }
 }
 
 
