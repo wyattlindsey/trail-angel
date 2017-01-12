@@ -137,13 +137,15 @@ export default class TraillistItem extends React.Component {
     const FavoriteIcon = this.props.isFavorite ? <Icon name='star' size={20} color='darkgreen' /> : <Icon name='star-o' size={20} color='darkgreen' />;
     return (
         <View>
-          <TouchableHighlight onPress={this._selectTrail.bind(this)}>
+          <TouchableHighlight onPress={this._selectTrail.bind(this)}
+                              underlayColor='#ffffff'>
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
                 <Image source={{uri: this.props.image_url}} style={styles.photo} />
                 <TouchableHighlight onPress={this._handlePress.bind(this)}
-                                    style={styles.favorite}>
+                                    style={styles.favorite}
+                                    underlayColor='#ffffff'>
                   {FavoriteIcon}
                 </TouchableHighlight>
               </View>

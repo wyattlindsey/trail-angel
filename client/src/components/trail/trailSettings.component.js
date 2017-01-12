@@ -118,7 +118,7 @@ class TrailSettings extends React.Component {
           <View style={styles.rightContainer}>
             <Text style={styles.nickname}>{profile.nickname}</Text>
             <Text style={styles.hikeDistance}> Hiked: 350 km </Text>
-            <Text> Location: San Francisco </Text>
+            <Text> Location: Rhododendron</Text>
             <Text> Favorites: 10 </Text>
 
           </View>
