@@ -27,6 +27,7 @@ export const fetchFavorites = () => {
       .then((data) => {
         if (data !== undefined && Array.isArray(data)) {
           let promises = data.map((item) => {
+            // todo need to better check for validity and not add an error response to favorites list
             const cachedTrail = _.find(getState().trailsReducer.trails, { id: item });
             if (cachedTrail !== undefined) {
               return Promise.resolve(cachedTrail);

@@ -14,6 +14,7 @@ const Search = (props) => {
   return (
     <TrailSearch  isFetching={state.searchReducer.isFetching}
                   results={state.searchReducer.results}
+                  userLocation={state.appReducer.geolocation}
                   {...actions} />
   );
 };

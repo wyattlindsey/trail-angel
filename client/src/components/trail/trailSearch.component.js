@@ -46,9 +46,11 @@ export default class SearchBar extends React.Component {
     this.state = {
       dataSource: this.ds
     };
+
+    this._debouncedHandleInput = _.debounce(this._handleInput, 300);
   }
 
-  handleInput(text) {
+  _handleInput(text) {
     if (text === '') {
       this.props.cancelSearch();
     } else {
@@ -74,7 +76,7 @@ export default class SearchBar extends React.Component {
           <TextInput
             style={styles.input}
             placeholder='Search...'
-            onChangeText={(text) => {this.handleInput(text)}}
+            onChangeText={(text) => {this._debouncedHandleInput(text)}}
             autoCapitalize='none'
             autoCorrect={false}
             autoFocus={true}
@@ -82,13 +84,15 @@ export default class SearchBar extends React.Component {
         </View>
         <View style={styles.searchResults}>
           <ActivityIndicator animating={this.props.isFetching}
-                             style={[styles.centering, styles.horizontal, { height: this.props.isFetching ? 260 : 0 }]}
+                             style={[styles.centering, styles.horizontal,
+                                   { height: this.props.isFetching ? 260 : 0 }]}
                              color='darkgreen'
                              size='large' />
           <ListView
             dataSource={this.state.dataSource}
             renderRow={(data) => <Row addFavorite={this.props.addFavorite}
                                       removeFavorite={this.props.removeFavorite}
+                                      userLocation={this.props.userLocation}
                                       {...data} />}
             enableEmptySections={true}
             style={styles.searchResults}

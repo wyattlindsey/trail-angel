@@ -64,6 +64,7 @@ export default class FavoriteList extends React.Component {
           automaticallyAdjustContentInsets={false}
           dataSource={this.state.dataSource}
           renderRow={(data) => <Row removeFavorite={this.props.removeFavorite}
+                                    userLocation={this.props.userLocation}
                                     {...data} />}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         />
