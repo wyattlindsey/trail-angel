@@ -5,13 +5,20 @@ const getUrl = (latitude, longitude) => {
   return `https://api.darksky.net/forecast/${secrets.darksky.apiKey}/${latitude},${longitude}`;
 };
 
-const getWeatherForGeolocation = (latitude = 0, longitude = 0) => {
+const getWeatherForGeolocation = (latitude, longitude) => {
+  if (latitude === undefined || longitude === undefined) {
+    return Promise.resolve(false);
+  }
   return request.get(getUrl(latitude, longitude))
     .then((response) => {
-      return response;
+      if (response === undefined) {
+        return Promise.resolve(false);
+      } else {
+        return response;
+      }
     })
     .catch((err) => {
-      console.error('error fetching darksky weather data', err);
+      console.error('Error fetching darksky weather data: ', err);
     });
 };
 

@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
   searchResults: {
     backgroundColor: '#FFFFFF',
     height: 600,
-    marginTop: 20
+    marginTop: 20,
+    marginBottom: 35
   }
 });
 
