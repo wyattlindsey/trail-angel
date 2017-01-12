@@ -28,7 +28,6 @@ export default function trailsReducer(state = initialState, action = {}) {
       } else {
         updatedTrail[action.attribute] = action.newValue;
         let trails = state.trails.slice();
-        trails.splice(_.indexOf(trails, { id: action.trailId }), 1, updatedTrail);
         return {
           ...state,
           trails
