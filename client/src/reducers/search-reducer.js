@@ -35,7 +35,6 @@ export default function searchReducer(state = initialState, action = {}) {
       } else {
         updatedResult[action.attribute] = action.newValue;
         let results = state.results.slice();
-        results.splice(_.indexOf(results, { id: action.trailId }), 1, updatedResult);
         return {
           ...state,
           results
