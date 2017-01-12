@@ -34,8 +34,13 @@ class TrailAngel extends Component {
   constructor(props) {
     super(props);
 
-    let profile = {};
+    this.state = {
+      selectedTab: 'redTab'
+    };
+  }
 
+  componentDidMount() {
+    let profile = {};
     // it seems like sometimes the profile is still a string, especially when using pre-existing
     // token
     if (typeof this.props.profile === 'string') {
@@ -57,16 +62,6 @@ class TrailAngel extends Component {
       .catch((err) => {
         console.error('error initializing application', err);
       });
-
-    this.state = {
-      selectedTab: 'redTab'
-    };
-
-
-  }
-
-  componentDidMount() {
-
   }
 
   _renderContent = (color: 'string', pageText: 'string' ) => {
