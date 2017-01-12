@@ -45,7 +45,7 @@ export const initializeApp = (profile) => {
     dispatch({
       type: actionTypes.INITIALIZE_APP
     });
-    return dispatch(userActions.loginUser(profile)) // todo remove this after Andrew's PR is merged
+    return dispatch(userActions.loginUser(profile))
       .then(() => {
         return dispatch(favoriteActions.fetchFavorites());
       })

@@ -25,7 +25,7 @@ export function deleteUser() {
   };
 }
 
-const receiveUserData = (profile) => {
+export const receiveUserData = (profile) => {
   return {
     type: actionTypes.RECEIVE_USER_DATA,
     profile
