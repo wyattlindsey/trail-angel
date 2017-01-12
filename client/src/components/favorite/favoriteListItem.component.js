@@ -1,6 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import {  View,
+          Text,
+          StyleSheet,
+          Image,
+          TouchableHighlight,
+          ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import WeatherIcon from '../weather/weather-icon.component';
 
 import dataApi from '../../api';
 
@@ -66,22 +72,52 @@ export default class FavoriteListItem extends React.Component {
   constructor(props) {
     super(props);
 
+    this._isMounted = false;
+
     this.state = {
-      distance: null
+      distance: null,
+      weather: null
     };
   }
 
   componentDidMount() {
 
+    this._isMounted = true;
+    if (this.props.userLocation.coords.latitude === undefined ||
+      this.props.location.coordinate === undefined) {
+
+      return;
+    }
+
     dataApi.google.getDistance2Points(this.props.userLocation.coords,
       this.props.location.coordinate)
       .then((distance) => {
-        if (distance) {
+        if (this._isMounted && distance) {
           this.setState({
             distance: distance.text
           });
         }
+      })
+      .catch((err) => {
+        console.error('Error getting distance for component: ', err);
       });
+
+    dataApi.weather(this.props.location.coordinate.latitude,
+      this.props.location.coordinate.longitude)
+      .then((weather) => {
+        if (this._isMounted && weather) {
+          this.setState({
+            weather
+          });
+        }
+      })
+      .catch((err) => {
+        console.error('Error getting weather for component: ', err);
+      });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   _handleRemoveFavorite() {
@@ -112,6 +148,26 @@ export default class FavoriteListItem extends React.Component {
             <Text style={styles.distance}>
               {this.state.distance ? this.state.distance : ''}
             </Text>
+            <View style={{
+              padding: 5,
+              marginBottom: 20,
+              marginLeft: 5
+            }}>
+              {this.state.weather ? <WeatherIcon icon={this.state.weather.currently.icon}
+                                                 color='darkgreen'
+                                                 size={40}
+                                                 style={{
+                                                   opacity: 0.8
+                                                 }}
+              /> :
+                <ActivityIndicator  size='small'
+                                    color='darkgreen'
+                                    style={{
+                                      opacity: 0.8
+                                    }}
+                />
+              }
+            </View>
           </View>
         </View>
         <View style={styles.separator} />
