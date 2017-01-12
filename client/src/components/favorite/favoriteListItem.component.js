@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import dataApi from '../../api';
+
 const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
@@ -61,6 +63,27 @@ const styles = StyleSheet.create({
 });
 
 export default class FavoriteListItem extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      distance: null
+    };
+  }
+
+  componentDidMount() {
+
+    dataApi.google.getDistance2Points(this.props.userLocation.coords,
+      this.props.location.coordinate)
+      .then((distance) => {
+        if (distance) {
+          this.setState({
+            distance: distance.text
+          });
+        }
+      });
+  }
+
   _handleRemoveFavorite() {
     this.props.removeFavorite(this.props.id);
   }
@@ -86,7 +109,9 @@ export default class FavoriteListItem extends React.Component {
             <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
           <View>
-            <Text style={styles.distance}> {Number(this.props.distance / 1000).toFixed(1)} miles </Text>
+            <Text style={styles.distance}>
+              {this.state.distance ? this.state.distance : ''}
+            </Text>
           </View>
         </View>
         <View style={styles.separator} />
@@ -98,9 +123,5 @@ export default class FavoriteListItem extends React.Component {
       </View>
     );
 
-  }
-
-  constructor(props) {
-    super(props);
   }
 }

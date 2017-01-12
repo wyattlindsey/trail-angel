@@ -84,7 +84,8 @@ export default class SearchBar extends React.Component {
         </View>
         <View style={styles.searchResults}>
           <ActivityIndicator animating={this.props.isFetching}
-                             style={[styles.centering, styles.horizontal, { height: this.props.isFetching ? 260 : 0 }]}
+                             style={[styles.centering, styles.horizontal,
+                                   { height: this.props.isFetching ? 260 : 0 }]}
                              color='darkgreen'
                              size='large' />
           <ListView
