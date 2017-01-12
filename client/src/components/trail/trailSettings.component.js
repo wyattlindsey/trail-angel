@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   profileContainer: {
-    //padding: 10,
     marginTop: 75,
     marginLeft: 15,
     flex: .4,
@@ -23,9 +22,7 @@ const styles = StyleSheet.create({
     // borderColor: 'black',
   },
   rightContainer: {
-    //flexGrow: 1,
     flexDirection: 'column',
-    //width: 150,
     paddingTop: 5,
     paddingLeft: 20,
     // borderStyle: 'solid',
@@ -33,44 +30,29 @@ const styles = StyleSheet.create({
     // borderColor: 'blue',
   },
   nickname: {
-    //color: '#3D728E',
+    color: '#3D728E',
     fontSize: 20,
-    //fontWeight: '600',
-    //textAlign: 'center',
+    fontWeight: '600',
+    textAlign: 'center',
     marginBottom: 45,
   },
   avatar: {
-    //flex: 1,
     flexDirection: 'column',
-    //justifyContent: 'flex-start',
     height: 145,
     width: 145,
     borderRadius: 20,
   },
   separator: {
     backgroundColor: '#E3E0D7',
-    //width: 300,
     height: 1,
-    //backgroundColor: '#9E9E9E',
-    //borderTopWidth: 1,
-    //borderBottomWidth: 1,
-    //alignItems: 'center',
-    marginLeft: 25
+    marginLeft: 38
   },
   menuContainer: {
     flex: .6
   },
-  menuItem: {
-    // paddingTop: 5,
-    // paddingBottom: 5,
-    // borderStyle: 'solid',
-    // borderWidth: 1,
-    // borderColor: 'black',
-
-  },
-  logoutContainer: {
+  menuItemContainer: {
     flexDirection: 'row',
-    paddingLeft: 10,
+    paddingLeft: 12,
     paddingTop: 5,
     paddingBottom: 5,
     // borderStyle: 'solid',
@@ -79,15 +61,15 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     fontSize: 16,
-    paddingLeft: 5
+    paddingLeft: 8
   },
-  cog: {
-
+  listUl: {
+    paddingTop: 1
   },
   chevronRight1: {
     paddingTop: 4,
     color: '#9E9E9E',
-    marginLeft: 261
+    marginLeft: 241
   },
   chevronRight2: {
     paddingTop: 4,
@@ -97,10 +79,8 @@ const styles = StyleSheet.create({
   chevronRight3: {
     paddingTop: 4,
     color: '#9E9E9E',
-    marginLeft: 282
+    marginLeft: 261
   }
-
-
 });
 
 class TrailSettings extends React.Component {
@@ -147,34 +127,32 @@ class TrailSettings extends React.Component {
         <View style={styles.separator} />
           <View style={styles.menuContainer}>
           <TouchableHighlight
-                style={styles.menuItem}
                 underlayColor='#949494'
                 onPress={this._logoutPress.bind(this)}>
-                <View style={styles.logoutContainer}>
+                <View style={styles.menuItemContainer}>
+                  <Icon style={styles.listUl} name='list-ul' size={17} color={'#9E9E9E'} />
                   <Text style={styles.logoutText}>Supply List</Text>
-                  <Icon style={styles.chevronRight1} name='chevron-right' size={12} color={'#9E9E9E'} />
+                  <Icon style={styles.chevronRight1} name='chevron-right' size={12} />
                 </View>
           </TouchableHighlight>
           <View style={styles.separator} />
           <TouchableHighlight
-                style={styles.menuItem}
                 underlayColor='#949494'
                 onPress={this._logoutPress.bind(this)}>
-                <View style={styles.logoutContainer}>
+                <View style={styles.menuItemContainer}>
                 <Icon  name='cog' size={20} color={'#9E9E9E'} />
                   <Text style={styles.logoutText}>Settings</Text>
-                  <Icon style={styles.chevronRight2} name='chevron-right' size={12} color={'#9E9E9E'} />
+                  <Icon style={styles.chevronRight2} name='chevron-right' size={12} />
                 </View>
           </TouchableHighlight>
           <View style={styles.separator} />
           <TouchableHighlight
-                style={styles.menuItem}
                 underlayColor='#949494'
                 onPress={this._logoutPress.bind(this)}>
-                <View style={styles.logoutContainer}>
+                <View style={styles.menuItemContainer}>
                   <Icon  name='sign-out' size={20} color={'#9E9E9E'} />
                   <Text style={styles.logoutText}>Log Out</Text>
-                  <Icon style={styles.chevronRight3} name='chevron-right' size={12} color={'#9E9E9E'} />
+                  <Icon style={styles.chevronRight3} name='chevron-right' size={12} />
                 </View>
           </TouchableHighlight>
           <View style={styles.separator} />
