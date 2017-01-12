@@ -4,6 +4,10 @@
 
 # Xcode
 #
+ios/trailangel.xcodeproj/project.pbxproj
+ios/trailangel/Info.plist
+
+
 build/
 *.pbxuser
 !default.pbxuser
