@@ -142,13 +142,15 @@ export default class FavoriteListItem extends React.Component {
     } else {
       view =
       <View>
-        <TouchableHighlight onPress={this._selectTrail.bind(this)}>
+        <TouchableHighlight onPress={this._selectTrail.bind(this)}
+                            underlayColor='#ffffff'>
           <View>
             <View style={styles.rowContainer}>
               <View>
                 <Image source={{uri: this.props.image_url}} style={styles.photo} />
                 <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
-                                    style={styles.removeButton}>
+                                    style={styles.removeButton}
+                                    underlayColor='#ffffff'>
                   <Icon name='minus-circle' size={20} color='darkgreen' />
                 </TouchableHighlight>
               </View>

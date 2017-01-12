@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
 
 // Row data (hard-coded)
 const rows = [
-  {id: 0, name: 'John Doe', ratings: '***', snippet_text: 'This is a difficult terrain, so watch out.'},
-  {id: 1, name: 'Mary ', ratings: '*****', snippet_text: 'This is a difficult terrain, so watch out.'},
-  {id: 2, name: 'Bill ', ratings: '****', snippet_text: 'This is a difficult terrain, so watch out.'},
-  {id: 3, name: 'Steve', ratings: '*****', snippet_text: 'This is a difficult terrain, so watch out.'},
+  {id: 0, name: 'Katie R.', ratings: '***', snippet_text: "At 8.44 miles and just shy of a 1200 foot elevation gain, Ramona Falls is a great hike for almost any fitness level. And the number of cars parked at the trailhead makes that clear. Don't be deterred! The trail is a loop so hiking it without feeling like part of a herd is easily accomplished."},
+  {id: 1, name: 'Kolten L.', ratings: '*****', snippet_text: "My favorite hike I've done! Really enjoyed this one. I recommend taking the path to the left over the one to the right (alternative). Lots to see this way and you can loop around to come back on the other path which is a lot less scenic but a straighter shot back to the parking lot. Just a little over 7 miles round trip. The hike really had everything- very diverse scenery. Caves would have really topped it off but I can't get too greedy. Recommend this hike to anyone that lives in or visits Oregon!"},
+  {id: 2, name: 'Ann L.', ratings: '****', snippet_text: "We went to Ramona Falls on Sat 7/6/13, it's in the Mt Hood National Forest and you really need to follow the directions on the website or ask the ranger because it's in the middle of nowhere & you might not find it otherwise."},
+  {id: 3, name: 'Dave C.', ratings: '*****', snippet_text: "A roughly 7 mile hike that can be done as either a out-and back or as a loop.  The loop is much, much prettier and you get two different experiences.  Heading up you walk along the Sandy River which, surprise, surprise, is sometimes kind of brownish because of all the volcanic ash in it's flow. Great views of the river course and all the sediments going back who knows how long ago. "},
 ];
 
 // Row comparison function
