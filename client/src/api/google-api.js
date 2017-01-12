@@ -3,11 +3,12 @@ import request from '../utils/request';
 
 const googleApi = {
   getDistance2Points: (origin, destination) => {
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.latitude},${origin.longitude}&destinations=${destination.latitude},${destination.longitude}&key=${secrets.google.apiKey}`;
-
+    // so things don't explode
     if (origin === undefined || destination === undefined) {
-      return false;
+      return Promise.resolve(false);
     }
+
+    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.latitude},${origin.longitude}&destinations=${destination.latitude},${destination.longitude}&key=${secrets.google.apiKey}`;
 
     return request.get(url)
       .then((response) => {
