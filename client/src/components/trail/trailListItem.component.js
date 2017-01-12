@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Details from './trailDetail.component';
+import dataApi from '../../api';
 
 const styles = StyleSheet.create({
  rowContainer: {
@@ -59,6 +60,30 @@ const styles = StyleSheet.create({
 export default class TraillistItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this._isMounted = false;
+
+    this.state = {
+      distance: null
+    };
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+
+    dataApi.google.getDistance2Points(this.props.userLocation.coords,
+                                      this.props.location.coordinate)
+      .then((distance) => {
+        if (this._isMounted && distance) {
+          this.setState({
+            distance: distance.text
+          });
+        }
+      });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   _handlePress(e) {
@@ -99,7 +124,11 @@ export default class TraillistItem extends React.Component {
                 <Text style={styles.rating}> Rating: {this.props.rating} </Text>
                 <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
               </View>
-              <View><Text style={styles.distance}> {Number(this.props.distance / 1000).toFixed(1)} miles </Text></View>
+              <View>
+                <Text style={styles.distance}>
+                  {this.state.distance ? this.state.distance : ''}
+                </Text>
+              </View>
             </View>
             <View style={styles.separator}/>
             </View>
