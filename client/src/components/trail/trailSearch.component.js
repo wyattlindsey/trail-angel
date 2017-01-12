@@ -94,6 +94,7 @@ export default class SearchBar extends React.Component {
             renderRow={(data) => <Row addFavorite={this.props.addFavorite}
                                       removeFavorite={this.props.removeFavorite}
                                       userLocation={this.props.userLocation}
+                                      navigator={this.props.navigator}
                                       {...data} />}
             enableEmptySections={true}
             style={styles.searchResults}

@@ -98,7 +98,7 @@ class TrailAngel extends Component {
               selectedTab: 'blackTab',
             });
           }}>
-        <Search />
+        <Search navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="favorites"
@@ -108,7 +108,7 @@ class TrailAngel extends Component {
               selectedTab: 'greyTab',
             });
           }}>
-          <Favorites />
+          <Favorites navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="more"
