@@ -53,14 +53,12 @@ export default class TraillistDetail extends React.Component {
         <View style={{marginTop: 100 }}>
           <View>
            <Text>{this.props.name}</Text>
-            <Text> {this.props.rating} </Text>
+            <Text>{this.props.rating}</Text>
             <Text numberOfLines={0}>{this.props.snippet_text}</Text>
           </View>
         </View>    
       );
-    }
-   
-  
+    } 
 }
 
 
