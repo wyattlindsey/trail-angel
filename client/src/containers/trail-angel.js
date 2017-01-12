@@ -92,7 +92,7 @@ class TrailAngel extends Component {
               selectedTab: 'redTab',
             });
           }}>
-          <Trails />
+          <Trails navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon="search"

@@ -12,7 +12,7 @@ import TrailList from '../components/trail/trailList.component';
 const Trails = (props) => {
   const { state, actions } = props;
   return (
-    <TrailList isFetching={state.trailsReducer.isFetching}
+    <TrailList navigator={props.navigator} isFetching={state.trailsReducer.isFetching}
                didInvalidate={state.trailsReducer.didInvalidate}
                lastUpdated={state.trailsReducer.lastUpdated}
                trails={state.trailsReducer.trails}
