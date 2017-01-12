@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
 import Details from './trailDetail.component';
 import dataApi from '../../api';
+import temperature from '../../utils/temperature';
 
 const styles = StyleSheet.create({
  rowContainer: {
@@ -176,6 +177,16 @@ export default class TraillistItem extends React.Component {
                                                             }}
                                         />
                   }
+                  <Text style={{
+                    textAlign: 'center',
+                    padding: 5,
+                    color: 'darkgreen'
+                  }}>
+                    {this.state.weather ?
+                      `${Math.round(Number(this.state.weather.currently.temperature))}°F` :
+                      ''
+                    }
+                  </Text>
                 </View>
               </View>
             </View>
