@@ -7,6 +7,7 @@ import {  View,
           ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
+import Details from '../trail/trailDetail.component';
 
 import dataApi from '../../api';
 
@@ -124,53 +125,68 @@ export default class FavoriteListItem extends React.Component {
     this.props.removeFavorite(this.props.id);
   }
 
+  _selectTrail(e) {
+    this.props.navigator.push({
+      title: 'Trail Detail',
+      component: Details,
+      passProps: {
+        ...this.props
+      }
+    });
+  }
+
   render() {
     let view;
     if (this.props.location === undefined) {
       view = <View />
     } else {
-      view = <View>
-        <View style={styles.rowContainer}>
+      view =
+      <View>
+        <TouchableHighlight onPress={this._selectTrail.bind(this)}>
           <View>
-            <Image source={{uri: this.props.image_url}} style={styles.photo} />
-            <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
-                                style={styles.removeButton}>
-              <Icon name='minus-circle' size={20} color='darkgreen' />
-            </TouchableHighlight>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}> {this.props.location.city} </Text>
-            <Text style={styles.rating}> Rating: {this.props.rating} </Text>
-            <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
-          </View>
-          <View>
-            <Text style={styles.distance}>
-              {this.state.distance ? this.state.distance : ''}
-            </Text>
-            <View style={{
-              padding: 5,
-              marginBottom: 20,
-              marginLeft: 5
-            }}>
-              {this.state.weather ? <WeatherIcon icon={this.state.weather.currently.icon}
-                                                 color='darkgreen'
-                                                 size={40}
-                                                 style={{
-                                                   opacity: 0.8
-                                                 }}
-              /> :
-                <ActivityIndicator  size='small'
-                                    color='darkgreen'
-                                    style={{
-                                      opacity: 0.8
-                                    }}
-                />
-              }
+            <View style={styles.rowContainer}>
+              <View>
+                <Image source={{uri: this.props.image_url}} style={styles.photo} />
+                <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
+                                    style={styles.removeButton}>
+                  <Icon name='minus-circle' size={20} color='darkgreen' />
+                </TouchableHighlight>
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={styles.title}>{this.props.name}</Text>
+                <Text style={styles.location}> {this.props.location.city} </Text>
+                <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+                <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
+              </View>
+              <View>
+                <Text style={styles.distance}>
+                  {this.state.distance ? this.state.distance : ''}
+                </Text>
+                <View style={{
+                  padding: 5,
+                  marginBottom: 20,
+                  marginLeft: 5
+                }}>
+                  {this.state.weather ? <WeatherIcon icon={this.state.weather.currently.icon}
+                                                     color='darkgreen'
+                                                     size={40}
+                                                     style={{
+                                                       opacity: 0.8
+                                                     }}
+                  /> :
+                    <ActivityIndicator  size='small'
+                                        color='darkgreen'
+                                        style={{
+                                          opacity: 0.8
+                                        }}
+                    />
+                  }
+                </View>
+              </View>
             </View>
+            <View style={styles.separator} />
           </View>
-        </View>
-        <View style={styles.separator} />
+        </TouchableHighlight>
       </View>
     }
     return (

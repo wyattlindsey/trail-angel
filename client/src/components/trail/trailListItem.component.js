@@ -136,7 +136,7 @@ export default class TraillistItem extends React.Component {
     const FavoriteIcon = this.props.isFavorite ? <Icon name='star' size={20} color='darkgreen' /> : <Icon name='star-o' size={20} color='darkgreen' />;
     return (
         <View>
-          <TouchableHighlight  onPress={this._selectTrail.bind(this)}>
+          <TouchableHighlight onPress={this._selectTrail.bind(this)}>
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
@@ -150,7 +150,8 @@ export default class TraillistItem extends React.Component {
                 <Text style={styles.title}>{this.props.name}</Text>
                 <Text style={styles.location}> {this.props.location.city} </Text>
                 <Text style={styles.rating}> Rating: {this.props.rating} </Text>
-                <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
+                <Text style={styles.description}
+                      numberOfLines={0}>{this.props.snippet_text}</Text>
               </View>
               <View>
                 <Text style={styles.distance}>
@@ -185,7 +186,3 @@ export default class TraillistItem extends React.Component {
     );
   }
 }
-
-{/*<Image*/}
-  {/*style={styles.favorite}*/}
-  {/*source={this.props.isFavorite ? require('../../../img/heart_filled.png') : require('../../../img/heart.png')} />*/}
