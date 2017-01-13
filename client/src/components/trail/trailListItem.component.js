@@ -72,12 +72,24 @@ export default class TraillistItem extends React.Component {
 
     this.state = {
       distance: null,
-      weather: null
+      weather: null,
+      weatherTimeout: false       // helps determine when to give up on weather data,
+                                  // stop displaying the spinner and show a default icon
     };
   }
 
   componentDidMount() {
     this._isMounted = true;
+
+    setTimeout(() => {
+      if (this._isMounted === true) {
+        this.setState({
+          weatherTimeout: true
+        });
+      }
+    }, 4000);
+
+
     if (this.props.userLocation.coords.latitude === undefined ||
         this.props.location.coordinate === undefined) {
 
@@ -134,7 +146,9 @@ export default class TraillistItem extends React.Component {
   }
 
   render() {
-    const FavoriteIcon = this.props.isFavorite ? <Icon name='star' size={20} color='darkgreen' /> : <Icon name='star-o' size={20} color='darkgreen' />;
+    const FavoriteIcon = this.props.isFavorite ?
+                          <Icon name='star' size={20} color='darkgreen' /> :
+                          <Icon name='star-o' size={20} color='darkgreen' />;
     return (
         <View>
           <TouchableHighlight onPress={this._selectTrail.bind(this)}
@@ -165,6 +179,9 @@ export default class TraillistItem extends React.Component {
                     marginBottom: 20,
                     marginLeft: 5
                   }}>
+
+                  {/* Display activity monitor until icon is loaded from api.  If no icon is ever received */}
+                  {/* after a timeout, display nothing */}
                   {this.state.weather ? <WeatherIcon icon={this.state.weather.currently.icon}
                                                      color='darkgreen'
                                                      size={40}
@@ -172,12 +189,15 @@ export default class TraillistItem extends React.Component {
                                                        opacity: 0.8
                                                      }}
                                         /> :
-                                        <ActivityIndicator  size='small'
-                                                            color='darkgreen'
-                                                            style={{
-                                                              opacity: 0.8
-                                                            }}
-                                        />
+                                        this.state.weatherTimeout ?
+                                          <View /> :
+                                          <ActivityIndicator  size='small'
+                                                              color='darkgreen'
+                                                              style={{
+                                                                opacity: 0.8
+                                                              }}
+                                          />
+
                   }
                   <Text style={{
                     textAlign: 'center',
@@ -199,3 +219,4 @@ export default class TraillistItem extends React.Component {
     );
   }
 }
+
