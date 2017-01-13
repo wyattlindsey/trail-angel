@@ -14,10 +14,7 @@ const getWeatherForGeolocation = (latitude, longitude) => {
       if (response === undefined) {
         return Promise.resolve(false);
       } else {
-        return {
-          forecast: response.daily.data,
-          ...response
-        };
+        return response;
       }
     })
     .catch((err) => {

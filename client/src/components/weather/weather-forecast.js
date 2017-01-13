@@ -6,11 +6,12 @@ import WeatherIcon from './weather-icon.component';
 const WeatherForecast = (props) => (
   <View>
     {props.forecast === undefined ?
-      <Text>Goodbye cruel world!</Text> :
-      props.forecast.map((day, i) => {
+      <View /> :
+      props.forecast.map((forecast, i) => {
         return (
           <WeatherForecastListItem key={i}
-                                   forecast={day}
+                                   forecast={forecast}
+                                   type={props.type}
           />
         );
       })
@@ -26,17 +27,30 @@ const WeatherForecastListItem = (props) => (
     />
     <Text>{time.weekday(props.forecast.time)} : </Text>
     <Text>{props.forecast.summary}</Text>
-    <Text>
-      {`H: ${props.forecast.apparentTemperatureMax} F° ${time.formatted12HourTime(props.forecast.apparentTemperatureMaxTime)}`}
-    </Text>
-    <Text>
-      {`L: ${props.forecast.apparentTemperatureMin} F° ${time.formatted12HourTime(props.forecast.apparentTemperatureMinTime)}`}
-    </Text>
-    <Text>
-      {props.forecast.precipProbability > 0 ?
-        `${props.forecast.precipProbability * 100} % chance of ${props.forecast.precipType === undefined ? props.forecast.precipType : props.forecast.precipType}` : ''
+      {props.type === 'daily' ?
+        <Text>
+          {'H: ' + props.forecast.apparentTemperatureMax + 'F° ' +
+            time.formatted12HourTime(props.forecast.apparentTemperatureMaxTime)
+          }
+        </Text> : <View />
       }
-    </Text>
+      {props.type === 'daily' ?
+        <Text>
+          {'L: ' + props.forecast.apparentTemperatureMin + ' F° ' +
+            time.formatted12HourTime(props.forecast.apparentTemperatureMinTime)
+          }
+        </Text> : <View />
+      }
+      {props.type === 'hourly' ?
+        <Text>
+          {time.formatted12HourTime(props.forecast.time)}
+        </Text> : <View />
+      }
+      {props.forecast.precipProbability > 0 ?
+        <Text>
+            {props.forecast.precipProbability * 100 + '% chance of ' + props.forecast.precipType === undefined ? props.forecast.precipType : props.forecast.precipType}</Text> : <View />
+      }
+
   </View>
 )
 
