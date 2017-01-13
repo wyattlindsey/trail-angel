@@ -1,10 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight, NavigatorIOS } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  NavigatorIOS,
+  Dimensions
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect  } from 'react-redux';
 import * as userActions from '../../actions/user-actions';
 import Login from '../auth/login.component';
+import googleApi from '../../api/google-api';
+
+var { height, width} = Dimensions.get('window');
+console.log('height: ', height, ' width: ', width);
 
 const styles = StyleSheet.create({
   outerContainer: {
@@ -87,6 +99,26 @@ class TrailSettings extends React.Component {
   constructor(props) {
     super(props);
 
+    //console.log('THIS IS THE GEOLOCATION!!!! ', loc.coords );
+    //var coordsies = this.props.state.appReducer.geolocation.coords;
+    //var cityString = googleApi.getCity(coordsies);
+    //console.log(cityString);
+    this.state = {
+      city: 'Unavailable'
+    }
+
+  }
+
+  componentWillMount() {
+    googleApi.getCity(this.props.state.appReducer.geolocation.coords)
+    .then((city) => {
+      this.setState({
+        city: city
+      });
+    })
+    .catch((err) => {
+      console.log('Error retrieving location: ', err);
+    });
   }
 
   _logoutPress() {
@@ -118,7 +150,7 @@ class TrailSettings extends React.Component {
           <View style={styles.rightContainer}>
             <Text style={styles.nickname}>{profile.nickname}</Text>
             <Text style={styles.hikeDistance}> Hiked: 350 km </Text>
-            <Text> Location: Rhododendron</Text>
+            <Text> Location: {this.state.city}</Text>
             <Text> Favorites: 10 </Text>
 
           </View>
