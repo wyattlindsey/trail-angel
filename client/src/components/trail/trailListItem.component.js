@@ -182,13 +182,23 @@ export default class TraillistItem extends React.Component {
 
                   {/* Display activity monitor until icon is loaded from api.  If no icon is ever received */}
                   {/* after a timeout, display nothing */}
-                  {this.state.weather ? <WeatherIcon icon={this.state.weather.currently.icon}
+                  {this.state.weather ? <View>
+                                          <WeatherIcon icon={this.state.weather.currently.icon}
                                                      color='darkgreen'
                                                      size={40}
                                                      style={{
                                                        opacity: 0.8
                                                      }}
-                                        /> :
+                                          />
+                                          <Text style={{
+                                            textAlign: 'center',
+                                            padding: 5,
+                                            color: 'darkgreen'
+                                          }}>
+                                            {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
+                                          </Text>
+                                        </View>
+                                      :
                                         this.state.weatherTimeout ?
                                           <View /> :
                                           <ActivityIndicator  size='small'
@@ -199,16 +209,6 @@ export default class TraillistItem extends React.Component {
                                           />
 
                   }
-                  <Text style={{
-                    textAlign: 'center',
-                    padding: 5,
-                    color: 'darkgreen'
-                  }}>
-                    {this.state.weather ?
-                      `${Math.round(Number(this.state.weather.currently.temperature))}°F` :
-                      ''
-                    }
-                  </Text>
                 </View>
               </View>
             </View>
