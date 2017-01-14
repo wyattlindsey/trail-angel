@@ -8,6 +8,7 @@ import {  View,
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
 import Details from '../trail/trailDetail.component';
+import Dashboard from './favoriteMapDashboard.component';
 
 import dataApi from '../../api';
 
@@ -135,6 +136,16 @@ export default class FavoriteListItem extends React.Component {
     });
   }
 
+  _handleGoToMapDashboard() {
+    this.props.navigator.push({
+      title: 'Dashboard',
+      component: Dashboard,
+      passProps: {
+        ...this.props
+      }
+    });
+  }
+
   render() {
     let view;
     if (this.props.location === undefined) {
@@ -152,6 +163,11 @@ export default class FavoriteListItem extends React.Component {
                                     style={styles.removeButton}
                                     underlayColor='#ffffff'>
                   <Icon name='minus-circle' size={20} color='darkgreen' />
+                </TouchableHighlight>
+                <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
+                                    style={styles.removeButton}
+                                    underlayColor='#ffffff'>
+                  <Icon name='map' size={20} color='darkgreen' />
                 </TouchableHighlight>
               </View>
               <View style={styles.textContainer}>
