@@ -1,11 +1,14 @@
 'use strict';
 
+import * as _ from 'lodash';
+
 import actionTypes from '../actions/action-types';
 
 const initialState = {
   isFetching: false,
   isFetchCancelled: false,
-  listings: [],
+  cache: {},
+  searchResults: [],
   searches: {}
 };
 
@@ -27,18 +30,48 @@ const listingsReducer = (state = initialState, action = {}) => {
       };
 
     case actionTypes.RECEIVE_LISTINGS:
-      return {
-        ...state,
-        isFetching: false,
-        isFetchCancelled: false,
-        listings: [
-          ...state.listings,
-          ...action.listings
-        ],
-        searches: {
-          ...state.searches,
-          ...action.search
+      let cache = {}, searches, searchResults;
+
+      if (action.searchToSave) {
+        _.each(action.searchResults, (result) => {
+          if (state.cache[result.id] === undefined) {
+            cache[[result.id]] = result;
+          }
+        });
+
+        cache = {
+          ...state.cache,
+          ...cache
         }
+
+        searches = {
+          ...state.searches,
+          [action.searchToSave.search]: {
+            search: action.searchToSave.search,
+            results: action.searchToSave.results
+          }
+        };
+
+        return {
+          ...state,
+          isFetching: false,
+          isFetchCancelled: false,
+          searchResults: action.searchResults,
+          cache,
+          searches
+        };
+
+      } else {
+        cache = state.cache;
+        searches = false;
+
+        return {
+          ...state,
+          isFetching: false,
+          isFetchCancelled: false,
+          searchResults: action.searchResults,
+          cache
+        };
       };
 
     default: {
@@ -46,3 +79,5 @@ const listingsReducer = (state = initialState, action = {}) => {
     }
   }
 };
+
+export default listingsReducer;
