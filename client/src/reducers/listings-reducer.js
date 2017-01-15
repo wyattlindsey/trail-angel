@@ -1,6 +1,7 @@
 'use strict';
 
 import * as _ from 'lodash';
+import { AsyncStorage } from 'react-native';
 
 import actionTypes from '../actions/action-types';
 
@@ -36,6 +37,11 @@ const listingsReducer = (state = initialState, action = {}) => {
         _.each(action.searchResults, (result) => {
           if (state.cache[result.id] === undefined) {
             cache[[result.id]] = result;
+            // todo: enforce quota
+            AsyncStorage.setItem(result.id, JSON.stringify(result))
+              .catch((err) => {
+                console.error('Error saving listing to async storage: ', err);
+              });
           }
         });
 

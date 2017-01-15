@@ -9,19 +9,17 @@ const listingActions = {
   // todo promisify
   getListings: (options = false) => {
     return (dispatch, getState) => {
-      // if the search isn't cached, fetch the data
-      // todo query async storage instead
       const search = JSON.stringify(options);
       const searches = getState().listingsReducer.searches;
       const cache = getState().listingsReducer.cache;
 
       const cachedListing = findInCache(search, searches, cache);
+      // if the search isn't cached, fetch the data
       if (!cachedListing) {
 
         dispatch(fetchListings());
         dataApi.yelp(options)
           .then((results) => {
-            // todo store in async storage, but only the ones that don't exist yet
             return dispatch(receiveListings(results, {  search,
                                                         results: _.map(results, 'id')}));
           })
@@ -29,9 +27,7 @@ const listingActions = {
             console.error('Error retrieving listing data', err);
           });
       } else {
-        // todo pull it from async storage
-        // todo enforce size limitation for cached results
-
+      // otherwise, pull from local storage
         return dispatch(receiveListings(cachedListing, false));
       }
     };
