@@ -2,7 +2,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const db = require('./config');
+const db = require('./mysql.server');
 const model = require('./api/model/model.js');
 
 
