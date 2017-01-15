@@ -1,5 +1,5 @@
 'use strict';
-
+import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
 import * as userActions from './user-actions';
 import * as trailActions from './trail-actions';
@@ -40,6 +40,19 @@ const appActions = {
       });
       return dispatch(userActions.loginUser(profile))
         .then(() => {
+          return loadAsyncStorageData();
+        })
+        .then((data) => {
+          dispatch({
+            type: actionTypes.LOAD_SAVED_SEARCHES,
+            loadedSearches: data.searches
+          });
+          return dispatch({
+            type: actionTypes.LOAD_SAVED_LISTINGS,
+            loadedListings: data.listings
+          });
+        })
+        .then(() => {
           return dispatch(favoriteActions.fetchFavorites());
         })
         .then(() => {
@@ -63,6 +76,42 @@ const receiveGeolocation = (geolocation) => {
     type: actionTypes.RECEIVE_GEOLOCATION,
     geolocation
   };
+};
+
+const loadAsyncStorageData = () => {
+  return AsyncStorage.getAllKeys()
+    .then((keys) => {
+      return AsyncStorage.multiGet(keys);
+    })
+    .then((stores) => {
+      if (!stores) return;
+
+      const searches = {};
+      const listings = {};
+
+      stores.forEach((store) => {
+        const data = JSON.parse(store[1]);
+        if (data.type === undefined) {
+          return;
+        }
+
+        switch (data.type) {
+          case 'listing':
+            listings[store[0]] = data;
+            return;
+          case 'search':
+            searches[store[0]] = data;
+            return;
+          default:
+            return;
+        }
+      });
+
+      return { searches, listings };
+    })
+    .catch((err) => {
+      console.error('Error loading data from local storage: ', err);
+    })
 };
 
 export default appActions;

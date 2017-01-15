@@ -1,6 +1,7 @@
 'use strict';
 
 import * as _ from 'lodash';
+import { AsyncStorage } from 'react-native';
 
 import actionTypes from './action-types';
 import dataApi from '../api';
@@ -20,8 +21,27 @@ const listingActions = {
         dispatch(fetchListings());
         dataApi.yelp(options)
           .then((results) => {
-            return dispatch(receiveListings(results, {  search,
-                                                        results: _.map(results, 'id')}));
+            const searchToSave = {
+              type: 'search',
+              search,
+              results: _.map(results, 'id')
+            };
+
+            const listings = results.map((result) => {
+              return [result.id, JSON.stringify({...result, type: 'listing'})];
+            });
+
+            return AsyncStorage.setItem(search, JSON.stringify(searchToSave))
+              .then(() => {
+                return AsyncStorage.multiSet(listings);
+              })
+              .then(() => {
+                return dispatch(receiveListings(results, {  search,
+                  results: _.map(results, 'id')}));
+              })
+              .catch((err) => {
+                console.error('Error caching data: ', err);
+              });
           })
           .catch((err) => {
             console.error('Error retrieving listing data', err);
@@ -50,7 +70,6 @@ const findInCache = (search, searches, cache) => {
 
   const listingIDs = cached.results;
   return _.map(listingIDs, (id) => {
-    // debugger;
     const listing = _.find(cache, { 'id': id });
     if (listing !== undefined) {
       return listing;

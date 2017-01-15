@@ -30,6 +30,18 @@ const listingsReducer = (state = initialState, action = {}) => {
         isFetchCancelled: true
       };
 
+    case actionTypes.LOAD_SAVED_LISTINGS:
+      return {
+        ...state,
+        cache: action.loadedListings
+      };
+
+    case actionTypes.LOAD_SAVED_SEARCHES:
+      return {
+        ...state,
+        searches: action.loadedSearches
+      }
+
     case actionTypes.RECEIVE_LISTINGS:
       let cache = {}, searches, searchResults;
 
@@ -37,11 +49,6 @@ const listingsReducer = (state = initialState, action = {}) => {
         _.each(action.searchResults, (result) => {
           if (state.cache[result.id] === undefined) {
             cache[[result.id]] = result;
-            // todo: enforce quota
-            AsyncStorage.setItem(result.id, JSON.stringify(result))
-              .catch((err) => {
-                console.error('Error saving listing to async storage: ', err);
-              });
           }
         });
 
