@@ -53,18 +53,18 @@ export default class SearchBar extends React.Component {
 
   _handleInput(text) {
     if (text === '') {
-      this.props.cancelSearch();
+      this.props.cancelRequest();
     } else {
-      this.props.search({
+      this.props.getListings({
         location: text
       });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.results !== undefined) {
+    if (nextProps.searchResults !== undefined) {
       this.setState({
-        dataSource: this.ds.cloneWithRows(nextProps.results)
+        dataSource: this.ds.cloneWithRows(nextProps.searchResults)
       });
     }
   }
