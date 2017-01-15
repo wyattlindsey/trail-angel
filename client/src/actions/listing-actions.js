@@ -7,49 +7,58 @@ import actionTypes from './action-types';
 import dataApi from '../api';
 
 const listingActions = {
-  // todo promisify
   getListings: (options = false) => {
     return (dispatch, getState) => {
-      const search = JSON.stringify(options);
-      const searches = getState().listingsReducer.searches;
-      const cache = getState().listingsReducer.cache;
+      return new Promise((resolve, reject) => {
+        const search = JSON.stringify(options);
+        const searches = getState().listingsReducer.searches;
+        const cache = getState().listingsReducer.cache;
 
-      const cachedListing = findInCache(search, searches, cache);
-      // if the search isn't cached, fetch the data
-      if (!cachedListing) {
+        const cachedListing = findInCache(search, searches, cache);
 
-        dispatch(fetchListings());
-        dataApi.yelp(options)
-          .then((results) => {
-            const searchToSave = {
-              type: 'search',
-              search,
-              results: _.map(results, 'id')
-            };
+        // if the search isn't cached, fetch the data
+        if (!cachedListing) {
 
-            const listings = results.map((result) => {
-              return [result.id, JSON.stringify({...result, type: 'listing'})];
-            });
+          dispatch(fetchListings());
+          dataApi.yelp(options)
+            .then((results) => {
+              if (results === undefined) {
+                return resolve(false);
+              }
 
-            return AsyncStorage.setItem(search, JSON.stringify(searchToSave))
-              .then(() => {
-                return AsyncStorage.multiSet(listings);
-              })
-              .then(() => {
-                return dispatch(receiveListings(results, {  search,
-                  results: _.map(results, 'id')}));
-              })
-              .catch((err) => {
-                console.error('Error caching data: ', err);
+              // saved search includes an array of result IDs for later lookup
+              const searchToSave = {
+                type: 'search',
+                search,
+                results: _.map(results, 'id')
+              };
+
+              // create the array of tuples that AsyncStorage uses
+              const listings = results.map((result) => {
+                return [result.id, JSON.stringify({...result, type: 'listing'})];
               });
-          })
-          .catch((err) => {
-            console.error('Error retrieving listing data', err);
-          });
-      } else {
-      // otherwise, pull from local storage
-        return dispatch(receiveListings(cachedListing, false));
-      }
+
+              // store the saved search with results IDs
+              AsyncStorage.setItem(search, JSON.stringify(searchToSave));
+              // store the raw data for listingsReducer's cache object
+              AsyncStorage.multiSet(listings);
+
+              // update the in-memory store with the data and search/result object
+              dispatch(receiveListings(results, {  search,
+                results: _.map(results, 'id')}));
+
+              return resolve(true);
+            })
+            .catch((err) => {
+              console.error('Error retrieving listing data', err);
+            });
+        } else {
+          // otherwise, pull from local storage and send no search to save
+          dispatch(receiveListings(cachedListing, false));
+
+          return resolve(true);
+        }
+      });
     };
   },
 
@@ -90,8 +99,6 @@ const receiveListings = (searchResults, searchToSave) => {
     searchToSave
   }
 };
-
-// todo update store when async storage changes
 
 
 export default listingActions;
