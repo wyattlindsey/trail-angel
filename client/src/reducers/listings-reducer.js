@@ -42,8 +42,17 @@ const listingsReducer = (state = initialState, action = {}) => {
         searches: action.loadedSearches
       }
 
+    case actionTypes.UPDATE_LISTINGS:
+      return {
+        ...state,
+        cache: {
+          ...state.cache,
+          ...action.updatedListings
+        }
+      }
+
     case actionTypes.RECEIVE_LISTINGS:
-      let cache = {}, searches, searchResults;
+      let cache = {}, searches;
 
       if (action.searchToSave) {
         _.each(action.searchResults, (result) => {

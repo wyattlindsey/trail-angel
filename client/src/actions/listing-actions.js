@@ -70,6 +70,40 @@ const listingActions = {
 
       dispatch(receiveListings([]));
     }
+  },
+
+  updateListings: (listings) => {
+    return (dispatch, getState) => {
+      return new Promise((resolve, reject) => {
+        const updatedListings = {};
+        const storageTuples = [];
+        const cache = getState().listingsReducer.cache;
+
+        listings.forEach((listing) => {
+          if (listing.type === 'listing' && cache[listing.id] !== undefined) {
+            updatedListings[listing.id] = {
+              ...cache[listing.id],
+              ...listing
+            };
+
+            storageTuples.push([ listing.id,  JSON.stringify(listing)]);
+          }
+        });
+
+        AsyncStorage.merge(storageTuples)
+          .then(() => {
+            dispatch({
+              type: actionTypes.UPDATE_LISTINGS,
+              updatedListings
+            });
+            return resolve();
+          })
+          .catch((err) => {
+            console.error('Error updating listings: ', err);
+            return reject(err);
+          });
+      });
+    };
   }
 };
 
