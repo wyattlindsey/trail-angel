@@ -10,7 +10,7 @@ import Trails from './trails-container';
 import Favorites from './favorites-container';
 import Search from '../containers/search-container';
 import Settings from '../components/trail/trailSettings.component';
-import * as appActions from '../actions/app-actions';
+import appActions from '../actions/app-actions';
 
 const styles = StyleSheet.create({
   tabContent: {
@@ -127,7 +127,7 @@ class TrailAngel extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(appActions, dispatch)
+    actions: bindActionCreators({...appActions}, dispatch)
   };
 };
 
