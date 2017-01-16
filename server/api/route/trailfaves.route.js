@@ -1,6 +1,6 @@
 
 var express = require('express');
-var controller = require('../controller/controller.js');
+var controller = require('../controller/trailfaves.controller.js');
 
 var router = express.Router();
 
