@@ -12,6 +12,7 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 1;
+
 export default class CustomMarkers extends React.Component {
   constructor(props) {
     super(props);
@@ -93,8 +94,9 @@ export default class CustomMarkers extends React.Component {
               key={polyline.key}
               coordinates={coordinates}
               strokeColor="#228b22"
-              fillColor="rgba(0,63,76,0.5)"
-              strokeWidth={5}/>
+              strokeWidth={4}
+              lineCap='round'
+              lineJoin='round'/>
           )) : null}
         </MapView>
         <View style={styles.buttonContainer}>
