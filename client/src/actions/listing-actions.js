@@ -38,6 +38,7 @@ const listingActions = {
               if (results === undefined) {
                 return resolve(false);
               }
+              debugger;
 
               results.forEach((result) => {
                 dispatch(listingActions.addToCollection(result, options.collection));
@@ -207,6 +208,8 @@ const listingActions = {
 
       if (collectionName === 'favorite') {    // todo factor this out to separate module
         dataApi.trailAngelApi.addFavorite(getState().userReducer.userId, item.id);
+      } else if (collectionName === 'search') {
+        return;
       }
 
       dispatch(listingActions.updateListings([
