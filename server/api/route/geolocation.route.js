@@ -4,7 +4,7 @@ var controller = require('../controller/geolocation.controller.js');
 var router = express.Router();
 
 //need userId for all api calls
-router.get('/:trailId', controller.geolocation.get);
+router.get('/:trailId/:userId', controller.geolocation.get);
 router.delete('/:trailId', controller.geolocation.delete);
 router.post('/:trailId', controller.geolocation.post);
 router.put('/:trailId', controller.geolocation.put);
