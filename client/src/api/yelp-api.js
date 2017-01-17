@@ -29,7 +29,7 @@ const yelp = (options = {}) => {
     }
   }, '');
 
-  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${parameters}`;
+  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${parameters}`; // todo try regular search again
   console.log('First URL: ',url);
   var place_ids_json = [];
 

@@ -9,10 +9,7 @@ const initialState = {
   isFetching: false,
   isFetchCancelled: false,
   cache: {},
-  collections: {
-    favorites: [],
-    searchResults: {}
-  },
+  collections: {},
   searches: {},
   searchResults: []   // todo convert this to a collection
 };
@@ -49,7 +46,7 @@ const listingsReducer = (state = initialState, action = {}) => {
     case actionTypes.LOAD_SAVED_COLLECTIONS:
       return {
         ...state,
-        collections: action.loadedCollections
+        // collections: action.loadedCollections    // todo make sure there's something here to load
       };
 
     case actionTypes.UPDATE_LISTINGS:
@@ -62,22 +59,15 @@ const listingsReducer = (state = initialState, action = {}) => {
       };
 
     case actionTypes.UPDATE_COLLECTION:
+      debugger;
       return {
         ...state,
-        collections: {
-          ...collections,
-          [action.name]: action.collection
-        }
+        // collection[action.name]: action.collection
       };
 
     case actionTypes.RECEIVE_LISTINGS:
       let cache = {}, searches, collections;
-
       if (action.collection) {
-        if (state.collections[action.collection] === undefined) {
-          state.collections[action.collection] = {};
-        }
-
         collections = {
           ...state.collections,
           [action.collection]: action.searchResults

@@ -136,6 +136,7 @@ const listingActions = {
     return (dispatch, getState) => {
       const cache = getState().listingsReducer.cache;
       const collections = getState().listingsReducer.collections;
+      debugger;
       const item = cache[id];
 
       const collectionArray = item.collections === undefined ? [] : item.collections;
