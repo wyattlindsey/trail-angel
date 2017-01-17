@@ -59,7 +59,6 @@ const listingsReducer = (state = initialState, action = {}) => {
       };
 
     case actionTypes.UPDATE_COLLECTION:
-      debugger;
       return {
         ...state,
         collections: {

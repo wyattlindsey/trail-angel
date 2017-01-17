@@ -123,10 +123,10 @@ export default class FavoriteListItem extends React.Component {
   }
 
   _handleRemoveFavorite() {
-    this.props.removeFavorite(this.props.id);
+    this.props.removeFromCollection(this.props.id, 'favorites');
   }
 
-  _selectTrail(e) {
+  _selectTrail() {
     this.props.navigator.push({
       title: 'Trail Detail',
       component: Details,

@@ -16,7 +16,7 @@ const Favorites = (props) => {
                   userId={state.userReducer.userId}
                   userLocation={state.appReducer.geolocation}
                   navigator={props.navigator}
-                  favorites={state.listingsReducer.collection.favorites}
+                  favorites={state.listingsReducer.collections.favorites}
                   {...actions} />
   );
 };

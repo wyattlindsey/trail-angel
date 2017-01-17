@@ -35,7 +35,7 @@ const appActions = {
   },
 
   initializeApp: (profile) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
       dispatch({
         type: actionTypes.INITIALIZE_APP
       });
