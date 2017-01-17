@@ -1,21 +1,23 @@
 'use strict';
+import * as _ from 'lodash';
 
 import * as config from '../../config';
 import request from '../utils/request';
 
 const yelp = (options = {}) => {
-  
+
   if (options.latitude && options.longitude) {
     options.location = `${options.latitude},${options.longitude}`;
   }
   // options.radius = options.radius || '500';
-  // options.type = options.type || 'trails';
+  options.rankby = options.rankby || 'distance';
+  // options.type = options.type || 'point_of_interest';
   options.keyword = options.keyword || 'hiking%20trails';
   options.key = config.secrets.google.apiKey;
-  
+
   delete options.latitude;
-  delete options.longitude; 
-  
+  delete options.longitude;
+
 
   const keys = Object.keys(options);
 
@@ -26,39 +28,39 @@ const yelp = (options = {}) => {
       return memo += `${k}=${options[k] || ''}${i === keys.length - 1 ? '' : '&'}`;
     }
   }, '');
-      
-  var url = `https://maps.googleapis.com/maps/api/place/search/json?${parameters}`;
+
+  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${parameters}`;
   console.log('First URL: ',url);
   var place_ids_json = [];
 
   return request.get(url)
-    .then((data) => { 
+    .then((data) => {
       console.log('Outside loop');
 
       for(var i=0; i < data.results.length; i++) {
         console.log('Inside loop');
         var place = data.results[i].place_id;
         var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${options.key}`;
-      
+
         place_ids_json.push(url1);
       }
-      
+
       console.log('Outside if statement: ', place_ids_json);
-      
+
       let promises = place_ids_json.map((url) => {
         return request.get(url);
-      }); 
+      });
 
       return Promise.all(promises)
         .then((data) => {
           console.log('Final Promise: ', data);
-          return Promise.resolve(data);
+          return _.map(data, 'result');
         })
         .catch((err) => {
           console.log('error getting promise data', err);
         });
 
-      
+
     })
     .catch((err) => {
       console.log('error getting google data', err);

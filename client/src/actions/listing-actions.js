@@ -231,10 +231,14 @@ const storeResults = (search, results, collection) => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       // saved search includes an array of result IDs for later lookup
+      const IDs = _.map(results, (data) => {
+        return data.place_id;
+      });
+
       const searchToSave = {
         type: 'search',
         search,
-        results: _.map(results, 'id')
+        results: IDs
       };
 
       // create the array of tuples that AsyncStorage uses

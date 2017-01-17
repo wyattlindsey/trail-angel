@@ -30,7 +30,7 @@ const googleApi = {
       return Promise.resolve(false);
     }
 
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${secrets.googleGeocoding.apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${secrets.google.apiKey}`;
 
     return request.get(url)
     .then((response) => {

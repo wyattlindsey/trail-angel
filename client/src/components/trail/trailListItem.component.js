@@ -90,33 +90,31 @@ export default class TraillistItem extends React.Component {
       }
     }, 4000);
 
-
-
-    dataApi.google.getDistance2Points(this.props.userLocation.coords,
-      { latitude:this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
-      .then((distance) => {
-        if (this._isMounted && distance) {
-          this.setState({
-            distance: distance.text
-          });
-        }
-      })
-      .catch((err) => {
-        console.error('Error getting distance for component: ', err);
-      });
-
-    dataApi.weather(this.props.geometry.location.lat,
-                    this.props.geometry.location.lng)
-      .then((weather) => {
-        if (this._isMounted && weather) {
-          this.setState({
-            weather
-          });
-        }
-      })
-      .catch((err) => {
-        console.error('Error getting weather for component: ', err);
-      });
+    // dataApi.google.getDistance2Points(this.props.userLocation.coords,
+    //   { latitude:this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
+    //   .then((distance) => {
+    //     if (this._isMounted && distance) {
+    //       this.setState({
+    //         distance: distance.text
+    //       });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error('Error getting distance for component: ', err);
+    //   });
+    //
+    // dataApi.weather(this.props.geometry.location.lat,
+    //                 this.props.geometry.location.lng)
+    //   .then((weather) => {
+    //     if (this._isMounted && weather) {
+    //       this.setState({
+    //         weather
+    //       });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error('Error getting weather for component: ', err);
+    //   });
   }
 
   componentWillUnmount() {

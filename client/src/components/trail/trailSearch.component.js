@@ -61,13 +61,23 @@ export default class SearchBar extends React.Component {
       this.props.cancelRequest();
     } else {
       this.props.getListings({
-        location: text
+        name: text,
+        latitude: this.props.userLocation.coords.latitude,
+        longitude: this.props.userLocation.coords.longitude
       })
       .then((success) => {
         if (!success) this.props.cancelRequest();
         this.setState({
           searchTimeout: !success
         });
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.searchResults !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(this.props.searchResults)
       });
     }
   }
