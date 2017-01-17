@@ -14,10 +14,7 @@ const Trails = (props) => {
   const { state, actions } = props;
   return (
     <TrailList navigator={props.navigator} isFetching={state.trailsReducer.isFetching}
-               didInvalidate={state.trailsReducer.didInvalidate}
-               lastUpdated={state.trailsReducer.lastUpdated}
-               trails={state.trailsReducer.trails}
-               favorites={state.favoritesReducer.items}
+               trails={state.listingsReducer.collections.home}
                userLocation={state.appReducer.geolocation}
                {...actions} />
   );

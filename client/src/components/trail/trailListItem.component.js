@@ -137,8 +137,14 @@ export default class TraillistItem extends React.Component {
   _toggleFavorite() {
     if (!this.state.isFavorite) {
       this.props.addToCollection(this.props.id, 'favorites');
+      this.setState({
+        isFavorite: true
+      });
     } else {
       this.props.removeFromCollection(this.props.id, 'favorites');
+      this.setState({
+        isFavorite: false
+      });
     }
   }
 
@@ -153,7 +159,7 @@ export default class TraillistItem extends React.Component {
   }
 
   render() {
-    const FavoriteIcon = this.props.isFavorite ?
+    const FavoriteIcon = this.state.isFavorite ?
                           <Icon name='star' size={20} color='darkgreen' /> :
                           <Icon name='star-o' size={20} color='darkgreen' />;
     return (
@@ -192,10 +198,10 @@ export default class TraillistItem extends React.Component {
                   {/* after a timeout, display nothing */}
                   {this.state.weather ? <View>
                                           <WeatherIcon icon={this.state.weather.currently.icon}
-                                                     color='darkgreen'
-                                                     size={40}
-                                                     style={{
-                                                       opacity: 0.8
+                                                       color='darkgreen'
+                                                       size={40}
+                                                       style={{
+                                                         opacity: 0.8
                                                      }}
                                           />
                                           <Text style={{

@@ -51,7 +51,7 @@ export default class TrailList extends React.Component {
                                     addFavorite={this.props.addFavorite}
                                     removeFavorite={this.props.removeFavorite}
                                     userLocation={this.props.userLocation}
-                                    {...data.result} />}
+                                    {...data} />}
           enableEmptySections={true}
           renderSeparator={(sectionId, rowId) => <View key={rowId}
                                                        style={styles.separator} />}

@@ -30,31 +30,55 @@ const listingActions = {
           // otherwise search based on search terms
           const cachedListing = findInCache(search, searches, cache);
 
-          // if the search isn't cached, fetch the data
-          if (!cachedListing) {
+          // TEMP
+          dispatch(fetchListings());
 
-            dispatch(fetchListings());
+          dataApi.yelp(options)
+            .then((results) => {
+              if (results === undefined) {
+                return resolve(false);
+              }
 
-            dataApi.yelp(options)
-              .then((results) => {
-                if (results === undefined) {
-                  return resolve(false);
-                }
-
-                dispatch(storeResults(search, results, options.collection))
-                  .then((results) => {
-                    resolve(results);
-                  });
-              })
-              .catch((err) => {
-                console.error('Error retrieving listing data', err);
-                reject(err);
+              results.forEach((result) => {
+                dispatch(listingActions.addToCollection(result, options.collection));
               });
-          } else {
+
+              dispatch(storeResults(search, results, options.collection))
+                .then((results) => {
+                  resolve(results);
+                });
+            })
+            .catch((err) => {
+              console.error('Error retrieving listing data', err);
+              reject(err);
+            });
+          // END TEMP
+
+          // if the search isn't cached, fetch the data
+          // if (!cachedListing) {
+          //
+          //   dispatch(fetchListings());
+          //
+          //   dataApi.yelp(options)
+          //     .then((results) => {
+          //       if (results === undefined) {
+          //         return resolve(false);
+          //       }
+          //
+          //       dispatch(storeResults(search, results, options.collection))
+          //         .then((results) => {
+          //           resolve(results);
+          //         });
+          //     })
+          //     .catch((err) => {
+          //       console.error('Error retrieving listing data', err);
+          //       reject(err);
+          //     });
+          // } else {
             // otherwise, pull from local storage and send no search to save
-            dispatch(receiveListings(cachedListing, false));
-            resolve(true);    // ???
-          }
+            // dispatch(receiveListings(cachedListing, false));
+            // resolve(true);    // ???
+          // }
         }
       });
     };
@@ -105,6 +129,49 @@ const listingActions = {
     };
   },
 
+  loadCollections: () => {
+    return (dispatch, getState) => {
+      return new Promise((resolve, reject) => {
+        const collections = getState().listingsReducer.collections;
+        for (var collection in collections) {
+          if (collection === 'favorites') {
+            listingActions.loadFavorites();
+          } else {
+            dispatch(listingActions.getListings({ IDs: _.map(collections[collection], 'id'), collection }))
+              .then((listings) => {
+                // ensure that every favorite from the server is marked as a favorite locally
+                listings.forEach((listing) => {
+                  dispatch(listingActions.addToCollection(listing.id, 'favorites'));
+                });
+                resolve(listings);
+              });
+          }
+        }
+      });
+    };
+  },
+
+  loadHome: () => {
+    return (dispatch, getState) => {
+      return new Promise((resolve, reject) => {
+        const collections = getState().listingsReducer.collections;
+        const userLocation = getState().appReducer.geolocation;
+        dispatch(listingActions.getListings({
+          longitude: userLocation.coords.longitude,
+          latitude: userLocation.coords.latitude,
+          collection: 'home'
+        }))
+          .then((listings) => {
+            resolve(listings);
+          })
+          .catch((err) => {
+            console.log('Error retrieving user home collection: ', err);
+            reject(err);
+          });
+      });
+    };
+  },
+
   loadFavorites: () => {
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
@@ -132,14 +199,15 @@ const listingActions = {
     };
   },
 
-  addToCollection: (id, collectionName) => {
+  addToCollection: (item, collectionName) => {
     return (dispatch, getState) => {
-      const cache = getState().listingsReducer.cache;
       const collections = getState().listingsReducer.collections;
-      debugger;
-      const item = cache[id];
 
       const collectionArray = item.collections === undefined ? [] : item.collections;
+
+      if (collectionName === 'favorite') {    // todo factor this out to separate module
+        dataApi.trailAngelApi.addFavorite(getState().userReducer.userId, item.id);
+      }
 
       dispatch(listingActions.updateListings([
         {
@@ -151,12 +219,12 @@ const listingActions = {
         }
       ]));
 
-      if (_.find(collections[collectionName], {'id': id}) === undefined) {
-        const modifiedCollection = [...collections[collectionName], cache[id]];
+      if (_.find(collections[collectionName], {'id': item.id}) === undefined) {
+        const modifiedCollection = [...collections[collectionName], item];
 
         dispatch(updateCollection(collectionName, modifiedCollection));
 
-        AsyncStorage.setItem(`collection:${collectionName}`, JSON.stringify(modifiedCollection));
+        AsyncStorage.setItem(collectionName, JSON.stringify(modifiedCollection));
       }
     };
   },

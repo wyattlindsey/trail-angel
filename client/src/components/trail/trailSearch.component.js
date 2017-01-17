@@ -63,6 +63,7 @@ export default class SearchBar extends React.Component {
     } else {
       this.props.getListings({
         name: textInput,
+        collection: 'search',
         latitude: this.props.userLocation.coords.latitude,
         longitude: this.props.userLocation.coords.longitude
       })

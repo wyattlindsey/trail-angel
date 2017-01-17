@@ -5,27 +5,32 @@ import * as config from '../../config';
 import request from '../utils/request';
 
 const yelp = (options = {}) => {
+  
+  const searchOptions = {...options}
 
-  if (options.latitude && options.longitude) {
-    options.location = `${options.latitude},${options.longitude}`;
+  if (searchOptions.latitude && searchOptions.longitude) {
+    searchOptions.location = `${searchOptions.latitude},${searchOptions.longitude}`;
   }
-  options.radius = options.radius || '500000';
-  // options.rankby = options.rankby || 'distance';
-  // options.type = options.type || 'point_of_interest';
-  options.keyword = options.keyword || 'hiking%20trails';
-  options.key = config.secrets.google.apiKey;
+  // searchOptions.radius = searchOptions.radius || '500000';
+  searchOptions.rankby = searchOptions.rankby || 'distance';
+  // searchOptions.type = searchOptions.type || 'point_of_interest';
+  searchOptions.keyword = searchOptions.keyword || 'hiking%20trails';
+  searchOptions.key = config.secrets.google.apiKey;
 
-  delete options.latitude;
-  delete options.longitude;
+  delete searchOptions.latitude;
+  delete searchOptions.longitude;
+  if (searchOptions.collection !== undefined) {
+    delete searchOptions.collection;
+  }
 
 
-  const keys = Object.keys(options);
+  const keys = Object.keys(searchOptions);
 
   let parameters = keys.reduce((memo, k, i) => {
-    if (!options[k]) {
+    if (!searchOptions[k]) {
       return memo;
     } else {
-      return memo += `${k}=${options[k] || ''}${i === keys.length - 1 ? '' : '&'}`;
+      return memo += `${k}=${searchOptions[k] || ''}${i === keys.length - 1 ? '' : '&'}`;
     }
   }, '');
 
@@ -40,7 +45,7 @@ const yelp = (options = {}) => {
       for(var i=0; i < data.results.length; i++) {
         console.log('Inside loop');
         var place = data.results[i].place_id;
-        var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${options.key}`;
+        var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${searchOptions.key}`;
 
         place_ids_json.push(url1);
       }

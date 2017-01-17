@@ -43,25 +43,28 @@ const appActions = {
         .then(() => {
           return dispatch(appActions.getGeolocation());
         })
+        .then(() => {
+          return loadAsyncStorageData();
+        })
+        .then((data) => {
+          dispatch({
+            type: actionTypes.LOAD_SAVED_SEARCHES,
+            loadedSearches: data.searches
+          });
+          dispatch({
+            type: actionTypes.LOAD_SAVED_LISTINGS,
+            loadedListings: data.listings
+          });
+          dispatch({
+            type: actionTypes.LOAD_SAVED_COLLECTIONS,
+            loadedCollections: data.collections
+          });
+        })
+        .then(() => {
+          return dispatch(listingActions.loadHome());
+        })
         // .then(() => {
-        //   return loadAsyncStorageData();
-        // })
-        // .then((data) => {
-        //   dispatch({
-        //     type: actionTypes.LOAD_SAVED_SEARCHES,
-        //     loadedSearches: data.searches
-        //   });
-        //   dispatch({
-        //     type: actionTypes.LOAD_SAVED_LISTINGS,
-        //     loadedListings: data.listings
-        //   });
-        //   dispatch({
-        //     type: actionTypes.LOAD_SAVED_COLLECTIONS,
-        //     loadedCollections: data.collections
-        //   });
-        // })
-        // .then(() => {
-        //   return dispatch(listingActions.loadFavorites());
+          // return dispatch(listingActions.loadFavorites());
         // })
         .catch((err) => {
           console.error('Error initializing application: ', err);

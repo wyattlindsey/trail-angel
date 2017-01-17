@@ -46,7 +46,12 @@ const listingsReducer = (state = initialState, action = {}) => {
     case actionTypes.LOAD_SAVED_COLLECTIONS:
       return {
         ...state,
-        // collections: action.loadedCollections    // todo make sure there's something here to load
+        collections: {    // todo make sure there's something here to load
+          ...state.collections,
+          favorites: [],
+          home: [],
+          ...action.loadedCollections,
+        }
       };
 
     case actionTypes.UPDATE_LISTINGS:
@@ -59,10 +64,12 @@ const listingsReducer = (state = initialState, action = {}) => {
       };
 
     case actionTypes.UPDATE_COLLECTION:
-      debugger;
       return {
         ...state,
-        // collection[action.name]: action.collection
+        collections: {
+          ...collections,
+          [action.name]: action.collection
+        }
       };
 
     case actionTypes.RECEIVE_LISTINGS:
@@ -73,6 +80,8 @@ const listingsReducer = (state = initialState, action = {}) => {
           [action.collection]: action.searchResults
         }
       }
+
+      const searchResults = action.collection === 'search' ? action.searchResults : state.searchResults
 
       // actions.searchToSave is a boolean set to true if this set of results should be
       // persisted to the cache under those particular search options
@@ -100,10 +109,9 @@ const listingsReducer = (state = initialState, action = {}) => {
           ...state,
           isFetching: false,
           isFetchCancelled: false,
-          searchResults: action.searchResults,
+          searchResults,
           cache,
-          searches,
-          collections
+          searches
         };
 
       } else {
@@ -114,9 +122,8 @@ const listingsReducer = (state = initialState, action = {}) => {
           ...state,
           isFetching: false,
           isFetchCancelled: false,
-          searchResults: action.searchResults,
-          cache,
-          collections
+          searchResults,
+          cache
         };
       };
 
