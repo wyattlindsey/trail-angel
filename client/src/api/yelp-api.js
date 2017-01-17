@@ -2,38 +2,20 @@
 
 import * as config from '../../config';
 import request from '../utils/request';
-import OAuthSimple from 'oauthsimple';
 
 const yelp = (options = {}) => {
-  let oauth = new OAuthSimple(config.secrets.yelp.consumerKey, config.secrets.yelp.tokenSecret);
-  if (options.id !== undefined) {
-    return fetchById(options.id, oauth);
+  
+  if (options.latitude && options.longitude) {
+    options.location = `${options.latitude},${options.longitude}`;
   }
-  if (options.location === undefined &&
-      (options.latitude === undefined || options.longitude === undefined)) {
-    options.location = 'San Francisco';
-
-  } else if (options.location && options.latitude && options.longitude) {
-    options.cll = `${options.latitude},${options.longitude}`;
-
-  } else if (!options.location && options.latitude && options.longitude) {
-    delete options.location;
-    options.ll = `${options.latitude},${options.longitude}`;
-  }
-
-  // if (options.location !== undefined) {
-  //   options.term = options.location;
-  //   delete options.location;
-  // }
-
-  // don't need these temp value as they're now encoded in the `cll` or `ll` keys
+  // options.radius = options.radius || '500';
+  // options.type = options.type || 'trails';
+  options.keyword = options.keyword || 'hiking%20trails';
+  options.key = config.secrets.google.apiKey;
+  
   delete options.latitude;
-  delete options.longitude;
-
-  options.limit = options.limit || 10;
-  options.category_filter = options.category_filter || 'hiking';
-
-
+  delete options.longitude; 
+  
 
   const keys = Object.keys(options);
 
@@ -44,40 +26,44 @@ const yelp = (options = {}) => {
       return memo += `${k}=${options[k] || ''}${i === keys.length - 1 ? '' : '&'}`;
     }
   }, '');
+      
+  var url = `https://maps.googleapis.com/maps/api/place/search/json?${parameters}`;
+  console.log('First URL: ',url);
+  var place_ids_json = [];
 
-  const signedRequest = oauth.sign({
-    action: 'GET',
-    path: 'https://api.yelp.com/v2/search',
-    parameters: parameters,
-    signatures: {
-      api_key: config.secrets.yelp.consumerKey,
-      shared_secret: config.secrets.yelp.consumerSecret,
-      access_token: config.secrets.yelp.token,
-      access_secret: config.secrets.yelp.tokenSecret
-    }
-  });
+  return request.get(url)
+    .then((data) => { 
+      console.log('Outside loop');
 
-  return request.get(signedRequest.signed_url)
-    .then((results) => {
-      return results.businesses;
+      for(var i=0; i < data.results.length; i++) {
+        console.log('Inside loop');
+        var place = data.results[i].place_id;
+        var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${options.key}`;
+      
+        place_ids_json.push(url1);
+      }
+      
+      console.log('Outside if statement: ', place_ids_json);
+      
+      let promises = place_ids_json.map((url) => {
+        return request.get(url);
+      }); 
+
+      return Promise.all(promises)
+        .then((data) => {
+          console.log('Final Promise: ', data);
+          return Promise.resolve(data);
+        })
+        .catch((err) => {
+          console.log('error getting promise data', err);
+        });
+
+      
     })
     .catch((err) => {
-      console.log('error getting yelp data', err);
+      console.log('error getting google data', err);
     });
-};
 
-const fetchById = (id, oauth) => {
-  const signedRequest = oauth.sign({
-    action: 'GET',
-    path: `https://api.yelp.com/v2/business/${id}`,
-    signatures: {
-      api_key: config.secrets.yelp.consumerKey,
-      shared_secret: config.secrets.yelp.consumerSecret,
-      access_token: config.secrets.yelp.token,
-      access_secret: config.secrets.yelp.tokenSecret
-    }
-  });
-  return request.get(signedRequest.signed_url);
 };
 
 export default yelp;
