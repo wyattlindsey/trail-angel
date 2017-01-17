@@ -60,11 +60,9 @@ const appActions = {
             loadedCollections: data.collections
           });
         })
-        // .then(() => {
-        //   return dispatch(listingActions.loadHome());
-        // })
         .then(() => {
-          return dispatch(listingActions.loadFavorites());
+          dispatch(listingActions.loadHome());      // todo not sure why I can't .then chain these
+          dispatch(listingActions.loadFavorites());
         })
         .catch((err) => {
           console.error('Error initializing application: ', err);

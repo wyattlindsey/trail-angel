@@ -67,7 +67,7 @@ const listingsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         collections: {
-          ...collections,
+          ...state.collections,
           [action.name]: action.collection
         }
       };

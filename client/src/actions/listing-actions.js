@@ -250,6 +250,12 @@ const listingActions = {
         item.collections.splice(i, 1);
       }
 
+      if (collectionName === 'favorites') {    // todo factor this out to separate module and verify that error checking happens for above
+        dataApi.trailAngelApi.removeFavorite(getState().userReducer.userId, item.id);
+      } else if (collectionName === 'search') {
+        return;
+      }
+
       dispatch(listingActions.updateListings([
         {
           ...cache[id],
@@ -274,7 +280,6 @@ const listingActions = {
 const getListingById = (IDs, cache) => {
   if (!Array.isArray(IDs)) IDs = [IDs];
   let promises = IDs.map((id) => {
-    debugger;
 
     return dataApi.yelp({ id: id })
       .then((data) => {
