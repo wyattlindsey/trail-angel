@@ -6,7 +6,7 @@ module.exports = {
     //retrieve all latlng for specific favorite trail
     //requires trailId to be sent in params and userId in the body
     get: function (req, res) {
-      let key = `${req.params.trailId}:${req.body.userId}`;
+      let key = `${req.params.trailId}:${req.params.userId}`;
       // let key = 'shoreline-trails:45';
       geoMapper.zcountAsync(key, '-inf', 'inf')
         .then( (count) => {
@@ -15,10 +15,13 @@ module.exports = {
           for (var i = 0; i < count; i++) {
             pins.push(i);
           }
-            geoMapper.geoposAsync(key, ...pins)
+          geoMapper.geoposAsync(key, ...pins)
               .then( (geolocations) => {
                 // console.log("this is the lat and long for ", geolocations);
-                res.json(geolocations);
+                res.send(geolocations);
+              })
+              .catch(err => {
+                console.error('Error getting geolocation: ', err);
               });
         })
         .catch( (err) => {
@@ -49,7 +52,9 @@ module.exports = {
     //removes all latlng points for specific favorite trail or removes trail
     delete: function(req, res) {
       //delAsync
-      geoMapper.delAsync(req.params.trailId)
+      let key = `${req.params.trailId}:${req.body.userId}`;
+
+      geoMapper.delAsync(key)
         .then( (status) => {
           console.log('Removed all pins from map', status);
           res.sendStatus(200);
@@ -86,8 +91,8 @@ module.exports = {
       for(var pin = 0; pin < req.body.pins.length; pin++) {
         pins.push(...req.body.pins[pin], pin);
       }
-      // geoMapper.delAsync(key)
-      //   .then( (status) => {
+      geoMapper.delAsync(key)
+        .then( (status) => {
           geoMapper.geoaddAsync(key, ...pins) //if we get the format we want, then this is OK
             .then( (status) => {
               console.log('Pins have been replaced!', status);
@@ -97,11 +102,11 @@ module.exports = {
               console.log('Pins have not been saved!', err);
               res.sendStatus(404);
             });
-        // })
+        });
+    }
         // .catch( (err) => {
         //   console.log('mapping points on this trail was not deleted', err);
         // });
-    }
     // getDistance: function(req, res) {
     //   //GEODIST
     //   geoMapper.geodistAsync(key, ...pins)

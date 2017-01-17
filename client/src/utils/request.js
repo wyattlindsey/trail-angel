@@ -11,18 +11,19 @@ const request = {
         return responseJSON;
       })
       .catch((err) => {
-        console.error('error retreiving data from server', err);
+        console.error('error retrieving data from server', err);
       });
   },
 
   get: (url, options = {}) => {
+    console.log("This is the options for request.js: ", options);
     return fetch(url, options)
       .then((response) => response.json())
       .then((responseJSON) => {
         return responseJSON;
       })
       .catch((err) => {
-        console.error('error retreiving data from server', err);
+        console.error('error retrieving data from server', err);
       });
   },
 

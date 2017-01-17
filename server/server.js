@@ -5,7 +5,7 @@ const app = express();
 require('./mysql.server');
 require('./redis.server');
 require('./api/model/model.js');
-const request = require('request');
+// const request = require('request');
 
 
 app.use(morgan('dev'));
@@ -77,7 +77,7 @@ require('./routes')(app);
 // };
 // request({
 //   method: "GET",
-//   uri: 'http://localhost:4000/api/geolocation/strawberry-peak',
+//   uri: 'http://localhost:4000/api/geolocations/strawberry-peak',
 //   json: body
 //  }, function(err, response, body) {
 //   console.log("successful", body);
