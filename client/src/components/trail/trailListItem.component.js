@@ -71,6 +71,7 @@ export default class TraillistItem extends React.Component {
     this._isMounted = false;
 
     this.state = {
+      isFavorite: null,
       distance: null,
       weather: null,
       weatherTimeout: false       // helps determine when to give up on weather data,
@@ -82,6 +83,11 @@ export default class TraillistItem extends React.Component {
 
     this._isMounted = true;
 
+    const isFavorite = this.props.collections !== undefined && this.props.collections.indexOf('favorites') !== -1;
+    this.setState({
+      isFavorite
+    });
+
     setTimeout(() => {
       if (this._isMounted === true) {
         this.setState({
@@ -90,42 +96,49 @@ export default class TraillistItem extends React.Component {
       }
     }, 4000);
 
-    // dataApi.google.getDistance2Points(this.props.userLocation.coords,
-    //   { latitude:this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
-    //   .then((distance) => {
-    //     if (this._isMounted && distance) {
-    //       this.setState({
-    //         distance: distance.text
-    //       });
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error('Error getting distance for component: ', err);
-    //   });
-    //
-    // dataApi.weather(this.props.geometry.location.lat,
-    //                 this.props.geometry.location.lng)
-    //   .then((weather) => {
-    //     if (this._isMounted && weather) {
-    //       this.setState({
-    //         weather
-    //       });
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error('Error getting weather for component: ', err);
-    //   });
+    dataApi.google.getDistance2Points(this.props.userLocation.coords,
+      { latitude:this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
+      .then((distance) => {
+        if (this._isMounted && distance) {
+          this.setState({
+            distance: distance.text
+          });
+        }
+      })
+      .catch((err) => {
+        console.error('Error getting distance for component: ', err);
+      });
+
+    dataApi.weather(this.props.geometry.location.lat,
+                    this.props.geometry.location.lng)
+      .then((weather) => {
+        if (this._isMounted && weather) {
+          this.setState({
+            weather
+          });
+        }
+      })
+      .catch((err) => {
+        console.error('Error getting weather for component: ', err);
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const isFavorite = nextProps.collections !== undefined && nextProps.collections.indexOf('favorites') !== -1;
+    this.setState({
+      isFavorite
+    });
   }
 
   componentWillUnmount() {
     this._isMounted = false;
   }
 
-  _handlePress(e) {
-    if (!this.props.isFavorite) {
-      this.props.addFavorite(this.props.id);
+  _toggleFavorite() {
+    if (!this.state.isFavorite) {
+      this.props.addToCollection(this.props.id, 'favorites');
     } else {
-      this.props.removeFavorite(this.props.id);
+      this.props.removeFromCollection(this.props.id, 'favorites');
     }
   }
 
@@ -152,7 +165,7 @@ export default class TraillistItem extends React.Component {
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
                 <Image source={{uri: this.props.icon}} style={styles.photo} />
-                <TouchableHighlight onPress={this._handlePress.bind(this)}
+                <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}
                                     underlayColor='#ffffff'>
                   {FavoriteIcon}

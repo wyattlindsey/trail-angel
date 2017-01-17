@@ -10,9 +10,11 @@ const initialState = {
   isFetchCancelled: false,
   cache: {},
   collections: {
-    favorites: []
+    favorites: [],
+    searchResults: {}
   },
-  searches: {}
+  searches: {},
+  searchResults: []   // todo convert this to a collection
 };
 
 const listingsReducer = (state = initialState, action = {}) => {
@@ -78,7 +80,7 @@ const listingsReducer = (state = initialState, action = {}) => {
 
         collections = {
           ...state.collections,
-          searchResults: action.results
+          [action.collection]: action.searchResults
         }
       }
 

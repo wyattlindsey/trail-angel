@@ -121,7 +121,8 @@ export default class SearchBar extends React.Component {
                                  size='large' />
               <ListView
                 dataSource={this.state.dataSource}
-                renderRow={(data) => <Row updateListings={this.props.updateListings}
+                renderRow={(data) => <Row addToCollection={this.props.addToCollection}
+                                          removeFromCollection={this.props.removeFromCollection}
                                           userLocation={this.props.userLocation}
                                           navigator={this.props.navigator}
                                           {...data} />}

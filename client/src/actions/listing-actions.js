@@ -17,10 +17,11 @@ const listingActions = {
 
         // if we don't need to search because IDs were passed in with `options` parameter
         if (options.id !== undefined || options.IDs !== undefined) {
+          // todo load favorites call is also bringing in empty IDs property for options, going straight to catch block
           return getListingById(options.id || options.IDs, cache)
             .then((results) => {
               dispatch(storeResults(search, results, options.collection));
-              resolve(results);
+              return results;
             })
             .catch((err) => {
               console.error('Error getting listings by ID: ', err);
@@ -41,8 +42,8 @@ const listingActions = {
                 }
 
                 dispatch(storeResults(search, results, options.collection))
-                  .then(() => {
-                    resolve(true);
+                  .then((results) => {
+                    resolve(results);
                   });
               })
               .catch((err) => {

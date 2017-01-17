@@ -9,8 +9,8 @@ const yelp = (options = {}) => {
   if (options.latitude && options.longitude) {
     options.location = `${options.latitude},${options.longitude}`;
   }
-  // options.radius = options.radius || '500';
-  options.rankby = options.rankby || 'distance';
+  options.radius = options.radius || '500000';
+  // options.rankby = options.rankby || 'distance';
   // options.type = options.type || 'point_of_interest';
   options.keyword = options.keyword || 'hiking%20trails';
   options.key = config.secrets.google.apiKey;
@@ -54,7 +54,7 @@ const yelp = (options = {}) => {
       return Promise.all(promises)
         .then((data) => {
           console.log('Final Promise: ', data);
-          return _.map(data, 'result');
+          return _.map(data, 'result');   // todo ensure that id is mapped to place_id
         })
         .catch((err) => {
           console.log('error getting promise data', err);
