@@ -8,6 +8,10 @@ const yelp = (options = {}) => {
   
   const searchOptions = {...options}
 
+  if (searchOptions.id !== undefined) {
+    return searchByID(searchOptions.id);
+  }
+
   if (searchOptions.latitude && searchOptions.longitude) {
     searchOptions.location = `${searchOptions.latitude},${searchOptions.longitude}`;
   }
@@ -34,7 +38,7 @@ const yelp = (options = {}) => {
     }
   }, '');
 
-  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${parameters}`; // todo try regular search again
+  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${parameters}`; // todo try regular search instead of nearbysearch
   console.log('First URL: ',url);
   var place_ids_json = [];
 
@@ -77,6 +81,16 @@ const yelp = (options = {}) => {
       console.log('error getting google data', err);
     });
 
+};
+
+const searchByID = (id) => {  // todo consolidate this with the loop of promises above
+  return request.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${config.secrets.google.apiKey}`)
+    .then((data) => {
+      return {
+        ...data.result,
+        id: data.result.place_id
+      }
+    });
 };
 
 export default yelp;

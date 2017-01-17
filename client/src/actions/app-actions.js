@@ -60,12 +60,12 @@ const appActions = {
             loadedCollections: data.collections
           });
         })
-        .then(() => {
-          return dispatch(listingActions.loadHome());
-        })
         // .then(() => {
-        //   return dispatch(listingActions.loadFavorites());
+        //   return dispatch(listingActions.loadHome());
         // })
+        .then(() => {
+          return dispatch(listingActions.loadFavorites());
+        })
         .catch((err) => {
           console.error('Error initializing application: ', err);
         });

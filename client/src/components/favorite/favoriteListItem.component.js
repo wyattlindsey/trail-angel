@@ -125,7 +125,7 @@ export default class FavoriteListItem extends React.Component {
   }
 
   _handleRemoveFavorite() {
-    this.props.removeFromCollection(this.props.id, 'favorites');
+    this.props.removeFromCollection(this.props.id, 'favorites');    // todo figure out why last item to be removed doesn't disappear
   }
 
   _selectTrail() {

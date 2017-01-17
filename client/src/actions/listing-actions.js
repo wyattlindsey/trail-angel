@@ -18,8 +18,13 @@ const listingActions = {
         // if we don't need to search because IDs were passed in with `options` parameter
         if (options.id !== undefined || options.IDs !== undefined) {
           // todo load favorites call is also bringing in empty IDs property for options, going straight to catch block
-          return getListingById(options.id || options.IDs, cache)
+          // todo searchResults is getting the favorites list
+          getListingById(options.id || options.IDs, cache)
             .then((results) => {
+              results.forEach((result) => {
+                dispatch(listingActions.addToCollection(result, options.collection));
+              });
+
               dispatch(storeResults(search, results, options.collection));
               return results;
             })
@@ -36,7 +41,7 @@ const listingActions = {
           dataApi.yelp(options)
             .then((results) => {
               if (results === undefined) {
-                return resolve(false);
+                esolve(false);
               }
 
               results.forEach((result) => {
@@ -175,7 +180,6 @@ const listingActions = {
   loadFavorites: () => {
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
-        debugger;
         const userId = getState().userReducer.userId;
         return dataApi.trailAngelApi.getFavorites(userId)
           .then((IDs) => {
@@ -270,21 +274,31 @@ const listingActions = {
 const getListingById = (IDs, cache) => {
   if (!Array.isArray(IDs)) IDs = [IDs];
   let promises = IDs.map((id) => {
-    const cachedListing = _.find(cache, { 'id': id });
-    if (cachedListing === undefined) {
-      return dataApi.yelp({ id: id })
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          console.error('Error fetching listing by ID: ', err);
-        });
-    } else {
-      return cachedListing;
-    }
+    debugger;
+
+    return dataApi.yelp({ id: id })
+      .then((data) => {
+        return data;
+      });
+
+    // const cachedListing = _.find(cache, { 'id': id });
+    // if (cachedListing === undefined) {
+    //   return dataApi.yelp({ id: id })
+    //     .then((data) => {
+    //       return data;
+    //     })
+    //     .catch((err) => {
+    //       console.error('Error fetching listing by ID: ', err);
+    //     });
+    // } else {
+    //   return cachedListing;
+    // }
   });
 
-  return Promise.all(promises);
+  return Promise.all(promises)
+    .then((results) => {
+      return results;
+    });
 };
 
 const findInCache = (search, searches, cache) => {
@@ -314,14 +328,23 @@ const storeResults = (search, results, collection) => {
         results: IDs
       };
 
-      // create the array of tuples that AsyncStorage uses
-      const listings = results.map((result) => {
-        return [result.id, JSON.stringify({...result, type: 'listing' })];
-      });
+      if (collection === 'favorites') {   // todo make this more universal
+        results.forEach((result) => {
+          dispatch(listingActions.addToCollection(result, collection));
+        });
+
+        return dispatch(receiveListings(results, {  search,
+          results: _.map(results, 'id')}, collection));
+      }
 
       // update the in-memory store with the data and search/result object
       dispatch(receiveListings(results, {  search,
         results: _.map(results, 'id')}, collection));
+
+      // create the array of tuples that AsyncStorage uses
+      const listings = results.map((result) => {
+        return [result.id, JSON.stringify({...result, type: 'listing' })];
+      });
 
       // store the saved search with results IDs
       return AsyncStorage.setItem(search, JSON.stringify(searchToSave))
