@@ -79,6 +79,7 @@ export default class TraillistItem extends React.Component {
   }
 
   componentDidMount() {
+
     this._isMounted = true;
 
     setTimeout(() => {
@@ -90,14 +91,9 @@ export default class TraillistItem extends React.Component {
     }, 4000);
 
 
-    if (this.props.userLocation.coords.latitude === undefined ||
-        this.props.location.coordinate === undefined) {
-
-      return;
-    }
 
     dataApi.google.getDistance2Points(this.props.userLocation.coords,
-                                      this.props.location.coordinate)
+      { latitude:this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
       .then((distance) => {
         if (this._isMounted && distance) {
           this.setState({
@@ -109,8 +105,8 @@ export default class TraillistItem extends React.Component {
         console.error('Error getting distance for component: ', err);
       });
 
-    dataApi.weather(this.props.location.coordinate.latitude,
-                    this.props.location.coordinate.longitude)
+    dataApi.weather(this.props.geometry.location.lat,
+                    this.props.geometry.location.lng)
       .then((weather) => {
         if (this._isMounted && weather) {
           this.setState({
@@ -151,12 +147,13 @@ export default class TraillistItem extends React.Component {
                           <Icon name='star-o' size={20} color='darkgreen' />;
     return (
         <View>
+
           <TouchableHighlight onPress={this._selectTrail.bind(this)}
                               underlayColor='#ffffff'>
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
-                <Image source={{uri: this.props.image_url}} style={styles.photo} />
+                <Image source={{uri: this.props.icon}} style={styles.photo} />
                 <TouchableHighlight onPress={this._handlePress.bind(this)}
                                     style={styles.favorite}
                                     underlayColor='#ffffff'>
@@ -165,7 +162,7 @@ export default class TraillistItem extends React.Component {
               </View>
               <View style={styles.textContainer}>
                 <Text style={styles.title}>{this.props.name}</Text>
-                <Text style={styles.location}> {this.props.location.city} </Text>
+                <Text style={styles.location}> {this.props.formatted_address} </Text>
                 <Text style={styles.rating}> Rating: {this.props.rating} </Text>
                 <Text style={styles.description}
                       numberOfLines={0}>{this.props.snippet_text}</Text>

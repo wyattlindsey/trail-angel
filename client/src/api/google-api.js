@@ -12,6 +12,7 @@ const googleApi = {
 
     return request.get(url)
       .then((response) => {
+
         if (response.rows[0].elements[0].distance !== undefined) {
           return response.rows[0].elements[0].distance;
         } else {
