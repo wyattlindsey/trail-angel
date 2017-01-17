@@ -5,8 +5,11 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  Alert
 } from 'react-native';
 import MapView from 'react-native-maps';
+import trailAngelApi from '../../api/trailangel-api';
+
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -32,6 +35,78 @@ export default class CustomMarkers extends React.Component {
         }],
     };
     this.onMapPress = this.onMapPress.bind(this);
+  }
+  componentDidMount() {
+    this.getMappedTrail();
+  }
+  getMappedTrail(trailId, options) {
+    var savedMarkers;
+    trailAngelApi.getGeo(this.props.id, this.props.userId)
+    .then(data => {
+      console.log(data);
+      if (data.length > 0) {
+        var key = 0;
+        savedMarkers = data.map(coordinate => {
+          console.log(coordinate[0], coordinate[1]);
+          return {
+            coordinate: {
+              latitude: parseFloat(coordinate[1]),
+              longitude: parseFloat(coordinate[0]),
+            },
+            key: `foo${key++}`,
+          };
+        });
+        console.log(savedMarkers);
+        this.setState({
+          markers: savedMarkers
+        });
+      }
+    })
+    .catch(err => {
+      console.error("Failed to get mapped trail: ", err);
+    });
+  }
+  saveMappedTrail() {
+    var trailId = this.props.id;
+    var pins = this.state.markers.map(marker => {
+      return [marker.coordinate.longitude, marker.coordinate.latitude];
+    });
+    var options = {
+      userId: this.props.userId,
+      pins: pins
+    };
+    trailAngelApi.addGeo(trailId, options)
+    .then(response => {
+      console.log(response.status);
+      Alert.alert('Trail Saved!');
+    })
+    .catch(err => {
+      Alert.alert('There was an error saving your trail: ', err);
+    });
+  }
+  deleteMappedTrail() {
+    var options = {
+      userId: this.props.userId
+    };
+    trailAngelApi.removeGeo(this.props.id, options)
+    .then(response => {
+      console.log('Successfully deleted mapped trail: ', response);
+      this.resetTrail();
+    })
+    .catch(err => {
+      console.error('Error deleting mapped trail: ', err);
+    })
+  }
+  resetTrail() {
+    this.setState({
+      markers: [{
+          coordinate: {
+            latitude: this.props.location.coordinate.latitude,
+            longitude: this.props.location.coordinate.longitude
+        },
+        key: '0',
+      }]
+    });
   }
   onMapPress(e) {
     this.setState({
@@ -111,6 +186,30 @@ export default class CustomMarkers extends React.Component {
             style={styles.bubble}
           >
             <Text>Remove Last Pin</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+                this.saveMappedTrail();
+              }
+            }
+            style={styles.bubble}
+          >
+            <Text>Save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              Alert.alert(
+                'Are you sure?',
+                'This will delete your mapped trail permanently.',
+                [
+                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                  {text: 'OK', onPress: () => this.deleteMappedTrail()},
+                ]
+              )}
+            }
+            style={styles.bubble}
+          >
+            <Text>Delete</Text>
           </TouchableOpacity>
         </View>
       </View>
