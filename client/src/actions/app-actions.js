@@ -59,12 +59,6 @@ const appActions = {
         .then(() => {
           return dispatch(listingActions.loadFavorites());
         })
-        // .then(() => {
-        //   return dispatch(trailActions.fetchTrails({
-        //     latitude: getState().appReducer.geolocation.coords.latitude,
-        //     longitude: getState().appReducer.geolocation.coords.longitude
-        //   }));
-        // })
         .catch((err) => {
           console.error('Error initializing application: ', err);
         });

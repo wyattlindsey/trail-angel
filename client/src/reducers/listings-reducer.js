@@ -52,6 +52,16 @@ const listingsReducer = (state = initialState, action = {}) => {
         }
       }
 
+    case actionTypes.UPDATE_COLLECTION:
+      debugger;
+      return {
+        ...state,
+        collections: {
+          ...collections,
+          [action.name]: action.collection
+        }
+      };
+
     case actionTypes.RECEIVE_LISTINGS:
       let cache = {}, searches, collections;
 

@@ -6,10 +6,6 @@ import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
 import dataApi from '../api';
 
-// getListings is an entry point
-// so is loadFavorites
-// loadFavorites -> getListings -> getListingsById -> storeResults
-
 const listingActions = {
   getListings: (options = {}) => {
     return (dispatch, getState) => {
@@ -23,7 +19,8 @@ const listingActions = {
         if (options.id !== undefined || options.IDs !== undefined) {
           return getListingById(options.id || options.IDs, cache)
             .then((results) => {
-              return dispatch(storeResults(search, results, options.collection));
+              dispatch(storeResults(search, results, options.collection));
+              resolve(results);
             })
             .catch((err) => {
               console.error('Error getting listings by ID: ', err);
@@ -36,6 +33,7 @@ const listingActions = {
           if (!cachedListing) {
 
             dispatch(fetchListings());
+
             dataApi.yelp(options)
               .then((results) => {
                 if (results === undefined) {
@@ -54,8 +52,7 @@ const listingActions = {
           } else {
             // otherwise, pull from local storage and send no search to save
             dispatch(receiveListings(cachedListing, false));
-
-            return resolve(true);
+            resolve(true);    // ???
           }
         }
       });
@@ -114,26 +111,82 @@ const listingActions = {
         dataApi.trailAngelApi.getFavorites(userId)
           .then((IDs) => {
             if (IDs !== undefined && Array.isArray(IDs)) {
-              dispatch(listingActions.getListings({ IDs, collection: 'favorites' }))
+              dispatch(listingActions.getListings({IDs, collection: 'favorites'}))
                 .then((listings) => {
                   // ensure that every favorite from the server is marked as a favorite locally
-                  const favoritedListings = listings.map((listing) => {
-                    return {
-                      ...listing,
-                      isFavorite: true
-                    };
+                  listings.forEach((listing) => {
+                    dispatch(listingActions.addToCollection(listing.id, 'favorites'));
                   });
-
-                  dispatch(listingActions.updateListings(favoritedListings));
                   resolve(listings);
-                })
-                .catch((err) => {
-                  console.error('Error loading favorites: ', err);
-                  reject(err);
                 });
+            } else {
+              reject(new Error('Error loading favorites: invalid input'));
             }
+          })
+          .catch((err) => {
+            console.error('Error loading favorites: ', err);
+            reject(err);
           });
       });
+    };
+  },
+
+  addToCollection: (id, collectionName) => {
+    return (dispatch, getState) => {
+      const cache = getState().listingsReducer.cache;
+      const collections = getState().listingsReducer.collections;
+      const item = cache[id];
+      debugger;
+
+      const collectionArray = item.collections === undefined ? [] : item.collections;
+
+      dispatch(listingActions.updateListings([
+        {
+          ...item,
+          collections: [
+            ...collectionArray,
+            collectionName
+          ]
+        }
+      ]));
+
+      if (_.find(collections[collectionName], {'id': id}) === undefined) {
+        const modifiedCollection = [...collections[collectionName], cache[id]];
+
+        dispatch(updateCollection(collectionName, modifiedCollection));
+      }
+    };
+  },
+
+  removeFromCollection: (id, collectionName) => {
+    return (dispatch, getState) => {
+      const cache = getState().listingsReducer.cache;
+      const collections = getState().listingsReducer.collections;
+      const item = {...cache[id]};
+      if (item.collections === undefined) {
+        return;
+      }
+      const i = item.collections.indexOf(collectionName);
+
+      if (i !== -1) {
+        item.collections.splice(i, 1);
+      }
+
+      dispatch(listingActions.updateListings([
+        {
+          ...cache[id],
+          collections: item.collections
+        }
+      ]));
+
+      const j = _.find(collections[collectionName], {'id': id});
+
+      if (j !== undefined) {
+        const modifiedCollection = [...collections[collectionName]];
+        modifiedCollection.splice(j, 1);
+
+        dispatch(updateCollection(collectionName, modifiedCollection));
+      }
     };
   }
 };
@@ -200,6 +253,10 @@ const storeResults = (search, results, collection) => {
   };
 }
 
+const removeFromCollection = (id, collection) => {
+
+};
+
 const fetchListings = () => {
   return {
     type: actionTypes.FETCH_LISTINGS
@@ -213,6 +270,14 @@ const receiveListings = (searchResults, searchToSave, collection) => {
     searchToSave,
     collection
   }
+};
+
+const updateCollection = (name, collection) => {
+  return {
+    type: actionTypes.UPDATE_COLLECTION,
+    name,
+    collection
+  };
 };
 
 
