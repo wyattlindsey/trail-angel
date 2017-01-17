@@ -3,7 +3,8 @@ import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
 import * as userActions from './user-actions';
 import * as trailActions from './trail-actions';
-import * as favoriteActions from './favorite-actions';
+import listingActions from './listing-actions';
+import favoriteActions from './favorite-actions';
 
 const appActions = {
   getGeolocation: (options = {
@@ -40,6 +41,9 @@ const appActions = {
       });
       return dispatch(userActions.loginUser(profile))
         .then(() => {
+          return dispatch(appActions.getGeolocation());
+        })
+        .then(() => {
           return loadAsyncStorageData();
         })
         .then((data) => {
@@ -47,23 +51,20 @@ const appActions = {
             type: actionTypes.LOAD_SAVED_SEARCHES,
             loadedSearches: data.searches
           });
-          return dispatch({
+          dispatch({
             type: actionTypes.LOAD_SAVED_LISTINGS,
             loadedListings: data.listings
           });
         })
         .then(() => {
-          return dispatch(favoriteActions.fetchFavorites());
+          return dispatch(listingActions.loadFavorites());
         })
-        .then(() => {
-          return dispatch(appActions.getGeolocation());
-        })
-        .then(() => {
-          return dispatch(trailActions.fetchTrails({
-            latitude: getState().appReducer.geolocation.coords.latitude,
-            longitude: getState().appReducer.geolocation.coords.longitude
-          }));
-        })
+        // .then(() => {
+        //   return dispatch(trailActions.fetchTrails({
+        //     latitude: getState().appReducer.geolocation.coords.latitude,
+        //     longitude: getState().appReducer.geolocation.coords.longitude
+        //   }));
+        // })
         .catch((err) => {
           console.error('Error initializing application: ', err);
         });

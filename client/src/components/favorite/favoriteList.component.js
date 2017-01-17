@@ -31,17 +31,21 @@ export default class FavoriteList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchFavorites(this.props.userId)
-      .then((data) => {
-        if (data !== undefined) {
-          this.setState({
-            dataSource: this.ds.cloneWithRows(data.favorites)
-          });
-        }
-      })
-      .catch((err) => {
-        console.error('error fetching favorites from favoritesList component', err);
-      });
+    debugger;
+    this.setState({
+      dataSource: this.ds.cloneWithRows(this.props.favorites)
+    });
+    // this.props.fetchFavorites(this.props.userId)
+    //   .then((data) => {
+    //     if (data !== undefined) {
+    //       this.setState({
+    //         dataSource: this.ds.cloneWithRows(data.favorites)
+    //       });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error('error fetching favorites from favoritesList component', err);
+    //   });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,8 +67,7 @@ export default class FavoriteList extends React.Component {
           enableEmptySections={true}
           automaticallyAdjustContentInsets={false}
           dataSource={this.state.dataSource}
-          renderRow={(data) => <Row removeFavorite={this.props.removeFavorite}
-                                    userId={this.props.userId}
+          renderRow={(data) => <Row updateListing={this.props.updateListings}
                                     userLocation={this.props.userLocation}
                                     navigator={this.props.navigator}
                                     {...data} />}

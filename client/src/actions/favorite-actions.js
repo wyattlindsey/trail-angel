@@ -1,6 +1,42 @@
 import actionTypes from './action-types';
+import listingActions from './listing-actions';
 import dataApi from '../api';
 import * as _ from 'lodash';
+
+const favoriteActions = {
+  loadFavorites: () => {
+    return (dispatch, getState) => {
+      return new Promise((resolve, reject) => {
+        const userId = getState().userReducer.userId;
+
+        dataApi.trailAngelApi.getFavorites(userId)
+          .then((data) => {
+            if (data === undefined) {
+              console.error('No data retrieved from server');
+              reject();
+
+            } else if (Array.isArray(data)) {
+
+              data.forEach((item) => {
+                item.isFavorite = true;
+              });
+
+              listingActions.getListings({IDs: _.map(data, 'id')})
+                .then(() => {
+                  resolve();
+                })
+                .catch((err) => {
+                  console.error('Error loading favorites: ', err);
+                  reject(err);
+                });
+            }
+          });
+      });
+    };
+  }
+};
+
+export default favoriteActions;
 
 const requestFavorites = (userId) => {
   return {
@@ -16,7 +52,7 @@ const receiveFavorites = (favorites) => {
   };
 };
 
-export const fetchFavorites = () => {
+const fetchFavorites = () => {
   return (dispatch, getState) => {
     const userId = getState().userReducer.userId;
     dispatch(requestFavorites(userId));
@@ -48,7 +84,7 @@ export const fetchFavorites = () => {
   };
 };
 
-export const addFavorite = (trailId) => {
+const addFavorite = (trailId) => {
   return (dispatch, getState) => {
     const userId = getState().userReducer.userId;
     return dataApi.trailAngelApi.addFavorite(userId, trailId)
@@ -84,7 +120,7 @@ export const addFavorite = (trailId) => {
   };
 };
 
-export const removeFavorite = (trailId) => {
+const removeFavorite = (trailId) => {
   return (dispatch, getState) => {
     const userId = getState().userReducer.userId;
     return dataApi.trailAngelApi.removeFavorite(userId, trailId)

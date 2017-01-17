@@ -9,8 +9,9 @@ const initialState = {
   isFetching: false,
   isFetchCancelled: false,
   cache: {},
-  searchResults: [],
-  searches: {}
+  collections: {},
+  searches: {},
+  searchResults: []   // todo convert this to a collection
 };
 
 const listingsReducer = (state = initialState, action = {}) => {
@@ -33,7 +34,7 @@ const listingsReducer = (state = initialState, action = {}) => {
     case actionTypes.LOAD_SAVED_LISTINGS:
       return {
         ...state,
-        cache: action.loadedListings
+        cache: action.loadedListings || {}
       };
 
     case actionTypes.LOAD_SAVED_SEARCHES:
@@ -52,8 +53,21 @@ const listingsReducer = (state = initialState, action = {}) => {
       }
 
     case actionTypes.RECEIVE_LISTINGS:
-      let cache = {}, searches;
+      let cache = {}, searches, collections;
 
+      if (action.collection) {
+        if (state.collections[action.collection] === undefined) {
+          state.collections[action.collection] = {};
+        }
+
+        collections = {
+          ...state.collections,
+          [action.collection]: action.searchResults
+        }
+      }
+
+      // actions.searchToSave is a boolean set to true if this set of results should be
+      // persisted to the cache under those particular search options
       if (action.searchToSave) {
         _.each(action.searchResults, (result) => {
           if (state.cache[result.id] === undefined) {
@@ -80,7 +94,8 @@ const listingsReducer = (state = initialState, action = {}) => {
           isFetchCancelled: false,
           searchResults: action.searchResults,
           cache,
-          searches
+          searches,
+          collections
         };
 
       } else {
@@ -92,7 +107,8 @@ const listingsReducer = (state = initialState, action = {}) => {
           isFetching: false,
           isFetchCancelled: false,
           searchResults: action.searchResults,
-          cache
+          cache,
+          collections
         };
       };
 
