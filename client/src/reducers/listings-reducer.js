@@ -43,6 +43,12 @@ const listingsReducer = (state = initialState, action = {}) => {
         searches: action.loadedSearches
       }
 
+    case actionTypes.LOAD_SAVED_COLLECTIONS:
+      return {
+        ...state,
+        collections: action.loadedCollections
+      };
+
     case actionTypes.UPDATE_LISTINGS:
       return {
         ...state,
@@ -50,7 +56,7 @@ const listingsReducer = (state = initialState, action = {}) => {
           ...state.cache,
           ...action.updatedListings
         }
-      }
+      };
 
     case actionTypes.UPDATE_COLLECTION:
       debugger;

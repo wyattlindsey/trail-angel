@@ -55,6 +55,10 @@ const appActions = {
             type: actionTypes.LOAD_SAVED_LISTINGS,
             loadedListings: data.listings
           });
+          dispatch({
+            type: actionTypes.LOAD_SAVED_COLLECTIONS,
+            loadedCollections: data.collections
+          });
         })
         .then(() => {
           return dispatch(listingActions.loadFavorites());
@@ -83,11 +87,13 @@ const loadAsyncStorageData = () => {
 
       const searches = {};
       const listings = {};
+      const collections = {};
 
       stores.forEach((store) => {
         const data = JSON.parse(store[1]);
-        if (data.type === undefined) {
-          return;
+
+        if (/^collection:/.test(store[0])) {
+          collections[store[0]] = store[1];
         }
 
         switch (data.type) {
@@ -102,7 +108,7 @@ const loadAsyncStorageData = () => {
         }
       });
 
-      return { searches, listings };
+      return { searches, listings, collections };
     })
     .catch((err) => {
       console.error('Error loading data from local storage: ', err);

@@ -136,7 +136,6 @@ const listingActions = {
       const cache = getState().listingsReducer.cache;
       const collections = getState().listingsReducer.collections;
       const item = cache[id];
-      debugger;
 
       const collectionArray = item.collections === undefined ? [] : item.collections;
 
@@ -154,6 +153,8 @@ const listingActions = {
         const modifiedCollection = [...collections[collectionName], cache[id]];
 
         dispatch(updateCollection(collectionName, modifiedCollection));
+
+        AsyncStorage.setItem(`collection:${collectionName}`, JSON.stringify(modifiedCollection));
       }
     };
   },
@@ -186,6 +187,8 @@ const listingActions = {
         modifiedCollection.splice(j, 1);
 
         dispatch(updateCollection(collectionName, modifiedCollection));
+
+        AsyncStorage.setItem(`collection:${collectionName}`, JSON.stringify(modifiedCollection));
       }
     };
   }
@@ -252,10 +255,6 @@ const storeResults = (search, results, collection) => {
     });
   };
 }
-
-const removeFromCollection = (id, collection) => {
-
-};
 
 const fetchListings = () => {
   return {
