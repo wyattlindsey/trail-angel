@@ -38,7 +38,6 @@ const listingActions = {
               if (results === undefined) {
                 return resolve(false);
               }
-              debugger;
 
               results.forEach((result) => {
                 dispatch(listingActions.addToCollection(result, options.collection));
@@ -157,7 +156,7 @@ const listingActions = {
       return new Promise((resolve, reject) => {
         const collections = getState().listingsReducer.collections;
         const userLocation = getState().appReducer.geolocation;
-        dispatch(listingActions.getListings({
+        return dispatch(listingActions.getListings({
           longitude: userLocation.coords.longitude,
           latitude: userLocation.coords.latitude,
           collection: 'home'
@@ -176,8 +175,9 @@ const listingActions = {
   loadFavorites: () => {
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
+        debugger;
         const userId = getState().userReducer.userId;
-        dataApi.trailAngelApi.getFavorites(userId)
+        return dataApi.trailAngelApi.getFavorites(userId)
           .then((IDs) => {
             if (IDs !== undefined && Array.isArray(IDs)) {
               dispatch(listingActions.getListings({IDs, collection: 'favorites'}))

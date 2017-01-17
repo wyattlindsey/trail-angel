@@ -59,7 +59,13 @@ const yelp = (options = {}) => {
       return Promise.all(promises)
         .then((data) => {
           console.log('Final Promise: ', data);
-          return _.map(data, 'result');   // todo ensure that id is mapped to place_id
+          // todo ensure that id is mapped to place_id
+          return _.map(data, (item) => {
+            return {
+              ...item.result,
+              id: item.result.place_id
+            };
+          });
         })
         .catch((err) => {
           console.log('error getting promise data', err);

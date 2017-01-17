@@ -64,7 +64,7 @@ const appActions = {
           return dispatch(listingActions.loadHome());
         })
         // .then(() => {
-          // return dispatch(listingActions.loadFavorites());
+        //   return dispatch(listingActions.loadFavorites());
         // })
         .catch((err) => {
           console.error('Error initializing application: ', err);
