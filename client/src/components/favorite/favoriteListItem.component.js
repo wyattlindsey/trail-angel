@@ -7,6 +7,7 @@ import {  View,
           ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
+import WeatherForecast from '../weather/weather-forecast.component';
 import Details from '../trail/trailDetail.component';
 import Dashboard from './favoriteMapDashboard.component';
 
@@ -138,6 +139,20 @@ export default class FavoriteListItem extends React.Component {
     });
   }
 
+  _handlePressWeather() {
+    this.props.navigator.push({
+      title: 'Daily Forecast',
+      component: WeatherForecast,
+      passProps: {
+        ...this.state.weather,
+        forecast: this.state.weather.daily.data,
+        type: 'daily',
+        navigator: this.props.navigator,
+        handlePress: this._handlePressDailyForecast
+      }
+    })
+  }
+
   _handleGoToMapDashboard() {
     this.props.navigator.push({
       title: 'Dashboard',
@@ -189,13 +204,32 @@ export default class FavoriteListItem extends React.Component {
                   marginBottom: 20,
                   marginLeft: 5
                 }}>
-                  {this.state.weather ? <WeatherIcon icon={this.state.weather.currently.icon}
-                                                     color='darkgreen'
-                                                     size={40}
-                                                     style={{
-                                                       opacity: 0.8
-                                                     }}
-                  /> :
+                  {this.state.weather ? <View>
+                                          <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
+                                                              underlayColor='white'
+                                          >
+                                            <View>
+                                              <WeatherIcon icon={this.state.weather.currently.icon}
+                                                           color='darkgreen'
+                                                           size={40}
+                                                           style={{
+                                                             opacity: 0.8
+                                                           }}
+                                              />
+                                              <Text style={{
+                                                textAlign: 'center',
+                                                padding: 5,
+                                                color: 'darkgreen'
+                                              }}>
+                                              {this.state.weather ?
+                                                `${Math.round(Number(this.state.weather.currently.temperature))}°F` :
+                                                ''
+                                              }
+                                              </Text>
+                                            </View>
+                                          </TouchableHighlight>
+                                        </View>
+                    :
                     <ActivityIndicator  size='small'
                                         color='darkgreen'
                                         style={{
@@ -203,16 +237,6 @@ export default class FavoriteListItem extends React.Component {
                                         }}
                     />
                   }
-                  <Text style={{
-                    textAlign: 'center',
-                    padding: 5,
-                    color: 'darkgreen'
-                  }}>
-                    {this.state.weather ?
-                      `${Math.round(Number(this.state.weather.currently.temperature))}°F` :
-                      ''
-                    }
-                  </Text>
                 </View>
               </View>
             </View>
