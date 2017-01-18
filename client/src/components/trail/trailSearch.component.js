@@ -45,18 +45,41 @@ export default class SearchBar extends React.Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      dataSource: this.ds
+      dataSource: this.ds,
+      searchTimeout: false
     };
 
     this._debouncedHandleInput = _.debounce(this._handleInput, 300);
   }
 
   _handleInput(text) {
+    let textInput = text.trim().replace(/ /g, '%20');
+    this.setState({
+      searchTimeout: false
+    });
+
     if (text === '') {
       this.props.cancelRequest();
     } else {
       this.props.getListings({
-        location: text
+        name: textInput,
+        collection: 'search',
+        latitude: this.props.userLocation.coords.latitude,
+        longitude: this.props.userLocation.coords.longitude
+      })
+      .then((success) => {
+        if (!success) this.props.cancelRequest();
+        this.setState({
+          searchTimeout: !success
+        });
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.searchResults !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(this.props.searchResults)
       });
     }
   }
@@ -84,23 +107,34 @@ export default class SearchBar extends React.Component {
           />
         </View>
         <View style={styles.searchResults}>
-          <ActivityIndicator animating={this.props.isFetching}
-                             style={[styles.centering, styles.horizontal,
+          {this.state.searchTimeout ?
+            <View style={{ justifyContent: 'center',
+                           padding: 40 }}>
+              <Text style={{ fontSize: 18 }}>
+                No results found
+              </Text>
+            </View>
+             :
+            <View>
+              <ActivityIndicator animating={this.props.isFetching}
+                                 style={[styles.centering, styles.horizontal,
                                    { height: this.props.isFetching ? 260 : 0 }]}
-                             color='darkgreen'
-                             size='large' />
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={(data) => <Row addFavorite={this.props.addFavorite}
-                                      removeFavorite={this.props.removeFavorite}
-                                      userLocation={this.props.userLocation}
-                                      navigator={this.props.navigator}
-                                      {...data} />}
-            enableEmptySections={true}
-            style={styles.searchResults}
-            renderSeparator={(sectionId, rowId) => <View key={rowId}
-                                                         style={styles.separator} />}
-          />
+                                 color='darkgreen'
+                                 size='large' />
+              <ListView
+                dataSource={this.state.dataSource}
+                renderRow={(data) => <Row addToCollection={this.props.addToCollection}
+                                          removeFromCollection={this.props.removeFromCollection}
+                                          userLocation={this.props.userLocation}
+                                          navigator={this.props.navigator}
+                                          {...data} />}
+                enableEmptySections={true}
+                style={styles.searchResults}
+                renderSeparator={(sectionId, rowId) => <View key={rowId}
+                                                             style={styles.separator} />}
+              />
+            </View>
+          }
         </View>
       </View>
     );

@@ -10,7 +10,7 @@ import Trails from './trails-container';
 import Favorites from './favorites-container';
 import Search from '../containers/search-container';
 import Settings from '../components/trail/trailSettings.component';
-import * as appActions from '../actions/app-actions';
+import appActions from '../actions/app-actions';
 
 const styles = StyleSheet.create({
   tabContent: {
@@ -55,10 +55,6 @@ class TrailAngel extends Component {
       avatarUrl: profile.picture,
       nickname: profile.nickname
     })
-      .then(() => {
-        // how can we tell the TrailList component to render with new data?
-        return;
-      })
       .catch((err) => {
         console.error('error initializing application', err);
       });
@@ -127,7 +123,7 @@ class TrailAngel extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(appActions, dispatch)
+    actions: bindActionCreators({...appActions}, dispatch)
   };
 };
 

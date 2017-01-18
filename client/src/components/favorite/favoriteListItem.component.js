@@ -83,16 +83,19 @@ export default class FavoriteListItem extends React.Component {
   }
 
   componentDidMount() {
-
     this._isMounted = true;
+
     if (this.props.userLocation.coords.latitude === undefined ||
-      this.props.location.coordinate === undefined) {
+      this.props.geometry.location === undefined) {
 
       return;
     }
 
     dataApi.google.getDistance2Points(this.props.userLocation.coords,
-      this.props.location.coordinate)
+                                      {
+                                        latitude: this.props.geometry.lat,
+                                        longitude: this.props.geometry.lng
+                                      })
       .then((distance) => {
         if (this._isMounted && distance) {
           this.setState({
@@ -104,8 +107,7 @@ export default class FavoriteListItem extends React.Component {
         console.error('Error getting distance for component: ', err);
       });
 
-    dataApi.weather(this.props.location.coordinate.latitude,
-      this.props.location.coordinate.longitude)
+    dataApi.weather(this.props.geometry.lat, this.props.geometry.lng)
       .then((weather) => {
         if (this._isMounted && weather) {
           this.setState({
@@ -123,10 +125,10 @@ export default class FavoriteListItem extends React.Component {
   }
 
   _handleRemoveFavorite() {
-    this.props.removeFavorite(this.props.id);
+    this.props.removeFromCollection(this.props.id, 'favorites');    // todo figure out why last item to be removed doesn't disappear
   }
 
-  _selectTrail(e) {
+  _selectTrail() {
     this.props.navigator.push({
       title: 'Trail Detail',
       component: Details,
@@ -148,7 +150,7 @@ export default class FavoriteListItem extends React.Component {
 
   render() {
     let view;
-    if (this.props.location === undefined) {
+    if (this.props.geometry === undefined) {
       view = <View />
     } else {
       view =
@@ -172,7 +174,7 @@ export default class FavoriteListItem extends React.Component {
               </View>
               <View style={styles.textContainer}>
                 <Text style={styles.title}>{this.props.name}</Text>
-                <Text style={styles.location}> {this.props.location.city} </Text>
+                <Text style={styles.location}> {this.props.formatted_address} </Text>
                 <Text style={styles.rating}> Rating: {this.props.rating} </Text>
                 <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
               </View>
