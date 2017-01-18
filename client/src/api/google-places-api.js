@@ -3,84 +3,89 @@
 import * as config from '../../config';
 import request from '../utils/request';
 
-const googlePlacesApi = (options = {}) => {
-  
-  const searchOptions = {...options}
+const googlePlacesApi = {
 
-  if (searchOptions.id !== undefined) {
-    return searchByID(searchOptions.id);
-  }
+  search: (options = {}) => {
+    const searchOptions = {...options}
 
-  if (searchOptions.latitude && searchOptions.longitude) {
-    searchOptions.location = `${searchOptions.latitude},${searchOptions.longitude}`;
-  }
-  searchOptions.rankby = searchOptions.rankby || 'distance';
-  searchOptions.keyword = searchOptions.keyword || 'hiking%20trails';
-  searchOptions.key = config.secrets.google.apiKey;
-
-  delete searchOptions.latitude;
-  delete searchOptions.longitude;
-  if (searchOptions.collection !== undefined) {
-    delete searchOptions.collection;
-  }
-
-  const keys = Object.keys(searchOptions);
-
-  let parameters = keys.reduce((memo, k, i) => {
-    if (!searchOptions[k]) {
-      return memo;
-    } else {
-      return memo += `${k}=${searchOptions[k] || ''}${i === keys.length - 1 ? '' : '&'}`;
+    if (searchOptions.id !== undefined) {
+      return searchByID(searchOptions.id);
     }
-  }, '');
 
-  var url = `https://maps.googleapis.com/maps/api/place/search/json?${parameters}`;
+    if (searchOptions.latitude && searchOptions.longitude) {
+      searchOptions.location = `${searchOptions.latitude},${searchOptions.longitude}`;
+    }
+    searchOptions.rankby = searchOptions.rankby || 'distance';
+    searchOptions.keyword = searchOptions.keyword || 'hiking%20trails';
+    searchOptions.key = config.secrets.google.apiKey;
 
-  return request.get(url)
-    .then((data) => {
-      if (data === undefined || data.results === undefined) {
-        return;
+    delete searchOptions.latitude;
+    delete searchOptions.longitude;
+    if (searchOptions.collection !== undefined) {
+      delete searchOptions.collection;
+    }
+
+    const keys = Object.keys(searchOptions);
+
+    let parameters = keys.reduce((memo, k, i) => {
+      if (!searchOptions[k]) {
+        return memo;
+      } else {
+        return memo += `${k}=${searchOptions[k] || ''}${i === keys.length - 1 ? '' : '&'}`;
       }
+    }, '');
 
-      let promises = data.results.map((result) => {
-        const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.place_id}&key=${searchOptions.key}`;
-        let photoDetailsUrl = false;
+    var url = `https://maps.googleapis.com/maps/api/place/search/json?${parameters}`;
 
-        if (result.photos !== undefined) {
-          photoDetailsUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${result.photos[0].photo_reference}&key=${searchOptions.key}`;
+    return request.get(url)
+      .then((data) => {
+        if (data === undefined || data.results === undefined) {
+          return;
         }
 
-        return request.get(placeDetailsUrl)
-          .then((placeDetails) => {
-            return placeDetails.result;
-          })
-          .then((details) => {
-            return {
-              ...details,
-              photoUrl: photoDetailsUrl || details.icon
-            }
-          });
-      });
+        let promises = data.results.map((result) => {
+          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.place_id}&key=${searchOptions.key}`;
+          let thumbnailUrl = false;
+          let photoReference = false;
 
-      return Promise.all(promises)
-        .then((data) => {
-          console.log('Final Promise: ', data);
-          return data.map((item) => {
-            return {
-              ...item,
-              id: item.place_id
-            };
-          });
-        })
-        .catch((err) => {
-          console.log('error getting promise data', err);
+          if (result.photos !== undefined) {
+            thumbnailUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${result.photos[0].photo_reference}&key=${searchOptions.key}`;
+            photoReference = result.photo_reference;
+          }
+
+          return request.get(placeDetailsUrl)
+            .then((placeDetails) => {
+              return placeDetails.result;
+            })
+            .then((details) => {
+              return {
+                ...details,
+                photoReference,
+                photoUrl: thumbnailUrl || details.icon
+              }
+            });
         });
 
+        return Promise.all(promises)
+          .then((data) => {
+            console.log('Final Promise: ', data);
+            return data.map((item) => {
+              return {
+                ...item,
+                id: item.place_id
+              };
+            });
+          })
+          .catch((err) => {
+            console.log('error getting promise data', err);
+          });
 
-    })
-    .catch((err) => {
-      console.log('error getting google data', err);
-    });
+
+      })
+      .catch((err) => {
+        console.log('error getting google data', err);
+      });
+  }
 
 };
 
@@ -96,5 +101,7 @@ const searchByID = (id) => {  // todo consolidate this with the loop of promises
       }
     });
 };
+
+
 
 export default googlePlacesApi;

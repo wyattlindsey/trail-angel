@@ -38,7 +38,7 @@ export const search = (options) => {
   return (dispatch, getState) => {
     if (!getState().searchReducer.isCancelled) {
       dispatch(submitSearch(options));
-      return dataApi.googlePlaces(options)
+      return dataApi.googlePlaces.search(options)
         .then((results) => {
           associateFavorites(results, getState().favoritesReducer.favorites);
           return dispatch(receiveSearchResults(results));
