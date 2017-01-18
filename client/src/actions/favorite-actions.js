@@ -68,7 +68,7 @@ const fetchFavorites = () => {
             if (cachedTrail !== undefined) {
               return Promise.resolve(cachedTrail);
             } else {
-              return dataApi.yelp({ id: item });
+              return dataApi.googlePlaces({ id: item });
             }
           });
 

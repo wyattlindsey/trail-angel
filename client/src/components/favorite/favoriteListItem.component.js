@@ -93,8 +93,8 @@ export default class FavoriteListItem extends React.Component {
 
     dataApi.google.getDistance2Points(this.props.userLocation.coords,
                                       {
-                                        latitude: this.props.geometry.lat,
-                                        longitude: this.props.geometry.lng
+                                        latitude: this.props.geometry.location.lat,
+                                        longitude: this.props.geometry.location.lng
                                       })
       .then((distance) => {
         if (this._isMounted && distance) {
@@ -107,7 +107,7 @@ export default class FavoriteListItem extends React.Component {
         console.error('Error getting distance for component: ', err);
       });
 
-    dataApi.weather(this.props.geometry.lat, this.props.geometry.lng)
+    dataApi.weather(this.props.geometry.location.lat, this.props.geometry.location.lng)
       .then((weather) => {
         if (this._isMounted && weather) {
           this.setState({

@@ -80,7 +80,6 @@ export default class TraillistItem extends React.Component {
   }
 
   componentDidMount() {
-
     this._isMounted = true;
 
     const isFavorite = this.props.collections !== undefined && this.props.collections.indexOf('favorites') !== -1;
