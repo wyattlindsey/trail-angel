@@ -136,12 +136,12 @@ export default class TraillistItem extends React.Component {
 
   _toggleFavorite() {
     if (!this.state.isFavorite) {
-      this.props.addToCollection(this.props.id, 'favorites');
+      this.props.addToCollection(this.props.data, 'favorites');
       this.setState({
         isFavorite: true
       });
     } else {
-      this.props.removeFromCollection(this.props.id, 'favorites');
+      this.props.removeFromCollection(this.props.data, 'favorites');
       this.setState({
         isFavorite: false
       });

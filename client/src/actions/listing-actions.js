@@ -33,57 +33,39 @@ const listingActions = {
             });
         } else {
           // otherwise search based on search terms
-          const cachedListing = findInCache(search, searches, cache);
+          const cachedListings = findInCache(search, searches, cache);
+          // if the search isn't cached, fetch the data
+          if (!cachedListings) {
+            dispatch(fetchListings());
 
-          // TEMP
-          dispatch(fetchListings());
+            dataApi.yelp(options)
+              .then((results) => {
+                if (results === undefined) {
+                  resolve(false);
+                }
 
-          dataApi.yelp(options)
-            .then((results) => {
-              if (results === undefined) {
-                esolve(false);
-              }
+                results.forEach((result) => {
+                  dispatch(listingActions.addToCollection(result, options.collection));
+                });
 
-              results.forEach((result) => {
-                dispatch(listingActions.addToCollection(result, options.collection));
+                dispatch(storeResults(search, results, options.collection))
+                  .then((results) => {
+                    resolve(results);
+                  });
+              })
+              .catch((err) => {
+                console.error('Error retrieving listing data', err);
+                reject(err);
               });
 
-              dispatch(storeResults(search, results, options.collection))
-                .then((results) => {
-                  resolve(results);
-                });
-            })
-            .catch((err) => {
-              console.error('Error retrieving listing data', err);
-              reject(err);
-            });
-          // END TEMP
-
-          // if the search isn't cached, fetch the data
-          // if (!cachedListing) {
-          //
-          //   dispatch(fetchListings());
-          //
-          //   dataApi.yelp(options)
-          //     .then((results) => {
-          //       if (results === undefined) {
-          //         return resolve(false);
-          //       }
-          //
-          //       dispatch(storeResults(search, results, options.collection))
-          //         .then((results) => {
-          //           resolve(results);
-          //         });
-          //     })
-          //     .catch((err) => {
-          //       console.error('Error retrieving listing data', err);
-          //       reject(err);
-          //     });
-          // } else {
+          } else {
             // otherwise, pull from local storage and send no search to save
-            // dispatch(receiveListings(cachedListing, false));
-            // resolve(true);    // ???
-          // }
+            dispatch(receiveListings(cachedListings, false, options.collection));
+            cachedListings.forEach((listing) => {
+              dispatch(listingActions.addToCollection(listing, options.collection));
+            });
+            resolve(cachedListings);
+          }
         }
       });
     };
@@ -144,10 +126,6 @@ const listingActions = {
           } else {
             dispatch(listingActions.getListings({ IDs: _.map(collections[collection], 'id'), collection }))
               .then((listings) => {
-                // ensure that every favorite from the server is marked as a favorite locally
-                listings.forEach((listing) => {
-                  dispatch(listingActions.addToCollection(listing.id, 'favorites'));
-                });
                 resolve(listings);
               });
           }
@@ -207,8 +185,9 @@ const listingActions = {
   addToCollection: (item, collectionName) => {
     return (dispatch, getState) => {
       const collections = getState().listingsReducer.collections;
-
       const collectionArray = item.collections === undefined ? [] : item.collections;
+
+      // todo need to start using id again for item but that means using the cache again
 
       if (collectionName === 'favorite') {    // todo factor this out to separate module
         dataApi.trailAngelApi.addFavorite(getState().userReducer.userId, item.id);
@@ -280,24 +259,18 @@ const listingActions = {
 const getListingById = (IDs, cache) => {
   if (!Array.isArray(IDs)) IDs = [IDs];
   let promises = IDs.map((id) => {
-
-    return dataApi.yelp({ id: id })
-      .then((data) => {
-        return data;
-      });
-
-    // const cachedListing = _.find(cache, { 'id': id });
-    // if (cachedListing === undefined) {
-    //   return dataApi.yelp({ id: id })
-    //     .then((data) => {
-    //       return data;
-    //     })
-    //     .catch((err) => {
-    //       console.error('Error fetching listing by ID: ', err);
-    //     });
-    // } else {
-    //   return cachedListing;
-    // }
+    const cachedListing = _.find(cache, { 'id': id });
+    if (cachedListing === undefined) {
+      return dataApi.yelp({ id: id })
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.error('Error fetching listing by ID: ', err);
+        });
+    } else {
+      return cachedListing;
+    }
   });
 
   return Promise.all(promises)

@@ -81,6 +81,7 @@ const listingsReducer = (state = initialState, action = {}) => {
         }
       }
 
+      // todo make sure to clear this if the search line clears
       const searchResults = action.collection === 'search' ? action.searchResults : state.searchResults
 
       // actions.searchToSave is a boolean set to true if this set of results should be
