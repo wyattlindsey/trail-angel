@@ -31,6 +31,15 @@ const listingsReducer = (state = initialState, action = {}) => {
         isFetchCancelled: true
       };
 
+    case actionTypes.STORE_LISTING:
+      return {
+        ...state,
+        cache: {
+          ...state.cache,
+          ...action.listing
+        }
+      }
+
     case actionTypes.LOAD_SAVED_LISTINGS:
       return {
         ...state,

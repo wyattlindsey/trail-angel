@@ -21,11 +21,12 @@ const listingActions = {
           // todo searchResults is getting the favorites list
           getListingById(options.id || options.IDs, cache)
             .then((results) => {
-              results.forEach((result) => {
-                dispatch(listingActions.addToCollection(result, options.collection));
-              });
-
               dispatch(storeResults(search, results, options.collection));
+
+              // results.forEach((result) => {
+              //   dispatch(listingActions.addToCollection(result.id, options.collection));
+              // });
+
               return results;
             })
             .catch((err) => {
@@ -44,12 +45,12 @@ const listingActions = {
                   resolve(false);
                 }
 
-                results.forEach((result) => {
-                  dispatch(listingActions.addToCollection(result, options.collection));
-                });
-
                 dispatch(storeResults(search, results, options.collection))
                   .then((results) => {
+                    debugger;
+                    results.forEach((result) => {
+                      dispatch(listingActions.addToCollection(result.id, options.collection));
+                    });
                     resolve(results);
                   });
               })
@@ -62,7 +63,7 @@ const listingActions = {
             // otherwise, pull from local storage and send no search to save
             dispatch(receiveListings(cachedListings, false, options.collection));
             cachedListings.forEach((listing) => {
-              dispatch(listingActions.addToCollection(listing, options.collection));
+              dispatch(listingActions.addToCollection(listing.id, options.collection));
             });
             resolve(cachedListings);
           }
@@ -166,7 +167,10 @@ const listingActions = {
                 .then((listings) => {
                   // ensure that every favorite from the server is marked as a favorite locally
                   listings.forEach((listing) => {
-                    dispatch(listingActions.addToCollection(listing.id, 'favorites'));
+                    dispatch(listingActions.saveListing(listing))
+                      .then(() => {
+                        // dispatch(listingActions.addToCollection(listing.id, 'favorites'));
+                      });
                   });
                   resolve(listings);
                 });
@@ -182,28 +186,34 @@ const listingActions = {
     };
   },
 
-  addToCollection: (item, collectionName) => {
+  addToCollection: (id, collectionName) => {
+
     return (dispatch, getState) => {
+      const cache = getState().listingsReducer.cache;
+      const item = cache[id];
+      if (item === undefined) {
+        debugger;
+      }
       const collections = getState().listingsReducer.collections;
       const collectionArray = item.collections === undefined ? [] : item.collections;
 
-      // todo need to start using id again for item but that means using the cache again
+      // need to use a reference to value in cache rather than the one in collection
+      if (item.collections === undefined) {
+        item.collections = [];
+      }
+
+      if (item.collections.indexOf(collectionName) === -1) {
+        item.collections.push(collectionName);
+        dispatch(listingActions.updateListings([
+          item
+        ]));
+      }
 
       if (collectionName === 'favorite') {    // todo factor this out to separate module
         dataApi.trailAngelApi.addFavorite(getState().userReducer.userId, item.id);
       } else if (collectionName === 'search') {
         return;
       }
-
-      dispatch(listingActions.updateListings([
-        {
-          ...item,
-          collections: [
-            ...collectionArray,
-            collectionName
-          ]
-        }
-      ]));
 
       if (_.find(collections[collectionName], {'id': item.id}) === undefined) {
         const modifiedCollection = [...collections[collectionName], item];
@@ -219,7 +229,7 @@ const listingActions = {
     return (dispatch, getState) => {
       const cache = getState().listingsReducer.cache;
       const collections = getState().listingsReducer.collections;
-      const item = {...cache[id]};
+      const item = cache[id];
       if (item.collections === undefined) {
         return;
       }
@@ -252,6 +262,17 @@ const listingActions = {
 
         AsyncStorage.setItem(`collection:${collectionName}`, JSON.stringify(modifiedCollection));
       }
+    };
+  },
+
+  saveListing: (listing) => {
+    return (dispatch) => {
+      return new Promise((resolve, reject) => {
+        dispatch({
+          type: actionTypes.STORE_LISTING,
+          listing
+        });
+      });
     };
   }
 };
@@ -307,12 +328,12 @@ const storeResults = (search, results, collection) => {
       };
 
       if (collection === 'favorites') {   // todo make this more universal
-        results.forEach((result) => {
-          dispatch(listingActions.addToCollection(result, collection));
-        });
-
-        return dispatch(receiveListings(results, {  search,
+        dispatch(receiveListings(results, {  search,
           results: _.map(results, 'id')}, collection));
+
+        results.forEach((result) => {
+          dispatch(listingActions.addToCollection(result.id, collection));
+        });
       }
 
       // update the in-memory store with the data and search/result object
