@@ -1,7 +1,6 @@
 import actionTypes from './action-types';
 import { NavigatorIOS, AsyncStorage } from 'react-native';
 import { secrets } from '../../config';
-import Login from '../components/auth/login.component';
 
 export function createUser(data) {
   return {

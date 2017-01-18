@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View, ListView, StyleSheet,
-          Text, ActivityIndicator } from 'react-native';
+  Text, ActivityIndicator } from 'react-native';
 import Row from './trailListItem.component';
 import dataApi from '../../api/';
 
@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
   gray: { backgroundColor: '#cccccc', },
   horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
 
-  homeImage: {marginTop: 80},
-  scrollContainer: { top: 200},
+  homeImage: {marginTop: 65},
+  scrollContainer: {},
   container: {}
 });
 
@@ -80,10 +80,10 @@ export default class TrailList extends React.Component {
             {this.state.randomPhotoUrl ?
               <View style={styles.homeImage}>
                 <Image
-                  source={{ uri: dataApi.googlePlaces.getUrlForPhoto(this.state.randomPhotoUrl, 400) }}
+                  source={require('../../../img/home.jpg')}
                 />
               </View>
-                :
+              :
               <Image  style={styles.homeImage}
                       source={require('../../../img/backpack.png')}
               />
@@ -107,3 +107,5 @@ export default class TrailList extends React.Component {
     );
   }
 }
+
+// source={{ uri: dataApi.googlePlaces.getUrlForPhoto(this.state.randomPhotoUrl, 400) }}
