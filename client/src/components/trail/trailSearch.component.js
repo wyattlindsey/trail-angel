@@ -53,6 +53,7 @@ export default class SearchBar extends React.Component {
   }
 
   _handleInput(text) {
+    console.log(text);
     let textInput = text.trim().replace(/ /g, '%20');
     this.setState({
       searchTimeout: false
@@ -116,23 +117,28 @@ export default class SearchBar extends React.Component {
             </View>
              :
             <View>
-              <ActivityIndicator animating={this.props.isFetching}
-                                 style={[styles.centering, styles.horizontal,
-                                   { height: this.props.isFetching ? 260 : 0 }]}
-                                 color='darkgreen'
-                                 size='large' />
-              <ListView
-                dataSource={this.state.dataSource}
-                renderRow={(data) => <Row addToCollection={this.props.addToCollection}
-                                          removeFromCollection={this.props.removeFromCollection}
-                                          userLocation={this.props.userLocation}
-                                          navigator={this.props.navigator}
-                                          {...data} />}
-                enableEmptySections={true}
-                style={styles.searchResults}
-                renderSeparator={(sectionId, rowId) => <View key={rowId}
-                                                             style={styles.separator} />}
-              />
+              {this.props.fetching ?
+                <ActivityIndicator animating={this.props.isFetching}
+                                   style={[styles.centering, styles.horizontal,
+                                     { height: 260}]}
+                                   color='darkgreen'
+                                   size='large' />
+                :
+                <ListView
+                  dataSource={this.state.dataSource}
+                  renderRow={(data) => <Row addToCollection={this.props.addToCollection}
+                                            removeFromCollection={this.props.removeFromCollection}
+                                            userLocation={this.props.userLocation}
+                                            navigator={this.props.navigator}
+                                            {...data} />}
+                  enableEmptySections={true}
+                  style={styles.searchResults}
+                  renderSeparator={(sectionId, rowId) => <View key={rowId}
+                                                               style={styles.separator} />}
+                />
+              }
+
+
             </View>
           }
         </View>

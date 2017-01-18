@@ -1,7 +1,7 @@
 fetch = jest.fn(() => new Promise(resolve => resolve()));
 jest.mock('../../utils/request');
 request = require.requireMock('../../utils/request');
-import yelp from '../yelp-api';
+import googlePlaces from '../google-places-api';
 
 describe('yelp api', () => {
 

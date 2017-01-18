@@ -16,7 +16,6 @@ const request = {
   },
 
   get: (url, options = {}) => {
-    console.log("This is the options for request.js: ", options);
     return fetch(url, options)
       .then((response) => response.json())
       .then((responseJSON) => {

@@ -75,12 +75,11 @@ export default class TraillistItem extends React.Component {
       distance: null,
       weather: null,
       weatherTimeout: false,       // helps determine when to give up on weather data,
-      image: null                            // stop displaying the spinner and show a default icon
+      image: null                  // stop displaying the spinner and show a default icon
     };
   }
 
   componentDidMount() {
-
     this._isMounted = true;
 
     const isFavorite = this.props.collections !== undefined && this.props.collections.indexOf('favorites') !== -1;
@@ -171,7 +170,7 @@ export default class TraillistItem extends React.Component {
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
 
-                <Image source={{uri: this.props.icon}} style={styles.photo} />
+                <Image source={{uri: this.props.photoUrl}} style={styles.photo} />
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}
                                     underlayColor='#ffffff'>
@@ -180,8 +179,10 @@ export default class TraillistItem extends React.Component {
               </View>
               <View style={styles.textContainer}>
                 <Text style={styles.title}>{this.props.name}</Text>
-                <Text style={styles.location}> {this.props.formatted_address} </Text>
-                <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+                <Text style={styles.location}> {this.props.vicinity} </Text>
+                {this.props.rating === undefined ? <View /> :
+                  <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+                }
                 <Text style={styles.description}
                       numberOfLines={0}>{this.props.snippet_text}</Text>
               </View>

@@ -11,7 +11,7 @@ const Favorites = (props) => {
   const { state, actions } = props;
   // todo: tree-shake for unnecessary state
   return (
-    <FavoriteList isFetching={state.favoritesReducer.isFetching}
+    <FavoriteList isFetching={state.listingsReducer.isFetching}
                   listings={state.listingsReducer.cache}
                   favorites={state.listingsReducer.collections.favorites}
                   userId={state.userReducer.userId}

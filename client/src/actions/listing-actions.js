@@ -39,7 +39,7 @@ const listingActions = {
           if (!cachedListings) {
             dispatch(fetchListings());
 
-            dataApi.yelp(options)
+            dataApi.googlePlaces.search(options)
               .then((results) => {
                 if (results === undefined) {
                   resolve(false);
@@ -47,7 +47,6 @@ const listingActions = {
 
                 dispatch(storeResults(search, results, options.collection))
                   .then((results) => {
-                    debugger;
                     results.forEach((result) => {
                       dispatch(listingActions.addToCollection(result.id, options.collection));
                     });
@@ -277,7 +276,7 @@ const getListingById = (IDs, cache) => {
   let promises = IDs.map((id) => {
     const cachedListing = _.find(cache, { 'id': id });
     if (cachedListing === undefined) {
-      return dataApi.yelp({ id: id })
+      return dataApi.googlePlaces.search({ id: id })
         .then((data) => {
           return data;
         })

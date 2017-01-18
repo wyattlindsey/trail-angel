@@ -38,7 +38,7 @@ export const fetchTrails = (options) => {
   return (dispatch, getState) => {
     dispatch(requestTrails(options));
 
-    return dataApi.yelp(options)
+    return dataApi.googlePlaces.search(options)
       .then((results) => {
         console.log(results);
         associateFavorites(results, getState().favoritesReducer.favorites);
