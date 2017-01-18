@@ -39,26 +39,45 @@ const yelp = (options = {}) => {
   }, '');
 
   var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${parameters}`; // todo try regular search instead of nearbysearch
-  console.log('First URL: ',url);
-  var place_ids_json = [];
+  
+  // Searching for keyword "Hiking Trails" at current location 
+  // var url = `https://maps.googleapis.com/maps/api/place/search/json?${parameters}`; 
+  
+  var photo_reference_json = []; //Storing main photo of all trails
+  var place_ids_json = []; //Storing detail URLs of every single trail found
 
   return request.get(url)
-    .then((data) => {
-      console.log('Outside loop');
+
+    .then((data) => { 
+       debugger;
 
       for(var i=0; i < data.results.length; i++) {
-        console.log('Inside loop');
         var place = data.results[i].place_id;
-        var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${searchOptions.key}`;
+        var photo = data.results[i].photos[0].photo_reference;
+        console.log('PHOTO ------:', photo);
+
+        if(typeof(photo) === 'undefined') {
+          photo = data.results.icon;
+        }
+        
+      //API request for grabbing photo of specific trail
+        var url2 =`https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${photo}&key=${options.key}`;
+      //API request for grabbing details of specific trail
+        var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${options.key}`; 
+        console.log('ACTUAL PHOTO: ', url2);
 
         place_ids_json.push(url1);
+        photo_reference_json.push(url2);
       }
 
-      console.log('Outside if statement: ', place_ids_json);
+        console.log('Second URL response: ', place_ids_json);
+        console.log('Third URL response: ', photo_reference_json);
+
 
       let promises = place_ids_json.map((url) => {
         return request.get(url);
       });
+
 
       return Promise.all(promises)
         .then((data) => {

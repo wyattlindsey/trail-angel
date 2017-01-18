@@ -82,7 +82,6 @@ export default class TraillistDetail extends React.Component {
     
     this.state = {
       dataSource: this.ds,
-      initialPosition: null
     }
 
   }
@@ -106,10 +105,12 @@ export default class TraillistDetail extends React.Component {
   }
 
   render() {
+    console.log('Trail Detail View ------- ',this.props);
     let marker = {
-      // coordinate: this.props.location.coordinate,
+      coordinate: {latitude: this.props.geometry.location.lat,
+                    longitude: this.props.geometry.location.lng},
       title: this.props.name,
-      description: this.props.reviews.text
+      description: this.props.reviews["0"].text
     };
     let region = {
       latitude: this.props.geometry.location.lat,

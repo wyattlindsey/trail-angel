@@ -103,7 +103,8 @@ export default class TrailMap extends React.Component {
 
   componentWillMount() {
     let that = this;
-    dataApi.weather(this.props.location.coordinate.latitude, this.props.location.coordinate.longitude)
+    dataApi.weather({latitude: this.props.geometry.location.lat,
+                    longitude: this.props.geometry.location.lng})
       .then( (res) => {
         that.setState({ weather: res });
       });
@@ -123,13 +124,14 @@ export default class TrailMap extends React.Component {
 
   render() {
     let marker = {
-      coordinate: this.props.location.coordinate,
+       coordinate: {latitude: this.props.geometry.location.lat,
+                    longitude: this.props.geometry.location.lng},
       title: this.props.name,
       image: require('../icons/trekking-128.png')
     };
     let region = {
-      latitude: this.props.location.coordinate.latitude,
-      longitude: this.props.location.coordinate.longitude,
+      latitude: this.props.geometry.location.lat,
+      longitude: this.props.geometry.location.lng,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421
     };

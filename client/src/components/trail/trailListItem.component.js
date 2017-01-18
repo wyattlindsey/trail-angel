@@ -74,8 +74,8 @@ export default class TraillistItem extends React.Component {
       isFavorite: null,
       distance: null,
       weather: null,
-      weatherTimeout: false       // helps determine when to give up on weather data,
-                                  // stop displaying the spinner and show a default icon
+      weatherTimeout: false,       // helps determine when to give up on weather data,
+      image: null                            // stop displaying the spinner and show a default icon
     };
   }
 
@@ -96,8 +96,13 @@ export default class TraillistItem extends React.Component {
       }
     }, 4000);
 
+<<<<<<< caea3c3716703bbb154ac96cfb92623363d7c7ca
+=======
+    dataApi.yelp.
+
+>>>>>>> Fetching photo from Google Maps API
     dataApi.google.getDistance2Points(this.props.userLocation.coords,
-      { latitude:this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
+      { latitude: this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
       .then((distance) => {
         if (this._isMounted && distance) {
           this.setState({
@@ -170,6 +175,7 @@ export default class TraillistItem extends React.Component {
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
+
                 <Image source={{uri: this.props.icon}} style={styles.photo} />
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}

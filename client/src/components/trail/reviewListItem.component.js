@@ -73,7 +73,8 @@ export default class ReviewListItem extends React.Component {
   }
 
   render() {
-    console.log('ReviewListItem', this.props);
+    console.log('Review List Item View ------- ',this.props);
+
     return (
       <View style={styles.rowContainer}>
        <Text>I'm in the ReviewListItem component! </Text>
