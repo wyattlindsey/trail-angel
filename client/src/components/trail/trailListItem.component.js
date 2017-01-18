@@ -171,7 +171,7 @@ export default class TraillistItem extends React.Component {
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
 
-                <Image source={{uri: this.props.icon}} style={styles.photo} />
+                <Image source={{uri: this.props.photoUrl}} style={styles.photo} />
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}
                                     underlayColor='#ffffff'>

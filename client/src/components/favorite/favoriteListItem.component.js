@@ -160,7 +160,7 @@ export default class FavoriteListItem extends React.Component {
           <View>
             <View style={styles.rowContainer}>
               <View>
-                <Image source={{uri: this.props.image_url}} style={styles.photo} />
+                <Image source={{uri: this.props.photoUrl}} style={styles.photo} />
                 <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
                                     style={styles.removeButton}
                                     underlayColor='#ffffff'>

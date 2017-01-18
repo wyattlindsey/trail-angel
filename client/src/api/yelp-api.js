@@ -38,7 +38,7 @@ const yelp = (options = {}) => {
     }
   }, '');
 
-  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${parameters}`; // todo try regular search instead of nearbysearch
+  var url = `https://maps.googleapis.com/maps/api/place/search/json?${parameters}`; // todo try regular search instead of nearbysearch
   
   // Searching for keyword "Hiking Trails" at current location 
   // var url = `https://maps.googleapis.com/maps/api/place/search/json?${parameters}`; 
@@ -47,46 +47,69 @@ const yelp = (options = {}) => {
   var place_ids_json = []; //Storing detail URLs of every single trail found
 
   return request.get(url)
-
-    .then((data) => { 
-       debugger;
-
-      for(var i=0; i < data.results.length; i++) {
-        var place = data.results[i].place_id;
-        var photo = data.results[i].photos[0].photo_reference;
-        console.log('PHOTO ------:', photo);
-
-        if(typeof(photo) === 'undefined') {
-          photo = data.results.icon;
-        }
-        
-      //API request for grabbing photo of specific trail
-        var url2 =`https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${photo}&key=${options.key}`;
-      //API request for grabbing details of specific trail
-        var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${options.key}`; 
-        console.log('ACTUAL PHOTO: ', url2);
-
-        place_ids_json.push(url1);
-        photo_reference_json.push(url2);
+    .then((data) => {
+      if (data === undefined || data.results === undefined) {
+        return;
       }
 
-        console.log('Second URL response: ', place_ids_json);
-        console.log('Third URL response: ', photo_reference_json);
+      let promises = data.results.map((result) => {
+        const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.place_id}&key=${searchOptions.key}`;
+        let photoDetailsUrl = false;
 
+        if (result.photos !== undefined) {
+          photoDetailsUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${result.photos[0].photo_reference}&key=${searchOptions.key}`;
+        }
 
-      let promises = place_ids_json.map((url) => {
-        return request.get(url);
+        return request.get(placeDetailsUrl)
+          .then((placeDetails) => {
+            return placeDetails.result;
+          })
+          .then((details) => {
+            return {
+              ...details,
+              photoUrl: photoDetailsUrl || details.icon
+            }
+          });
       });
+
+
+
+      // let promises = data.results.map((result, i) => {
+      //   const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.place_id}&key=${searchOptions.key}`;
+      //
+      //   return request.get(placeDetailsUrl)
+      //     .then((placeDetails) => {
+      //       let photoDetailsUrl;
+      //
+      //       if (result.photos === undefined) {
+      //         photoDetailsUrl = result.icon;
+      //       } else {
+      //         photoDetailsUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${result.photos[0].photo_reference}&key=${searchOptions.key}`;
+      //       }
+      //
+      //       return request.get(photoDetailsUrl)
+      //         .then((imageUrl) => {
+      //           debugger;
+      //
+      //           return {
+      //             ...placeDetails,
+      //             specialPhoto: imageUrl
+      //           };
+      //         });
+      //     });
+      // });
+
+
 
 
       return Promise.all(promises)
         .then((data) => {
+          debugger;
           console.log('Final Promise: ', data);
-          // todo ensure that id is mapped to place_id
           return _.map(data, (item) => {
             return {
-              ...item.result,
-              id: item.result.place_id
+              ...item,
+              id: item.place_id
             };
           });
         })
@@ -113,3 +136,30 @@ const searchByID = (id) => {  // todo consolidate this with the loop of promises
 };
 
 export default yelp;
+
+// for(var i=0; i < data.results.length; i++) {
+//   var place = data.results[i].place_id;
+//   var photo = data.results[i].photos[0].photo_reference;
+//   console.log('PHOTO ------:', photo);
+//
+//   if(typeof(photo) === 'undefined') {
+//     photo = data.results.icon;
+//   }
+//
+// //API request for grabbing photo of specific trail
+//   var url2 =`https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${photo}&key=${options.key}`;
+// //API request for grabbing details of specific trail
+//   var url1 = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place}&key=${options.key}`;
+//   console.log('ACTUAL PHOTO: ', url2);
+//
+//   place_ids_json.push(url1);
+//   photo_reference_json.push(url2);
+// }
+
+// console.log('Second URL response: ', place_ids_json);
+// console.log('Third URL response: ', photo_reference_json);
+
+
+// let promises = place_ids_json.map((url) => {
+//   return request.get(url);
+// });

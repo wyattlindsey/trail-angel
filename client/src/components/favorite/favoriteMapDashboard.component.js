@@ -21,15 +21,15 @@ export default class CustomMarkers extends React.Component {
     super(props);
     this.state = {
       region: {
-        latitude: this.props.location.coordinate.latitude,
-        longitude: this.props.location.coordinate.longitude,
+        latitude: this.props.geometry.location.lat,
+        longitude: this.props.geometry.location.lng,
         latitudeDelta: 0.0922,
         longitudeDelta: LONGITUDE_DELTA,
       },
       markers: [{
           coordinate: {
-            latitude: this.props.location.coordinate.latitude,
-            longitude: this.props.location.coordinate.longitude
+            latitude: this.props.geometry.location.lat,
+            longitude: this.props.geometry.location.lng
           },
           key: '0',
         }],
@@ -101,8 +101,8 @@ export default class CustomMarkers extends React.Component {
     this.setState({
       markers: [{
           coordinate: {
-            latitude: this.props.location.coordinate.latitude,
-            longitude: this.props.location.coordinate.longitude
+            latitude: this.props.geometry.location.lat,
+            longitude: this.props.geometry.location.lng
         },
         key: '0',
       }]
