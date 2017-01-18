@@ -41,7 +41,7 @@ export const fetchTrails = (options) => {
     return dataApi.yelp(options)
       .then((results) => {
         console.log(results);
-        // associateFavorites(results, getState().favoritesReducer.favorites);
+        associateFavorites(results, getState().favoritesReducer.favorites);
         getDistances(results);
         return dispatch(receiveTrails(results));
       })
