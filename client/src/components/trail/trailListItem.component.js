@@ -96,11 +96,6 @@ export default class TraillistItem extends React.Component {
       }
     }, 4000);
 
-<<<<<<< caea3c3716703bbb154ac96cfb92623363d7c7ca
-=======
-    dataApi.yelp.
-
->>>>>>> Fetching photo from Google Maps API
     dataApi.google.getDistance2Points(this.props.userLocation.coords,
       { latitude: this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
       .then((distance) => {
