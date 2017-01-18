@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ListView, StyleSheet,
+import { Image, View, ListView, StyleSheet,
           Text, ActivityIndicator } from 'react-native';
 import Row from './trailListItem.component';
 import dataApi from '../../api/';
@@ -14,8 +14,9 @@ const styles = StyleSheet.create({
   gray: { backgroundColor: '#cccccc', },
   horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
 
-  homeImage: { marginTop: 80 },
-  scrollContainer: { top: 200 },
+  homeImage: {marginTop: 80},
+  scrollContainer: { top: 200},
+  container: {}
 });
 
 
@@ -45,19 +46,17 @@ export default class TrailList extends React.Component {
     if (!this.state.trailsLoaded && this.props.trails !== undefined && this.props.trails.length > 0) {
       const homeListings = this.props.trails;
       let found = false;
-      debugger
       while(!found) {
-        let randomIndex = Math.floor(Math.random() * homeListings.length);
+        const randomIndex = Math.floor(Math.random() * homeListings.length);
         let photos = false;
         if (homeListings[randomIndex] !== undefined) {
           photos = homeListings[randomIndex].photos;
         }
         if (photos && Array.isArray(photos)) {
-          debugger;
           found = true;
-          let randomPhotoIndex = Math.floor(Math.random() * photos.length);
-          const randomPhotoUrl = homeListings[randomIndex].photos[randomPhotoIndex];
-
+          const randomPhotoIndex = Math.floor(Math.random() * photos.length);
+          const photoReference = homeListings[randomIndex].photos[randomPhotoIndex].photo_reference;
+          const randomPhotoUrl = dataApi.googlePlaces.getUrlForPhoto(photoReference, 400);
           this.setState({
             trailsLoaded: true,
             randomListing: homeListings[randomIndex],
@@ -77,10 +76,19 @@ export default class TrailList extends React.Component {
                                { height: 260 }]}
                              color='darkgreen'
                              size='large' /> :
-          <View>
-            <Text style={styles.homeImage}>
-              Hello world!
-            </Text>
+          <View style={styles.container}>
+            {this.state.randomPhotoUrl ?
+              <View style={styles.homeImage}>
+                <Image
+                  source={{ uri: dataApi.googlePlaces.getUrlForPhoto(this.state.randomPhotoUrl, 400) }}
+                />
+              </View>
+                :
+              <Image  style={styles.homeImage}
+                      source={require('../../../img/backpack.png')}
+              />
+            }
+
             <ListView
               style={styles.scrollContainer}
               dataSource={this.state.dataSource}

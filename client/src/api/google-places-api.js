@@ -3,6 +3,8 @@
 import * as config from '../../config';
 import request from '../utils/request';
 
+const apiKey = config.secrets.google.apiKey;
+
 const googlePlacesApi = {
 
   search: (options = {}) => {
@@ -17,7 +19,7 @@ const googlePlacesApi = {
     }
     searchOptions.rankby = searchOptions.rankby || 'distance';
     searchOptions.keyword = searchOptions.keyword || 'hiking%20trails';
-    searchOptions.key = config.secrets.google.apiKey;
+    searchOptions.key = apiKey;
 
     delete searchOptions.latitude;
     delete searchOptions.longitude;
@@ -44,12 +46,12 @@ const googlePlacesApi = {
         }
 
         let promises = data.results.map((result) => {
-          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.place_id}&key=${searchOptions.key}`;
+          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.place_id}&key=${apiKey}`;
           let thumbnailUrl = false;
           let photoReference = false;
 
           if (result.photos !== undefined) {
-            thumbnailUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${result.photos[0].photo_reference}&key=${searchOptions.key}`;
+            thumbnailUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${result.photos[0].photo_reference}&key=${apiKey}`;
             photoReference = result.photo_reference;
           }
 
@@ -85,6 +87,10 @@ const googlePlacesApi = {
       .catch((err) => {
         console.log('error getting google data', err);
       });
+  },
+
+  getUrlForPhoto:(photoReference, maxWidth) => {
+    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photoreference=${photoReference}&key=${apiKey}`;
   }
 
 };
