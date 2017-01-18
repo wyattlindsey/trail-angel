@@ -2,9 +2,7 @@
 import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
 import * as userActions from './user-actions';
-import * as trailActions from './trail-actions';
 import listingActions from './listing-actions';
-import favoriteActions from './favorite-actions';
 
 const appActions = {
   getGeolocation: (options = {

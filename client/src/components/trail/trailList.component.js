@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   gray: { backgroundColor: '#cccccc', },
   horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
 
-  homeImage: {marginTop: 80},
+  homeImage: {marginTop: 65},
   scrollContainer: {},
   container: {}
 });
