@@ -187,13 +187,10 @@ const listingActions = {
   },
 
   addToCollection: (id, collectionName) => {
-
     return (dispatch, getState) => {
       const cache = getState().listingsReducer.cache;
       const item = cache[id];
-      if (item === undefined) {
-        debugger;
-      }
+
       const collections = getState().listingsReducer.collections;
       const collectionArray = item.collections === undefined ? [] : item.collections;
 
@@ -209,10 +206,8 @@ const listingActions = {
         ]));
       }
 
-      if (collectionName === 'favorite') {    // todo factor this out to separate module
+      if (collectionName === 'favorites') {    // todo factor this out to separate module
         dataApi.trailAngelApi.addFavorite(getState().userReducer.userId, item.id);
-      } else if (collectionName === 'search') {
-        return;
       }
 
       if (_.find(collections[collectionName], {'id': item.id}) === undefined) {

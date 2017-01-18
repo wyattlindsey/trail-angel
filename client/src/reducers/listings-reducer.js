@@ -59,6 +59,7 @@ const listingsReducer = (state = initialState, action = {}) => {
           ...state.collections,
           favorites: [],
           home: [],
+          search: [],
           ...action.loadedCollections,
         }
       };
