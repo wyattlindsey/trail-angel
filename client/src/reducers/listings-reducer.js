@@ -35,8 +35,17 @@ const listingsReducer = (state = initialState, action = {}) => {
       };
 
     case actionTypes.RECEIVE_SEARCH_RESULTS:
+      let obj = {};
+      action.searchResults.forEach((result) => {
+        obj[result.id] = result;
+      });
+
       return {
         ...state,
+        cache: {
+          ...state.cache,
+          ...obj
+        },
         searchResults: action.searchResults,
         isFetching: false,
         isFetchCancelled: false
@@ -61,7 +70,29 @@ const listingsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         favorites: action.favorites
+      };
+
+    case actionTypes.ADD_FAVORITE:
+      const favorite = state.cache[action.id];
+      if (!favorite) {
+        return state;
       }
+      return {...state,
+        favorites: [
+          ...state.favorites,
+          favorite
+        ]};
+
+    case actionTypes.REMOVE_FAVORITE:
+      const indexToRemove = _.findIndex(state.favorites, {id: action.id});
+      if (indexToRemove === undefined) {
+        return state;
+      }
+      let favorites = state.favorites.splice(indexToRemove, 1);
+      return {
+        ...state,
+        favorites
+      };
 
     case actionTypes.STORE_LISTING:
       return {
@@ -82,7 +113,7 @@ const listingsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         searches: action.loadedSearches
-      }
+      };
 
     case actionTypes.LOAD_SAVED_COLLECTIONS:
       return {

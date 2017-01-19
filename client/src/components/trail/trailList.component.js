@@ -89,8 +89,9 @@ export default class TrailList extends React.Component {
               style={styles.scrollContainer}
               dataSource={this.state.dataSource}
               renderRow={(data) => <Row navigator={this.props.navigator}
-                                        addToCollection={this.props.addToCollection}
-                                        removeFromCollection={this.props.removeFromCollection}
+                                        favorites={this.props.favorites}
+                                        addFavorite={this.props.addFavorite}
+                                        removeFavorite={this.props.removeFavorite}
                                         userLocation={this.props.userLocation}
                                         {...data} />}
               enableEmptySections={true}
