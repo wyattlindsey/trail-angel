@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginTop: 8,
   },
- separator: {
+  separator: {
     backgroundColor: '#E3E0D7',
     height: 1
   }

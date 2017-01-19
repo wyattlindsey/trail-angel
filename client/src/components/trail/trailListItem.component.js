@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
   },
   leftColumn: {
     padding: 20,
-    width: 60,
-    height: 60,
+    width: 90,
+    height: 90,
     alignItems: 'center',
   },
   middleColumn: {
     padding: 20,
-    width: 212,
+    width: 190,
     height: 150,
   },
   rightColumn: {
@@ -36,16 +36,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontWeight: '600',
+    fontWeight: '500',
     fontSize: 16,
-    color: '#5E9FA1',
+    color: '#2f5e4e',
     width: 200,
   },
   
   photo: {
-    borderRadius: 20,
-    width: 40,
-    height: 40,
+    borderRadius: 30,
+    width: 60,
+    height: 60,
   },
   location: {
     color: '#786048'
@@ -62,15 +62,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   favorite: {
-    paddingTop: 10,
+    marginTop: 20,
     width: 20,
     height: 20,
 
   },
   distance: {
-  },
-
-  
+  },  
 });
 
 export default class TraillistItem extends React.Component {
@@ -213,7 +211,6 @@ export default class TraillistItem extends React.Component {
                 {this.props.rating === undefined ? <View /> :
                   <Text style={styles.rating}>Rating: {this.props.rating} </Text>
                 }
-                <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
               </View>
               <View style={styles.rightColumn}>
                
@@ -229,7 +226,7 @@ export default class TraillistItem extends React.Component {
                         <View>
                           <WeatherIcon icon={this.state.weather.currently.icon}
                                        color='darkgreen'
-                                       size={40}
+                                       size={30}
                                        style={{
                                          opacity: 0.8
                                      }}

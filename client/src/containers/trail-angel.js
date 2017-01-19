@@ -72,9 +72,9 @@ class TrailAngel extends Component {
   render() {
     return (
       <TabBarIOS
-        unselectedTintColor="yellow"
+        unselectedTintColor="#cccccc"
         tintColor="white"
-        barTintColor="darkgreen">
+        barTintColor="#414141">
         <TabBarIOS.Item
           title ="Home"
           icon={{uri: icons.homeIcon, scale: 5}}

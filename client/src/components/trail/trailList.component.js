@@ -10,13 +10,9 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#8E8E8E',
   },
-  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
-  gray: { backgroundColor: '#cccccc', },
-  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
-
-  homeImage: {marginTop: 65},
-  scrollContainer: {},
-  container: {}
+  homeImage: {backgroundColor: '#333',},
+  scrollContainer: {marginTop: 10},
+  container: { marginTop: 65}
 });
 
 
@@ -69,14 +65,13 @@ export default class TrailList extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         {this.props.fetching ?
           <ActivityIndicator animating={this.props.isFetching}
-                             style={
-                                      { top: 150 }}
+                             style={{}}
                              color='darkgreen'
                              size='large' /> :
-          <View style={styles.container}>
+          <View>
             {this.state.randomPhotoUrl ?
               <View style={styles.homeImage}>
                 <Image
@@ -84,7 +79,6 @@ export default class TrailList extends React.Component {
                 />
               </View> : <View />
             }
-
             <ListView
               style={styles.scrollContainer}
               dataSource={this.state.dataSource}
@@ -104,5 +98,3 @@ export default class TrailList extends React.Component {
     );
   }
 }
-
-// source={{ uri: uri: dataApi.googlePlaces.getUrlForPhoto(this.state.randomPhotoUrl, 400) }}

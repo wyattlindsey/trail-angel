@@ -14,61 +14,71 @@ import Dashboard from './favoriteMapDashboard.component';
 import dataApi from '../../api';
 
 const styles = StyleSheet.create({
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 15
-  },
-  textContainer: {
+ rowContainer: {
     flex: 1,
-    flexDirection: 'column',
-    width: 50
+    flexDirection: 'row',
   },
-  title: {
-    color: '#3D728E',
-    fontSize: 16,
-    fontWeight: '600'
+  leftColumn: {
+    padding: 20,
+    width: 90,
+    height: 90,
+    alignItems: 'center',
   },
-  photo: {
-    height: 40,
-    width: 40,
-    marginRight: 20,
-    borderRadius: 20,
+  middleColumn: {
+    padding: 20,
+    width: 170,
   },
-  favorite: {
+  rightColumn: {
+    padding: 20,
+    width: 110,
+    height: 150,
+    alignItems: 'center',
+  },
+  removeButton: {
+    paddingTop: 15,
+    width: 20,
+    height: 20,
+  },
+  mapButton: {
+    paddingTop: 10,
+    paddingBottom: 5,
     height: 20,
     width: 20,
-    marginRight: 20,
-    marginTop: 80,
-    opacity: 0.5
+  },
+  title: {
+    fontWeight: '500',
+    fontSize: 16,
+    color: '#2f5e4e',
+    width: 180,
+  },
+  photo: {
+    borderRadius: 30,
+    width: 60,
+    height: 60,
   },
   location: {
     color: '#786048'
   },
-  rating: {
-    color: '#909060'
+ rating: {
+    color: '#727B24',
+    paddingTop: 10,
+    width: 100,
   },
   description: {
-    color: '#484830',
-    fontSize: 14,
     lineHeight: 20,
-    marginTop: 8,
+    fontSize: 14,
+    color: '#484830',
     textAlign: 'left',
+    marginTop: 8,
   },
-  separator: {
-    backgroundColor: '#E3E0D7'
+  favorite: {
+    marginTop: 20,
+    width: 20,
+    height: 20,
+
   },
   distance: {
-    // width: 100,
-    flex: 1,
-    flexDirection: 'column'
-    // justifyContent: 'flex-end',
-  },
-  removeButton: {
-    height: 20,
-    width: 20,
-    marginRight: 20,
-    marginTop: 80
-  },
+  },  
 });
 
 export default class FavoriteListItem extends React.Component {
@@ -78,6 +88,7 @@ export default class FavoriteListItem extends React.Component {
     this._isMounted = false;
 
     this.state = {
+      vicinity: '',
       distance: null,
       weather: null
     };
@@ -119,6 +130,12 @@ export default class FavoriteListItem extends React.Component {
       .catch((err) => {
         console.error('Error getting weather for component: ', err);
       });
+
+    if (this.props.vicinity !== undefined) {
+      this.setState({
+        vicinity: this.props.vicinity.replace(/, /g, '\n')
+      });
+    }  
   }
 
   componentWillUnmount() {
@@ -162,87 +179,73 @@ export default class FavoriteListItem extends React.Component {
   }
 
   render() {
+    console.log('At the favorite List Item page: ', this.props);
     let view;
     if (this.props.geometry === undefined) {
       view = <View />
     } else {
       view =
       <View>
-        <TouchableHighlight onPress={this._selectTrail.bind(this)}
-                            underlayColor='#ffffff'>
+        <TouchableHighlight onPress={this._selectTrail.bind(this)} underlayColor='#ffffff'>
           <View>
             <View style={styles.rowContainer}>
               <View>
-                <Image source={{uri: this.props.photoUrl}} style={styles.photo} />
-                <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
-                                    style={styles.removeButton}
-                                    underlayColor='#ffffff'>
-                  <View>
-                    <Icon name='minus-circle' size={20} color='darkgreen' />
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
-                                    style={styles.removeButton}
-                                    underlayColor='#ffffff'>
-                  <View>
-                    <Icon name='map' size={20} color='darkgreen' />
-                  </View>
-                </TouchableHighlight>
+                <View style={styles.leftColumn}>
+                  <Image source={{uri: this.props.photoThumbnailUrl}} style={styles.photo} />
+                  <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
+                                      style={styles.removeButton}
+                                      underlayColor='#ffffff'>
+                    <Icon name='minus-circle' size={20} color='#E56452' />
+                  </TouchableHighlight>
+
+                </View>
               </View>
-              <View style={styles.textContainer}>
+              <View style={styles.middleColumn}>
                 <Text style={styles.title}>{this.props.name}</Text>
-                <Text style={styles.location}> {this.props.vicinity} </Text>
+                <Text style={styles.location}>{this.state.vicinity}</Text>
                 {this.props.rating === undefined? <View /> :
-                  <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+                  <Text style={styles.rating}>Rating: {this.props.rating} </Text>
                 }
-                <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
+                  <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
+                      style={styles.mapButton}
+                      underlayColor='#ffffff'>
+                    <Icon name='map' size={20} color='#f7d548' />
+                  </TouchableHighlight>
               </View>
-              <View>
+              <View style={styles.rightColumn}>
                 <Text style={styles.distance}>
                   {this.state.distance ? this.state.distance : ''}
                 </Text>
-                <View style={{
-                  padding: 5,
-                  marginBottom: 20,
-                  marginLeft: 5
-                }}>
-                  {this.state.weather ? <View>
-                                          <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
-                                                              underlayColor='white'
-                                          >
-                                            <View>
-                                              <WeatherIcon icon={this.state.weather.currently.icon}
-                                                           color='darkgreen'
-                                                           size={40}
-                                                           style={{
-                                                             opacity: 0.8
-                                                           }}
-                                              />
-                                              <Text style={{
-                                                textAlign: 'center',
-                                                padding: 5,
-                                                color: 'darkgreen'
-                                              }}>
-                                              {this.state.weather ?
-                                                `${Math.round(Number(this.state.weather.currently.temperature))}°F` :
-                                                ''
-                                              }
-                                              </Text>
-                                            </View>
-                                          </TouchableHighlight>
-                                        </View>
+                <View>{this.state.weather ? 
+                  <View>
+                    <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='white' >
+                      <View>
+                        <WeatherIcon icon={this.state.weather.currently.icon}
+                                     color='#52B3D9'
+                                     size={40}
+                                     style={{
+                                       opacity: 0.8
+                                     }}
+                        />
+                        <Text style={{
+                          textAlign: 'center',
+                          padding: 5,
+                          color: 'darkgreen'
+                        }}>
+                        {this.state.weather ?
+                          `${Math.round(Number(this.state.weather.currently.temperature))}°F` :
+                          ''
+                        }
+                        </Text>
+                      </View>
+                    </TouchableHighlight>
+                  </View>
                     :
-                    <ActivityIndicator  size='small'
-                                        color='darkgreen'
-                                        style={{
-                                          opacity: 0.8
-                                        }}
-                    />
+                    <ActivityIndicator  size='small' color='darkgreen' style={{ opacity: 0.8 }} />
                   }
                 </View>
               </View>
             </View>
-            <View style={styles.separator} />
           </View>
         </TouchableHighlight>
       </View>
