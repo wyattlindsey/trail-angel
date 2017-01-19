@@ -21,6 +21,7 @@ const listingActions = {
           // todo searchResults is getting the favorites list
           getListingById(options.id || options.IDs, cache)
             .then((results) => {
+              if (results === undefined) return false;
               dispatch(storeResults(search, results, options.collection));
 
               // results.forEach((result) => {
@@ -41,9 +42,7 @@ const listingActions = {
 
             dataApi.googlePlaces.search(options)
               .then((results) => {
-                if (results === undefined) {
-                  resolve(false);
-                }
+                if (results === undefined) return false;
 
                 dispatch(storeResults(search, results, options.collection))
                   .then((results) => {
@@ -335,6 +334,7 @@ const storeResults = (search, results, collection) => {
         results: _.map(results, 'id')}, collection));
 
       // create the array of tuples that AsyncStorage uses
+      debugger;
       const listings = results.map((result) => {
         return [result.id, JSON.stringify({...result, type: 'listing' })];
       });

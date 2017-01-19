@@ -3,6 +3,8 @@ import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
 import * as userActions from './user-actions';
 import listingActions from './listing-actions';
+import searchActions from './search-actions';
+import favoriteActions from './favorite-actions';
 
 const appActions = {
   getGeolocation: (options = {
@@ -33,7 +35,7 @@ const appActions = {
   },
 
   initializeApp: (profile) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
       dispatch({
         type: actionTypes.INITIALIZE_APP
       });
@@ -42,25 +44,41 @@ const appActions = {
           return dispatch(appActions.getGeolocation());
         })
         .then(() => {
-          return loadAsyncStorageData();
+          // return loadAsyncStorageData();
         })
         .then((data) => {
-          dispatch({
-            type: actionTypes.LOAD_SAVED_SEARCHES,
-            loadedSearches: data.searches
-          });
-          dispatch({
-            type: actionTypes.LOAD_SAVED_LISTINGS,
-            loadedListings: data.listings
-          });
-          dispatch({
-            type: actionTypes.LOAD_SAVED_COLLECTIONS,
-            loadedCollections: data.collections
-          });
+          // dispatch({
+          //   type: actionTypes.LOAD_SAVED_SEARCHES,
+          //   loadedSearches: data.searches
+          // });
+          // dispatch({
+          //   type: actionTypes.LOAD_SAVED_LISTINGS,
+          //   loadedListings: data.listings
+          // });
+          // dispatch({
+          //   type: actionTypes.LOAD_SAVED_COLLECTIONS,
+          //   loadedCollections: data.collections
+          // });
         })
         .then(() => {
-          dispatch(listingActions.loadHome());      // todo not sure why I can't .then chain these
-          dispatch(listingActions.loadFavorites());
+          const location = {
+            latitude: getState().appReducer.geolocation.coords.latitude,
+            longitude: getState().appReducer.geolocation.coords.longitude
+          };
+          return dispatch(searchActions.search('', location ));
+        })
+        .then((results) => {
+          if (results.length === 0) {
+            return dispatch(searchActions.search(''));
+          } else {
+            return results;
+          }
+        })
+        .then((results) => {
+          return dispatch(loadHomeData(results.searchResults));
+        })
+        .then(() => {
+          return dispatch(favoriteActions.loadFavorites());
         })
         .catch((err) => {
           console.error('Error initializing application: ', err);
@@ -113,5 +131,12 @@ const loadAsyncStorageData = () => {
       console.error('Error loading data from local storage: ', err);
     })
 };
+
+const loadHomeData = (data) => {
+  return {
+    type: actionTypes.LOAD_HOME_DATA,
+    data
+  };
+}
 
 export default appActions;

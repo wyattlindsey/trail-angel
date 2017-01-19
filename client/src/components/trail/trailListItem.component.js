@@ -1,4 +1,5 @@
 import React from 'react';
+import * as _ from 'lodash';
 import {  View,
           Text,
           StyleSheet,
@@ -83,7 +84,7 @@ export default class TraillistItem extends React.Component {
   componentDidMount() {
     this._isMounted = true;
 
-    const isFavorite = this.props.collections !== undefined && this.props.collections.indexOf('favorites') !== -1;
+    const isFavorite = this._checkIsFavorite(this.props.id, this.props.favorites);
     this.setState({
       isFavorite
     });
@@ -124,7 +125,18 @@ export default class TraillistItem extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const isFavorite = nextProps.collections !== undefined && nextProps.collections.indexOf('favorites') !== -1;
+    // const isFavorite = nextProps.collections !== undefined && nextProps.collections.indexOf('favorites') !== -1;
+    // this.setState({
+    //   isFavorite
+    // });
+
+    // const isFavorite = nextProps.favorites !== undefined && _.find(nextProps.favorites, { id: nextProps.id });
+    // this.setState({
+    //   isFavorite
+    // });
+
+    const isFavorite = this._checkIsFavorite(this.props.id, nextProps.favorites);
+
     this.setState({
       isFavorite
     });
@@ -136,12 +148,12 @@ export default class TraillistItem extends React.Component {
 
   _toggleFavorite() {
     if (!this.state.isFavorite) {
-      this.props.addToCollection(this.props.id, 'favorites');
+      this.props.addFavorite(this.props.id);
       this.setState({
         isFavorite: true
       });
     } else {
-      this.props.removeFromCollection(this.props.id, 'favorites');
+      this.props.removeFavorite(this.props.id);
       this.setState({
         isFavorite: false
       });
@@ -170,6 +182,10 @@ export default class TraillistItem extends React.Component {
     }); 
   }
 
+  _checkIsFavorite(id, favorites) {
+    return _.findIndex(favorites, { id }) !== -1;
+  }
+
   render() {
     const FavoriteIcon = this.state.isFavorite ?
                           <Icon name='star' size={20} color='darkgreen' /> :
@@ -183,7 +199,7 @@ export default class TraillistItem extends React.Component {
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
 
-                <Image source={{uri: this.props.photoUrl}} style={styles.photo} />
+                <Image source={{uri: this.props.photoThumbnailUrl}} style={styles.photo} />
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}
                                     underlayColor='#ffffff'>
