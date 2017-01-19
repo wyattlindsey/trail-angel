@@ -35,7 +35,7 @@ const googleApi = {
     return request.get(url)
     .then((response) => {
       if (response.results !== undefined &&
-          Array.isArray(results) &&
+          Array.isArray(response.results) &&
           response.results[0].formatted_address !== undefined) {
           var city = response.results[0].formatted_address.split(', ')[1];
           console.log(city);
