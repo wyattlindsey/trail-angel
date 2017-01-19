@@ -2,26 +2,47 @@ import React from 'react';
 import { View, Text, ScrollView, TouchableHighlight, StyleSheet } from 'react-native';
 import time from '../../utils/time';
 import WeatherIcon from './weather-icon.component';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    marginTop: 12
+  },
+
   forecastListItem: {
-    margin: 25,
-    padding: 25,
+    margin: 12,
+    padding: 16,
     backgroundColor: '#D3D3D3',
     alignItems: 'center',
-    borderRadius: 25
+    borderRadius: 25,
+    flex: 1,
+    flexDirection: 'row'
+  },
+
+  forecastDetails: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center'
   },
 
   forecastHeading: {
     fontSize: 18,
+    marginRight: 15,
     lineHeight: 35,
     color: 'darkgreen',
     fontStyle: 'italic'
+  },
+
+  angleLink: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50
   }
 })
 
 const DailyWeatherForecast = (props) => (
-  <ScrollView>
+  <ScrollView style={styles.scrollContainer}>
     <View>
       {props.forecast === undefined ?
         <View /> :
@@ -32,8 +53,8 @@ const DailyWeatherForecast = (props) => (
                                    dailyForecast={dailyForecast}
                                    forecast={props.forecast}
                                    today={i === 0}
+                                   dailyForecastAvailable={i >= 0 && i < 3}
                                    offset={props.forecast.offset}
-                                   day={true}
                                    navigator={props.navigator}
             />
           );
@@ -49,7 +70,7 @@ const DailyForecastListItem = (props) => (
                         underlayColor='#ffffff'>
       <View style={{ alignItems: 'center' }}>
         <WeatherIcon icon={props.dailyForecast.icon}
-                     size={35}
+                     size={30}
                      color={'darkgreen'}
         />
         <Text style={styles.forecastHeading}>
@@ -57,32 +78,47 @@ const DailyForecastListItem = (props) => (
         </Text>
       </View>
     </TouchableHighlight>
-    <Text style={{ paddingBottom: 10 }}>{props.dailyForecast.summary}</Text>
-    {!props.today ?
-      <View>
-      <Text style={{ fontSize: 11 }}>
-        {'H: ' + props.dailyForecast.apparentTemperatureMax + 'F° ' +
-          time.formatted12HourTime(props.dailyForecast.apparentTemperatureMaxTime)
+    <View style={styles.forecastDetails}>
+      <Text style={{ paddingBottom: 10 }}>{props.dailyForecast.summary}</Text>
+      {!props.today ?
+        <View>
+          <Text style={{ fontSize: 11 }}>
+            {'H: ' + Math.round(props.dailyForecast.apparentTemperatureMax) + 'F° ' +
+              time.formatted12HourTime(props.dailyForecast.apparentTemperatureMaxTime)
+            }
+          </Text>
+          <Text style={{ fontSize: 11 }}>
+            {'L: ' + Math.round(props.dailyForecast.apparentTemperatureMin) + ' F° ' +
+              time.formatted12HourTime(props.dailyForecast.apparentTemperatureMinTime)
+            }
+          </Text>
+          {props.dailyForecast.precipProbability > 0 ?
+            <Text style={{ fontSize: 11 }}>
+                  {props.dailyForecast.precipProbability * 100 + '% chance of ' +
+                    props.dailyForecast.precipType === undefined ? props.dailyForecast.precipType : ''
+                  }
+          </Text> : <View />
         }
-      </Text>
-      <Text style={{ fontSize: 11 }}>
-        {'L: ' + props.dailyForecast.apparentTemperatureMin + ' F° ' +
-          time.formatted12HourTime(props.dailyForecast.apparentTemperatureMinTime)
-        }
-      </Text>
-      {props.dailyForecast.precipProbability > 0 ?
-        <Text style={{ fontSize: 11 }}>
-              {props.dailyForecast.precipProbability * 100 + '% chance of ' + props.dailyForecast.precipType === undefined ? props.dailyForecast.precipType : ''}
-      </Text> : <View />
+      </View> : <View />
       }
-    </View> : <View />
+    </View>
+    {props.dailyForecastAvailable ?
+      <View>
+        <TouchableHighlight onPress={handleDailyForecastPress.bind(null, props)}
+                            underlayColor='#ffffff'
+                            style={styles.angleLink}>
+          <Icon name='angle-right'
+                size={25}
+                color='darkgreen'
+          />
+        </TouchableHighlight>
+      </View> : <View />
     }
-
   </View>
 );
 
 const HourlyWeatherForecast = (props) => (
-  <ScrollView>
+  <ScrollView style={styles.scrollContainer}>
     <View>
       {props.hourlyForecast === undefined ?
         <View /> :
@@ -103,23 +139,25 @@ const HourlyForecastListItem = (props) => (
   <View style={styles.forecastListItem}>
     <View style={{ alignItems: 'center' }}>
       <WeatherIcon icon={props.hourlyForecast.icon}
-                   size={35}
+                   size={30}
                    color={'darkgreen'}
       />
       <Text style={styles.forecastHeading}>
         {time.formatted12HourTime(props.hourlyForecast.time)}
       </Text>
     </View>
-    <Text style={{ paddingBottom: 10 }}>{props.hourlyForecast.summary}</Text>
-    <Text style={{ fontSize: 11 }}>
-      {props.hourlyForecast.apparentTemperature + 'F°'}
-    </Text>
-    {props.hourlyForecast.precipProbability > 0 ?
+    <View style={styles.forecastDetails}>
+      <Text style={{ paddingBottom: 10 }}>{props.hourlyForecast.summary}</Text>
       <Text style={{ fontSize: 11 }}>
-        {props.hourlyForecast.precipProbability * 100 + '% chance of ' +
-          props.hourlyForecast.precipType === undefined ?
-          props.hourlyForecast.precipType : ''}</Text> : <View />
-    }
+        {Math.round(props.hourlyForecast.apparentTemperature) + 'F°'}
+      </Text>
+      {props.hourlyForecast.precipProbability > 0 ?
+        <Text style={{ fontSize: 11 }}>
+          {props.hourlyForecast.precipProbability * 100 + '% chance of ' +
+            props.hourlyForecast.precipType === undefined ?
+            props.hourlyForecast.precipType : ''}</Text> : <View />
+      }
+    </View>
   </View>
 );
 
