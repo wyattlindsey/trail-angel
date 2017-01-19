@@ -60,6 +60,7 @@ export default class FavoriteList extends React.Component {
                                     removeFavorite={this.props.removeFavorite}
                                     userLocation={this.props.userLocation}
                                     navigator={this.props.navigator}
+                                    userId={this.props.userId}
                                     {...data} />}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         />
