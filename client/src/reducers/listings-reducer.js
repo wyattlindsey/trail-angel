@@ -77,11 +77,29 @@ const listingsReducer = (state = initialState, action = {}) => {
       if (!favorite) {
         return state;
       }
-      return {...state,
+      return {
+        ...state,
         favorites: [
           ...state.favorites,
           favorite
         ]};
+
+    case actionTypes.SAVE_TO_STORAGE:
+      return {
+        ...state,
+        cache: {
+          ...state.cache,
+          [action.data.id]: action.data
+        }
+      };
+
+    case actionTypes.REMOVE_FROM_STORAGE:
+      const cacheCopy = { ...state.cache };
+      delete cacheCopy[action.id];
+      return {
+        ...state,
+        cache: cacheCopy
+      };
 
     case actionTypes.REMOVE_FAVORITE:
       const indexToRemove = _.findIndex(state.favorites, {id: action.id});

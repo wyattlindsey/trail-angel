@@ -7,14 +7,15 @@ const favoriteActions = {
     return (dispatch, getState) => {
       dataApi.trailAngelApi.getFavorites(getState().userReducer.userId)
         .then((favoriteIDs) => {
-          return searchActions.getDetails(favoriteIDs)
+          return dispatch(searchActions.getDetails(favoriteIDs));
         })
         .then((favorites) => {
-          return dispatch({
+          dispatch({
             type: actionTypes.LOAD_FAVORITES,
             favorites
           });
-        });
+          return favorites;
+      });
     };
   },
 

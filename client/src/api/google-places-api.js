@@ -68,7 +68,7 @@ const googlePlacesApi = {
         let photoThumbnailUrl = false;
         let photoLargeUrl = false;
 
-        if (data.result.photos !== undefined) {
+        if (data.result.photos !== undefined && Array.isArray(data.result.photos)) {
           photoThumbnailUrl = googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 100);
           photoLargeUrl = googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 400);
           photoReference = data.result.photo_reference;

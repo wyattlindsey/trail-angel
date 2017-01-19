@@ -201,7 +201,7 @@ export default class TraillistItem extends React.Component {
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}
                                     underlayColor='#ffffff'>
-                  {FavoriteIcon}
+                  <View>{FavoriteIcon}</View>
                 </TouchableHighlight>
               </View>
               <View style={styles.middleColumn}>
