@@ -15,55 +15,62 @@ import temperature from '../../utils/temperature';
 
 const styles = StyleSheet.create({
  rowContainer: {
-    flexDirection: 'row',
-    padding: 20,
-  },
-  textContainer: {
     flex: 1,
-    flexDirection: 'column',
-    width: 50
-  },
-  title: {
-    color: '#3D728E',
-    fontSize: 16,
-    fontWeight: '600'
+    flexDirection: 'row',
   },
   leftColumn: {
+    padding: 20,
+    width: 60,
+    height: 60,
+    alignItems: 'center',
   },
+  middleColumn: {
+    padding: 20,
+    width: 212,
+    height: 150,
+  },
+  rightColumn: {
+    padding: 20,
+    width: 100,
+    height: 150,
+    alignItems: 'center',
+  },
+  title: {
+    fontWeight: '600',
+    fontSize: 16,
+    color: '#5E9FA1',
+    width: 200,
+  },
+  
   photo: {
-    height: 40,
-    width: 40,
-    marginRight: 20,
     borderRadius: 20,
-  },
-  favorite: {
-    height: 20,
-    width: 20,
-    marginRight: 20,
-    marginTop: 80,
-    opacity: 0.5
+    width: 40,
+    height: 40,
   },
   location: {
     color: '#786048'
   },
-  rating: {
-    color: '#909060'
+ rating: {
+    color: '#727B24',
+    paddingTop: 10
   },
   description: {
-    color: '#484830',
-    fontSize: 14,
     lineHeight: 20,
-    marginTop: 8,
+    fontSize: 14,
+    color: '#484830',
     textAlign: 'left',
+    marginTop: 8,
   },
-  separator: {
-    height: 1,
-    backgroundColor: '#E3E0D7'
+  favorite: {
+    paddingTop: 10,
+    width: 20,
+    height: 20,
+
   },
   distance: {
-    flex: 1,
-    flexDirection: 'column'
-  }
+  },
+
+  
 });
 
 export default class TraillistItem extends React.Component {
@@ -159,7 +166,7 @@ export default class TraillistItem extends React.Component {
       });
     }
   }
-
+  
   _handlePressWeather() {
     this.props.navigator.push({
       title: 'Daily Forecast',
@@ -187,18 +194,16 @@ export default class TraillistItem extends React.Component {
   }
 
   render() {
-    const FavoriteIcon = this.state.isFavorite ?
-                          <Icon name='star' size={20} color='darkgreen' /> :
-                          <Icon name='star-o' size={20} color='darkgreen' />;
-    return (
-        <View>
+    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color='#E56452' /> : <Icon name='star-o' size={20} color='#E56452' />;
+    let location  = this.props.vicinity;
+    let vicinity = location.replace(/, /g, '\n');
 
-          <TouchableHighlight onPress={this._selectTrail.bind(this)}
-                              underlayColor='#ffffff'>
+    return (
+      <View>
+        <TouchableHighlight onPress={this._selectTrail.bind(this)} underlayColor='#ffffff'>
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
-
                 <Image source={{uri: this.props.photoThumbnailUrl}} style={styles.photo} />
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}
@@ -206,67 +211,55 @@ export default class TraillistItem extends React.Component {
                   {FavoriteIcon}
                 </TouchableHighlight>
               </View>
-              <View style={styles.textContainer}>
+              <View style={styles.middleColumn}>
                 <Text style={styles.title}>{this.props.name}</Text>
-                <Text style={styles.location}> {this.props.vicinity} </Text>
+                
+                <Text style={styles.location}>{vicinity}</Text>
                 {this.props.rating === undefined ? <View /> :
-                  <Text style={styles.rating}> Rating: {this.props.rating} </Text>
+                  <Text style={styles.rating}>Rating: {this.props.rating} </Text>
                 }
-                <Text style={styles.description}
-                      numberOfLines={0}>{this.props.snippet_text}</Text>
+                <Text style={styles.description} numberOfLines={0}>{this.props.snippet_text}</Text>
               </View>
-              <View>
+              <View style={styles.rightColumn}>
+               
                 <Text style={styles.distance}>
                   {this.state.distance ? this.state.distance : ''}
                 </Text>
-                <View style={{
-                    padding: 5,
-                    marginBottom: 20,
-                    marginLeft: 5
-                  }}>
-
+                <View style={{ padding: 5,  marginBottom: 20, marginLeft: 5 }}>
                   {/* Display activity monitor until icon is loaded from api.  If no icon is ever received */}
                   {/* after a timeout, display nothing */}
-                  {this.state.weather ? <View>
-                                          <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
-                                                              underlayColor='#ffffff'
-                                          >
-                                            <View>
-                                              <WeatherIcon icon={this.state.weather.currently.icon}
-                                                           color='darkgreen'
-                                                           size={40}
-                                                           style={{
-                                                             opacity: 0.8
-                                                         }}
-                                              />
-                                              <Text style={{
-                                                textAlign: 'center',
-                                                padding: 5,
-                                                color: 'darkgreen'
-                                              }}>
-                                                {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
-                                              </Text>
-                                            </View>
-                                          </TouchableHighlight>
-                                        </View>
-                                      :
-                                        this.state.weatherTimeout ?
-                                          <View /> :
-                                          <ActivityIndicator  size='small'
-                                                              color='darkgreen'
-                                                              style={{
-                                                                opacity: 0.8
-                                                              }}
-                                          />
-
+                  {this.state.weather ? 
+                    <View>
+                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='#ffffff'>
+                        <View>
+                          <WeatherIcon icon={this.state.weather.currently.icon}
+                                       color='darkgreen'
+                                       size={40}
+                                       style={{
+                                         opacity: 0.8
+                                     }}
+                          />
+                          <Text style={{
+                            textAlign: 'center',
+                            padding: 5,
+                            color: 'darkgreen'
+                          }}>
+                            {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
+                          </Text>
+                        </View>
+                      </TouchableHighlight>
+                    </View>
+                    :
+                    this.state.weatherTimeout ?
+                    <View /> :
+                    <ActivityIndicator  size='small' color='darkgreen' style={{ opacity: 0.8 }} />
                   }
                 </View>
               </View>
             </View>
-            <View style={styles.separator}/>
-            </View>
-          </TouchableHighlight>
-        </View>
+          </View>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
