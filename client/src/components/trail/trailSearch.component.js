@@ -71,7 +71,9 @@ export default class SearchBar extends React.Component {
               data.searchResults === undefined ||
               data.searchResults.length === 0)
           {
-            this.state.searchTimeout = true;
+            this.setState({
+              searchTimeout: true
+            });
           }
         });
     }
