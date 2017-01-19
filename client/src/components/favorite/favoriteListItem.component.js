@@ -126,7 +126,7 @@ export default class FavoriteListItem extends React.Component {
   }
 
   _handleRemoveFavorite() {
-    this.props.removeFromCollection(this.props.id, 'favorites');    // todo figure out why last item to be removed doesn't disappear
+    this.props.removeFavorite(this.props.id);
   }
 
   _selectTrail() {
@@ -145,10 +145,8 @@ export default class FavoriteListItem extends React.Component {
       component: WeatherForecast,
       passProps: {
         ...this.state.weather,
-        forecast: this.state.weather.daily.data,
-        type: 'daily',
+        forecast: this.state.weather,
         navigator: this.props.navigator,
-        handlePress: this._handlePressDailyForecast
       }
     })
   }

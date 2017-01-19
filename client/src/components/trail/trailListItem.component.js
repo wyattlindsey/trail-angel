@@ -1,4 +1,5 @@
 import React from 'react';
+import * as _ from 'lodash';
 import {  View,
           Text,
           StyleSheet,
@@ -7,7 +8,7 @@ import {  View,
           ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
-import WeatherForecast from '../weather/weather-forecast.component';
+import DailyWeatherForecast from '../weather/weather-forecast.component';
 import Details from './trailDetail.component';
 import dataApi from '../../api';
 import temperature from '../../utils/temperature';
@@ -90,7 +91,7 @@ export default class TraillistItem extends React.Component {
   componentDidMount() {
     this._isMounted = true;
 
-    const isFavorite = this.props.collections !== undefined && this.props.collections.indexOf('favorites') !== -1;
+    const isFavorite = this._checkIsFavorite(this.props.id, this.props.favorites);
     this.setState({
       isFavorite
     });
@@ -131,7 +132,18 @@ export default class TraillistItem extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const isFavorite = nextProps.collections !== undefined && nextProps.collections.indexOf('favorites') !== -1;
+    // const isFavorite = nextProps.collections !== undefined && nextProps.collections.indexOf('favorites') !== -1;
+    // this.setState({
+    //   isFavorite
+    // });
+
+    // const isFavorite = nextProps.favorites !== undefined && _.find(nextProps.favorites, { id: nextProps.id });
+    // this.setState({
+    //   isFavorite
+    // });
+
+    const isFavorite = this._checkIsFavorite(this.props.id, nextProps.favorites);
+
     this.setState({
       isFavorite
     });
@@ -143,39 +155,26 @@ export default class TraillistItem extends React.Component {
 
   _toggleFavorite() {
     if (!this.state.isFavorite) {
-      this.props.addToCollection(this.props.id, 'favorites');
+      this.props.addFavorite(this.props.id);
       this.setState({
         isFavorite: true
       });
     } else {
-      this.props.removeFromCollection(this.props.id, 'favorites');
+      this.props.removeFavorite(this.props.id);
       this.setState({
         isFavorite: false
       });
     }
   }
-
-  _handlePressDailyForecast() {
-    this.props.navigator.push({
-      title: 'HourlyForecast',
-      component: WeatherForecast,
-      passProps: {
-        forecast: this.props.weather.hourly.data,
-        type: 'hourly'
-      }
-    })
-  }
-
+  
   _handlePressWeather() {
     this.props.navigator.push({
       title: 'Daily Forecast',
-      component: WeatherForecast,
+      component: DailyWeatherForecast,
       passProps: {
         ...this.state.weather,
-        forecast: this.state.weather.daily.data,
-        type: 'daily',
+        forecast: this.state.weather,
         navigator: this.props.navigator,
-        handlePress: this._handlePressDailyForecast
       }
     })
   }
@@ -190,6 +189,10 @@ export default class TraillistItem extends React.Component {
     }); 
   }
 
+  _checkIsFavorite(id, favorites) {
+    return _.findIndex(favorites, { id }) !== -1;
+  }
+
   render() {
     const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color='#E56452' /> : <Icon name='star-o' size={20} color='#E56452' />;
     let location  = this.props.vicinity;
@@ -201,8 +204,10 @@ export default class TraillistItem extends React.Component {
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
-                <Image source={{uri: this.props.photoUrl}} style={styles.photo} />
-                <TouchableHighlight onPress={this._toggleFavorite.bind(this)} style={styles.favorite} underlayColor='#ffffff'>
+                <Image source={{uri: this.props.photoThumbnailUrl}} style={styles.photo} />
+                <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
+                                    style={styles.favorite}
+                                    underlayColor='#ffffff'>
                   {FavoriteIcon}
                 </TouchableHighlight>
               </View>

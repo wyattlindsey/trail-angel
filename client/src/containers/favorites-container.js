@@ -4,7 +4,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import listingActions from '../actions/listing-actions';
+import favoriteActions from '../actions/favorite-actions';
 import FavoriteList from '../components/favorite/favoriteList.component';
 
 const Favorites = (props) => {
@@ -13,7 +13,7 @@ const Favorites = (props) => {
   return (
     <FavoriteList isFetching={state.listingsReducer.isFetching}
                   listings={state.listingsReducer.cache}
-                  favorites={state.listingsReducer.collections.favorites}
+                  favorites={state.listingsReducer.favorites}
                   userId={state.userReducer.userId}
                   userLocation={state.appReducer.geolocation}
                   navigator={props.navigator}
@@ -29,7 +29,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators(listingActions, dispatch)
+    actions: bindActionCreators(favoriteActions, dispatch)
   }
 };
 

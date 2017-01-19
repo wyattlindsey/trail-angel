@@ -11,7 +11,9 @@ const initialState = {
   cache: {},
   collections: {},
   searches: {},
-  searchResults: []   // todo convert this to a collection
+  searchResults: [],   // todo convert this to a collection
+  homeData: [],
+  favorites:[]
 };
 
 const listingsReducer = (state = initialState, action = {}) => {
@@ -24,11 +26,73 @@ const listingsReducer = (state = initialState, action = {}) => {
         isFetching: true
       };
 
+    case actionTypes.SUBMIT_SEARCH:
+      return {
+        ...state,
+        searchResults: [],
+        isFetching: true,
+        isFetchCancelled: false
+      };
+
+    case actionTypes.RECEIVE_SEARCH_RESULTS:
+      let obj = {};
+      action.searchResults.forEach((result) => {
+        obj[result.id] = result;
+      });
+
+      return {
+        ...state,
+        cache: {
+          ...state.cache,
+          ...obj
+        },
+        searchResults: action.searchResults,
+        isFetching: false,
+        isFetchCancelled: false
+      };
+
     case actionTypes.CANCEL_REQUEST:
       return {
         ...state,
+        searchResults: [],
         isFetching: false,
         isFetchCancelled: true
+      };
+
+    case actionTypes.LOAD_HOME_DATA:
+      return {
+        ...state,
+        searchResults: [],
+        homeData: action.data
+      };
+
+    case actionTypes.LOAD_FAVORITES:
+      return {
+        ...state,
+        favorites: action.favorites
+      };
+
+    case actionTypes.ADD_FAVORITE:
+      const favorite = state.cache[action.id];
+      if (!favorite) {
+        return state;
+      }
+      return {...state,
+        favorites: [
+          ...state.favorites,
+          favorite
+        ]};
+
+    case actionTypes.REMOVE_FAVORITE:
+      const indexToRemove = _.findIndex(state.favorites, {id: action.id});
+      if (indexToRemove === -1) {
+        return state;
+      }
+      let favorites = [...state.favorites];
+      favorites.splice(indexToRemove, 1);
+      return {
+        ...state,
+        favorites
       };
 
     case actionTypes.STORE_LISTING:
@@ -50,7 +114,7 @@ const listingsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         searches: action.loadedSearches
-      }
+      };
 
     case actionTypes.LOAD_SAVED_COLLECTIONS:
       return {
