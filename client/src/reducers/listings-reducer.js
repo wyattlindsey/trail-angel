@@ -85,10 +85,11 @@ const listingsReducer = (state = initialState, action = {}) => {
 
     case actionTypes.REMOVE_FAVORITE:
       const indexToRemove = _.findIndex(state.favorites, {id: action.id});
-      if (indexToRemove === undefined) {
+      if (indexToRemove === -1) {
         return state;
       }
-      let favorites = state.favorites.splice(indexToRemove, 1);
+      let favorites = [...state.favorites];
+      favorites.splice(indexToRemove, 1);
       return {
         ...state,
         favorites

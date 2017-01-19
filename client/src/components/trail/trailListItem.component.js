@@ -183,7 +183,7 @@ export default class TraillistItem extends React.Component {
   }
 
   _checkIsFavorite(id, favorites) {
-    return _.find(favorites, { id }) !== undefined;
+    return _.findIndex(favorites, { id }) !== -1;
   }
 
   render() {
