@@ -61,7 +61,6 @@ const searchActions = {
 
         // if the item exists in the cache
         if (cache[id] !== undefined) {
-          debugger;
           const cacheTimestamp = cache[id].cacheTimestamp;
           const now = Date.now();
 
