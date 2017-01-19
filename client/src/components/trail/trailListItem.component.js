@@ -83,6 +83,7 @@ export default class TraillistItem extends React.Component {
       isFavorite: null,
       distance: null,
       weather: null,
+      vicinity: '',
       weatherTimeout: false,       // helps determine when to give up on weather data,
       image: null                  // stop displaying the spinner and show a default icon
     };
@@ -129,19 +130,15 @@ export default class TraillistItem extends React.Component {
       .catch((err) => {
         console.error('Error getting weather for component: ', err);
       });
+
+    if (this.props.vicinity !== undefined) {
+      this.setState({
+        vicinity: this.props.vicinity.replace(/, /g, '\n')
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    // const isFavorite = nextProps.collections !== undefined && nextProps.collections.indexOf('favorites') !== -1;
-    // this.setState({
-    //   isFavorite
-    // });
-
-    // const isFavorite = nextProps.favorites !== undefined && _.find(nextProps.favorites, { id: nextProps.id });
-    // this.setState({
-    //   isFavorite
-    // });
-
     const isFavorite = this._checkIsFavorite(this.props.id, nextProps.favorites);
 
     this.setState({
@@ -195,8 +192,6 @@ export default class TraillistItem extends React.Component {
 
   render() {
     const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color='#E56452' /> : <Icon name='star-o' size={20} color='#E56452' />;
-    let location  = this.props.vicinity;
-    let vicinity = location.replace(/, /g, '\n');
 
     return (
       <View>
@@ -214,7 +209,7 @@ export default class TraillistItem extends React.Component {
               <View style={styles.middleColumn}>
                 <Text style={styles.title}>{this.props.name}</Text>
                 
-                <Text style={styles.location}>{vicinity}</Text>
+                <Text style={styles.location}>{this.state.vicinity}</Text>
                 {this.props.rating === undefined ? <View /> :
                   <Text style={styles.rating}>Rating: {this.props.rating} </Text>
                 }

@@ -54,6 +54,7 @@ export default class TraillistDetail extends React.Component {
 
     this.state = {
       dataSource: this.ds,
+      address: ''
     };
   }
 
@@ -71,6 +72,12 @@ export default class TraillistDetail extends React.Component {
         dataSource: this.ds.cloneWithRows(nextProps.reviews)
       });
     }
+
+    if (this.props.formatted_address !== undefined) {
+      this.setState({
+        address: this.props.formatted_address.replace(/, /g, '\n')
+      });
+    }
   }
 
   _selectMap(e) {
@@ -84,11 +91,8 @@ export default class TraillistDetail extends React.Component {
   }
 
   render() {
-    let address = this.props.formatted_address;
-    let trail_address = address.replace(/, /g, '\n');
-
     let marker = {
-      coordinate: {latitude: this.props.geometry.location.lat,
+      coordinate: { latitude: this.props.geometry.location.lat,
                     longitude: this.props.geometry.location.lng},
       title: this.props.name,
       description: this.props.reviews === undefined ? '' : this.props.reviews[0].text
@@ -119,7 +123,7 @@ export default class TraillistDetail extends React.Component {
           </TouchableHighlight>
           <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}>{trail_address}</Text>
+            <Text style={styles.location}>{this.state.address}</Text>
             <View style={styles.separator}/>
             <Text style={styles.reviewtitle}>Reviews: </Text>
             <ListView  automaticallyAdjustContentInsets={false}
