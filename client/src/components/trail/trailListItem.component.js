@@ -7,7 +7,7 @@ import {  View,
           ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
-import WeatherForecast from '../weather/weather-forecast.component';
+import DailyWeatherForecast from '../weather/weather-forecast.component';
 import Details from './trailDetail.component';
 import dataApi from '../../api';
 import temperature from '../../utils/temperature';
@@ -148,28 +148,15 @@ export default class TraillistItem extends React.Component {
     }
   }
 
-  _handlePressDailyForecast() {
-    debugger
-    this.props.navigator.push({
-      title: 'HourlyForecast',
-      component: WeatherForecast,
-      passProps: {
-        forecast: this.props.weather.hourly.data,
-        type: 'hourly'
-      }
-    })
-  }
-
   _handlePressWeather() {
     this.props.navigator.push({
       title: 'Daily Forecast',
-      component: WeatherForecast,
+      component: DailyWeatherForecast,
       passProps: {
         ...this.state.weather,
-        forecast: this.state.weather.daily.data,
         type: 'daily',
+        forecast: this.state.weather,
         navigator: this.props.navigator,
-        handlePress: this._handlePressDailyForecast
       }
     })
   }

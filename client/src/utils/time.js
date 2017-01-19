@@ -12,6 +12,16 @@ const time = {
     return daysOfTheWeek[date.getDay()];
   },
 
+  dayOfWeek: (UNIX_timestamp) => {
+    const date = new Date(UNIX_timestamp * 1000);
+    return date.getDay();
+  },
+
+  hourOfDay: (UNIX_timestamp) => {
+    const date = new Date(UNIX_timestamp * 1000);
+    return date.getHours();
+  },
+
   formattedDayAndMonth: (UNIX_timestamp) => {
     const date = new Date(UNIX_timestamp * 1000);
     const day = weekday(date.getDay());
