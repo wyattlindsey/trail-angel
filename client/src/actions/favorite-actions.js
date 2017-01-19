@@ -5,17 +5,16 @@ import searchActions from '../actions/search-actions';
 const favoriteActions = {
   loadFavorites: () => {
     return (dispatch, getState) => {
-      return new Promise((resolve, reject) => {
-        dataApi.trailAngelApi.getFavorites(getState().userReducer.userId)
-          .then((favoriteIDs) => {
-            return searchActions.getDetails(favoriteIDs)
-          })
-          .then((favorites) => {
-            return dispatch({
-              type: actionTypes.LOAD_FAVORITES,
-              favorites
-            });
+      dataApi.trailAngelApi.getFavorites(getState().userReducer.userId)
+        .then((favoriteIDs) => {
+          return dispatch(searchActions.getDetails(favoriteIDs));
+        })
+        .then((favorites) => {
+          dispatch({
+            type: actionTypes.LOAD_FAVORITES,
+            favorites
           });
+          return favorites;
       });
     };
   },

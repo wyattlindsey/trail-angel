@@ -96,6 +96,7 @@ export default class SearchBar extends React.Component {
   }
 
   _clearInput() {
+    debugger
     this._textInput.setNativeProps({text: ''});
     this.setState({
       searchText: ''
