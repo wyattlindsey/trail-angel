@@ -53,7 +53,6 @@ export default class SearchBar extends React.Component {
   }
 
   _handleInput(text) {
-    console.log(text);
     let textInput = text.trim().replace(/ /g, '%20');
     this.setState({
       searchTimeout: false
@@ -62,9 +61,8 @@ export default class SearchBar extends React.Component {
     if (text === '') {
       this.props.cancelRequest();
     } else {
-      this.props.getListings({
-        name: textInput,
-        collection: 'search',
+      this.props.search({
+        query: textInput,
         latitude: this.props.userLocation.coords.latitude,
         longitude: this.props.userLocation.coords.longitude
       })

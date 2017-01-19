@@ -42,25 +42,25 @@ const appActions = {
           return dispatch(appActions.getGeolocation());
         })
         .then(() => {
-          return loadAsyncStorageData();
+          // return loadAsyncStorageData();
         })
         .then((data) => {
-          dispatch({
-            type: actionTypes.LOAD_SAVED_SEARCHES,
-            loadedSearches: data.searches
-          });
-          dispatch({
-            type: actionTypes.LOAD_SAVED_LISTINGS,
-            loadedListings: data.listings
-          });
-          dispatch({
-            type: actionTypes.LOAD_SAVED_COLLECTIONS,
-            loadedCollections: data.collections
-          });
+          // dispatch({
+          //   type: actionTypes.LOAD_SAVED_SEARCHES,
+          //   loadedSearches: data.searches
+          // });
+          // dispatch({
+          //   type: actionTypes.LOAD_SAVED_LISTINGS,
+          //   loadedListings: data.listings
+          // });
+          // dispatch({
+          //   type: actionTypes.LOAD_SAVED_COLLECTIONS,
+          //   loadedCollections: data.collections
+          // });
         })
         .then(() => {
-          dispatch(listingActions.loadHome());      // todo not sure why I can't .then chain these
-          dispatch(listingActions.loadFavorites());
+          // dispatch(listingActions.loadHome());      // todo not sure why I can't .then chain these
+          // dispatch(listingActions.loadFavorites());
         })
         .catch((err) => {
           console.error('Error initializing application: ', err);
