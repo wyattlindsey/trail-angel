@@ -50,14 +50,34 @@ export default class TraillistDetail extends React.Component {
   constructor(props) {
     super(props);
 
-    // DataSource template object
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    const reviews = this.props.reviews;
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      dataSource: ds.cloneWithRows(reviews),
+      dataSource: this.ds,
+      address: ''
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.reviews !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(this.props.reviews)
+      });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.reviews !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(nextProps.reviews)
+      });
     }
 
+    if (this.props.formatted_address !== undefined) {
+      this.setState({
+        address: this.props.formatted_address.replace(/, /g, '\n')
+      });
+    }
   }
 
   _selectMap(e) {
@@ -71,21 +91,18 @@ export default class TraillistDetail extends React.Component {
   }
 
   render() {
-    let address = this.props.formatted_address;
-    let trail_address = address.replace(/, /g, '\n');
-
     let marker = {
-      coordinate: {latitude: this.props.geometry.location.lat,
+      coordinate: { latitude: this.props.geometry.location.lat,
                     longitude: this.props.geometry.location.lng},
       title: this.props.name,
-      description: this.props.reviews["0"].text
+      description: this.props.reviews === undefined ? '' : this.props.reviews[0].text
     };
 
     let region = {
       latitude: this.props.geometry.location.lat,
       longitude: this.props.geometry.location.lng,
       latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421
+      longitudeDelta: 0.0421  //comment
     };
 
     return (
@@ -106,7 +123,7 @@ export default class TraillistDetail extends React.Component {
           </TouchableHighlight>
           <View style={styles.textContainer}>
             <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}>{trail_address}</Text>
+            <Text style={styles.location}>{this.state.address}</Text>
             <View style={styles.separator}/>
             <Text style={styles.reviewtitle}>Reviews: </Text>
             <ListView  automaticallyAdjustContentInsets={false}

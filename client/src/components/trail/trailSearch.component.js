@@ -57,7 +57,7 @@ export default class SearchBar extends React.Component {
     this.state = {
       dataSource: this.ds,
       searchTimeout: false,
-      localSearch: false,
+      localSearch: true,
       searchText: ''
     };
 
