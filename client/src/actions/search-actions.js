@@ -2,18 +2,21 @@ import actionTypes from './action-types';
 import dataApi from '../api';
 
 const searchActions = {
-  search: (query, location, limit) => {
+  search: (query = '', location = null, limit = 10) => {
     // todo: add some parameter validation
+    // todo: handle limit
     return (dispatch) => {
       dispatch({
         type: actionTypes.SUBMIT_SEARCH
       });
 
-      return dataApi.googlePlaces.search({
-        query,
-        latitude: location.latitude,
-        longitude: location.longitude
-      })
+      const options = location ? {
+                                   query,
+                                   latitude: location.latitude,
+                                   longitude: location.longitude
+                                 } : { query };
+
+      return dataApi.googlePlaces.search(options)
         .then((results) => {
           if (results === undefined || !Array.isArray(results) || results.length === 0) {
             return false;

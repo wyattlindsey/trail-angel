@@ -27,6 +27,7 @@ const listingsReducer = (state = initialState, action = {}) => {
     case actionTypes.SUBMIT_SEARCH:
       return {
         ...state,
+        searchResults: [],
         isFetching: true,
         isFetchCancelled: false
       };
