@@ -22,6 +22,7 @@ export default class CustomMarkers extends React.Component {
     super(props);
     this.state = {
       distance: 0,
+      elevation: 0,
       region: {
         latitude: this.props.geometry.location.lat,
         longitude: this.props.geometry.location.lng,
@@ -35,7 +36,8 @@ export default class CustomMarkers extends React.Component {
         },
         key: '0',
       }],
-      displayMiles: true
+      displayMiles: true,
+      displayFeet: true
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
@@ -72,7 +74,11 @@ export default class CustomMarkers extends React.Component {
 
   getElevationGain() {
     googleApi.getElevation(this.state.markers)
-      .then(console.log);
+      .then((elevationGain) => {
+        this.setState({
+          elevation: elevationGain
+        });
+      });
   }
 
   getTotalDistance() {
@@ -97,6 +103,7 @@ export default class CustomMarkers extends React.Component {
     trailAngelApi.addGeo(trailId, options)
     .then(response => {
       this.getTotalDistance();
+      this.getElevationGain();
     })
     .catch(err => {
       Alert.alert('There was an error saving your trail: ', err);
@@ -167,6 +174,12 @@ export default class CustomMarkers extends React.Component {
     });
   }
 
+  toggleFeetMeters() {
+    this.setState({
+      displayFeet: !this.state.displayFeet
+    });
+  }
+
   render() {
     let trailheadCoordinate = {
       latitude: this.state.region.latitude,
@@ -222,10 +235,10 @@ export default class CustomMarkers extends React.Component {
             <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={this.toggleMilesKilometers.bind(this)}
+            onPress={this.toggleFeetMeters.bind(this)}
             style={styles.bubble}
           >
-            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
+            <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
