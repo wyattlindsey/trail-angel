@@ -52,7 +52,7 @@ export default class CustomMarkers extends React.Component {
     trailAngelApi.getGeo(this.props.id, this.props.userId)
     .then(data => {
       if (data.length > 0) {
-        var key = 0;
+        id = 0;
         savedMarkers = data.map(coordinate => {
           console.log(coordinate[0], coordinate[1]);
           return {
@@ -60,7 +60,7 @@ export default class CustomMarkers extends React.Component {
               latitude: parseFloat(coordinate[1]),
               longitude: parseFloat(coordinate[0]),
             },
-            key: `foo${key++}`,
+            key: `${id++}`,
           };
         });
         this.setState({
@@ -92,7 +92,7 @@ export default class CustomMarkers extends React.Component {
       });
   }
 
-  saveMappedTrail() {
+  saveMappedTrail(removedPin = false) {
     var trailId = this.props.id;
     var pins = this.state.markers.map(marker => {
       return [marker.coordinate.longitude, marker.coordinate.latitude];
@@ -101,14 +101,25 @@ export default class CustomMarkers extends React.Component {
       userId: this.props.userId,
       pins: pins
     };
-    trailAngelApi.addGeo(trailId, options)
-    .then(response => {
-      this.getTotalDistance();
-      this.getElevationGain();
-    })
-    .catch(err => {
-      Alert.alert('There was an error saving your trail: ', err);
-    });
+    if (!removedPin) {
+      trailAngelApi.addGeo(trailId, options)
+      .then(response => {
+        this.getTotalDistance();
+        this.getElevationGain();
+      })
+      .catch(err => {
+        Alert.alert('There was an error saving your trail: ', err);
+      });
+    } else {
+      trailAngelApi.updateGeo(trailId, options)
+      .then(response => {
+        this.getTotalDistance();
+        this.getElevationGain();
+      })
+      .catch(err => {
+        Alert.alert('There was an error saving your trail: ', err);
+      });
+    }
 
   }
 
@@ -136,6 +147,7 @@ export default class CustomMarkers extends React.Component {
         key: '0',
       }]
     });
+    id = 0;
   }
   onMapPress(e) {
     this.setState({
@@ -143,7 +155,7 @@ export default class CustomMarkers extends React.Component {
         ...this.state.markers,
         {
           coordinate: e.nativeEvent.coordinate,
-          key: `foo${id++}`,
+          key: `${id++}`,
         },
       ],
     }, this.saveMappedTrail);
@@ -219,9 +231,10 @@ export default class CustomMarkers extends React.Component {
           <TouchableOpacity
             onPress={() => {
                 this.state.markers.pop();
+                id--;
                 this.setState({
                   markers: this.state.markers
-                })
+                }, this.saveMappedTrail.bind(this, true));
               }
             }
             style={styles.bubble}
