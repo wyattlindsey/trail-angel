@@ -55,13 +55,13 @@ const searchActions = {
 
   getDetails: (IDs) => {
     return (dispatch, getState) => {
-      let shouldFetch = true;
-      const cache = getState().listingsReducer.cache;
+      let cache = getState().listingsReducer.cache;
       if (!Array.isArray(IDs)) IDs = [IDs];
       let promises = IDs.map((id) => {
 
         // if the item exists in the cache
         if (cache[id] !== undefined) {
+          debugger;
           const cacheTimestamp = cache[id].cacheTimestamp;
           const now = Date.now();
 
@@ -82,10 +82,21 @@ const searchActions = {
         // uncached and cached-but-expired listings should be re-fetched
         return dataApi.googlePlaces.fetchDetails(id)
           .then((details) => {
-            // dispatch({
-            //   type: actionTypes.SAVE_TO_STORAGE,
-            //   data: details
-            // });
+            const now = Date.now();
+            let obj = {
+              type: actionTypes.SAVE_TO_STORAGE,
+              data: {
+                ...details,
+                cacheTimestamp: now
+              }
+            };
+            dispatch({
+              type: actionTypes.SAVE_TO_STORAGE,
+              data: {
+                ...details,
+                cacheTimestamp: now
+              }
+            });
             return details;
           });
       });

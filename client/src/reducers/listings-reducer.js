@@ -89,10 +89,7 @@ const listingsReducer = (state = initialState, action = {}) => {
         ...state,
         cache: {
           ...state.cache,
-          [action.data.id]: {
-            ...action.data,
-            cacheTimestamp: Date.now()
-          }
+          [action.data.id]: action.data
         }
       };
 
