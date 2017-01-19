@@ -8,23 +8,28 @@ import TrailMap from './map.component';
 
 const styles = StyleSheet.create({
   rowContainer: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
     marginTop: 65,
   },
   mapContainer: {
     height: 200,
   },
   textContainer: {
-    marginBottom: 20,
+    flex: 1,
+    flexDirection: 'row',
     padding: 20,
+  },
+  leftCol: {
+    width: 100,
+  },
+  rightCol: {
+    paddingLeft: 50,
+    width: 200,
   },
   map: {
     flex: 1,
   },
   title: {
-    color: '#433E51',
+    color: '#2f5e4e',
     fontSize: 16,
     fontWeight: '600',
     paddingBottom: 10
@@ -36,7 +41,7 @@ const styles = StyleSheet.create({
   reviewtitle: {
     color: '#333333',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '400',
     padding: 20,
   },
   separator: {
@@ -96,6 +101,20 @@ export default class TraillistDetail extends React.Component {
     });
   }
 
+  _toggleFavorite() {
+    if (!this.state.isFavorite) {
+      this.props.addFavorite(this.props.id);
+      this.setState({
+        isFavorite: true
+      });
+    } else {
+      this.props.removeFavorite(this.props.id);
+      this.setState({
+        isFavorite: false
+      });
+    }
+  }
+
   render() {
     let marker = {
       coordinate: { latitude: this.props.geometry.location.lat,
@@ -111,11 +130,14 @@ export default class TraillistDetail extends React.Component {
       longitudeDelta: 0.0421  //comment
     };
 
+    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color='#E56452' /> : <Icon name='star-o' size={20} color='#E56452' />;
+
     return (
+
         <View style={styles.rowContainer}>
           <TouchableHighlight onPress={this._selectMap.bind(this)}>
             <View style={styles.mapContainer}>
-              <MapView
+              <MapView pitchEnabled="false" rotateEnabled="false" scrollEnabled="false" zoomEnabled="false"
                 style={styles.map}
                 region={region}
                 onRegionChange={this.onRegionChange}
@@ -128,17 +150,26 @@ export default class TraillistDetail extends React.Component {
             </View>
           </TouchableHighlight>
           <View style={styles.textContainer}>
-            <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}>{this.state.address}</Text>
-            <View style={styles.separator}/>
-            <Text style={styles.reviewtitle}>Reviews: </Text>
-            <ListView  automaticallyAdjustContentInsets={false}
+            <View sytle={styles.leftCol}>
+              <Text style={styles.title}>{this.props.name}</Text>
+              <Text style={styles.location}>{this.state.address}</Text>
+            </View>
+            <View style={styles.rightCol}>  
+              <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
+                                    style={styles.favorite}
+                                    underlayColor='#ffffff'>
+                  {FavoriteIcon}
+                </TouchableHighlight>
+            </View>    
+          </View>
+              <View style={styles.separator}/>
+              <Text style={styles.reviewtitle}>Reviews: </Text>
+            <ListView automaticallyAdjustContentInsets={false}
               dataSource={this.state.dataSource}
               renderRow={(data) => <Row {...data}/>}
               renderSeparator={(sectionId, rowId) => 
                 <View key={rowId} style={styles.separator} />}
             />
-          </View>
         </View>
     );
   }

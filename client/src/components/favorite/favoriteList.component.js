@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
     marginTop: 65,
     marginBottom: 40
   },
+  favoritesTitle: {
+    color: '#333333',
+    fontSize: 16,
+    fontWeight: '400',
+    padding: 20,
+  },
   centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
   gray: { backgroundColor: '#cccccc', },
   horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, }
@@ -51,6 +57,7 @@ export default class FavoriteList extends React.Component {
                            style={[styles.centering, styles.horizontal, { height: this.props.isFetching ? 260 : 0 }]}
                            color='darkgreen'
                            size='large' />
+       <Text style={styles.favoritesTitle}>Favorites: </Text>
         <ListView
           enableEmptySections={true}
           automaticallyAdjustContentInsets={false}
