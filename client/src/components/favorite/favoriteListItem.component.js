@@ -145,10 +145,8 @@ export default class FavoriteListItem extends React.Component {
       component: WeatherForecast,
       passProps: {
         ...this.state.weather,
-        forecast: this.state.weather.daily.data,
-        type: 'daily',
+        forecast: this.state.weather,
         navigator: this.props.navigator,
-        handlePress: this._handlePressDailyForecast
       }
     })
   }
