@@ -5,7 +5,7 @@ const searchActions = {
   search: (query = '', location = null, limit = 10) => {
     // todo: add some parameter validation
     // todo: handle limit
-    return (dispatch) => {
+    return (dispatch, getState) => {
       dispatch({
         type: actionTypes.SUBMIT_SEARCH
       });
@@ -18,16 +18,21 @@ const searchActions = {
 
       return dataApi.googlePlaces.search(options)
         .then((results) => {
-          if (results === undefined || !Array.isArray(results) || results.length === 0) {
+          if (results === undefined ||
+            !Array.isArray(results) ||
+            results.length === 0) {
             return false;
           } else {
-            return searchActions.getDetails(results.map((result) => result.id ))
+            const cache = getState().listingsReducer.cache;
+            return searchActions.getDetails(results.map((result) => result.id ), cache)
               .then((results) => {
                 return results.map((result) => {
                   return {
                     ...result,
-                    photoThumbUrl: dataApi.googlePlaces.getUrlForPhoto(result.photo_reference, 100),
-                    photoLargeUrl: dataApi.googlePlaces.getUrlForPhoto(result.photo_reference, 400)
+                    photoThumbUrl: dataApi.googlePlaces.getUrlForPhoto
+                                      (result.photo_reference, 100),
+                    photoLargeUrl: dataApi.googlePlaces.getUrlForPhoto
+                                      (result.photo_reference, 400)
                   };
                 })
               })
@@ -48,12 +53,15 @@ const searchActions = {
     };
   },
 
-  getDetails: (IDs) => {
+  getDetails: (IDs, cache) => {
     // todo: check cache for these IDs
     if (!Array.isArray(IDs)) IDs = [IDs];
-
     let promises = IDs.map((id) => {
-      return dataApi.googlePlaces.fetchDetails(id);
+      // if (cache[id] === undefined) {
+      //   const cacheTimestamp = cache[id].cacheTimestamp;
+      //   // const now =
+      // }
+      return cache[id] === undefined ? dataApi.googlePlaces.fetchDetails(id) : cache[id];
     });
 
     return Promise.all(promises);

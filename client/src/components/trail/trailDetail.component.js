@@ -64,6 +64,12 @@ export default class TraillistDetail extends React.Component {
         dataSource: this.ds.cloneWithRows(this.props.reviews)
       });
     }
+
+    if (this.props.formatted_address !== undefined) {
+      this.setState({
+        address: this.props.formatted_address.replace(/, /g, '\n')
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
