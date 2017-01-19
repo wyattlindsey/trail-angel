@@ -58,7 +58,7 @@ export default class SearchBar extends React.Component {
       searchTimeout: false
     });
     if (text === '') {
-      // this.props.cancelRequest();
+      this.props.cancelRequest();
     } else {
       this.props.search(textInput,
         {

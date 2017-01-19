@@ -35,7 +35,8 @@ const listingsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         searchResults: action.searchResults,
-        isFetching: false
+        isFetching: false,
+        isFetchCancelled: false
       };
 
     case actionTypes.CANCEL_REQUEST:
