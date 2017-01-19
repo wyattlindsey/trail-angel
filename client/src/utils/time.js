@@ -7,30 +7,30 @@ const daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday',
 
 const time = {
 
-  weekday: (UNIX_timestamp) => {
-    const date = new Date(UNIX_timestamp * 1000);
+  weekday: (UNIX_timestamp, offset = 0) => {
+    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     return daysOfTheWeek[date.getDay()];
   },
 
-  dayOfWeek: (UNIX_timestamp) => {
-    const date = new Date(UNIX_timestamp * 1000);
+  dayOfWeek: (UNIX_timestamp, offset = 0) => {
+    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     return date.getDay();
   },
 
-  hourOfDay: (UNIX_timestamp) => {
-    const date = new Date(UNIX_timestamp * 1000);
+  hourOfDay: (UNIX_timestamp, offset = 0) => {
+    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     return date.getHours();
   },
 
-  formattedDayAndMonth: (UNIX_timestamp) => {
-    const date = new Date(UNIX_timestamp * 1000);
+  formattedDayAndMonth: (UNIX_timestamp, offset = 0) => {
+    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     const day = weekday(date.getDay());
     const month = monthsAbbreviated[date.getMonth()];
     return `${day} ${month}`;
   },
 
-  formattedDateAndTime: (UNIX_timestamp) => {
-    const date = new Date(UNIX_timestamp * 1000);
+  formattedDateAndTime: (UNIX_timestamp, offset = 0) => {
+    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     const year = date.getFullYear();
     const month = monthsAbbreviated[date.getMonth()];
     const day = date.getDate();
@@ -40,8 +40,8 @@ const time = {
     return `${day} ${month} ${year} ${hours}:${minutes}:${seconds}`;
   },
 
-  formatted12HourTime: (UNIX_timestamp) => {
-    const date = new Date(UNIX_timestamp * 1000);
+  formatted12HourTime: (UNIX_timestamp, offset = 0) => {
+    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     let hours = date.getHours() > 12 ? (date.getHours() - 12) : date.getHours();
     hours = hours === 0 ? 12 : hours;
     const minutes = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes();
@@ -49,8 +49,8 @@ const time = {
     return `${hours}:${minutes} ${ampm}`;
   },
 
-  formatted24HourTime: (UNIX_timestamp) => {
-    const date = new Date(UNIX_timestamp * 1000);
+  formatted24HourTime: (UNIX_timestamp, offset = 0) => {
+    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     const hours = date.getHours();
     const minutes = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes();
     return `${hours}:${minutes}`;

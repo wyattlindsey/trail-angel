@@ -25,14 +25,14 @@ const DailyWeatherForecast = (props) => (
     <View>
       {props.forecast === undefined ?
         <View /> :
-        [props.forecast.currently, ...props.forecast.daily.data].map((dailyForecast, i) => {
-          // if this is the first day through the list, tack on the current day at
-          // the very beginning of the list
+        props.forecast.daily.data.map((dailyForecast, i) => {
+          if (i > 6) return <View key={i} />
           return (
             <DailyForecastListItem key={i}
                                    dailyForecast={dailyForecast}
                                    forecast={props.forecast}
                                    today={i === 0}
+                                   offset={props.forecast.offset}
                                    day={true}
                                    navigator={props.navigator}
             />
@@ -53,7 +53,7 @@ const DailyForecastListItem = (props) => (
                      color={'darkgreen'}
         />
         <Text style={styles.forecastHeading}>
-          {props.today ? 'Today' : time.weekday(props.dailyForecast.time)}
+          {props.today ? 'Today' : time.weekday(props.dailyForecast.time, props.offset)}
         </Text>
       </View>
     </TouchableHighlight>
@@ -84,14 +84,13 @@ const DailyForecastListItem = (props) => (
 const HourlyWeatherForecast = (props) => (
   <ScrollView>
     <View>
-      {props.forecast === undefined ?
+      {props.hourlyForecast === undefined ?
         <View /> :
-        props.forecast.hourly.data.map((forecast, i) => {
+        props.hourlyForecast.map((hourlyForecast, i) => {
           return (
-            <DailyForecastListItem key={i}
-                                   hourlyForecast={hourlyForecast}
-                                   forecast={props.forecast}
-                                   navigator={props.navigator}
+            <HourlyForecastListItem key={i}
+                                    hourlyForecast={hourlyForecast}
+                                    offset={props.offset}
             />
           );
         })
@@ -103,76 +102,63 @@ const HourlyWeatherForecast = (props) => (
 const HourlyForecastListItem = (props) => (
   <View style={styles.forecastListItem}>
     <View style={{ alignItems: 'center' }}>
-      <WeatherIcon icon={props.forecast.icon}
+      <WeatherIcon icon={props.hourlyForecast.icon}
                    size={35}
                    color={'darkgreen'}
       />
       <Text style={styles.forecastHeading}>
-        {time.weekday(props.forecast.time)} : </Text>
+        {time.formatted12HourTime(props.hourlyForecast.time)}
+      </Text>
     </View>
-    <Text style={{ paddingBottom: 10 }}>{props.forecast.summary}</Text>
+    <Text style={{ paddingBottom: 10 }}>{props.hourlyForecast.summary}</Text>
     <Text style={{ fontSize: 11 }}>
-      {'H: ' + props.forecast.apparentTemperatureMax + 'F° ' +
-      time.formatted12HourTime(props.forecast.apparentTemperatureMaxTime)
-      }
+      {props.hourlyForecast.apparentTemperature + 'F°'}
     </Text>
-    <Text style={{ fontSize: 11 }}>
-      {time.formatted12HourTime(props.forecast.time)}
-    </Text>
-    {props.forecast.precipProbability > 0 ?
+    {props.hourlyForecast.precipProbability > 0 ?
       <Text style={{ fontSize: 11 }}>
-        {props.forecast.precipProbability * 100 + '% chance of ' + props.forecast.precipType === undefined ? props.forecast.precipType : ''}</Text> : <View />
+        {props.hourlyForecast.precipProbability * 100 + '% chance of ' +
+          props.hourlyForecast.precipType === undefined ?
+          props.hourlyForecast.precipType : ''}</Text> : <View />
     }
-
   </View>
 );
 
 // todo: this needs to navigate to another weather forecast component filled with hourly list items
 
 const handleDailyForecastPress = (props) => {
-  // const offsetHours = findRemainingHoursInHourlyForecast(props.dailyForecast.time);
-  const now = Date.now();
-  const today = time.dayOfWeek(now);
-  const forecastDay = time.dayOfWeek(props.dailyForecast.time);
-  const offsetDays = forecastDay - today;
+  const startAndEnd = getForecastHoursIndicesForDay(props.dailyForecast.time, props.offset);
+  const hours = [...props.forecast.hourly.data].slice(startAndEnd.startIndex,
+                                                     startAndEnd.endIndex);
 
-  const currentHour = time.hourOfDay(now);
-  const forecastHour = time.hourOfDay(props.dailyForecast.time);
-
-  const offsetHours = offsetDays * 24 + (forecastHour - currentHour);
-  const startIndex = offsetDays === 0 ? currentHour : offsetDays * 24;
-  const endIndex = (24 * offsetDays) + 24;
-  debugger;
-
-  let hourlyForecastCopy = [...props.forecast.hourly.data];
-  debugger;
-
-  props.navigator.push({
-    title: 'Hourly Forecast',
-    component: HourlyForecast,
-    passProps: {
-      hourlyForecast: props.hourlyForecast,
-      forecast: props.forecast
-    }
-  });
+  if (startAndEnd) {
+    props.navigator.push({
+      title: 'Hourly',
+      component: HourlyWeatherForecast,
+      passProps: {
+        hourlyForecast: hours,
+        offset: props.forecast.offset
+      }
+    });
+  }
 };
 
-const timeBeforeForecast = (timestamp) => {
-  const now = Date.now();
+const getForecastHoursIndicesForDay = (timestamp, offset) => {
+  const now = Math.floor(Date.now() / 1000);
   const today = time.dayOfWeek(now);
-  const forecastDay = time.dayOfWeek(timestamp);
-  const offsetDays = forecastDay - today;
+  const forecastDay = time.dayOfWeek(timestamp, offset);
+  const offsetDays = forecastDay - today + 1;
+  if (offsetDays > 2 || offsetDays < 0) {
+    return false;
+  }
 
   const currentHour = time.hourOfDay(now);
-  const forecastHour = time.hourOfDay(timestamp);
-  const offsetHours = forecastDay - currentHour;
+  const hoursUntilMidnight = 24 - currentHour;
 
-  // forecastDay is too far out for hourly forecast
-  if (offset > 3) {
-    return false;
-  } else {
-    return true;
-  }
+  const startIndex = offsetDays > 0 ? hoursUntilMidnight: 0;
+  const endIndex = offsetDays * 24 + hoursUntilMidnight + startIndex;
+
+
+  return { startIndex, endIndex };
 };
 
 
