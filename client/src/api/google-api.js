@@ -47,8 +47,35 @@ const googleApi = {
       .catch((err) => {
         console.error('Error fetching city data: ', err);
       });
+  },
+  getElevation: (coordinates) => {
+        // so things don't explode
+    if (coordinates === undefined) {
+      return Promise.resolve(false);
+    }
 
+    let locations = coordinates.map((pin) => {
+      return `${pin.coordinate.latitude},${pin.coordinate.longitude}`;
+    }).join('|');
+
+    const url = `https://maps.googleapis.com/maps/api/elevation/json?locations=${locations}&key=${secrets.google.apiKey}`;
+
+    return request.get(url)
+    .then((response) => {
+      let elevations = response.results;
+      let elevationGain = 0;
+      for(var i = 1; i < elevations.length; i++) {
+        let diff = elevations[i].elevation - elevations[i-1].elevation;
+        if (diff > 0) {
+          elevationGain += diff;
+        }
+      }
+      return elevationGain;
+    })
+    .catch((err) => {
+      console.error('Error fetching city data: ', err);
+    });
   }
-}
+};
 
 export default googleApi;

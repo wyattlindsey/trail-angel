@@ -15,14 +15,17 @@ module.exports = {
           for (var i = 0; i < count; i++) {
             pins.push(i);
           }
+          return pins;
+        })
+        .then( (pins) => {
           geoMapper.geoposAsync(key, ...pins)
-              .then( (geolocations) => {
-                // console.log("this is the lat and long for ", geolocations);
-                res.send(geolocations);
-              })
-              .catch(err => {
-                console.error('Error getting geolocation: ', err);
-              });
+            .then( (geolocations) => {
+              // console.log("this is the lat and long for ", geolocations);
+              res.send(geolocations);
+            })
+            .catch(err => {
+              console.error('Error getting geolocation: ', err);
+            });
         })
         .catch( (err) => {
           console.log('this trail does not have any pins yet', err);
@@ -102,18 +105,42 @@ module.exports = {
               console.log('Pins have not been saved!', err);
               res.sendStatus(404);
             });
+        })
+        .catch( (err) => {
+          console.log('mapping points on this trail was not deleted', err);
+        });
+    },
+    getDistance: function(req, res) {
+      let key = `${req.params.trailId}:${req.params.userId}`;
+      geoMapper.zcountAsync(key, '-inf', 'inf')
+        .then( (count) => {
+          // console.log("this is the number of items in this key", key, count);
+          let promises = [];
+          for (var pin = 1; pin < count; pin++) {
+            promises.push(geoMapper.geodistAsync(key, pin-1, pin, 'mi'));
+          }
+
+          return Promise.all(promises);
+        })
+        .then((data) => {
+          let totalDistance = data.reduce((sum, distance) => {
+            return sum + parseFloat(distance);
+          }, 0);
+          res.json(totalDistance);
+        })
+        .catch((err) => {
+          console.log('error getting distance data', err);
+          res.sendStatus(404);
         });
     }
-        // .catch( (err) => {
-        //   console.log('mapping points on this trail was not deleted', err);
-        // });
-    // getDistance: function(req, res) {
-    //   //GEODIST
-    //   geoMapper.geodistAsync(key, ...pins)
-    // },
+
     // getDistance2points: function(req, res) {
     //   //GEODIST
     //   //may not use this one
     // }
-  }
+  },
 };
+
+
+
+

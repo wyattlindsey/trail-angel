@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 import trailAngelApi from '../../api/trailangel-api';
+import googleApi from '../../api/google-api';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -20,6 +21,7 @@ export default class CustomMarkers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      distance: 0,
       region: {
         latitude: this.props.geometry.location.lat,
         longitude: this.props.geometry.location.lng,
@@ -27,23 +29,25 @@ export default class CustomMarkers extends React.Component {
         longitudeDelta: LONGITUDE_DELTA,
       },
       markers: [{
-          coordinate: {
-            latitude: this.props.geometry.location.lat,
-            longitude: this.props.geometry.location.lng
-          },
-          key: '0',
-        }],
+        coordinate: {
+          latitude: this.props.geometry.location.lat,
+          longitude: this.props.geometry.location.lng
+        },
+        key: '0',
+      }],
+      displayMiles: true
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
+
   componentDidMount() {
     this.getMappedTrail();
   }
+
   getMappedTrail(trailId, options) {
     var savedMarkers;
     trailAngelApi.getGeo(this.props.id, this.props.userId)
     .then(data => {
-      console.log(data);
       if (data.length > 0) {
         var key = 0;
         savedMarkers = data.map(coordinate => {
@@ -56,16 +60,31 @@ export default class CustomMarkers extends React.Component {
             key: `foo${key++}`,
           };
         });
-        console.log(savedMarkers);
         this.setState({
           markers: savedMarkers
-        });
+        }, this.getTotalDistance);
       }
     })
     .catch(err => {
       console.error("Failed to get mapped trail: ", err);
     });
   }
+
+  getElevationGain() {
+    googleApi.getElevation(this.state.markers)
+      .then(console.log);
+  }
+
+  getTotalDistance() {
+    this.getElevationGain();
+    return trailAngelApi.getDistanceMappedTrail(this.props.id, this.props.userId)
+      .then((distance) => {
+        this.setState({
+          distance: distance
+        });
+      });
+  }
+
   saveMappedTrail() {
     var trailId = this.props.id;
     var pins = this.state.markers.map(marker => {
@@ -77,13 +96,14 @@ export default class CustomMarkers extends React.Component {
     };
     trailAngelApi.addGeo(trailId, options)
     .then(response => {
-      console.log(response.status);
-      Alert.alert('Trail Saved!');
+      this.getTotalDistance();
     })
     .catch(err => {
       Alert.alert('There was an error saving your trail: ', err);
     });
+
   }
+
   deleteMappedTrail() {
     var options = {
       userId: this.props.userId
@@ -95,8 +115,9 @@ export default class CustomMarkers extends React.Component {
     })
     .catch(err => {
       console.error('Error deleting mapped trail: ', err);
-    })
+    });
   }
+
   resetTrail() {
     this.setState({
       markers: [{
@@ -117,10 +138,10 @@ export default class CustomMarkers extends React.Component {
           key: `foo${id++}`,
         },
       ],
-    });
+    }, this.saveMappedTrail);
   }
+
   onDragEnd(key, e) {
-    console.log(key);
     var index;
     this.state.markers.forEach((marker, i) => {
       if (marker.key === key) {
@@ -132,14 +153,20 @@ export default class CustomMarkers extends React.Component {
       coordinate: e.nativeEvent.coordinate,
       key: key,
     });
-    console.log('These are the markers after drag end: ', markers, 'This is marker event info: ', e.nativeEvent, 'This is the index of the moved marker: ', index);
-
     this.setState({
       markers: [
         ...markers,
       ],
     });
+    this.saveMappedTrail();
   }
+
+  toggleMilesKilometers() {
+    this.setState({
+      displayMiles: !this.state.displayMiles
+    });
+  }
+
   render() {
     let trailheadCoordinate = {
       latitude: this.state.region.latitude,
@@ -187,14 +214,18 @@ export default class CustomMarkers extends React.Component {
           >
             <Text>Remove Last Pin</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            onPress={() => {
-                this.saveMappedTrail();
-              }
-            }
+            onPress={this.toggleMilesKilometers.bind(this)}
             style={styles.bubble}
           >
-            <Text>Save</Text>
+            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.toggleMilesKilometers.bind(this)}
+            style={styles.bubble}
+          >
+            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
