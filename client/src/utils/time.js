@@ -22,6 +22,10 @@ const time = {
     return date.getHours();
   },
 
+  elapsedTime: (beginningTimestamp, endingTimestamp) => {
+    return beginningTimestamp - endingTimestamp;
+  },
+
   formattedDayAndMonth: (UNIX_timestamp, offset = 0) => {
     const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
     const day = weekday(date.getDay());
