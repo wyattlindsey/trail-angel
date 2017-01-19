@@ -1,10 +1,5 @@
 import React from 'react';
-import {  View,
-          Text,
-          StyleSheet,
-          Image,
-          TouchableHighlight,
-          ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
@@ -18,34 +13,33 @@ const styles = StyleSheet.create({
     width: 50
   },
   title: {
-    color: '#3D728E',
+    fontWeight: '600',
     fontSize: 16,
-    fontWeight: '600'
+    color: '#5E9FA1'
   },
-
   photo: {
-    height: 40,
-    width: 40,
     marginRight: 20,
     borderRadius: 20,
+    width: 40,
+    height: 40,
   },
   location: {
     color: '#786048'
   },
   rating: {
-    color: '#909060'
+    color: '#96AA3D'
   },
   description: {
-    color: '#484830',
-    fontSize: 14,
     lineHeight: 20,
-    marginTop: 8,
+    fontSize: 14,
+    color: '#484830',
     textAlign: 'left',
+    marginTop: 8,
   },
  separator: {
-    height: 1,
-    backgroundColor: '#E3E0D7'
-  },
+    backgroundColor: '#E3E0D7',
+    height: 1
+  }
 
 });
 
