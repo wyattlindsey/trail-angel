@@ -11,10 +11,10 @@ const searchActions = {
       });
 
       const options = location ? {
-                                   query,
-                                   latitude: location.latitude,
-                                   longitude: location.longitude
-                                 } : { query };
+        query,
+        latitude: location.latitude,
+        longitude: location.longitude
+      } : { query };
 
       return dataApi.googlePlaces.search(options)
         .then((results) => {
@@ -23,18 +23,17 @@ const searchActions = {
             results.length === 0) {
             return false;
           } else {
-            const cache = getState().listingsReducer.cache;
-            return searchActions.getDetails(results.map((result) => result.id ), cache)
+            return dispatch(searchActions.getDetails(results.map((result) => result.id )))
               .then((results) => {
                 return results.map((result) => {
                   return {
                     ...result,
                     photoThumbUrl: dataApi.googlePlaces.getUrlForPhoto
-                                      (result.photo_reference, 100),
+                    (result.photo_reference, 100),
                     photoLargeUrl: dataApi.googlePlaces.getUrlForPhoto
-                                      (result.photo_reference, 400)
+                    (result.photo_reference, 400)
                   };
-                })
+                });
               })
               .then((detailedResults) => {
                 return dispatch({
@@ -53,18 +52,45 @@ const searchActions = {
     };
   },
 
-  getDetails: (IDs, cache) => {
-    // todo: check cache for these IDs
-    if (!Array.isArray(IDs)) IDs = [IDs];
-    let promises = IDs.map((id) => {
-      // if (cache[id] === undefined) {
-      //   const cacheTimestamp = cache[id].cacheTimestamp;
-      //   // const now =
-      // }
-      return cache[id] === undefined ? dataApi.googlePlaces.fetchDetails(id) : cache[id];
-    });
+  getDetails: (IDs) => {
+    return (dispatch, getState) => {
+      let shouldFetch = true;
+      const cache = getState().listingsReducer.cache;
+      if (!Array.isArray(IDs)) IDs = [IDs];
+      let promises = IDs.map((id) => {
 
-    return Promise.all(promises);
+        // if the item exists in the cache
+        if (cache[id] !== undefined) {
+          const cacheTimestamp = cache[id].cacheTimestamp;
+          const now = Date.now();
+
+          // and it's less than 2 weeks old
+          if (time.elapsedTime(cacheTimestamp, now) < 1209600000 /* two weeks */) {
+            // use the cached version
+            console.log('cache hit');
+            return cache[id];
+
+          } else {
+            dispatch({
+              type: actionTypes.REMOVE_FROM_STORAGE,
+              id
+            });
+          }
+        }
+
+        // uncached and cached-but-expired listings should be re-fetched
+        return dataApi.googlePlaces.fetchDetails(id)
+          .then((details) => {
+            // dispatch({
+            //   type: actionTypes.SAVE_TO_STORAGE,
+            //   data: details
+            // });
+            return details;
+          });
+      });
+
+      return Promise.all(promises);
+    };
   },
 
   cancelRequest: () => {

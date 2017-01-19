@@ -334,7 +334,6 @@ const storeResults = (search, results, collection) => {
         results: _.map(results, 'id')}, collection));
 
       // create the array of tuples that AsyncStorage uses
-      debugger;
       const listings = results.map((result) => {
         return [result.id, JSON.stringify({...result, type: 'listing' })];
       });
