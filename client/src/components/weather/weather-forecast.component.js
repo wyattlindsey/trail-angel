@@ -147,6 +147,7 @@ const getForecastHoursIndicesForDay = (timestamp, offset) => {
   const today = time.dayOfWeek(now);
   const forecastDay = time.dayOfWeek(timestamp, offset);
   const offsetDays = forecastDay - today + 1;
+
   if (offsetDays > 2 || offsetDays < 0) {
     return false;
   }
@@ -154,9 +155,18 @@ const getForecastHoursIndicesForDay = (timestamp, offset) => {
   const currentHour = time.hourOfDay(now);
   const hoursUntilMidnight = 24 - currentHour;
 
-  const startIndex = offsetDays > 0 ? hoursUntilMidnight: 0;
-  const endIndex = offsetDays * 24 + hoursUntilMidnight + startIndex;
+  let startIndex, endIndex;
 
+  if (offsetDays === 0) {           // today
+    startIndex = 0;
+    endIndex = hoursUntilMidnight;
+  } else if (offsetDays === 1) {    // tomorrow
+    startIndex = hoursUntilMidnight;
+    endIndex = startIndex + 24;
+  } else if (offsetDays === 2) {    // the day after
+    startIndex = hoursUntilMidnight + 24;
+    endIndex = startIndex + (24 - hoursUntilMidnight);
+  }
 
   return { startIndex, endIndex };
 };
