@@ -203,7 +203,7 @@ const getForecastHoursIndicesForDay = (timestamp, offset) => {
     endIndex = startIndex + 24;
   } else if (offsetDays === 2) {    // the day after
     startIndex = hoursUntilMidnight + 24;
-    endIndex = startIndex + (24 - hoursUntilMidnight);
+    endIndex = startIndex + (24 - hoursUntilMidnight + 1);
   }
 
   return { startIndex, endIndex };

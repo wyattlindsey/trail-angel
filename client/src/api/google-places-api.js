@@ -17,8 +17,7 @@ const googlePlacesApi = {
     if (searchOptions.latitude && searchOptions.longitude) {
       searchOptions.location = `${searchOptions.latitude},${searchOptions.longitude}`;
     }
-    // searchOptions.rankby = searchOptions.rankby || 'distance';
-    // searchOptions.radius = searchOptions.radius || '50000';
+
     searchOptions.query = searchOptions.query + '%20hiking%20trails';
     searchOptions.key = apiKey;
 
@@ -45,7 +44,12 @@ const googlePlacesApi = {
         if (data === undefined || data.results === undefined) {
           return false;
         } else {
-          return data.results;
+          return data.results.map((result) => {
+            return {
+              ...result,
+              id: result.place_id
+            }
+          });
         }
       })
       .catch((err) => {
@@ -53,16 +57,30 @@ const googlePlacesApi = {
       });
   },
 
-  searchByID: (id) => {  // todo consolidate this with the loop of promises above
+  fetchDetails: (id) => {
     return request.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${config.secrets.google.apiKey}`)
       .then((data) => {
         if (data === undefined) {
           Promise.reject('Error retrieving Google place data by ID');
         }
+
+        let photoReference = false;
+        let photoThumbnailUrl = false;
+        let photoLargeUrl = false;
+
+        if (data.result.photos !== undefined) {
+          photoThumbnailUrl = googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 100);
+          photoLargeUrl = googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 400);
+          photoReference = data.result.photo_reference;
+        }
+
         return {
           ...data.result,
-          id: data.result.place_id
-        }
+          id: data.result.place_id,
+          photoReference,
+          photoThumbnailUrl: photoThumbnailUrl || data.result.icon,
+          photoLargeUrl: photoLargeUrl || data.result.icon
+        };
       });
   },
 
