@@ -177,12 +177,16 @@ export default class FavoriteListItem extends React.Component {
                 <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
                                     style={styles.removeButton}
                                     underlayColor='#ffffff'>
-                  <Icon name='minus-circle' size={20} color='darkgreen' />
+                  <View>
+                    <Icon name='minus-circle' size={20} color='darkgreen' />
+                  </View>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
                                     style={styles.removeButton}
                                     underlayColor='#ffffff'>
-                  <Icon name='map' size={20} color='darkgreen' />
+                  <View>
+                    <Icon name='map' size={20} color='darkgreen' />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View style={styles.textContainer}>

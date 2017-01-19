@@ -7,7 +7,10 @@ const storageActions = {
   },
 
   saveToStorage: (listing) => {
-
+    return {
+      type: actionTypes.SAVE_TO_STORAGE,
+      data: listing
+    };
   },
 
   removeFromStorage: (id) => {

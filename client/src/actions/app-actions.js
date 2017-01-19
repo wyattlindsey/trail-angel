@@ -43,10 +43,10 @@ const appActions = {
         .then(() => {
           return dispatch(appActions.getGeolocation());
         })
-        .then(() => {
+        // .then(() => {
           // return loadAsyncStorageData();
-        })
-        .then((data) => {
+        // })
+        // .then((data) => {
           // dispatch({
           //   type: actionTypes.LOAD_SAVED_SEARCHES,
           //   loadedSearches: data.searches
@@ -59,7 +59,7 @@ const appActions = {
           //   type: actionTypes.LOAD_SAVED_COLLECTIONS,
           //   loadedCollections: data.collections
           // });
-        })
+        // })
         .then(() => {
           const location = {
             latitude: getState().appReducer.geolocation.coords.latitude,
@@ -68,14 +68,16 @@ const appActions = {
           return dispatch(searchActions.search('', location ));
         })
         .then((results) => {
-          if (results.length === 0) {
+          if (Array.isArray(results) && results.length === 0) {
             return dispatch(searchActions.search(''));
           } else {
             return results;
           }
         })
         .then((results) => {
-          return dispatch(loadHomeData(results.searchResults));
+          if (results !== undefined && results.searchResults !== undefined) {
+            return dispatch(loadHomeData(results.searchResults));
+          }
         })
         .then(() => {
           return dispatch(favoriteActions.loadFavorites());
