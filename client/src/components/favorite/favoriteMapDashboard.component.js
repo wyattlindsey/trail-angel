@@ -37,7 +37,8 @@ export default class CustomMarkers extends React.Component {
         key: '0',
       }],
       displayMiles: true,
-      displayFeet: true
+      displayFeet: true,
+      estimatedTime: 0
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
