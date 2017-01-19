@@ -12,7 +12,7 @@ const Trails = (props) => {
   const { state, actions } = props;
   return (
     <TrailList navigator={props.navigator} isFetching={state.listingsReducer.isFetching}
-               trails={state.listingsReducer.collections.home}
+               trails={state.listingsReducer.homeData}
                userLocation={state.appReducer.geolocation}
                {...actions} />
   );

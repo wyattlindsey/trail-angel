@@ -43,8 +43,8 @@ export default class TrailList extends React.Component {
       });
     }
 
-    if (!this.state.trailsLoaded && this.props.trails !== undefined && this.props.trails.length > 0) {
-      const homeListings = this.props.trails;
+    if (!this.state.trailsLoaded && nextProps.trails !== undefined && nextProps.trails.length > 0) {
+      const homeListings = nextProps.trails;
       let found = false;
       while(!found) {
         const randomIndex = Math.floor(Math.random() * homeListings.length);
@@ -72,8 +72,8 @@ export default class TrailList extends React.Component {
       <View>
         {this.props.fetching ?
           <ActivityIndicator animating={this.props.isFetching}
-                             style={[styles.centering, styles.horizontal,
-                               { height: 260 }]}
+                             style={
+                                      { top: 150 }}
                              color='darkgreen'
                              size='large' /> :
           <View style={styles.container}>
@@ -82,11 +82,7 @@ export default class TrailList extends React.Component {
                 <Image
                   source={require('../../../img/home.jpg')}
                 />
-              </View>
-              :
-              <Image  style={styles.homeImage}
-                      source={require('../../../img/backpack.png')}
-              />
+              </View> : <View />
             }
 
             <ListView
@@ -108,4 +104,4 @@ export default class TrailList extends React.Component {
   }
 }
 
-// source={{ uri: dataApi.googlePlaces.getUrlForPhoto(this.state.randomPhotoUrl, 400) }}
+// source={{ uri: uri: dataApi.googlePlaces.getUrlForPhoto(this.state.randomPhotoUrl, 400) }}

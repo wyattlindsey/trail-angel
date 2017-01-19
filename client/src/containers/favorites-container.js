@@ -13,7 +13,7 @@ const Favorites = (props) => {
   return (
     <FavoriteList isFetching={state.listingsReducer.isFetching}
                   listings={state.listingsReducer.cache}
-                  favorites={state.listingsReducer.collections.favorites}
+                  favorites={state.listingsReducer.favorites}
                   userId={state.userReducer.userId}
                   userLocation={state.appReducer.geolocation}
                   navigator={props.navigator}

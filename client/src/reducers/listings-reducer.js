@@ -11,7 +11,9 @@ const initialState = {
   cache: {},
   collections: {},
   searches: {},
-  searchResults: []   // todo convert this to a collection
+  searchResults: [],   // todo convert this to a collection
+  homeData: [],
+  favorites:[]
 };
 
 const listingsReducer = (state = initialState, action = {}) => {
@@ -47,6 +49,19 @@ const listingsReducer = (state = initialState, action = {}) => {
         isFetching: false,
         isFetchCancelled: true
       };
+
+    case actionTypes.LOAD_HOME_DATA:
+      return {
+        ...state,
+        searchResults: [],
+        homeData: action.data
+      };
+
+    case actionTypes.LOAD_FAVORITES:
+      return {
+        ...state,
+        favorites: action.favorites
+      }
 
     case actionTypes.STORE_LISTING:
       return {
