@@ -154,7 +154,6 @@ export default class TraillistItem extends React.Component {
       component: DailyWeatherForecast,
       passProps: {
         ...this.state.weather,
-        type: 'daily',
         forecast: this.state.weather,
         navigator: this.props.navigator,
       }
