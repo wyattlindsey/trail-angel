@@ -7,7 +7,7 @@ import Row from './reviewListItem.component';
 
 
 const styles = StyleSheet.create({
- rowContainer: {
+  rowContainer: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'stretch',
@@ -15,21 +15,13 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     height: 200,
-    // borderWidth: 2,
-    // borderColor: 'steelblue',
   },
   textContainer: {
-    height: 150,
+    height: 80,
+    marginBottom: 20,
     padding: 20,
-    
-    // borderWidth: 2,
-    // borderColor: 'steelblue',
   },
-  reviewContainer: {
-    padding: 20,
-    // borderWidth: 2,
-    // borderColor: 'steelblue',
-  },
+  
   map: {
     flex: 1,
   },
@@ -41,35 +33,16 @@ const styles = StyleSheet.create({
   location: {
     color: '#786048'
   },
-  rating: {
-    color: '#909060'
-  },
-  description: {
-    color: '#484830',
-    fontSize: 14,
-    lineHeight: 20,
-    marginTop: 8,
-    textAlign: 'left',
-  },
-  row: {
-    padding: 15,
-    marginBottom: 5,
-    // backgroundColor: 'skyblue',
-  },
-    reviewtitle: {
-    color: '#3D728E',
+  reviewtitle: {
+    padding: 20,
+    color: '#333333',
     fontSize: 16,
     fontWeight: '600'
   },
-  review: {
-    color: '#484830',
-    fontSize: 14,
-    lineHeight: 15,
-    marginBottom: 20,
-    textAlign: 'left',
+  separator: {
+    height: 1,
+    backgroundColor: '#E3E0D7'
   },
-
-
 });
 
 
@@ -78,20 +51,13 @@ export default class TraillistDetail extends React.Component {
     super(props);
 
     // DataSource template object
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    
+     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+     const blob = this.props.reviews;
+
     this.state = {
-      dataSource: this.ds,
+      dataSource: ds.cloneWithRows(blob),
     }
 
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.trails !== undefined) {
-      this.setState({
-        dataSource: this.ds.cloneWithRows(nextProps.trails)
-      });
-    }
   }
 
   _selectMap(e) {
@@ -105,7 +71,6 @@ export default class TraillistDetail extends React.Component {
   }
 
   render() {
-    console.log('Trail Detail View ------- ',this.props);
     let marker = {
       coordinate: {latitude: this.props.geometry.location.lat,
                     longitude: this.props.geometry.location.lng},
@@ -138,17 +103,25 @@ export default class TraillistDetail extends React.Component {
             <Text style={styles.title}>{this.props.name}</Text>
             <Text style={styles.location}> {this.props.formatted_address} </Text>
           </View>
-          <View style={styles.reviewContainer}>
-            <Text style={styles.reviewtitle}>Reviews: </Text>
-            <ListView
-              style={styles.container}
-              dataSource={this.state.dataSource}
-              renderRow={(data) => <Row {...data}/>}
-              renderSeparator={(sectionId, rowId) => 
-                    <View key={rowId} style={styles.separator} />}
-            />
-          </View>
+          <View style={styles.separator}/>
+
+          <Text style={styles.reviewtitle}>Reviews: </Text>
+          <ListView  automaticallyAdjustContentInsets={false}
+            dataSource={this.state.dataSource}
+            renderRow={(data) => <Row {...data}/>}
+            renderSeparator={(sectionId, rowId) => 
+                  <View key={rowId} style={styles.separator} />}
+          />
         </View>
     );
   }
 }
+
+/*
+<ListView  style={styles.reviewContainer}
+            dataSource={this.state.dataSource}
+            renderRow={(data) => <Row {...data}/>}
+            renderSeparator={(sectionId, rowId) => 
+                  <View key={rowId} style={styles.separator} />}
+          />
+*/

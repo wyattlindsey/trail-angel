@@ -22,20 +22,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600'
   },
-  leftColumn: {
-  },
+
   photo: {
     height: 40,
     width: 40,
     marginRight: 20,
     borderRadius: 20,
-  },
-  favorite: {
-    height: 20,
-    width: 20,
-    marginRight: 20,
-    marginTop: 80,
-    opacity: 0.5
   },
   location: {
     color: '#786048'
@@ -50,39 +42,33 @@ const styles = StyleSheet.create({
     marginTop: 8,
     textAlign: 'left',
   },
-  separator: {
+ separator: {
     height: 1,
     backgroundColor: '#E3E0D7'
   },
-  distance: {
-    flex: 1,
-    flexDirection: 'column'
-  }
+
 });
 
 export default class ReviewListItem extends React.Component {
   constructor(props) {
     super(props);
-    this._isMounted = false;
-  }
-  componentDidMount() {
-     this._isMounted = true;
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   render() {
-    console.log('Review List Item View ------- ',this.props);
-
+    const link = `https:${this.props.profile_photo_url}`;
     return (
-      <View style={styles.rowContainer}>
-       <Text>I'm in the ReviewListItem component! </Text>
-        <Image source={{uri: this.props.reviews[0].profile_photo_url}} style={styles.photo} />
-        <Text>{this.props.reviews[0].author_name}</Text>
-        <Text style={styles.location}> {this.props.reviews[0].rating} </Text>
-        <Text style={styles.review} numberOfLines={10}>{this.props.reviews[0].text}</Text>
-      </View>
+      <View>
+        <View style={styles.rowContainer}>
+          <View>
+            <Image source={{uri: link}} style={styles.photo} />
+          </View> 
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{this.props.author_name}</Text>
+            <Text style={styles.location}>Rating: {this.props.rating} </Text>
+            <Text style={styles.description} numberOfLines={10}>{this.props.text}</Text>
+          </View>
+        </View>
+      </View>  
     );
   }
 }
