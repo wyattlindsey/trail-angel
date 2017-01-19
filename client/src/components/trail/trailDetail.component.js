@@ -137,7 +137,7 @@ export default class TraillistDetail extends React.Component {
         <View style={styles.rowContainer}>
           <TouchableHighlight onPress={this._selectMap.bind(this)}>
             <View style={styles.mapContainer}>
-              <MapView pitchEnabled="false" rotateEnabled="false" scrollEnabled="false" zoomEnabled="false"
+              <MapView pitchEnabled={false} rotateEnabled={false} scrollEnabled={false} zoomEnabled={false}
                 style={styles.map}
                 region={region}
                 onRegionChange={this.onRegionChange}

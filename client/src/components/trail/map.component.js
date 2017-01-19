@@ -103,8 +103,8 @@ export default class TrailMap extends React.Component {
 
   componentWillMount() {
     let that = this;
-    dataApi.weather({latitude: this.props.geometry.location.lat,
-                    longitude: this.props.geometry.location.lng})
+    dataApi.weather(this.props.geometry.location.lat,
+                    this.props.geometry.location.lng)
       .then( (res) => {
         that.setState({ weather: res });
       });
