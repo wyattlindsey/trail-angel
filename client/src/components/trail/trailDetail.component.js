@@ -98,7 +98,7 @@ export default class TraillistDetail extends React.Component {
       latitude: this.props.geometry.location.lat,
       longitude: this.props.geometry.location.lng,
       latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421
+      longitudeDelta: 0.0421  //comment
     };
 
     return (
