@@ -10,7 +10,7 @@ router.post('/:trailId', controller.geolocation.post);
 router.put('/:trailId', controller.geolocation.put);
 
 // //get total distance with userId and trailId
-// router.get('/:trailId', controller.geolocation.getDistance);
+router.get('/:trailId/:userId/distance', controller.geolocation.getDistance);
 // router.get('/:trailId', controller.geolocation.getDistance2points);
 
 

@@ -77,6 +77,23 @@ const trailAngelApi = {
   removeGeo: (trailId, options) => {
     return request.remove(`${baseUrl}/api/geolocations/${trailId}`, options);
   },
+
+      /**
+   *      Geolocations - distance
+   *
+   *
+   */
+
+  getDistanceMappedTrail: (trailId, userId) => {
+    return request.get(`${baseUrl}/api/geolocations/${trailId}/${userId}/distance`)
+      .then((distance) => {
+        return distance;
+      })
+      .catch((err) => {
+        console.error('error fetching distance of mapped trail: ', err);
+      });
+  }
+
 };
 
 export default trailAngelApi;
