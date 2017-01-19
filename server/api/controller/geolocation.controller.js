@@ -76,24 +76,6 @@ module.exports = {
       for(var pin = 0; pin < req.body.pins.length; pin++) {
         pins.push(...req.body.pins[pin], pin);
       }
-      geoMapper.geoaddAsync(key, ...pins) //if we get the format we want this is OK
-        .then( (status) => {
-          console.log('Pins have been replaced!', status);
-          res.sendStatus(200);
-        })
-        .catch( (err) => {
-          console.log('Pins have not been saved!', err);
-          res.sendStatus(404);
-        });
-    },
-    patch: function(req, res) {
-      let key = `${req.params.trailId}:${req.body.userId}`;
-      //modify req.body.pins to get array of tuples unless it happens on client side
-      // let key = 'shoreline-trails:45';
-      let pins = []; //change to get the correct format
-      for(var pin = 0; pin < req.body.pins.length; pin++) {
-        pins.push(...req.body.pins[pin], pin);
-      }
       geoMapper.delAsync(key)
         .then( (status) => {
           geoMapper.geoaddAsync(key, ...pins) //if we get the format we want, then this is OK
