@@ -24,15 +24,24 @@ const listingsReducer = (state = initialState, action = {}) => {
         isFetching: true
       };
 
+    case actionTypes.SUBMIT_SEARCH:
+      return {
+        ...state,
+        isFetching: true,
+        isFetchCancelled: false
+      };
+
     case actionTypes.RECEIVE_SEARCH_RESULTS:
       return {
         ...state,
-        searchResults: action.searchResults
+        searchResults: action.searchResults,
+        isFetching: false
       };
 
     case actionTypes.CANCEL_REQUEST:
       return {
         ...state,
+        searchResults: [],
         isFetching: false,
         isFetchCancelled: true
       };

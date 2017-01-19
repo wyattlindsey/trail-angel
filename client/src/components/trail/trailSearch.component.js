@@ -54,12 +54,11 @@ export default class SearchBar extends React.Component {
 
   _handleInput(text) {
     let textInput = text.trim().replace(/ /g, '%20');
-    // this.setState({
-    //   searchTimeout: false
-    // });
-
+    this.setState({
+      searchTimeout: false
+    });
     if (text === '') {
-      this.props.cancelRequest();
+      // this.props.cancelRequest();
     } else {
       this.props.search(textInput,
         {
@@ -67,12 +66,14 @@ export default class SearchBar extends React.Component {
           longitude: this.props.userLocation.coords.longitude
         }
       )
-      .then((success) => {
-        // if (!success) this.props.cancelRequest();
-        // this.setState({
-        //   searchTimeout: !success
-        // });
-      });
+        .then((data) => {
+          if (data === undefined ||
+              data.searchResults === undefined ||
+              data.searchResults.length === 0)
+          {
+            this.state.searchTimeout = true;
+          }
+        });
     }
   }
 
@@ -93,7 +94,6 @@ export default class SearchBar extends React.Component {
   }
 
   render() {
-    const search = { search: true };
     return(
       <View>
         <View style={styles.container}>
@@ -116,10 +116,10 @@ export default class SearchBar extends React.Component {
             </View>
              :
             <View>
-              {this.props.fetching ?
+              {this.props.isFetching ?
                 <ActivityIndicator animating={this.props.isFetching}
                                    style={[styles.centering, styles.horizontal,
-                                     { height: 260}]}
+                                     { height: 100}]}
                                    color='darkgreen'
                                    size='large' />
                 :

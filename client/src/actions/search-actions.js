@@ -5,6 +5,10 @@ const searchActions = {
   search: (query, location, limit) => {
     // todo: add some parameter validation
     return (dispatch) => {
+      dispatch({
+        type: actionTypes.SUBMIT_SEARCH
+      });
+
       return dataApi.googlePlaces.search({
         query,
         latitude: location.latitude,
@@ -25,7 +29,7 @@ const searchActions = {
                 })
               })
               .then((detailedResults) => {
-                dispatch({
+                return dispatch({
                   type: actionTypes.RECEIVE_SEARCH_RESULTS,
                   searchResults: detailedResults
                 });
