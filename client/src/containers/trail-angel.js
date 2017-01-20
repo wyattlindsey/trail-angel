@@ -35,14 +35,12 @@ class TrailAngel extends Component {
     super(props);
 
     this.state = {
-      selectedTab: 'redTab'
+      selectedTab: 'home'
     };
   }
 
   componentDidMount() {
     let profile = {};
-    // it seems like sometimes the profile is still a string, especially when using pre-existing
-    // token
     if (typeof this.props.profile === 'string') {
       profile = JSON.parse(this.props.profile);
     } else {
@@ -60,15 +58,6 @@ class TrailAngel extends Component {
       });
   }
 
-  _renderContent = (color: 'string', pageText: 'string' ) => {
-    return (
-      <View style={[styles.tabContent, {backgroundColor: color}]}>
-        <Text style={styles.tabText}>{pageText}</Text>
-        <Text style={styles.tabText}>Renders {pageText} Page</Text>
-      </View>
-    );
-  };
-
   render() {
     return (
       <TabBarIOS
@@ -78,47 +67,54 @@ class TrailAngel extends Component {
         <TabBarIOS.Item
           title ="Home"
           icon={{uri: icons.homeIcon, scale: 5}}
-          selected={this.state.selectedTab === 'redTab'}
+          selected={this.state.selectedTab === 'home'}
           onPress={() => {
             this.setState({
-              selectedTab: 'redTab',
+              selectedTab: 'home',
             });
           }}>
           <Trails navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon="search"
-          selected={this.state.selectedTab === 'blackTab'}
+          selected={this.state.selectedTab === 'search'}
           onPress={() => {
             this.setState({
-              selectedTab: 'blackTab',
+              selectedTab: 'search',
             });
           }}>
         <Search navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="favorites"
-          selected={this.state.selectedTab === 'greyTab'}
+          selected={this.state.selectedTab === 'favorites'}
           onPress={() => {
             this.setState({
-              selectedTab: 'greyTab',
+              selectedTab: 'favorites',
             });
           }}>
           <Favorites navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon ="more"
-          selected={this.state.selectedTab === 'beigeTab'}
+          selected={this.state.selectedTab === 'more'}
           onPress={() => {
             this.setState({
-              selectedTab: 'beigeTab',
+              selectedTab: 'more',
             });
           }}>
-          <Settings navigator={this.props.navigator} />
+          <Settings navigator={this.props.navigator}
+                    favoritesCount={this.props.state.listingsReducer.favorites.length} />
         </TabBarIOS.Item>
       </TabBarIOS>
     );
   }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    state: state
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -127,6 +123,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(TrailAngel);
+export default connect(mapStateToProps, mapDispatchToProps)(TrailAngel);
 
 

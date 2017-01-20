@@ -16,7 +16,6 @@ import Login from '../auth/login.component';
 import googleApi from '../../api/google-api';
 
 var { height, width} = Dimensions.get('window');
-console.log('height: ', height, ' width: ', width);
 
 const styles = StyleSheet.create({
   outerContainer: {
@@ -29,17 +28,11 @@ const styles = StyleSheet.create({
     flex: .4,
     flexDirection: 'row',
     alignItems: 'center',
-    // borderStyle: 'solid',
-    // borderWidth: 1,
-    // borderColor: 'black',
   },
   rightContainer: {
     flexDirection: 'column',
     paddingTop: 5,
     paddingLeft: 20,
-    // borderStyle: 'solid',
-    // borderWidth: 1,
-    // borderColor: 'blue',
   },
   nickname: {
     color: '#3D728E',
@@ -67,9 +60,6 @@ const styles = StyleSheet.create({
     paddingLeft: 12,
     paddingTop: 5,
     paddingBottom: 5,
-    // borderStyle: 'solid',
-    // borderWidth: 1,
-    // borderColor: 'black',
   },
   logoutText: {
     fontSize: 16,
@@ -92,6 +82,10 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     color: '#9E9E9E',
     marginLeft: 261
+  },
+  logos: {
+    marginBottom: 70,
+    alignItems: 'center'
   }
 });
 
@@ -151,7 +145,7 @@ class TrailSettings extends React.Component {
             <Text style={styles.nickname}>{profile.nickname}</Text>
             <Text style={styles.hikeDistance}> Hiked: 350 km </Text>
             <Text> Location: {this.state.city}</Text>
-            <Text> Favorites: 10 </Text>
+            <Text> Favorites: {this.props.favoritesCount} </Text>
 
           </View>
 
@@ -188,6 +182,11 @@ class TrailSettings extends React.Component {
                 </View>
           </TouchableHighlight>
           <View style={styles.separator} />
+          </View>
+          <View style={styles.logos}>
+            <Image source={require('../../../img/powered-by-google-on-white.png')} />
+            <Image source={require('../../../img/powered-by-darksky.png')}
+                   style={{ marginTop: 5, opacity: 0.5 }}/>
           </View>
         </View>
 
