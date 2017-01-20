@@ -148,19 +148,20 @@ export default class CustomMarkers extends React.Component {
   }
 
   resetTrail() {
+    id = 0;
     this.setState({
       markers: [{
           coordinate: {
             latitude: this.props.geometry.location.lat,
             longitude: this.props.geometry.location.lng
         },
-        key: '0',
+        key: `${id++}`,
       }],
       distance: 0,
       elevation: 0,
       estimatedTime: 0
     });
-    id = 0;
+
   }
   onMapPress(e) {
     this.setState({
