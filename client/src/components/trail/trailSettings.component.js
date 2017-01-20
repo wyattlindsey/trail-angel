@@ -11,7 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect  } from 'react-redux';
-import * as userActions from '../../actions/user-actions';
+import userActions from '../../actions/user-actions';
 import Login from '../auth/login.component';
 import googleApi from '../../api/google-api';
 

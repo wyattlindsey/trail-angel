@@ -4,7 +4,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import listingActions from '../actions/listing-actions';
 import searchActions from '../actions/search-actions';
 import favoriteActions from '../actions/favorite-actions';
 
@@ -30,7 +29,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators({ ...listingActions, ...searchActions, ...favoriteActions }, dispatch)
+    actions: bindActionCreators({ ...searchActions, ...favoriteActions }, dispatch)
   };
 };
 
