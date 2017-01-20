@@ -16,7 +16,7 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 1;
-
+console.log(height);
 export default class CustomMarkers extends React.Component {
   constructor(props) {
     super(props);
@@ -145,7 +145,10 @@ export default class CustomMarkers extends React.Component {
             longitude: this.props.geometry.location.lng
         },
         key: '0',
-      }]
+      }],
+      distance: 0,
+      elevation: 0,
+      estimatedTime: 0
     });
     id = 0;
   }
@@ -227,6 +230,20 @@ export default class CustomMarkers extends React.Component {
               lineJoin='round'/>
           )) : null}
         </MapView>
+        <View style={styles.infoContainer}>
+         <TouchableOpacity
+            onPress={this.toggleMilesKilometers.bind(this)}
+            style={styles.topBubble}
+          >
+            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.toggleFeetMeters.bind(this)}
+            style={styles.topBubble}
+          >
+            <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => {
@@ -240,19 +257,6 @@ export default class CustomMarkers extends React.Component {
             style={styles.bubble}
           >
             <Text>Remove Last Pin</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={this.toggleMilesKilometers.bind(this)}
-            style={styles.bubble}
-          >
-            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={this.toggleFeetMeters.bind(this)}
-            style={styles.bubble}
-          >
-            <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
@@ -288,6 +292,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 12,
     borderRadius: 20,
+  },
+  topBubble: {
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    //marginVertical: 20,
+    marginRight: width - 150,
+    marginBottom: height - 200,
+    backgroundColor: 'transparent',
   },
   latlng: {
     width: 200,
