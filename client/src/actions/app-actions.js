@@ -5,6 +5,7 @@ import * as userActions from './user-actions';
 import listingActions from './listing-actions';
 import searchActions from './search-actions';
 import favoriteActions from './favorite-actions';
+import storageActions from './storage-actions';
 
 const appActions = {
   getGeolocation: (options = {
@@ -43,9 +44,9 @@ const appActions = {
         .then(() => {
           return dispatch(appActions.getGeolocation());
         })
-        // .then(() => {
-          // return loadAsyncStorageData();
-        // })
+        .then(() => {
+          return dispatch(storageActions.loadListingsFromStorage());
+        })
         // .then((data) => {
           // dispatch({
           //   type: actionTypes.LOAD_SAVED_SEARCHES,
@@ -104,14 +105,12 @@ const loadAsyncStorageData = () => {
     .then((stores) => {
       if (!stores) return;
 
-      const searches = {};
       const listings = {};
-      const collections = {};
 
       stores.forEach((store) => {
         const data = JSON.parse(store[1]);
 
-        if (/^collection:/.test(store[0])) {
+        if (/^listing:/.test(store[0])) {
           collections[store[0]] = store[1];
         }
 
@@ -131,7 +130,7 @@ const loadAsyncStorageData = () => {
     })
     .catch((err) => {
       console.error('Error loading data from local storage: ', err);
-    })
+    });
 };
 
 const loadHomeData = (data) => {
