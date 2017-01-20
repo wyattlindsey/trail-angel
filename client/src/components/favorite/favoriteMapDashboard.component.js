@@ -92,6 +92,16 @@ export default class CustomMarkers extends React.Component {
       });
   }
 
+  calculateEstimatedTime() {
+    var hours = ((this.state.elevation)/600 + (this.state.distance*1.60934)/5).toPrecision(2);
+    if (hours < 1) {
+      var minutes = Math.round(hours * 60);
+      return `${minutes} mins`;
+    } else {
+      return `${hours} hrs`;
+    }
+  }
+
   saveMappedTrail(removedPin = false) {
     var trailId = this.props.id;
     var pins = this.state.markers.map(marker => {
@@ -243,6 +253,11 @@ export default class CustomMarkers extends React.Component {
           >
             <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
           </TouchableOpacity>
+          <View
+            style={styles.topBubble}
+          >
+            <Text>{this.calculateEstimatedTime()}</Text>
+          </View>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -301,7 +316,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     //marginVertical: 20,
-    marginRight: width - 150,
+    marginRight: width - 250,
     marginBottom: height - 200,
     backgroundColor: 'transparent',
   },
