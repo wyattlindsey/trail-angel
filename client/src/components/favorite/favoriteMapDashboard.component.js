@@ -307,7 +307,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.7)',
     paddingHorizontal: 18,
     paddingVertical: 12,
-    borderRadius: 20,
+    borderRadius: 5,
+    marginRight: 5
   },
   estimatedTime: {
     backgroundColor: 'rgba(255,255,255,0.7)',
@@ -319,7 +320,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.7)',
     paddingHorizontal: 18,
     paddingVertical: 12,
-    width: 80
+    width: 95,
+    marginRight: 5,
+    borderRadius: 5
   },
   infoContainer: {
     flexDirection: 'row',
