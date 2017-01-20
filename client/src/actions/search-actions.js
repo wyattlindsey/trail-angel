@@ -1,6 +1,7 @@
 import actionTypes from './action-types';
 import time from '../utils/time';
 import dataApi from '../api';
+import storageActions from './storage-actions';
 
 const searchActions = {
   search: (query = '', location = null, limit = 10) => {
@@ -61,43 +62,36 @@ const searchActions = {
 
         // if the item exists in the cache
         if (cache[id] !== undefined) {
-          const cacheTimestamp = cache[id].cacheTimestamp;
-          const now = Date.now();
-
-          // and it's less than 2 weeks old
-          if (time.elapsedTime(cacheTimestamp, now) < 1209600000 /* two weeks */) {
-            // use the cached version
-            console.log('cache hit');
-            return cache[id];
-
-          } else {
-            dispatch({
-              type: actionTypes.REMOVE_FROM_STORAGE,
-              id
+          return cache[id];
+          // const cacheTimestamp = cache[id].cacheTimestamp;
+          // const now = Date.now();
+          // // todo figure out why cacheTimestamp is sometimes not present
+          // // and it's less than 2 weeks old
+          // if (cache[id].cacheTimestamp !== undefined &&
+          //   time.elapsedTime(cacheTimestamp, now) < 1209600000 /* two weeks */) {
+          //   // use the cached version
+          //   console.log('cache hit');
+          //   return cache[id];
+          //
+          // } else {
+          //   dispatch({
+          //     type: actionTypes.REMOVE_FROM_STORAGE,
+          //     id
+          //   });
+          // }
+        } else {
+          // uncached and cached-but-expired listings should be re-fetched
+          return dataApi.googlePlaces.fetchDetails(id)
+            .then((details) => {
+              const now = Date.now();
+              const data = {
+                ...details,
+                cacheTimestamp: now
+              };
+              dispatch(storageActions.saveToStorage(data));
+              return details;
             });
-          }
         }
-
-        // uncached and cached-but-expired listings should be re-fetched
-        return dataApi.googlePlaces.fetchDetails(id)
-          .then((details) => {
-            const now = Date.now();
-            let obj = {
-              type: actionTypes.SAVE_TO_STORAGE,
-              data: {
-                ...details,
-                cacheTimestamp: now
-              }
-            };
-            dispatch({
-              type: actionTypes.SAVE_TO_STORAGE,
-              data: {
-                ...details,
-                cacheTimestamp: now
-              }
-            });
-            return details;
-          });
       });
 
       return Promise.all(promises);

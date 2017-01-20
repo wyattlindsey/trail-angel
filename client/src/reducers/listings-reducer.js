@@ -101,6 +101,15 @@ const listingsReducer = (state = initialState, action = {}) => {
         cache: cacheCopy
       };
 
+    case actionTypes.LOAD_LISTINGS_FROM_STORAGE:
+      return {
+        ...state,
+        cache: {
+          ...state.cache,
+          ...action.listings
+        }
+      };
+
     case actionTypes.REMOVE_FAVORITE:
       const indexToRemove = _.findIndex(state.favorites, {id: action.id});
       if (indexToRemove === -1) {
