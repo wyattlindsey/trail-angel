@@ -23,6 +23,7 @@ export default class CustomMarkers extends React.Component {
     this.state = {
       distance: 0,
       elevation: 0,
+      estimatedTime: 0,
       region: {
         latitude: this.props.geometry.location.lat,
         longitude: this.props.geometry.location.lng,
@@ -38,7 +39,6 @@ export default class CustomMarkers extends React.Component {
       }],
       displayMiles: true,
       displayFeet: true,
-      estimatedTime: 0
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
@@ -90,6 +90,16 @@ export default class CustomMarkers extends React.Component {
           distance: distance
         });
       });
+  }
+
+  calculateEstimatedTime() {
+    var hours = ((this.state.elevation)/600 + (this.state.distance*1.60934)/5).toPrecision(2);
+    if (hours < 1) {
+      var minutes = Math.round(hours * 60);
+      return `${minutes} mins`;
+    } else {
+      return `${hours} hrs`;
+    }
   }
 
   saveMappedTrail(removedPin = false) {
@@ -145,7 +155,10 @@ export default class CustomMarkers extends React.Component {
             longitude: this.props.geometry.location.lng
         },
         key: '0',
-      }]
+      }],
+      distance: 0,
+      elevation: 0,
+      estimatedTime: 0
     });
     id = 0;
   }
@@ -227,6 +240,25 @@ export default class CustomMarkers extends React.Component {
               lineJoin='round'/>
           )) : null}
         </MapView>
+        <View style={styles.infoContainer}>
+         <TouchableOpacity
+            onPress={this.toggleMilesKilometers.bind(this)}
+            style={styles.topBubble}
+          >
+            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.toggleFeetMeters.bind(this)}
+            style={styles.topBubble}
+          >
+            <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
+          </TouchableOpacity>
+          <View
+            style={styles.estimatedTime}
+          >
+            <Text>{this.calculateEstimatedTime()}</Text>
+          </View>
+        </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => {
@@ -240,19 +272,6 @@ export default class CustomMarkers extends React.Component {
             style={styles.bubble}
           >
             <Text>Remove Last Pin</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={this.toggleMilesKilometers.bind(this)}
-            style={styles.bubble}
-          >
-            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={this.toggleFeetMeters.bind(this)}
-            style={styles.bubble}
-          >
-            <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
@@ -288,6 +307,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 12,
     borderRadius: 20,
+  },
+  estimatedTime: {
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    width: 90
+  },
+  topBubble: {
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    width: 80
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: height - 200,
+    backgroundColor: 'transparent',
   },
   latlng: {
     width: 200,
