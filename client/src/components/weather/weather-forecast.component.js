@@ -67,7 +67,7 @@ const DailyWeatherForecast = (props) => (
 const DailyForecastListItem = (props) => (
   <View style={styles.forecastListItem}>
     <TouchableHighlight onPress={handleDailyForecastPress.bind(null, props)}
-                        underlayColor='#ffffff'>
+                        underlayColor='#D3D3D3'>
       <View style={{ alignItems: 'center' }}>
         <WeatherIcon icon={props.dailyForecast.icon}
                      size={30}
@@ -105,7 +105,7 @@ const DailyForecastListItem = (props) => (
     {props.dailyForecastAvailable ?
       <View>
         <TouchableHighlight onPress={handleDailyForecastPress.bind(null, props)}
-                            underlayColor='#ffffff'
+                            underlayColor='#D3D3D3'
                             style={styles.angleLink}>
           <Icon name='angle-right'
                 size={25}
