@@ -36,6 +36,7 @@ const appActions = {
 
   initializeApp: (profile) => {
     return (dispatch, getState) => {
+      dispatch(storageActions.clearAllListingsFromStorage());
       dispatch({
         type: actionTypes.INITIALIZE_APP
       });

@@ -114,6 +114,12 @@ const listingsReducer = (state = initialState, action = {}) => {
         }
       };
 
+    case actionTypes.CLEAR_ALL_FROM_STORAGE:
+      return {
+        ...state,
+        cache: {}
+      };
+
     default: {
       return state;
     }

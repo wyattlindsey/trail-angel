@@ -53,11 +53,31 @@ const storageActions = {
   },
 
   removeFromStorage: (id) => {
-
+    return (dispatch) => {
+      const keyName = `listing:${listing.id}`;
+      AsyncStorage.removeItem(`listing:${listing.id}`)
+        .then(() => {
+          dispatch ({
+            type: actionTypes.REMOVE_FROM_STORAGE,
+            id
+          });
+        });
+    };
   },
 
   clearAllListingsFromStorage: () => {
-
+    return (dispatch) => {
+      AsyncStorage.getAllKeys()
+        .then((keys) => {
+          const keysArray = keys.filter((k) => (/^listing:/.test(k)));
+          AsyncStorage.multiRemove(keysArray);
+        })
+        .then(() => {
+          dispatch({
+            type: actionTypes.CLEAR_ALL_FROM_STORAGE
+          })
+        })
+    };
   }
 };
 
