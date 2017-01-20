@@ -149,7 +149,7 @@ export default class TraillistDetail extends React.Component {
       longitudeDelta: 0.0421  //comment
     };
 
-    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color='#E56452' /> : <Icon name='star-o' size={20} color='#E56452' />;
+    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={30} color='#E56452' /> : <Icon name='star-o' size={30} color='#E56452' />;
 
     return (
 

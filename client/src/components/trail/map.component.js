@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 8
+    marginTop: 8,
+    opacity: 0.7
   },
   weather: {
     alignItems: 'center',
