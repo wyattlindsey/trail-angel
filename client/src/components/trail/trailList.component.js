@@ -10,12 +10,13 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#8E8E8E',
   },
-  homeImage: {backgroundColor: '#333',},
-  scrollContainer: {marginTop: 10},
-  container: { marginTop: 65}
+  homeImage: {
+    backgroundColor: '#333333',
+  },
+  container: { 
+    marginTop: 65
+  }
 });
-
-
 
 export default class TrailList extends React.Component {
   constructor(props) {
@@ -77,10 +78,9 @@ export default class TrailList extends React.Component {
                 <Image
                   source={require('../../../img/home.jpg')}
                 />
-              </View> : <View />
-            }
-            <ListView
-              style={styles.scrollContainer}
+              </View> : 
+          <View />}
+            <ListView automaticallyAdjustContentInsets={false}
               dataSource={this.state.dataSource}
               renderRow={(data) => <Row navigator={this.props.navigator}
                                         favorites={this.props.favorites}

@@ -197,7 +197,6 @@ export default class FavoriteListItem extends React.Component {
                                       underlayColor='#ffffff'>
                     <Icon name='minus-circle' size={20} color='#E56452' />
                   </TouchableHighlight>
-
                 </View>
               </View>
               <View style={styles.middleColumn}>
