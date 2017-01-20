@@ -16,6 +16,8 @@ const weatherIcons = {
   'hail':                   'weather-hail',
   'thunderstorm':           'weather-lightnight',
   'tornado':                'weather-windy',
+  'sunrise':                'weather-sunset-up',
+  'sunset':                 'weather-sunset',
   'default':                'weather-sunny'
 };
 
