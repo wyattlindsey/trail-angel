@@ -16,13 +16,14 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 1;
-console.log(height);
+
 export default class CustomMarkers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       distance: 0,
       elevation: 0,
+      estimatedTime: 0,
       region: {
         latitude: this.props.geometry.location.lat,
         longitude: this.props.geometry.location.lng,
@@ -38,7 +39,6 @@ export default class CustomMarkers extends React.Component {
       }],
       displayMiles: true,
       displayFeet: true,
-      estimatedTime: 0
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
@@ -254,7 +254,7 @@ export default class CustomMarkers extends React.Component {
             <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
           </TouchableOpacity>
           <View
-            style={styles.topBubble}
+            style={styles.estimatedTime}
           >
             <Text>{this.calculateEstimatedTime()}</Text>
           </View>
@@ -308,15 +308,21 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 20,
   },
+  estimatedTime: {
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    width: 90
+  },
   topBubble: {
     backgroundColor: 'rgba(255,255,255,0.7)',
     paddingHorizontal: 18,
     paddingVertical: 12,
+    width: 80
   },
   infoContainer: {
     flexDirection: 'row',
-    //marginVertical: 20,
-    marginRight: width - 250,
+    alignItems: 'center',
     marginBottom: height - 200,
     backgroundColor: 'transparent',
   },
