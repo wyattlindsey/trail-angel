@@ -82,6 +82,10 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     color: '#9E9E9E',
     marginLeft: 261
+  },
+  logos: {
+    marginBottom: 70,
+    alignItems: 'center'
   }
 });
 
@@ -178,6 +182,11 @@ class TrailSettings extends React.Component {
                 </View>
           </TouchableHighlight>
           <View style={styles.separator} />
+          </View>
+          <View style={styles.logos}>
+            <Image source={require('../../../img/powered-by-google-on-white.png')} />
+            <Image source={require('../../../img/powered-by-darksky.png')}
+                   style={{ marginTop: 5, opacity: 0.5 }}/>
           </View>
         </View>
 
