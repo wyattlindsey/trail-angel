@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ListView } from 'react-native';
 import * as _ from 'lodash';
@@ -6,6 +8,7 @@ import Row from './reviewListItem.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 import TrailMap from './map.component';
+import Dashboard from '../favorite/favoriteMapDashboard.component';
 
 
 const styles = StyleSheet.create({
@@ -24,8 +27,9 @@ const styles = StyleSheet.create({
     width: 100,
   },
   rightCol: {
-    paddingLeft: 50,
     width: 200,
+    top: 20,
+    flexDirection: 'row'
   },
   map: {
     flex: 1,
@@ -128,6 +132,19 @@ export default class TraillistDetail extends React.Component {
     }
   }
 
+  _handleGoToMapDashboard() {
+    if (!this.state.isFavorite) {
+      return;
+    }
+    this.props.navigator.push({
+      title: 'Dashboard',
+      component: Dashboard,
+      passProps: {
+        ...this.props
+      }
+    });
+  }
+
   _checkIsFavorite(id, favorites) {
     return _.findIndex(favorites, { id }) !== -1;
   }
@@ -147,10 +164,15 @@ export default class TraillistDetail extends React.Component {
       longitudeDelta: 0.0421  //comment
     };
 
-    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color='#E56452' /> : <Icon name='star-o' size={20} color='#E56452' />;
+    const FavoriteIcon = this.state.isFavorite ?
+      <Icon name='star' size={30} color='#E56452' /> :
+      <Icon name='star-o' size={30} color='#E56452' />;
+
+    const MapIcon = this.state.isFavorite ?
+      <Icon name='map' size={20} color='#f7d548' style={{ opacity: 1.0 }} /> :
+      <Icon name='map' size={20} color='#f7d548' style={{ opacity: 0.6 }} />
 
     return (
-
         <View style={styles.rowContainer}>
           <TouchableHighlight onPress={this._selectMap.bind(this)}>
             <View style={styles.mapContainer}>
@@ -173,10 +195,15 @@ export default class TraillistDetail extends React.Component {
             </View>
             <View style={styles.rightCol}>  
               <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
-                                    style={styles.favorite}
-                                    underlayColor='#ffffff'>
-                  {FavoriteIcon}
-                </TouchableHighlight>
+                                  underlayColor='#ffffff'
+                                  style={{ marginRight: 30, marginLeft: 100 }}>
+                {FavoriteIcon}
+              </TouchableHighlight>
+              <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
+                                  underlayColor='#ffffff'
+                                  disabled={!this.state.isFavorite}>
+                {MapIcon}
+              </TouchableHighlight>
             </View>    
           </View>
               <View style={styles.separator}/>

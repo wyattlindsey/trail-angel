@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { View, Text, ScrollView, TouchableHighlight, StyleSheet } from 'react-native';
 import time from '../../utils/time';

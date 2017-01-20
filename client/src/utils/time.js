@@ -1,3 +1,5 @@
+'use strict';
+
 const monthsAbbreviated = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June',

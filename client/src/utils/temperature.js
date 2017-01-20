@@ -1,3 +1,5 @@
+'use strict';
+
 const temperature = {
   convertToFahrenheit: (temp) => {
     return (temp * ( 9 / 5 )) + 32;

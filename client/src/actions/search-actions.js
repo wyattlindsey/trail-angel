@@ -1,3 +1,5 @@
+'use strict';
+
 import actionTypes from './action-types';
 import time from '../utils/time';
 import dataApi from '../api';
@@ -7,7 +9,7 @@ const searchActions = {
   search: (query = '', location = null, limit = 10) => {
     // todo: add some parameter validation
     // todo: handle limit
-    return (dispatch, getState) => {
+    return (dispatch) => {
       dispatch({
         type: actionTypes.SUBMIT_SEARCH
       });
@@ -59,26 +61,21 @@ const searchActions = {
       let cache = getState().listingsReducer.cache;
       if (!Array.isArray(IDs)) IDs = [IDs];
       let promises = IDs.map((id) => {
-
         // if the item exists in the cache
         if (cache[id] !== undefined) {
-          return cache[id];
-          // const cacheTimestamp = cache[id].cacheTimestamp;
-          // const now = Date.now();
-          // // todo figure out why cacheTimestamp is sometimes not present
-          // // and it's less than 2 weeks old
-          // if (cache[id].cacheTimestamp !== undefined &&
-          //   time.elapsedTime(cacheTimestamp, now) < 1209600000 /* two weeks */) {
-          //   // use the cached version
-          //   console.log('cache hit');
-          //   return cache[id];
-          //
-          // } else {
-          //   dispatch({
-          //     type: actionTypes.REMOVE_FROM_STORAGE,
-          //     id
-          //   });
-          // }
+          const cacheTimestamp = cache[id].cacheTimestamp;
+          const now = Date.now();
+          // and it's less than 2 weeks old
+          if (cacheTimestamp !== undefined &&
+            time.elapsedTime(cacheTimestamp, now) > 1209600000 /* two weeks */) {
+            dispatch({
+              type: actionTypes.REMOVE_FROM_STORAGE,
+              id
+            });
+          } else {
+            // use the cached version
+            return cache[id];
+          }
         } else {
           // uncached and cached-but-expired listings should be re-fetched
           return dataApi.googlePlaces.fetchDetails(id)

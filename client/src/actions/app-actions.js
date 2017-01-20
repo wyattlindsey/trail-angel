@@ -1,8 +1,8 @@
 'use strict';
+
 import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
-import * as userActions from './user-actions';
-import listingActions from './listing-actions';
+import userActions from './user-actions';
 import searchActions from './search-actions';
 import favoriteActions from './favorite-actions';
 import storageActions from './storage-actions';
@@ -37,6 +37,7 @@ const appActions = {
 
   initializeApp: (profile) => {
     return (dispatch, getState) => {
+      dispatch(storageActions.clearAllListingsFromStorage());
       dispatch({
         type: actionTypes.INITIALIZE_APP
       });
@@ -47,20 +48,6 @@ const appActions = {
         .then(() => {
           return dispatch(storageActions.loadListingsFromStorage());
         })
-        // .then((data) => {
-          // dispatch({
-          //   type: actionTypes.LOAD_SAVED_SEARCHES,
-          //   loadedSearches: data.searches
-          // });
-          // dispatch({
-          //   type: actionTypes.LOAD_SAVED_LISTINGS,
-          //   loadedListings: data.listings
-          // });
-          // dispatch({
-          //   type: actionTypes.LOAD_SAVED_COLLECTIONS,
-          //   loadedCollections: data.collections
-          // });
-        // })
         .then(() => {
           const location = {
             latitude: getState().appReducer.geolocation.coords.latitude,

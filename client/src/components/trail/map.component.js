@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import {
   StyleSheet,
@@ -9,43 +11,11 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 import dataApi from '../../api';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import WeatherIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import time from '../../utils/time';
+import WeatherIcon from '../weather/weather-icon.component';
 
 
-var { height, width} = Dimensions.get('window');
-
-var conditions = {
-  'partly-cloudy-night': 'weather-partlycloudy',
-  'partly-cloudy-day': 'weather-partlycloudy',
-  'rain': 'weather-rainy',
-  'clear-day': 'weather-sunny',
-  'clear-night': 'weather-sunny',
-  'cloudy': 'weather-cloudy',
-  'snow': 'weather-snowy',
-  'windy': 'weather-windy'
-};
-
-function dayConverter(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp * 1000);
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-  return time;
-}
-
-function timeConverter(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp * 1000);
-  var hour = a.getHours() > 12 ? (a.getHours() - 12) : a.getHours();
-  var min = a.getMinutes() < 10 ? ('0' + a.getMinutes()) : a.getMinutes();
-  var ap = a.getHours() < 12 ? 'AM' : 'PM';
-  var time = hour + ':' + min + ' ' + ap;
-  return time;
-}
-
-
+const { height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   rowContainer: {
@@ -58,10 +28,12 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 8,
+    opacity: 0.7
   },
   weather: {
-    textAlign: 'center'
+    alignItems: 'center',
   },
   text: {
     textAlign: 'center',
@@ -98,11 +70,10 @@ export default class TrailMap extends React.Component {
     this.state = {
       weather: {}
     }
-    // this.onRegionChange = this.onRegionChange.bind(this);
   }
 
   componentWillMount() {
-    let that = this;
+    const that = this;
     dataApi.weather(this.props.geometry.location.lat,
                     this.props.geometry.location.lng)
       .then( (res) => {
@@ -110,26 +81,14 @@ export default class TrailMap extends React.Component {
       });
   }
 
-  // onRegionChange(region) {
-  //   this.setState( {region} );
-  // }
-
-  displayTemp() {
-    if(this.state.weather.currently === undefined) {
-      return <Text />;
-    } else {
-      return <Text> {this.state.weather.currently.temperature} </Text>
-    }
-  }
-
   render() {
-    let marker = {
+    const marker = {
        coordinate: {latitude: this.props.geometry.location.lat,
                     longitude: this.props.geometry.location.lng},
       title: this.props.name,
-      image: require('../icons/trekking-128.png')
+      image: require('../../../img/trekking-128.png')
     };
-    let region = {
+    const region = {
       latitude: this.props.geometry.location.lat,
       longitude: this.props.geometry.location.lng,
       latitudeDelta: 0.0922,
@@ -153,24 +112,30 @@ export default class TrailMap extends React.Component {
         <View style={styles.tempInfo} >
           <Text style={styles.tempTitle}> Current Conditions </Text>
           { !!(this.state.weather.currently) ?
-            <View>
-              <Text style={styles.weather}>
-                <WeatherIcon name={conditions[this.state.weather.currently.icon]} size={40} style={{}}/>
-              </Text>
+            <View style={styles.weather}>
+              <View>
+                <WeatherIcon icon={this.state.weather.currently.icon} size={40} />
+              </View>
               <Text style={styles.text}>
                 {this.state.weather.currently.summary}
               </Text>
               <Text style={styles.text}>
                 Temperature: {Math.floor(this.state.weather.currently.temperature)} &#x2109;
               </Text>
-              <Text style={styles.text}>
-                <WeatherIcon name='weather-sunset-up' size={25} /> {timeConverter(this.state.weather.daily.data[0].sunriseTime)}
-              </Text>
-              <Text style={styles.text}>
-                <WeatherIcon name='weather-sunset' size={25} /> {timeConverter(this.state.weather.daily.data[0].sunsetTime)}
-              </Text>
+              <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                <WeatherIcon icon='sunrise' size={25} style={{ marginRight: 10 }} />
+                <Text style={styles.text}>
+                  {time.formatted12HourTime(this.state.weather.daily.data[0].sunriseTime)}
+                </Text>
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <WeatherIcon icon='sunset' size={25} style={{ paddingRight: 5 }} />
+                <Text style={styles.text}>
+                  {time.formatted12HourTime(this.state.weather.daily.data[0].sunsetTime)}
+                </Text>
+              </View>
             </View>
-            : null}
+            : <View />}
         </View>
       </View>
     )

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 });
 
 class TrailAngel extends Component {
-  static title = '<TabBarIOS>';
+  static title = 'TrailAngel';
   static description = 'Trail Angel Navigation';
   static displayName = 'TrailAngel';
   static contextTypes = {

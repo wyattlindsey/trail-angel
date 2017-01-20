@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { View } from 'react-native';
 import MaterialDesignIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,10 +18,10 @@ const weatherIcons = {
   'hail':                   'weather-hail',
   'thunderstorm':           'weather-lightnight',
   'tornado':                'weather-windy',
+  'sunrise':                'weather-sunset-up',
+  'sunset':                 'weather-sunset',
   'default':                'weather-sunny'
 };
-
-// todo define default weather icon
 
 const WeatherIcon = (props) => (    // Material Design Community has a great set of
                                     // weather icons, but none for partly cloudy night

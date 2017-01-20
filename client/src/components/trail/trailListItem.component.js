@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import * as _ from 'lodash';
 import {  View,
@@ -11,7 +13,6 @@ import WeatherIcon from '../weather/weather-icon.component';
 import DailyWeatherForecast from '../weather/weather-forecast.component';
 import Details from './trailDetail.component';
 import dataApi from '../../api';
-import temperature from '../../utils/temperature';
 
 const styles = StyleSheet.create({
  rowContainer: {
@@ -222,7 +223,8 @@ export default class TraillistItem extends React.Component {
                   {this.state.distance ? this.state.distance : ''}
                 </Text>
                 <View>
-                  {/* Display activity monitor until icon is loaded from api.  If no icon is ever received */}
+                  {/* Display activity monitor until icon is
+                      loaded from api.  If no icon is ever received */}
                   {/* after a timeout, display nothing */}
                   {this.state.weather ? 
                     <View>

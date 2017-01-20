@@ -1,6 +1,7 @@
+'use strict';
+
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ActivityIndicator } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
  rowContainer: {
@@ -43,27 +44,20 @@ const styles = StyleSheet.create({
 
 });
 
-export default class ReviewListItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const link = `https:${this.props.profile_photo_url}`;
-    return (
+const ReviewListItem = (props) => (
+  <View>
+    <View style={styles.rowContainer}>
       <View>
-        <View style={styles.rowContainer}>
-          <View>
-            <Image source={{uri: link}} style={styles.photo} />
-          </View> 
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>{this.props.author_name}</Text>
-            <Text style={styles.location}>Rating: {this.props.rating} </Text>
-            <Text style={styles.description} numberOfLines={10}>{this.props.text}</Text>
-          </View>
-        </View>
-      </View>  
-    );
-  }
-}
+        <Image source={{uri: `https:${props.profile_photo_url}`}}
+               style={styles.photo} />
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{props.author_name}</Text>
+        <Text style={styles.location}>Rating: {props.rating} </Text>
+        <Text style={styles.description} numberOfLines={10}>{props.text}</Text>
+      </View>
+    </View>
+  </View>
+)
 
+export default ReviewListItem;

@@ -4,7 +4,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import listingActions from '../actions/listing-actions';
 import favoriteActions from '../actions/favorite-actions';
 
 import TrailList from '../components/trail/trailList.component';
@@ -16,6 +15,7 @@ const Trails = (props) => {
                trails={state.listingsReducer.homeData}
                favorites={state.listingsReducer.favorites}
                userLocation={state.appReducer.geolocation}
+               userId={state.userReducer.userId}
                {...actions} />
   );
 };
@@ -28,7 +28,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    actions: bindActionCreators({ ...listingActions, ...favoriteActions}, dispatch)
+    actions: bindActionCreators({ ...favoriteActions}, dispatch)
   }
 };
 
