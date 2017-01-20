@@ -1,4 +1,5 @@
 'use strict';
+
 import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
 import userActions from './user-actions';

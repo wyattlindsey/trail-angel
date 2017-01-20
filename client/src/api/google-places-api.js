@@ -8,7 +8,7 @@ const apiKey = config.secrets.google.apiKey;
 const googlePlacesApi = {
 
   search: (options = {}) => {
-    const searchOptions = {...options}
+    const searchOptions = {...options};
 
     if (searchOptions.id !== undefined) {
       return searchByID(searchOptions.id);
@@ -90,46 +90,4 @@ const googlePlacesApi = {
 
 };
 
-
-
 export default googlePlacesApi;
-
-// // limit to 10 results or less
-// const limit = Math.min(10, data.results.length);
-// data.results.splice(limit, data.results.length - limit);
-//
-// let promises = data.results.map((result) => {
-//   const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.place_id}&key=${apiKey}`;
-//   let thumbnailUrl = false;
-//   let photoReference = false;
-//
-//   if (result.photos !== undefined) {
-//     thumbnailUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=${result.photos[0].photo_reference}&key=${apiKey}`;
-//     photoReference = result.photo_reference;
-//   }
-//
-//   return request.get(placeDetailsUrl)
-//     .then((placeDetails) => {
-//       return placeDetails.result;
-//     })
-//     .then((details) => {
-//       return {
-//         ...details,
-//         photoReference,
-//         photoUrl: thumbnailUrl || details.icon
-//       }
-//     });
-// });
-//
-// return Promise.all(promises)
-//   .then((data) => {
-//     return data.map((item) => {
-//       return {
-//         ...item,
-//         id: item.place_id
-//       };
-//     });
-//   })
-//   .catch((err) => {
-//     console.log('error getting promise data', err);
-//   });

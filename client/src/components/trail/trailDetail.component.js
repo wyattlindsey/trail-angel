@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ListView } from 'react-native';
 import * as _ from 'lodash';

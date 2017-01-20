@@ -1,3 +1,5 @@
+'use strict';
+
 import userActions from './user-actions';
 import appActions from './app-actions';
 import searchActions from './search-actions';

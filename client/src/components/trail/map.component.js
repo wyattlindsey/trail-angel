@@ -85,7 +85,7 @@ export default class TrailMap extends React.Component {
        coordinate: {latitude: this.props.geometry.location.lat,
                     longitude: this.props.geometry.location.lng},
       title: this.props.name,
-      image: require('../icons/trekking-128.png')
+      image: require('../../../img/trekking-128.png')
     };
     const region = {
       latitude: this.props.geometry.location.lat,

@@ -1,3 +1,5 @@
+'use strict';
+
 import actionTypes from './action-types';
 import { NavigatorIOS, AsyncStorage } from 'react-native';
 import { secrets } from '../../config';

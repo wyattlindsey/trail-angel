@@ -1,3 +1,5 @@
+'use strict';
+
 import React, { Component } from 'react';
 import { View, ListView, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import Row from '../favorite/favoriteListItem.component';
@@ -22,8 +24,6 @@ const styles = StyleSheet.create({
   gray: { backgroundColor: '#cccccc', },
   horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, }
 });
-
-
 
 export default class FavoriteList extends React.Component {
   constructor(props) {

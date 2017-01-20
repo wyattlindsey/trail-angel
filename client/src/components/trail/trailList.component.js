@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { Image, View, ListView, StyleSheet,
   Text, ActivityIndicator } from 'react-native';

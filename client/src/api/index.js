@@ -1,3 +1,5 @@
+'use strict';
+
 import google from './google-api';
 import googlePlaces from './google-places-api';
 import weather from './darksky-api';

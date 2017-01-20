@@ -1,3 +1,5 @@
+'use strict';
+
 import actionTypes from './action-types';
 import dataApi from '../api';
 import searchActions from '../actions/search-actions';

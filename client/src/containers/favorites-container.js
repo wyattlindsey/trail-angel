@@ -9,7 +9,6 @@ import FavoriteList from '../components/favorite/favoriteList.component';
 
 const Favorites = (props) => {
   const { state, actions } = props;
-  // todo: tree-shake for unnecessary state
   return (
     <FavoriteList isFetching={state.listingsReducer.isFetching}
                   listings={state.listingsReducer.cache}

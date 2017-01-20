@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import {
   View,
@@ -92,15 +94,10 @@ const styles = StyleSheet.create({
 class TrailSettings extends React.Component {
   constructor(props) {
     super(props);
-
-    //console.log('THIS IS THE GEOLOCATION!!!! ', loc.coords );
-    //var coordsies = this.props.state.appReducer.geolocation.coords;
-    //var cityString = googleApi.getCity(coordsies);
-    //console.log(cityString);
+    
     this.state = {
       city: 'Unavailable'
     }
-
   }
 
   componentWillMount() {
@@ -116,7 +113,7 @@ class TrailSettings extends React.Component {
   }
 
   _logoutPress() {
-    console.log("Pressed the logout menu option");
+    console.log('Pressed the logout menu option');
     this.props.actions.logoutUser()
     .then(() => {
       this.props.navigator.push({
@@ -133,7 +130,6 @@ class TrailSettings extends React.Component {
       avatarUrl: this.props.state.userReducer.avatarUrl,
       nickname: this.props.state.userReducer.nickname,
     }
-    console.log(profile.nickname, profile.avatarUrl);
     return (
         <View style={styles.outerContainer}>
         <View style={styles.profileContainer}>

@@ -1,3 +1,5 @@
+'use strict';
+
 const actionTypes = {
   INITIALIZE_APP: 'INITIALIZE_APP',
   GET_GEOLOCATION: 'GET_GEOLOCATION',

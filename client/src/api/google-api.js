@@ -1,3 +1,5 @@
+'use strict';
+
 import { secrets } from '../../config';
 import request from '../utils/request';
 
