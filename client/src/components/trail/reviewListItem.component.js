@@ -60,3 +60,4 @@ const ReviewListItem = (props) => (
   </View>
 )
 
+export default ReviewListItem;
