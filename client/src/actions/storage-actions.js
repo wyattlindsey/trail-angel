@@ -40,7 +40,7 @@ const storageActions = {
 
   saveToStorage: (listing) => {
     return (dispatch) => {
-      const keyName = `listing:${listing.id}`
+      const keyName = `listing:${listing.id}`;
       AsyncStorage.setItem(keyName, JSON.stringify(listing))
         .then(() => {
           dispatch ({
