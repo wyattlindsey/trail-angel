@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     color: '#2f5e4e',
     width: 200,
   },
-  
   photo: {
     borderRadius: 30,
     width: 60,
@@ -68,7 +67,12 @@ const styles = StyleSheet.create({
 
   },
   distance: {
-  },  
+    paddingTop: 2,
+    paddingBottom: 15
+  },
+  weatherBlock: {
+    backgroundColor: 'red'
+  } 
 });
 
 export default class TraillistItem extends React.Component {
@@ -217,7 +221,7 @@ export default class TraillistItem extends React.Component {
                 <Text style={styles.distance}>
                   {this.state.distance ? this.state.distance : ''}
                 </Text>
-                <View style={{ padding: 5,  marginBottom: 20, marginLeft: 5 }}>
+                <View>
                   {/* Display activity monitor until icon is loaded from api.  If no icon is ever received */}
                   {/* after a timeout, display nothing */}
                   {this.state.weather ? 
@@ -225,17 +229,13 @@ export default class TraillistItem extends React.Component {
                       <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='#ffffff'>
                         <View>
                           <WeatherIcon icon={this.state.weather.currently.icon}
-                                       color='darkgreen'
+                                       color='#52B3D9'
                                        size={30}
                                        style={{
                                          opacity: 0.8
                                      }}
                           />
-                          <Text style={{
-                            textAlign: 'center',
-                            padding: 5,
-                            color: 'darkgreen'
-                          }}>
+                          <Text style={styles.weather}>
                             {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
                           </Text>
                         </View>

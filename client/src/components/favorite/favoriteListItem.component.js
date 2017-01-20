@@ -26,11 +26,12 @@ const styles = StyleSheet.create({
   },
   middleColumn: {
     padding: 20,
-    width: 170,
+    width: 190,
+    height: 180,
   },
   rightColumn: {
     padding: 20,
-    width: 110,
+    width: 100,
     height: 150,
     alignItems: 'center',
   },
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 16,
     color: '#2f5e4e',
-    width: 180,
+    width: 200,
   },
   photo: {
     borderRadius: 30,
@@ -75,10 +76,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 20,
     height: 20,
-
   },
   distance: {
-  },  
+    paddingTop:2,
+    paddingBottom: 15
+  }, 
+  weather: {
+    textAlign: 'center',
+    color: '#333',
+  } 
 });
 
 export default class FavoriteListItem extends React.Component {
@@ -197,7 +203,6 @@ export default class FavoriteListItem extends React.Component {
                                       underlayColor='#ffffff'>
                     <Icon name='minus-circle' size={20} color='#E56452' />
                   </TouchableHighlight>
-
                 </View>
               </View>
               <View style={styles.middleColumn}>
@@ -222,16 +227,12 @@ export default class FavoriteListItem extends React.Component {
                       <View>
                         <WeatherIcon icon={this.state.weather.currently.icon}
                                      color='#52B3D9'
-                                     size={40}
+                                     size={30}
                                      style={{
                                        opacity: 0.8
                                      }}
                         />
-                        <Text style={{
-                          textAlign: 'center',
-                          padding: 5,
-                          color: 'darkgreen'
-                        }}>
+                        <Text style={styles.weather}>
                         {this.state.weather ?
                           `${Math.round(Number(this.state.weather.currently.temperature))}°F` :
                           ''
