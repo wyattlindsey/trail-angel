@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ListView } from 'react-native';
+import * as _ from 'lodash';
+
 import Row from './reviewListItem.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
@@ -75,6 +77,11 @@ export default class TraillistDetail extends React.Component {
         address: this.props.formatted_address.replace(/, /g, '\n')
       });
     }
+
+    const isFavorite = this._checkIsFavorite(this.props.id, this.props.favorites);
+    this.setState({
+      isFavorite
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -89,6 +96,12 @@ export default class TraillistDetail extends React.Component {
         address: this.props.formatted_address.replace(/, /g, '\n')
       });
     }
+
+    const isFavorite = this._checkIsFavorite(this.props.id, nextProps.favorites);
+
+    this.setState({
+      isFavorite
+    });
   }
 
   _selectMap(e) {
@@ -113,6 +126,10 @@ export default class TraillistDetail extends React.Component {
         isFavorite: false
       });
     }
+  }
+
+  _checkIsFavorite(id, favorites) {
+    return _.findIndex(favorites, { id }) !== -1;
   }
 
   render() {
