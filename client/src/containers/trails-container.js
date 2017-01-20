@@ -15,6 +15,7 @@ const Trails = (props) => {
                trails={state.listingsReducer.homeData}
                favorites={state.listingsReducer.favorites}
                userLocation={state.appReducer.geolocation}
+               userId={state.userReducer.userId}
                {...actions} />
   );
 };
