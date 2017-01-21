@@ -12,6 +12,7 @@ import {
 import MapView from 'react-native-maps';
 import trailAngelApi from '../../api/trailangel-api';
 import googleApi from '../../api/google-api';
+import trailcalc from '../../utils/trail-calculations';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -92,16 +93,6 @@ export default class CustomMarkers extends React.Component {
           distance: distance
         });
       });
-  }
-
-  calculateEstimatedTime() {
-    var hours = ((this.state.elevation)/600 + (this.state.distance*1.60934)/5).toPrecision(2);
-    if (hours < 1) {
-      var minutes = Math.round(hours * 60);
-      return `${minutes} mins`;
-    } else {
-      return `${hours} hrs`;
-    }
   }
 
   saveMappedTrail(removedPin = false) {
@@ -259,7 +250,7 @@ export default class CustomMarkers extends React.Component {
           <View
             style={styles.estimatedTime}
           >
-            <Text>{this.calculateEstimatedTime()}</Text>
+            <Text>{trailcalc.calcEstimatedTime(this.state.elevation, this.state.distance)}</Text>
           </View>
         </View>
         <View style={styles.buttonContainer}>
