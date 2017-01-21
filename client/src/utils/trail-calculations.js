@@ -12,6 +12,14 @@ const trailCalc = {
     }
   },
 
+  convertToFeet: (meters) => {
+    return meters * 3.28084;
+  },
+
+  convertToKm: (miles) => {
+    return miles * 1.60934;
+  }
+
 };
 
 export default trailCalc;
