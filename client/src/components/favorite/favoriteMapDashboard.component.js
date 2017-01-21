@@ -12,6 +12,7 @@ import {
 import MapView from 'react-native-maps';
 import trailAngelApi from '../../api/trailangel-api';
 import googleApi from '../../api/google-api';
+import trailcalc from '../../utils/trail-calculations';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -92,16 +93,6 @@ export default class CustomMarkers extends React.Component {
           distance: distance
         });
       });
-  }
-
-  calculateEstimatedTime() {
-    var hours = ((this.state.elevation)/600 + (this.state.distance*1.60934)/5).toPrecision(2);
-    if (hours < 1) {
-      var minutes = Math.round(hours * 60);
-      return `${minutes} mins`;
-    } else {
-      return `${hours} hrs`;
-    }
   }
 
   saveMappedTrail(removedPin = false) {
@@ -217,6 +208,10 @@ export default class CustomMarkers extends React.Component {
     let coordinates = this.state.markers.map( (marker) => {
       return marker.coordinate;
     });
+    let distance = this.state.distance;
+    let elevation = this.state.elevation;
+    let displayFeet = this.state.displayFeet;
+    let displayMiles = this.state.displayMiles;
     return (
       <View style={styles.container}>
         <MapView
@@ -248,18 +243,22 @@ export default class CustomMarkers extends React.Component {
             onPress={this.toggleMilesKilometers.bind(this)}
             style={styles.topBubble}
           >
-            <Text>{this.state.displayMiles ? `${this.state.distance.toPrecision(2)} mi` : `${(this.state.distance*1.60934).toPrecision(2)} km`}</Text>
+            <Text>
+              {displayMiles ? `${distance.toPrecision(2)} mi` :
+                `${(trailcalc.convertToKm(distance)).toPrecision(2)} km`}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={this.toggleFeetMeters.bind(this)}
             style={styles.topBubble}
           >
-            <Text>{this.state.displayFeet ? `${Math.round(this.state.elevation*3.28084)} ft` : `${Math.round(this.state.elevation)} m`}</Text>
+            <Text>
+              {displayFeet ? `${Math.round(trailcalc.convertToFeet(elevation))} ft` :
+                `${Math.round(elevation)} m`}
+            </Text>
           </TouchableOpacity>
-          <View
-            style={styles.estimatedTime}
-          >
-            <Text>{this.calculateEstimatedTime()}</Text>
+          <View style={styles.estimatedTime}>
+            <Text>{trailcalc.calcEstimatedTime(elevation, distance)}</Text>
           </View>
         </View>
         <View style={styles.buttonContainer}>
