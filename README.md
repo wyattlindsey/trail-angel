@@ -24,14 +24,20 @@
 
 ## Requirements
 
-- Node 0.12.x
+- Node 6.x
 - XCode 7.0 or greater
+- Ruby 2.0.0
+- CocoaPods 1.x
+- MySQL
+- Redis
+
+Go through React-Native Getting Started Instructions [here](https://facebook.github.io/react-native/docs/getting-started.html)
 
 ## Development
 
 ### Building the project for the iOS simulator
 
-Setting up the database server:
+Setting up MySQL database server:
 
 ```sh
 mysql.server start
@@ -39,28 +45,33 @@ mysql -u root -p
 ```
 When prompted for a password, press enter.  In the MySQL command line, enter the command ```create database trailangel; ```.
 
-From within the root directory:
+Setting up Redis database server:
 
-```sh
-npm install
-nodemon server/server.js
-```
+Download Redis stable version and follow instructions under installation [here](https://redis.io/download)
 
 From within the client directory:
 
 ```sh
 npm install
 sudo gem install cocoapods
-rnpm link react-native-lock
-react-native run-ios
+react-native link
+react-native unlink react-native-maps
+cd ios
+pod install
+cd ..
 ```
 
-To run backend tests
+From within the root directory:
+
+```sh
+npm install
+npm start
+```
+
+To run backend and frontend tests
 ```sh
 npm test
 ```
-
-
 
 ### Roadmap
 
