@@ -220,14 +220,27 @@ export default class CustomMarkers extends React.Component {
           initialRegion={this.state.region}
           onPress={this.onMapPress}
         >
-          {this.state.markers.map(marker => (
+          {this.state.markers.map((marker, index) => {
+            if (index === 0) {
+              return (
+                <MapView.Marker draggable
+                  image={require('../../../img/trekking-128.png')}
+                  title={marker.key}
+                  key={marker.key}
+                  coordinate={marker.coordinate}
+                  onDragEnd={this.onDragEnd.bind(this, marker.key)}
+                />
+              )
+            } else {
+          return (
             <MapView.Marker draggable
+              image={require('../../../img/red-pin-small.png')}
               title={marker.key}
               key={marker.key}
               coordinate={marker.coordinate}
               onDragEnd={this.onDragEnd.bind(this, marker.key)}
             />
-          ))}
+          )}})}
           {coordinates.length > 1 ? this.state.markers.map(polyline => (
             <MapView.Polyline
               key={polyline.key}
