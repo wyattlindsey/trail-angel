@@ -27,6 +27,11 @@ module.exports = {
       }
     })
     .then( (userID) => {
+      if(userID === 0) {
+        console.error('Error DELETE request: user does not exist');
+        res.sendStatus(404);
+        return;
+      }
       return db.UsersFavorites.destroy({
         where: {
           userId: userID.dataValues.id
@@ -39,7 +44,7 @@ module.exports = {
       }
       return db.User.destroy({
         where: {
-          id: userID.dataValues.id
+          user: req.params.id
         }
       });
     })

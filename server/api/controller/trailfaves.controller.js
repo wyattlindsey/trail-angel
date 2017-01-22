@@ -11,6 +11,11 @@ module.exports = {
       }
     })
     .then( (userID) => {
+      if(userID === null) {
+        console.error('Error GET request trailfaves: user does not exist');
+        res.sendStatus(404);
+        return;
+      }
       return db.UsersFavorites.findAll({
         where: {
           userId: userID.dataValues.id
