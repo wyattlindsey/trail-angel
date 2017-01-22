@@ -24,13 +24,6 @@ const styles = StyleSheet.create({
 });
 
 class TrailAngel extends Component {
-  static title = 'TrailAngel';
-  static description = 'Trail Angel Navigation';
-  static displayName = 'TrailAngel';
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired,
-  }
-
   constructor(props) {
     super(props);
 

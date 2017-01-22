@@ -190,32 +190,6 @@ class TrailSettings extends React.Component {
   }
 }
 
-
-
-
-
-//View style={styles.separator} />
-// style={styles.title}
-  // style={styles.title}
-
-   // style={styles.menuItem}
-
-      // View style={styles.rowContainer}>
-      //   Image source={{uri: profile.avatarUrl}} style={styles.photo} />
-      //   Text style={styles.title}>{profile.nickname}</Text>
-      //   Text style={styles.location}> San Francisco </Text>
-      //   Text style={styles.rating}> Favorites: 10 </Text>
-
-      // TouchableHighlight
-      //         style={styles.menuItem}
-      //         underlayColor='#949494'
-      //         onPress={this._logoutPress.bind(this)}>
-      //         <View>
-      //         <Text style={styles.title}>Logout</Text>
-      //         </View>
-      // /TouchableHighlight>
-
-
 const mapStateToProps = function(state) {
   return {
     state: state
