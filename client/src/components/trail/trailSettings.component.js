@@ -16,6 +16,7 @@ import { connect  } from 'react-redux';
 import userActions from '../../actions/user-actions';
 import Login from '../auth/login.component';
 import googleApi from '../../api/google-api';
+import colors from '../colors';
 
 var { height, width} = Dimensions.get('window');
 
@@ -76,30 +77,30 @@ class TrailSettings extends React.Component {
         <View style={styles.separator} />
           <View style={styles.menuContainer}>
           <TouchableHighlight
-                underlayColor='#949494'
+                underlayColor={colors.lightgray}
                 onPress={this._logoutPress.bind(this)}>
                 <View style={styles.menuItemContainer}>
-                  <Icon style={styles.listUl} name='list-ul' size={17} color={'#9E9E9E'} />
+                  <Icon style={styles.listUl} name='list-ul' size={17} color={colors.lightgray} />
                   <Text style={styles.logoutText}>Supply List</Text>
                   <Icon style={styles.chevronRight1} name='chevron-right' size={12} />
                 </View>
           </TouchableHighlight>
           <View style={styles.separator} />
           <TouchableHighlight
-                underlayColor='#949494'
+                underlayColor={colors.lightgray}
                 onPress={this._logoutPress.bind(this)}>
                 <View style={styles.menuItemContainer}>
-                <Icon  name='cog' size={20} color={'#9E9E9E'} />
+                <Icon  name='cog' size={20} color={colors.lightgray} />
                   <Text style={styles.logoutText}>Settings</Text>
                   <Icon style={styles.chevronRight2} name='chevron-right' size={12} />
                 </View>
           </TouchableHighlight>
           <View style={styles.separator} />
           <TouchableHighlight
-                underlayColor='#949494'
+                underlayColor={colors.lightgray}
                 onPress={this._logoutPress.bind(this)}>
                 <View style={styles.menuItemContainer}>
-                  <Icon  name='sign-out' size={20} color={'#9E9E9E'} />
+                  <Icon  name='sign-out' size={20} color={colors.lightgray} />
                   <Text style={styles.logoutText}>Log Out</Text>
                   <Icon style={styles.chevronRight3} name='chevron-right' size={12} />
                 </View>
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   nickname: {
-    color: '#3D728E',
+    color: colors.seafoam,
     fontSize: 20,
     fontWeight: '600',
     textAlign: 'center',
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   separator: {
-    backgroundColor: '#E3E0D7',
+    backgroundColor: colors.beige,
     height: 1,
     marginLeft: 38
   },
@@ -184,17 +185,17 @@ const styles = StyleSheet.create({
   },
   chevronRight1: {
     paddingTop: 4,
-    color: '#9E9E9E',
+    color: colors.lightgray,
     marginLeft: 241
   },
   chevronRight2: {
     paddingTop: 4,
-    color: '#9E9E9E',
+    color: colors.lightgray,
     marginLeft: 261
   },
   chevronRight3: {
     paddingTop: 4,
-    color: '#9E9E9E',
+    color: colors.lightgray,
     marginLeft: 261
   },
   logos: {

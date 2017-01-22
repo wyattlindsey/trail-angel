@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
 import icons from '../components/icons';
+import colors from '../components/colors';
 import Trails from './trails-container';
 import Favorites from './favorites-container';
 import Search from '../containers/search-container';
@@ -43,11 +44,11 @@ class TrailAngel extends Component {
   render() {
     return (
       <TabBarIOS
-        unselectedTintColor="#cccccc"
-        tintColor="white"
-        barTintColor="#414141">
+        unselectedTintColor={colors.tabBarUnselected}
+        tintColor={colors.tabBarSelected}
+        barTintColor={colors.tabBarColor}>
         <TabBarIOS.Item
-          title ="Home"
+          title ='Home'
           icon={{uri: icons.homeIcon, scale: 5}}
           selected={this.state.selectedTab === 'home'}
           onPress={() => {
@@ -58,7 +59,7 @@ class TrailAngel extends Component {
           <Trails navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          systemIcon="search"
+          systemIcon='search'
           selected={this.state.selectedTab === 'search'}
           onPress={() => {
             this.setState({
@@ -68,7 +69,7 @@ class TrailAngel extends Component {
         <Search navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          systemIcon ="favorites"
+          systemIcon ='favorites'
           selected={this.state.selectedTab === 'favorites'}
           onPress={() => {
             this.setState({
@@ -78,7 +79,7 @@ class TrailAngel extends Component {
           <Favorites navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          systemIcon ="more"
+          systemIcon ='more'
           selected={this.state.selectedTab === 'more'}
           onPress={() => {
             this.setState({

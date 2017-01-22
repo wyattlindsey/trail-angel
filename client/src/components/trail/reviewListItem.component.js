@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ActivityIndicator } from 'react-native';
+import colors from '../colors';
 
 const ReviewListItem = (props) => (
   <View>
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '600',
     fontSize: 16,
-    color: '#5E9FA1'
+    color: colors.seafoam
   },
   photo: {
     marginRight: 20,
@@ -43,20 +44,20 @@ const styles = StyleSheet.create({
     height: 40,
   },
   location: {
-    color: '#786048'
+    color: colors.darktan
   },
   rating: {
-    color: '#96AA3D'
+    color: colors.peagreen
   },
   description: {
     lineHeight: 20,
     fontSize: 14,
-    color: '#484830',
+    color: colors.darktan,
     textAlign: 'left',
     marginTop: 8,
   },
   separator: {
-    backgroundColor: '#E3E0D7',
+    backgroundColor: colors.beige,
     height: 1
   }
 

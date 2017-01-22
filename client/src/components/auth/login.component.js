@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import TrailAngel from '../../containers/trail-angel.js';
+import colors from '../colors';
 
 import Auth0Lock from 'react-native-lock';
 import { secrets, paths } from '../../../config';
@@ -150,7 +151,7 @@ class Login extends Component {
           </View>
             <TouchableHighlight
               style={styles.signInButton}
-              underlayColor='#949494'
+              underlayColor={colors.lightgray}
               onPress={this.onLogin.bind(this)}>
               <Text>Log In</Text>
             </TouchableHighlight>
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: colors.beige,
   },
   messageBox: {
     flex: 1,
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
   signInButton: {
     height: 50,
     alignSelf: 'stretch',
-    backgroundColor: '#D9DADF',
+    backgroundColor: colors.midgray,
     margin: 10,
     borderRadius: 5,
     justifyContent: 'center',

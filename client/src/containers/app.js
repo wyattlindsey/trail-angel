@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { View, NavigatorIOS, StyleSheet } from 'react-native';
 
 import Login from '../components/auth/login.component';
+import colors from '../components/colors';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -29,6 +30,9 @@ export default class App extends Component {
       <Provider store={store}>
         <NavigatorIOS ref='nav'
                       style={styles.container}
+                      barTintColor='white'
+                      titleTextColor={colors.darkgray}
+                      tintColor={colors.seafoam}
                       initialRoute={{
                         component: Login,
                         title: 'Welcome to TrailAngel'
@@ -42,6 +46,6 @@ export default class App extends Component {
 let styles = StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: '#111111'
+        backgroundColor: colors.seafoam
       }
 });

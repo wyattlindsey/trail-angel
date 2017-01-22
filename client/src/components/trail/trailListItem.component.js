@@ -13,6 +13,7 @@ import WeatherIcon from '../weather/weather-icon.component';
 import DailyWeatherForecast from '../weather/weather-forecast.component';
 import Details from './trailDetail.component';
 import dataApi from '../../api';
+import colors from '../colors';
 
 export default class TraillistItem extends React.Component {
   constructor(props) {
@@ -132,18 +133,18 @@ export default class TraillistItem extends React.Component {
   }
 
   render() {
-    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color='#E56452' /> : <Icon name='star-o' size={20} color='#E56452' />;
+    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color={colors.warning} /> : <Icon name='star-o' size={20} color={colors.warning} />;
 
     return (
       <View>
-        <TouchableHighlight onPress={this._selectTrail.bind(this)} underlayColor='#ffffff'>
+        <TouchableHighlight onPress={this._selectTrail.bind(this)} underlayColor='white'>
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
                 <Image source={{uri: this.props.photoThumbnailUrl}} style={styles.photo} />
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                     style={styles.favorite}
-                                    underlayColor='#ffffff'>
+                                    underlayColor='white'>
                   <View>{FavoriteIcon}</View>
                 </TouchableHighlight>
               </View>
@@ -166,10 +167,10 @@ export default class TraillistItem extends React.Component {
                   {/* after a timeout, display nothing */}
                   {this.state.weather ? 
                     <View>
-                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='#ffffff'>
+                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='white'>
                         <View>
                           <WeatherIcon icon={this.state.weather.currently.icon}
-                                       color='#52B3D9'
+                                       color={colors.weatherIconColor}
                                        size={30}
                                        style={{
                                          opacity: 0.8
@@ -184,7 +185,7 @@ export default class TraillistItem extends React.Component {
                     :
                     this.state.weatherTimeout ?
                     <View /> :
-                    <ActivityIndicator  size='small' color='darkgreen' style={{ opacity: 0.8 }} />
+                    <ActivityIndicator  size='small' color={colors.seafoam} style={{ opacity: 0.8 }} />
                   }
                 </View>
               </View>
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '500',
     fontSize: 16,
-    color: '#2f5e4e',
+    color: colors.darkgreen,
     width: 200,
   },
   photo: {
@@ -230,16 +231,16 @@ const styles = StyleSheet.create({
     height: 60,
   },
   location: {
-    color: '#786048'
+    color: colors.darktan
   },
   rating: {
-    color: '#727B24',
+    color: colors.peagreen,
     paddingTop: 10
   },
   description: {
     lineHeight: 20,
     fontSize: 14,
-    color: '#484830',
+    color: colors.darkgray,
     textAlign: 'left',
     marginTop: 8,
   },
@@ -254,6 +255,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15
   },
   weatherBlock: {
-    backgroundColor: 'red'
+    backgroundColor: colors.warning
   }
 });

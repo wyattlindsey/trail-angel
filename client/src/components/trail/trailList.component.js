@@ -5,6 +5,7 @@ import { Image, View, ListView, StyleSheet,
   Text, ActivityIndicator } from 'react-native';
 import Row from './trailListItem.component';
 import dataApi from '../../api/';
+import colors from '../colors';
 
 export default class TrailList extends React.Component {
   constructor(props) {
@@ -58,7 +59,7 @@ export default class TrailList extends React.Component {
         {this.props.fetching ?
           <ActivityIndicator animating={this.props.isFetching}
                              style={{}}
-                             color='darkgreen'
+                             color={colors.seafoam}
                              size='large' /> :
           <View>
             {this.state.randomPhotoUrl ?
@@ -92,10 +93,10 @@ const styles = StyleSheet.create({
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
+    backgroundColor: colors.midgray,
   },
   homeImage: {
-    backgroundColor: '#333333',
+    backgroundColor: colors.darkgray,
   },
   container: {
     marginTop: 65,

@@ -12,6 +12,7 @@ import WeatherIcon from '../weather/weather-icon.component';
 import WeatherForecast from '../weather/weather-forecast.component';
 import Details from '../trail/trailDetail.component';
 import Dashboard from './favoriteMapDashboard.component';
+import colors from '../colors';
 
 import dataApi from '../../api';
 
@@ -119,7 +120,7 @@ export default class FavoriteListItem extends React.Component {
     } else {
       view =
       <View>
-        <TouchableHighlight onPress={this._selectTrail.bind(this)} underlayColor='#ffffff'>
+        <TouchableHighlight onPress={this._selectTrail.bind(this)} underlayColor='white'>
           <View>
             <View style={styles.rowContainer}>
               <View>
@@ -127,8 +128,8 @@ export default class FavoriteListItem extends React.Component {
                   <Image source={{uri: this.props.photoThumbnailUrl}} style={styles.photo} />
                   <TouchableHighlight onPress={this._handleRemoveFavorite.bind(this)}
                                       style={styles.removeButton}
-                                      underlayColor='#ffffff'>
-                    <Icon name='minus-circle' size={20} color='#E56452' />
+                                      underlayColor='white'>
+                    <Icon name='minus-circle' size={20} color={colors.warning} />
                   </TouchableHighlight>
                 </View>
               </View>
@@ -140,8 +141,8 @@ export default class FavoriteListItem extends React.Component {
                 }
                   <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
                       style={styles.mapButton}
-                      underlayColor='#ffffff'>
-                    <Icon name='map' size={20} color='#f7d548' />
+                      underlayColor='white'>
+                    <Icon name='map' size={20} color={colors.mapColor} />
                   </TouchableHighlight>
               </View>
               <View style={styles.rightColumn}>
@@ -153,7 +154,7 @@ export default class FavoriteListItem extends React.Component {
                     <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='white' >
                       <View>
                         <WeatherIcon icon={this.state.weather.currently.icon}
-                                     color='#52B3D9'
+                                     color={colors.weatherIconColor}
                                      size={30}
                                      style={{
                                        opacity: 0.8
@@ -169,7 +170,7 @@ export default class FavoriteListItem extends React.Component {
                     </TouchableHighlight>
                   </View>
                     :
-                    <ActivityIndicator  size='small' color='darkgreen' style={{ opacity: 0.8 }} />
+                    <ActivityIndicator  size='small' color={colors.seafoam} style={{ opacity: 0.8 }} />
                   }
                 </View>
               </View>
@@ -223,7 +224,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '500',
     fontSize: 16,
-    color: '#2f5e4e',
+    color: colors.darkgray,
     width: 200,
   },
   photo: {
@@ -232,17 +233,17 @@ const styles = StyleSheet.create({
     height: 60,
   },
   location: {
-    color: '#786048'
+    color: colors.darktan
   },
   rating: {
-    color: '#727B24',
+    color: colors.peagreen,
     paddingTop: 10,
     width: 100,
   },
   description: {
     lineHeight: 20,
     fontSize: 14,
-    color: '#484830',
+    color: colors.darktan,
     textAlign: 'left',
     marginTop: 8,
   },
@@ -257,6 +258,6 @@ const styles = StyleSheet.create({
   },
   weather: {
     textAlign: 'center',
-    color: '#333',
+    color: colors.darkgray,
   }
 });

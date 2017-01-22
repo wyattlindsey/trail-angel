@@ -6,6 +6,7 @@ import { View, Text, StyleSheet, TextInput,
 import * as _ from 'lodash';
 
 import Row from '../trail/trailListItem.component';
+import colors from '../colors';
 
 export default class SearchBar extends React.Component {
   constructor(props) {
@@ -98,7 +99,8 @@ export default class SearchBar extends React.Component {
           />
           <Switch style={styles.localSearch}
                   onValueChange={this._handleLocalSwitch.bind(this)}
-                  value={this.state.localSearch}>
+                  value={this.state.localSearch}
+                  onTintColor={colors.seafoam}>
             <Text style={{  top: 40,
                             fontSize: 12,
                             textAlign: 'center'
@@ -119,7 +121,7 @@ export default class SearchBar extends React.Component {
                 <ActivityIndicator animating={this.props.isFetching}
                                    style={[styles.centering, styles.horizontal,
                                      { height: 100}]}
-                                   color='darkgreen'
+                                   color={colors.seafoam}
                                    size='large' />
                 :
                 <ListView
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     paddingBottom: 45,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'white',
     marginTop: 65,
     height: 120
   },
@@ -165,7 +167,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingHorizontal: 8,
     fontSize: 15,
-    backgroundColor: '#CCCCCC',
+    color: 'white',
+    backgroundColor: colors.midgray,
     borderRadius: 2,
   },
   localSearch: {
@@ -176,13 +179,13 @@ const styles = StyleSheet.create({
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
+    backgroundColor: colors.midgray,
   },
   centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
-  gray: { backgroundColor: '#cccccc', },
+  gray: { backgroundColor: colors.darkgray, },
   horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
   searchResults: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'white',
     height: 600,
     marginTop: 30,
     marginBottom: 130

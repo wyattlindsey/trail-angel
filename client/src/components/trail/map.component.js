@@ -13,6 +13,7 @@ import MapView from 'react-native-maps';
 import dataApi from '../../api';
 import time from '../../utils/time';
 import WeatherIcon from '../weather/weather-icon.component';
+import colors from '../colors';
 
 export default class TrailMap extends React.Component {
   constructor(props) {
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     height: height*0.60
   },
   pin: {
-    backgroundColor: '#fffa',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'black',
