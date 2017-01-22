@@ -40,7 +40,6 @@ const googleApi = {
           Array.isArray(response.results) &&
           response.results[0].formatted_address !== undefined) {
           var city = response.results[0].formatted_address.split(', ')[1];
-          console.log(city);
           return city;
         } else {
           return false;

@@ -57,7 +57,6 @@ export default class CustomMarkers extends React.Component {
       if (data.length > 0) {
         id = 0;
         savedMarkers = data.map(coordinate => {
-          console.log(coordinate[0], coordinate[1]);
           return {
             coordinate: {
               latitude: parseFloat(coordinate[1]),
@@ -132,7 +131,6 @@ export default class CustomMarkers extends React.Component {
     };
     trailAngelApi.removeGeo(this.props.id, options)
     .then(response => {
-      console.log('Successfully deleted mapped trail: ', response);
       this.resetTrail();
     })
     .catch(err => {
@@ -294,7 +292,7 @@ export default class CustomMarkers extends React.Component {
                 'Are you sure?',
                 'This will delete your mapped trail permanently.',
                 [
-                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                  {text: 'Cancel'},
                   {text: 'OK', onPress: () => this.deleteMappedTrail()},
                 ]
               )}

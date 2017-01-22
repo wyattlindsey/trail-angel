@@ -38,4 +38,8 @@ const WeatherIcon = (props) => (    // Material Design Community has a great set
   </View>
 );
 
+WeatherIcon.propTypes = {
+  icon: React.PropTypes.string.isRequired
+};
+
 export default WeatherIcon;

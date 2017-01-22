@@ -108,12 +108,11 @@ class TrailSettings extends React.Component {
       });
     })
     .catch((err) => {
-      console.log('Error retrieving location: ', err);
+      console.error('Error retrieving location: ', err);
     });
   }
 
   _logoutPress() {
-    console.log('Pressed the logout menu option');
     this.props.actions.logoutUser()
     .then(() => {
       this.props.navigator.push({

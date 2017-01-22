@@ -187,7 +187,6 @@ export default class FavoriteListItem extends React.Component {
   }
 
   render() {
-    console.log('At the favorite List Item page: ', this.props);
     let view;
     if (this.props.geometry === undefined) {
       view = <View />
