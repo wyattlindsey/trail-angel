@@ -18,7 +18,7 @@ import Login from '../auth/login.component';
 import googleApi from '../../api/google-api';
 import colors from '../colors';
 
-var { height, width} = Dimensions.get('window');
+const { height, width} = Dimensions.get('window');
 
 class TrailSettings extends React.Component {
   constructor(props) {

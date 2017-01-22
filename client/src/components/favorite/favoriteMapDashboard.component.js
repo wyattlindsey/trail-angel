@@ -51,7 +51,7 @@ export default class CustomMarkers extends React.Component {
   }
 
   getMappedTrail(trailId, options) {
-    var savedMarkers;
+    let savedMarkers;
     trailAngelApi.getGeo(this.props.id, this.props.userId)
     .then(data => {
       if (data.length > 0) {
@@ -95,11 +95,11 @@ export default class CustomMarkers extends React.Component {
   }
 
   saveMappedTrail(removedPin = false) {
-    var trailId = this.props.id;
-    var pins = this.state.markers.map(marker => {
+    const trailId = this.props.id;
+    const pins = this.state.markers.map(marker => {
       return [marker.coordinate.longitude, marker.coordinate.latitude];
     });
-    var options = {
+    const options = {
       userId: this.props.userId,
       pins: pins
     };
@@ -126,7 +126,7 @@ export default class CustomMarkers extends React.Component {
   }
 
   deleteMappedTrail() {
-    var options = {
+    const options = {
       userId: this.props.userId
     };
     trailAngelApi.removeGeo(this.props.id, options)
@@ -167,13 +167,13 @@ export default class CustomMarkers extends React.Component {
   }
 
   onDragEnd(key, e) {
-    var index;
+    let index;
     this.state.markers.forEach((marker, i) => {
       if (marker.key === key) {
         index = i;
       }
     });
-    var markers = this.state.markers.slice();
+    const markers = this.state.markers.slice();
     markers.splice(index, 1, {
       coordinate: e.nativeEvent.coordinate,
       key: key,
@@ -215,6 +215,7 @@ export default class CustomMarkers extends React.Component {
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
           style={styles.map}
+          mapType='hybrid'
           initialRegion={this.state.region}
           onPress={this.onMapPress}
         >

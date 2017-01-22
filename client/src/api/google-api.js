@@ -39,7 +39,7 @@ const googleApi = {
       if (response.results !== undefined &&
           Array.isArray(response.results) &&
           response.results[0].formatted_address !== undefined) {
-          var city = response.results[0].formatted_address.split(', ')[1];
+          const city = response.results[0].formatted_address.split(', ')[1];
           return city;
         } else {
           return false;
@@ -65,7 +65,7 @@ const googleApi = {
     .then((response) => {
       let elevations = response.results;
       let elevationGain = 0;
-      for(var i = 1; i < elevations.length; i++) {
+      for(let i = 1; i < elevations.length; i++) {
         let diff = elevations[i].elevation - elevations[i-1].elevation;
         if (diff > 0) {
           elevationGain += diff;
