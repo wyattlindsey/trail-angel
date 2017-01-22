@@ -47,7 +47,7 @@ export default class CustomMarkers extends React.Component {
       }],
       displayMiles: true,
       displayFeet: true,
-      mapType: 'none'
+      mapType: 'terrain'
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
