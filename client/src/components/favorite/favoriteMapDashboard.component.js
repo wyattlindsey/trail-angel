@@ -7,12 +7,17 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  Switch,
   Alert
 } from 'react-native';
 import MapView from 'react-native-maps';
+import FoundationIcon from 'react-native-vector-icons/Foundation';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import trailAngelApi from '../../api/trailangel-api';
 import googleApi from '../../api/google-api';
 import trailcalc from '../../utils/trail-calculations';
+import colors from '../colors';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -42,6 +47,7 @@ export default class CustomMarkers extends React.Component {
       }],
       displayMiles: true,
       displayFeet: true,
+      mapType: 'none'
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
@@ -198,6 +204,30 @@ export default class CustomMarkers extends React.Component {
     });
   }
 
+  toggleSatelliteMode() {
+    if (this.state.mapType === 'hybrid') {
+      this.setState({
+        mapType: 'none'
+      });
+    } else {
+      this.setState({
+        mapType: 'hybrid'
+      });
+    }
+  }
+
+  toggleTerrainMode() {
+    if (this.state.mapType === 'terrain') {
+      this.setState({
+        mapType: 'none'
+      });
+    } else {
+      this.setState({
+        mapType: 'terrain'
+      });
+    }
+  }
+
   render() {
     let trailheadCoordinate = {
       latitude: this.state.region.latitude,
@@ -215,7 +245,7 @@ export default class CustomMarkers extends React.Component {
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
           style={styles.map}
-          mapType='hybrid'
+          mapType={this.state.mapType}
           initialRegion={this.state.region}
           onPress={this.onMapPress}
         >
@@ -302,6 +332,22 @@ export default class CustomMarkers extends React.Component {
           >
             <Text>Delete</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.bubble}
+                            onPress={this.toggleSatelliteMode.bind(this)}
+          >
+            <Icon name='globe'
+                  size={20}
+                  color={colors.darkgray}
+                  style={{opacity: this.state.mapType === 'hybrid' ? 1.0 : 0.5}} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bubble}
+                            onPress={this.toggleTerrainMode.bind(this)}
+          >
+            <FoundationIcon name='mountains'
+                            size={20}
+                            color={colors.darkgray}
+                            style={{opacity: this.state.mapType === 'terrain' ? 1.0 : 0.5}} />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -312,15 +358,16 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFillObject
   },
   bubble: {
     backgroundColor: 'rgba(255,255,255,0.7)',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
+    paddingHorizontal: 8,
+    paddingTop: 6,
+    paddingBottom: 3,
     borderRadius: 5,
     marginRight: 5
   },
@@ -342,21 +389,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: height - 200,
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   latlng: {
     width: 200,
-    alignItems: 'stretch',
+    alignItems: 'stretch'
   },
   button: {
     width: 80,
     paddingHorizontal: 12,
     alignItems: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 10
   },
   buttonContainer: {
     flexDirection: 'row',
     marginVertical: 20,
-    backgroundColor: 'transparent',
-  },
+    backgroundColor: 'transparent'
+  }
 });
