@@ -2,11 +2,12 @@
 
 > Break new trails and share with your friends.  The holy grail of trail apps.
 
+:-------------------------:|:-------------------------:|:-------------------------:
+![screenshot1](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_scdijp.png)|![screenshot2](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_side2_lpnlqw.png)|![screenshot3](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_1_mcgbij.png)
+
 ## Team
 
-  - __Product Owner__: [Andrew Cookro](https://github.com/orgs/hrr20-nebula/people/galaxode)
-  - __Scrum Master__: [Wyatt Lindsey](https://github.com/orgs/hrr20-nebula/people/wyattlindsey)
-  - __Development Team Members__: [Prithvi Anantharaj](https://github.com/orgs/hrr20-nebula/people/Prithvi-A), [Johanna Tchon](https://github.com/orgs/hrr20-nebula/people/JotheElephant)
+  - __Development Team Members__: [Prithvi Anantharaj](https://github.com/orgs/hrr20-nebula/people/Prithvi-A), [Johanna Tchon](https://github.com/orgs/hrr20-nebula/people/JotheElephant), [Wyatt Lindsey](https://github.com/orgs/hrr20-nebula/people/wyattlindsey), [Andrew Cookro](https://github.com/orgs/hrr20-nebula/people/galaxode)
 
 ## Table of Contents
 
@@ -20,7 +21,7 @@
 
 ## Usage
 
-> Some usage instructions
+> Running the application in your iOS simulator requires the dependencies listed below.  After launching the application, explore the Home and Search views to discover trails in your area and around the world.  Use the star icon to add any trail to your Favorites collection.  Press the yellow map icon where available to launch an interactive path creation utility, complete with distance, elevation gain and hike time estimates.
 
 ## Requirements
 
