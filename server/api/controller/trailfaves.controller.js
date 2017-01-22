@@ -24,7 +24,7 @@ module.exports = {
     })
     .then( (favorites) => {
       if (favorites.length === 0) {
-        res.json([]);
+        return [];
       } else {
         var ids = [];
         favorites.forEach( (favoriteID) => {
@@ -40,11 +40,15 @@ module.exports = {
       }
     })
     .then( (favoriteNames) => {
-      var trailNames = [];
-      favoriteNames.forEach( (favoriteName) => {
-        trailNames.push(favoriteName.dataValues.favorite);
-      });
-      res.json(trailNames);
+      if (favoriteNames.length === 0) {
+        res.json([]);
+      } else {
+        var trailNames = [];
+        favoriteNames.forEach( (favoriteName) => {
+          trailNames.push(favoriteName.dataValues.favorite);
+        });
+        res.json(trailNames);
+      }
     })
     .catch( (err) => {
       console.error('Error GET request trailfaves', err);

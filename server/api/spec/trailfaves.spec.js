@@ -6,7 +6,7 @@ var db = require('../model/model.js');
 
 var server = supertest.agent("http://localhost:4000");
 
-describe("Trailfaves: ",function(){
+describe("Trailfaves Endpoints: ",function(){
 
   before(function() {
     db.User.create({
@@ -66,3 +66,4 @@ describe("Trailfaves: ",function(){
 
 
 });
+
