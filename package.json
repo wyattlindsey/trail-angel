@@ -4,7 +4,7 @@
   "description": "> Break new trails and share with your friends.  The holy grail of trail apps.",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js & cd client && react-native run-ios",
+    "start": "cd client && react-native run-ios && cd .. & node server/server.js",
     "test": "mocha server/**/*.spec.js & cd client && jest"
   },
   "repository": {
