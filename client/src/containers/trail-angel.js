@@ -12,17 +12,6 @@ import Search from '../containers/search-container';
 import Settings from '../components/trail/trailSettings.component';
 import appActions from '../actions/app-actions';
 
-const styles = StyleSheet.create({
-  tabContent: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabText: {
-    color: 'white',
-    margin: 50,
-  },
-});
-
 class TrailAngel extends Component {
   constructor(props) {
     super(props);
@@ -118,4 +107,13 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrailAngel);
 
-
+const styles = StyleSheet.create({
+  tabContent: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  tabText: {
+    color: 'white',
+    margin: 50,
+  },
+});

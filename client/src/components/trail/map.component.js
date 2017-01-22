@@ -14,56 +14,6 @@ import dataApi from '../../api';
 import time from '../../utils/time';
 import WeatherIcon from '../weather/weather-icon.component';
 
-
-const { height, width} = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  rowContainer: {
-    marginTop: 60,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  tempInfo: {
-    flexGrow: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 8,
-    opacity: 0.7
-  },
-  weather: {
-    alignItems: 'center',
-  },
-  text: {
-    textAlign: 'center',
-    padding: 2
-  },
-  tempTitle: {
-    padding: 10
-  },
-  map: {
-    width: width,
-    height: height*0.60
-  },
-  pin: {
-    backgroundColor: '#fffa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: 'black',
-    borderWidth: 2,
-    padding: 5,
-    borderRadius: 10
-  },
-  pinImage: {
-    width: 25,
-    height: 25
-  },
-  pinText: {
-    color: 'green'
-  }
-});
-
 export default class TrailMap extends React.Component {
   constructor(props) {
     super(props);
@@ -141,3 +91,52 @@ export default class TrailMap extends React.Component {
     )
   }
 }
+
+const { height, width} = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+  rowContainer: {
+    marginTop: 60,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  tempInfo: {
+    flexGrow: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 8,
+    opacity: 0.7
+  },
+  weather: {
+    alignItems: 'center',
+  },
+  text: {
+    textAlign: 'center',
+    padding: 2
+  },
+  tempTitle: {
+    padding: 10
+  },
+  map: {
+    width: width,
+    height: height*0.60
+  },
+  pin: {
+    backgroundColor: '#fffa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
+    borderRadius: 10
+  },
+  pinImage: {
+    width: 25,
+    height: 25
+  },
+  pinText: {
+    color: 'green'
+  }
+});

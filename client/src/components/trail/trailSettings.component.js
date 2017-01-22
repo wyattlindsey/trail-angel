@@ -19,78 +19,6 @@ import googleApi from '../../api/google-api';
 
 var { height, width} = Dimensions.get('window');
 
-const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    flexDirection: 'column'
-  },
-  profileContainer: {
-    marginTop: 75,
-    marginLeft: 15,
-    flex: .4,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  rightContainer: {
-    flexDirection: 'column',
-    paddingTop: 5,
-    paddingLeft: 20,
-  },
-  nickname: {
-    color: '#3D728E',
-    fontSize: 20,
-    fontWeight: '600',
-    textAlign: 'center',
-    marginBottom: 45,
-  },
-  avatar: {
-    flexDirection: 'column',
-    height: 145,
-    width: 145,
-    borderRadius: 20,
-  },
-  separator: {
-    backgroundColor: '#E3E0D7',
-    height: 1,
-    marginLeft: 38
-  },
-  menuContainer: {
-    flex: .6
-  },
-  menuItemContainer: {
-    flexDirection: 'row',
-    paddingLeft: 12,
-    paddingTop: 5,
-    paddingBottom: 5,
-  },
-  logoutText: {
-    fontSize: 16,
-    paddingLeft: 8
-  },
-  listUl: {
-    paddingTop: 1
-  },
-  chevronRight1: {
-    paddingTop: 4,
-    color: '#9E9E9E',
-    marginLeft: 241
-  },
-  chevronRight2: {
-    paddingTop: 4,
-    color: '#9E9E9E',
-    marginLeft: 261
-  },
-  chevronRight3: {
-    paddingTop: 4,
-    color: '#9E9E9E',
-    marginLeft: 261
-  },
-  logos: {
-    marginBottom: 70,
-    alignItems: 'center'
-  }
-});
-
 class TrailSettings extends React.Component {
   constructor(props) {
     super(props);
@@ -202,3 +130,75 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrailSettings);
+
+const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  profileContainer: {
+    marginTop: 75,
+    marginLeft: 15,
+    flex: .4,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rightContainer: {
+    flexDirection: 'column',
+    paddingTop: 5,
+    paddingLeft: 20,
+  },
+  nickname: {
+    color: '#3D728E',
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 45,
+  },
+  avatar: {
+    flexDirection: 'column',
+    height: 145,
+    width: 145,
+    borderRadius: 20,
+  },
+  separator: {
+    backgroundColor: '#E3E0D7',
+    height: 1,
+    marginLeft: 38
+  },
+  menuContainer: {
+    flex: .6
+  },
+  menuItemContainer: {
+    flexDirection: 'row',
+    paddingLeft: 12,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+  logoutText: {
+    fontSize: 16,
+    paddingLeft: 8
+  },
+  listUl: {
+    paddingTop: 1
+  },
+  chevronRight1: {
+    paddingTop: 4,
+    color: '#9E9E9E',
+    marginLeft: 241
+  },
+  chevronRight2: {
+    paddingTop: 4,
+    color: '#9E9E9E',
+    marginLeft: 261
+  },
+  chevronRight3: {
+    paddingTop: 4,
+    color: '#9E9E9E',
+    marginLeft: 261
+  },
+  logos: {
+    marginBottom: 70,
+    alignItems: 'center'
+  }
+});

@@ -14,68 +14,6 @@ import DailyWeatherForecast from '../weather/weather-forecast.component';
 import Details from './trailDetail.component';
 import dataApi from '../../api';
 
-const styles = StyleSheet.create({
- rowContainer: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  leftColumn: {
-    padding: 20,
-    width: 90,
-    height: 90,
-    alignItems: 'center',
-  },
-  middleColumn: {
-    padding: 20,
-    width: 190,
-    height: 150,
-  },
-  rightColumn: {
-    padding: 20,
-    width: 100,
-    height: 150,
-    alignItems: 'center',
-  },
-  title: {
-    fontWeight: '500',
-    fontSize: 16,
-    color: '#2f5e4e',
-    width: 200,
-  },
-  photo: {
-    borderRadius: 30,
-    width: 60,
-    height: 60,
-  },
-  location: {
-    color: '#786048'
-  },
- rating: {
-    color: '#727B24',
-    paddingTop: 10
-  },
-  description: {
-    lineHeight: 20,
-    fontSize: 14,
-    color: '#484830',
-    textAlign: 'left',
-    marginTop: 8,
-  },
-  favorite: {
-    marginTop: 20,
-    width: 20,
-    height: 20,
-
-  },
-  distance: {
-    paddingTop: 2,
-    paddingBottom: 15
-  },
-  weatherBlock: {
-    backgroundColor: 'red'
-  } 
-});
-
 export default class TraillistItem extends React.Component {
   constructor(props) {
     super(props);
@@ -258,3 +196,64 @@ export default class TraillistItem extends React.Component {
   }
 }
 
+const styles = StyleSheet.create({
+  rowContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  leftColumn: {
+    padding: 20,
+    width: 90,
+    height: 90,
+    alignItems: 'center',
+  },
+  middleColumn: {
+    padding: 20,
+    width: 190,
+    height: 150,
+  },
+  rightColumn: {
+    padding: 20,
+    width: 100,
+    height: 150,
+    alignItems: 'center',
+  },
+  title: {
+    fontWeight: '500',
+    fontSize: 16,
+    color: '#2f5e4e',
+    width: 200,
+  },
+  photo: {
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+  },
+  location: {
+    color: '#786048'
+  },
+  rating: {
+    color: '#727B24',
+    paddingTop: 10
+  },
+  description: {
+    lineHeight: 20,
+    fontSize: 14,
+    color: '#484830',
+    textAlign: 'left',
+    marginTop: 8,
+  },
+  favorite: {
+    marginTop: 20,
+    width: 20,
+    height: 20,
+
+  },
+  distance: {
+    paddingTop: 2,
+    paddingBottom: 15
+  },
+  weatherBlock: {
+    backgroundColor: 'red'
+  }
+});

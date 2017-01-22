@@ -12,48 +12,6 @@ const lock = new Auth0Lock(secrets.auth0);
 const tokenKey = secrets.asyncstorage.tokenKey;
 const profileKey = secrets.asyncstorage.profileKey;
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  messageBox: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  badge: {
-    alignSelf: 'center',
-    height: 200,
-    width: 200,
-  },
-  title: {
-    fontSize: 17,
-    textAlign: 'center',
-    marginTop: 8,
-  },
-  subtitle: {
-    fontSize: 17,
-    textAlign: 'center',
-    marginTop: 4,
-  },
-  welcome: {
-    color: 'white'
-  },
-  signInButton: {
-    height: 50,
-    alignSelf: 'stretch',
-    backgroundColor: '#D9DADF',
-    margin: 10,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -208,3 +166,44 @@ const mapStateToProps = function(state) {
 };
 
 export default connect(mapStateToProps)(Login);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  messageBox: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  badge: {
+    alignSelf: 'center',
+    height: 200,
+    width: 200,
+  },
+  title: {
+    fontSize: 17,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  subtitle: {
+    fontSize: 17,
+    textAlign: 'center',
+    marginTop: 4,
+  },
+  welcome: {
+    color: 'white'
+  },
+  signInButton: {
+    height: 50,
+    alignSelf: 'stretch',
+    backgroundColor: '#D9DADF',
+    margin: 10,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

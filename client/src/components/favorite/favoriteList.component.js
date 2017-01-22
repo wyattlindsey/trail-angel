@@ -4,27 +4,6 @@ import React, { Component } from 'react';
 import { View, ListView, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import Row from '../favorite/favoriteListItem.component';
 
-const styles = StyleSheet.create({
-  separator: {
-    flex: 1,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
-  },
-  container: {
-    marginTop: 65,
-    marginBottom: 40
-  },
-  favoritesTitle: {
-    color: '#333333',
-    fontSize: 16,
-    fontWeight: '400',
-    padding: 20,
-  },
-  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
-  gray: { backgroundColor: '#cccccc', },
-  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, }
-});
-
 export default class FavoriteList extends React.Component {
   constructor(props) {
     super(props);
@@ -76,3 +55,24 @@ export default class FavoriteList extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  },
+  container: {
+    marginTop: 65,
+    marginBottom: 40
+  },
+  favoritesTitle: {
+    color: '#333333',
+    fontSize: 16,
+    fontWeight: '400',
+    padding: 20,
+  },
+  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
+  gray: { backgroundColor: '#cccccc', },
+  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, }
+});

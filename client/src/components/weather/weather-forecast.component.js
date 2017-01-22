@@ -6,43 +6,6 @@ import time from '../../utils/time';
 import WeatherIcon from './weather-icon.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const styles = StyleSheet.create({
-  scrollContainer: {
-    marginTop: 12
-  },
-
-  forecastListItem: {
-    margin: 12,
-    padding: 16,
-    backgroundColor: '#D3D3D3',
-    alignItems: 'center',
-    borderRadius: 25,
-    flex: 1,
-    flexDirection: 'row'
-  },
-
-  forecastDetails: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-
-  forecastHeading: {
-    fontSize: 18,
-    marginRight: 15,
-    lineHeight: 35,
-    color: 'darkgreen',
-    fontStyle: 'italic'
-  },
-
-  angleLink: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 50,
-    height: 50
-  }
-})
-
 const DailyWeatherForecast = (props) => (
   <ScrollView style={styles.scrollContainer}>
     <View>
@@ -213,3 +176,40 @@ const getForecastHoursIndicesForDay = (timestamp, offset) => {
 
 
 export default DailyWeatherForecast;
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    marginTop: 12
+  },
+
+  forecastListItem: {
+    margin: 12,
+    padding: 16,
+    backgroundColor: '#D3D3D3',
+    alignItems: 'center',
+    borderRadius: 25,
+    flex: 1,
+    flexDirection: 'row'
+  },
+
+  forecastDetails: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+
+  forecastHeading: {
+    fontSize: 18,
+    marginRight: 15,
+    lineHeight: 35,
+    color: 'darkgreen',
+    fontStyle: 'italic'
+  },
+
+  angleLink: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50
+  }
+});

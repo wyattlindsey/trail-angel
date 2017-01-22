@@ -6,21 +6,6 @@ import { Image, View, ListView, StyleSheet,
 import Row from './trailListItem.component';
 import dataApi from '../../api/';
 
-const styles = StyleSheet.create({
-  separator: {
-    flex: 1,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
-  },
-  homeImage: {
-    backgroundColor: '#333333',
-  },
-  container: { 
-    marginTop: 65,
-    marginBottom: 50
-  }
-});
-
 export default class TrailList extends React.Component {
   constructor(props) {
     super(props);
@@ -102,3 +87,18 @@ export default class TrailList extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  },
+  homeImage: {
+    backgroundColor: '#333333',
+  },
+  container: {
+    marginTop: 65,
+    marginBottom: 50
+  }
+});

@@ -11,52 +11,6 @@ import TrailMap from './map.component';
 import Dashboard from '../favorite/favoriteMapDashboard.component';
 
 
-const styles = StyleSheet.create({
-  rowContainer: {
-    marginTop: 65,
-  },
-  mapContainer: {
-    height: 200,
-  },
-  textContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 20,
-  },
-  leftCol: {
-    width: 100,
-  },
-  rightCol: {
-    width: 200,
-    top: 20,
-    flexDirection: 'row'
-  },
-  map: {
-    flex: 1,
-  },
-  title: {
-    color: '#2f5e4e',
-    fontSize: 16,
-    fontWeight: '600',
-    paddingBottom: 10
-  },
-  location: {
-    color: '#786048',
-    paddingBottom: 20
-  },
-  reviewtitle: {
-    color: '#333333',
-    fontSize: 16,
-    fontWeight: '400',
-    padding: 20,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#E3E0D7'
-  }
-});
-
-
 export default class TraillistDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -218,3 +172,48 @@ export default class TraillistDetail extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  rowContainer: {
+    marginTop: 65,
+  },
+  mapContainer: {
+    height: 200,
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 20,
+  },
+  leftCol: {
+    width: 100,
+  },
+  rightCol: {
+    width: 200,
+    top: 20,
+    flexDirection: 'row'
+  },
+  map: {
+    flex: 1,
+  },
+  title: {
+    color: '#2f5e4e',
+    fontSize: 16,
+    fontWeight: '600',
+    paddingBottom: 10
+  },
+  location: {
+    color: '#786048',
+    paddingBottom: 20
+  },
+  reviewtitle: {
+    color: '#333333',
+    fontSize: 16,
+    fontWeight: '400',
+    padding: 20,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#E3E0D7'
+  }
+});
