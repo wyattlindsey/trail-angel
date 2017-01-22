@@ -2,8 +2,9 @@
 
 > Break new trails and share with your friends.  The holy grail of trail apps.
 
-:-------------------------:|:-------------------------:|:-------------------------:
-![screenshot1](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_scdijp.png)|![screenshot2](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_side2_lpnlqw.png)|![screenshot3](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_1_mcgbij.png)
+| | | | |
+| ------------ | ------------ | ------------ |
+| ![screenshot1](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_scdijp.png) | ![screenshot2](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_side2_lpnlqw.png) | ![screenshot3](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_1_mcgbij.png) |
 
 ## Team
 
