@@ -6,49 +6,7 @@ import { View, Text, StyleSheet, TextInput,
 import * as _ from 'lodash';
 
 import Row from '../trail/trailListItem.component';
-
-const styles = StyleSheet.create({
-  searchBar: {
-    flex: 1,
-    padding: 8,
-    paddingBottom: 45,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    marginTop: 65,
-    height: 120
-  },
-  input: {
-    height: 30,
-    flex: 1,
-    margin: 5,
-    marginRight: 20,
-    marginTop: 15,
-    paddingHorizontal: 8,
-    fontSize: 15,
-    backgroundColor: '#CCCCCC',
-    borderRadius: 2,
-  },
-  localSearch: {
-    top: 14,
-    marginRight: 5,
-    alignItems: 'center'
-  },
-  separator: {
-    flex: 1,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
-  },
-  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
-  gray: { backgroundColor: '#cccccc', },
-  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
-  searchResults: {
-    backgroundColor: '#FFFFFF',
-    height: 600,
-    marginTop: 30,
-    marginBottom: 35
-  }
-});
+import colors from '../colors';
 
 export default class SearchBar extends React.Component {
   constructor(props) {
@@ -141,7 +99,8 @@ export default class SearchBar extends React.Component {
           />
           <Switch style={styles.localSearch}
                   onValueChange={this._handleLocalSwitch.bind(this)}
-                  value={this.state.localSearch}>
+                  value={this.state.localSearch}
+                  onTintColor={colors.seafoam}>
             <Text style={{  top: 40,
                             fontSize: 12,
                             textAlign: 'center'
@@ -162,7 +121,7 @@ export default class SearchBar extends React.Component {
                 <ActivityIndicator animating={this.props.isFetching}
                                    style={[styles.centering, styles.horizontal,
                                      { height: 100}]}
-                                   color='darkgreen'
+                                   color={colors.seafoam}
                                    size='large' />
                 :
                 <ListView
@@ -189,4 +148,46 @@ export default class SearchBar extends React.Component {
   }
 }
 
-
+const styles = StyleSheet.create({
+  searchBar: {
+    flex: 1,
+    padding: 8,
+    paddingBottom: 45,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    marginTop: 65,
+    height: 120
+  },
+  input: {
+    height: 30,
+    flex: 1,
+    margin: 5,
+    marginRight: 20,
+    marginTop: 15,
+    paddingHorizontal: 8,
+    fontSize: 15,
+    color: 'white',
+    backgroundColor: colors.midgray,
+    borderRadius: 2,
+  },
+  localSearch: {
+    top: 14,
+    marginRight: 5,
+    alignItems: 'center'
+  },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: colors.midgray,
+  },
+  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
+  gray: { backgroundColor: colors.darkgray, },
+  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
+  searchResults: {
+    backgroundColor: 'white',
+    height: 600,
+    marginTop: 30,
+    marginBottom: 130
+  }
+});

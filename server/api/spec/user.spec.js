@@ -8,14 +8,6 @@ var server = supertest.agent("http://localhost:4000");
 
 describe("Users: ",function(){
 
-  after(function() {
-    db.User.create({
-      user: '1038222134277651122'
-    }).then( () => {
-      /* do nothing */
-    });
-  });
-
   it("should post user to users and return 201",function(done){
 
     server

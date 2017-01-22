@@ -9,52 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 import TrailMap from './map.component';
 import Dashboard from '../favorite/favoriteMapDashboard.component';
-
-
-const styles = StyleSheet.create({
-  rowContainer: {
-    marginTop: 65,
-  },
-  mapContainer: {
-    height: 200,
-  },
-  textContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 20,
-  },
-  leftCol: {
-    width: 100,
-  },
-  rightCol: {
-    width: 200,
-    top: 20,
-    flexDirection: 'row'
-  },
-  map: {
-    flex: 1,
-  },
-  title: {
-    color: '#2f5e4e',
-    fontSize: 16,
-    fontWeight: '600',
-    paddingBottom: 10
-  },
-  location: {
-    color: '#786048',
-    paddingBottom: 20
-  },
-  reviewtitle: {
-    color: '#333333',
-    fontSize: 16,
-    fontWeight: '400',
-    padding: 20,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#E3E0D7'
-  }
-});
+import colors from '../colors';
 
 
 export default class TraillistDetail extends React.Component {
@@ -165,12 +120,12 @@ export default class TraillistDetail extends React.Component {
     };
 
     const FavoriteIcon = this.state.isFavorite ?
-      <Icon name='star' size={30} color='#E56452' /> :
-      <Icon name='star-o' size={30} color='#E56452' />;
+      <Icon name='star' size={30} color={colors.warning} /> :
+      <Icon name='star-o' size={30} color={colors.warning} />;
 
     const MapIcon = this.state.isFavorite ?
-      <Icon name='map' size={20} color='#f7d548' style={{ opacity: 1.0 }} /> :
-      <Icon name='map' size={20} color='#f7d548' style={{ opacity: 0.6 }} />
+      <Icon name='map' size={20} color={colors.mapColor} style={{ opacity: 1.0 }} /> :
+      <Icon name='map' size={20} color={colors.mapColor} style={{ opacity: 0.6 }} />
 
     return (
         <View style={styles.rowContainer}>
@@ -195,12 +150,12 @@ export default class TraillistDetail extends React.Component {
             </View>
             <View style={styles.rightCol}>  
               <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
-                                  underlayColor='#ffffff'
+                                  underlayColor='white'
                                   style={{ marginRight: 30, marginLeft: 100 }}>
                 {FavoriteIcon}
               </TouchableHighlight>
               <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
-                                  underlayColor='#ffffff'
+                                  underlayColor='white'
                                   disabled={!this.state.isFavorite}>
                 {MapIcon}
               </TouchableHighlight>
@@ -218,3 +173,48 @@ export default class TraillistDetail extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  rowContainer: {
+    marginTop: 65,
+  },
+  mapContainer: {
+    height: 200,
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 20,
+  },
+  leftCol: {
+    width: 100,
+  },
+  rightCol: {
+    width: 200,
+    top: 20,
+    flexDirection: 'row'
+  },
+  map: {
+    flex: 1,
+  },
+  title: {
+    color: colors.darkgreen,
+    fontSize: 16,
+    fontWeight: '600',
+    paddingBottom: 10
+  },
+  location: {
+    color: colors.darktan,
+    paddingBottom: 20
+  },
+  reviewtitle: {
+    color: colors.darkgray,
+    fontSize: 16,
+    fontWeight: '400',
+    padding: 20,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: colors.beige
+  }
+});

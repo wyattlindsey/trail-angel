@@ -5,43 +5,7 @@ import { View, Text, ScrollView, TouchableHighlight, StyleSheet } from 'react-na
 import time from '../../utils/time';
 import WeatherIcon from './weather-icon.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-const styles = StyleSheet.create({
-  scrollContainer: {
-    marginTop: 12
-  },
-
-  forecastListItem: {
-    margin: 12,
-    padding: 16,
-    backgroundColor: '#D3D3D3',
-    alignItems: 'center',
-    borderRadius: 25,
-    flex: 1,
-    flexDirection: 'row'
-  },
-
-  forecastDetails: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-
-  forecastHeading: {
-    fontSize: 18,
-    marginRight: 15,
-    lineHeight: 35,
-    color: 'darkgreen',
-    fontStyle: 'italic'
-  },
-
-  angleLink: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 50,
-    height: 50
-  }
-})
+import colors from '../colors';
 
 const DailyWeatherForecast = (props) => (
   <ScrollView style={styles.scrollContainer}>
@@ -66,14 +30,18 @@ const DailyWeatherForecast = (props) => (
   </ScrollView>
 );
 
+DailyWeatherForecast.propTypes = {
+  forecast: React.PropTypes.object.isRequired
+};
+
 const DailyForecastListItem = (props) => (
   <View style={styles.forecastListItem}>
     <TouchableHighlight onPress={handleDailyForecastPress.bind(null, props)}
-                        underlayColor='#D3D3D3'>
+                        underlayColor={colors.seafoam}>
       <View style={{ alignItems: 'center' }}>
         <WeatherIcon icon={props.dailyForecast.icon}
                      size={30}
-                     color={'darkgreen'}
+                     color={colors.seafoam}
         />
         <Text style={styles.forecastHeading}>
           {props.today ? 'Today' : time.weekday(props.dailyForecast.time, props.offset)}
@@ -81,21 +49,21 @@ const DailyForecastListItem = (props) => (
       </View>
     </TouchableHighlight>
     <View style={styles.forecastDetails}>
-      <Text style={{ paddingBottom: 10 }}>{props.dailyForecast.summary}</Text>
+      <Text style={{ paddingBottom: 10, color: 'white' }}>{props.dailyForecast.summary}</Text>
       {!props.today ?
         <View>
-          <Text style={{ fontSize: 11 }}>
+          <Text style={{ fontSize: 11, color: 'white' }}>
             {'H: ' + Math.round(props.dailyForecast.apparentTemperatureMax) + 'F° ' +
               time.formatted12HourTime(props.dailyForecast.apparentTemperatureMaxTime)
             }
           </Text>
-          <Text style={{ fontSize: 11 }}>
+          <Text style={{ fontSize: 11, color: 'white' }}>
             {'L: ' + Math.round(props.dailyForecast.apparentTemperatureMin) + ' F° ' +
               time.formatted12HourTime(props.dailyForecast.apparentTemperatureMinTime)
             }
           </Text>
           {props.dailyForecast.precipProbability > 0 ?
-            <Text style={{ fontSize: 11 }}>
+            <Text style={{ fontSize: 11, color: 'white' }}>
                   {props.dailyForecast.precipProbability * 100 + '% chance of ' +
                     props.dailyForecast.precipType === undefined ? props.dailyForecast.precipType : ''
                   }
@@ -107,11 +75,11 @@ const DailyForecastListItem = (props) => (
     {props.dailyForecastAvailable ?
       <View>
         <TouchableHighlight onPress={handleDailyForecastPress.bind(null, props)}
-                            underlayColor='#D3D3D3'
+                            underlayColor={colors.darkgray}
                             style={styles.angleLink}>
           <Icon name='angle-right'
                 size={25}
-                color='darkgreen'
+                color={colors.seafoam}
           />
         </TouchableHighlight>
       </View> : <View />
@@ -142,19 +110,19 @@ const HourlyForecastListItem = (props) => (
     <View style={{ alignItems: 'center' }}>
       <WeatherIcon icon={props.hourlyForecast.icon}
                    size={30}
-                   color={'darkgreen'}
+                   color={colors.seafoam}
       />
       <Text style={styles.forecastHeading}>
         {time.formatted12HourTime(props.hourlyForecast.time)}
       </Text>
     </View>
     <View style={styles.forecastDetails}>
-      <Text style={{ paddingBottom: 10 }}>{props.hourlyForecast.summary}</Text>
-      <Text style={{ fontSize: 11 }}>
+      <Text style={{ paddingBottom: 10, color: 'white' }}>{props.hourlyForecast.summary}</Text>
+      <Text style={{ fontSize: 11, color: 'white' }}>
         {Math.round(props.hourlyForecast.apparentTemperature) + 'F°'}
       </Text>
       {props.hourlyForecast.precipProbability > 0 ?
-        <Text style={{ fontSize: 11 }}>
+        <Text style={{ fontSize: 11, color: 'white' }}>
           {props.hourlyForecast.precipProbability * 100 + '% chance of ' +
             props.hourlyForecast.precipType === undefined ?
             props.hourlyForecast.precipType : ''}</Text> : <View />
@@ -213,3 +181,41 @@ const getForecastHoursIndicesForDay = (timestamp, offset) => {
 
 
 export default DailyWeatherForecast;
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    backgroundColor: colors.midgray,
+    marginTop: 12
+  },
+
+  forecastListItem: {
+    margin: 12,
+    padding: 16,
+    backgroundColor: colors.darkgray,
+    alignItems: 'center',
+    borderRadius: 25,
+    flex: 1,
+    flexDirection: 'row'
+  },
+
+  forecastDetails: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+
+  forecastHeading: {
+    fontSize: 18,
+    marginRight: 15,
+    lineHeight: 35,
+    color: colors.seafoam,
+    fontStyle: 'italic'
+  },
+
+  angleLink: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50
+  }
+});

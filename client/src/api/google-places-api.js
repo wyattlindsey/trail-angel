@@ -38,7 +38,6 @@ const googlePlacesApi = {
     }, '');
 
     var url = `https://maps.googleapis.com/maps/api/place/textsearch/json?${parameters}`;
-    console.log(url);
     return request.get(url)
       .then((data) => {
         if (data === undefined || data.results === undefined) {
@@ -53,7 +52,7 @@ const googlePlacesApi = {
         }
       })
       .catch((err) => {
-        console.log('error getting google data', err);
+        console.error('error getting google data', err);
       });
   },
 

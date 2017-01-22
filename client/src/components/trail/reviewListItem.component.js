@@ -2,47 +2,7 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ActivityIndicator } from 'react-native';
-
-const styles = StyleSheet.create({
- rowContainer: {
-    flexDirection: 'row',
-    padding: 20,
-  },
-  textContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    width: 50
-  },
-  title: {
-    fontWeight: '600',
-    fontSize: 16,
-    color: '#5E9FA1'
-  },
-  photo: {
-    marginRight: 20,
-    borderRadius: 20,
-    width: 40,
-    height: 40,
-  },
-  location: {
-    color: '#786048'
-  },
-  rating: {
-    color: '#96AA3D'
-  },
-  description: {
-    lineHeight: 20,
-    fontSize: 14,
-    color: '#484830',
-    textAlign: 'left',
-    marginTop: 8,
-  },
-  separator: {
-    backgroundColor: '#E3E0D7',
-    height: 1
-  }
-
-});
+import colors from '../colors';
 
 const ReviewListItem = (props) => (
   <View>
@@ -61,3 +21,44 @@ const ReviewListItem = (props) => (
 )
 
 export default ReviewListItem;
+
+const styles = StyleSheet.create({
+  rowContainer: {
+    flexDirection: 'row',
+    padding: 20,
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    width: 50
+  },
+  title: {
+    fontWeight: '600',
+    fontSize: 16,
+    color: colors.seafoam
+  },
+  photo: {
+    marginRight: 20,
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+  },
+  location: {
+    color: colors.darktan
+  },
+  rating: {
+    color: colors.peagreen
+  },
+  description: {
+    lineHeight: 20,
+    fontSize: 14,
+    color: colors.darktan,
+    textAlign: 'left',
+    marginTop: 8,
+  },
+  separator: {
+    backgroundColor: colors.beige,
+    height: 1
+  }
+
+});
