@@ -25,6 +25,8 @@ export default class TraillistDetail extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.photoLargeUrl);
+
     if (this.props.reviews !== undefined) {
       this.setState({
         dataSource: this.ds.cloneWithRows(this.props.reviews)
@@ -63,7 +65,7 @@ export default class TraillistDetail extends React.Component {
     });
   }
 
-  _selectMap(e) {
+  _selectMap() {
     this.props.navigator.push({
       title: 'Map View',
       component: TrailMap,
@@ -126,25 +128,14 @@ export default class TraillistDetail extends React.Component {
     const MapIcon = this.state.isFavorite ?
       <Icon name='map' size={20} color={colors.mapColor} style={{ opacity: 1.0 }} /> :
       <Icon name='map' size={20} color={colors.mapColor} style={{ opacity: 0.6 }} />
-
     return (
         <View style={styles.rowContainer}>
-          <TouchableHighlight onPress={this._selectMap.bind(this)}>
-            <View style={styles.mapContainer}>
-              <MapView pitchEnabled={false} rotateEnabled={false} scrollEnabled={false} zoomEnabled={false}
-                style={styles.map}
-                region={region}
-                onRegionChange={this.onRegionChange}
-              >
-                <MapView.Marker
-                  coordinate={marker.coordinate}
-                  title={marker.title}
-                />
-              </MapView>
-            </View>
-          </TouchableHighlight>
+          <Image
+            style={{ flex: 1}}
+            source={{ uri: this.props.photoLargeUrl }}
+          />
           <View style={styles.textContainer}>
-            <View sytle={styles.leftCol}>
+            <View style={styles.leftCol}>
               <Text style={styles.title}>{this.props.name}</Text>
               <Text style={styles.location}>{this.state.address}</Text>
             </View>

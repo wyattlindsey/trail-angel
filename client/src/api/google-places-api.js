@@ -37,7 +37,7 @@ const googlePlacesApi = {
       }
     }, '');
 
-    var url = `https://maps.googleapis.com/maps/api/place/textsearch/json?${parameters}`;
+    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?${parameters}`;
     return request.get(url)
       .then((data) => {
         if (data === undefined || data.results === undefined) {

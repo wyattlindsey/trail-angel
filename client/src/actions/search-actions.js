@@ -30,13 +30,18 @@ const searchActions = {
             return dispatch(searchActions.getDetails(results.map((result) => result.id )))
               .then((results) => {
                 return results.map((result) => {
-                  return {
-                    ...result,
-                    photoThumbUrl: dataApi.googlePlaces.getUrlForPhoto
-                    (result.photo_reference, 100),
-                    photoLargeUrl: dataApi.googlePlaces.getUrlForPhoto
-                    (result.photo_reference, 400)
-                  };
+                  if (result.photos === undefined) {
+                    return result;
+                  } else {
+                    const randomIndex = Math.floor(Math.random() * result.photos.length);
+                    return {
+                      ...result,
+                      photoThumbUrl: dataApi.googlePlaces.getUrlForPhoto
+                      (result.photos[randomIndex].photo_reference, 100),
+                      photoLargeUrl: dataApi.googlePlaces.getUrlForPhoto
+                      (result.photos[randomIndex].photo_reference, 400)
+                    };
+                  }
                 });
               })
               .then((detailedResults) => {
