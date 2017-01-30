@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStor
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import TrailAngel from '../../containers/trail-angel.js';
+import TrailAngel from '../../views/index.js';
 import colors from '../colors';
 
 import Auth0Lock from 'react-native-lock';

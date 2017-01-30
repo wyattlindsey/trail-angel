@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 
 import icons from '../components/icons';
 import colors from '../components/colors';
-import Trails from './trails-container';
-import Favorites from './favorites-container';
-import Search from '../containers/search-container';
+import Trails from './home';
+import Favorites from './favorites';
+import Search from './/search-container';
 import Settings from '../components/trail/trailSettings.component';
 import appActions from '../actions/app-actions';
 
