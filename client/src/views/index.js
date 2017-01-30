@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 
 import icons from '../components/icons';
 import colors from '../components/colors';
-import Trails from './home';
+import Home from './home';
 import Favorites from './favorites';
 import Search from './search';
 import Settings from '../components/trail/trailSettings.component';
 import appActions from '../actions/app-actions';
 
-class TrailAngel extends Component {
+class Index extends Component {
   constructor(props) {
     super(props);
 
@@ -56,7 +56,7 @@ class TrailAngel extends Component {
               selectedTab: 'home',
             });
           }}>
-          <Trails navigator={this.props.navigator}/>
+          <Home navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon='search'
@@ -106,7 +106,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrailAngel);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
 
 const styles = StyleSheet.create({
   tabContent: {

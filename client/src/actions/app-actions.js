@@ -44,6 +44,7 @@ const appActions = {
       return dispatch(userActions.loginUser(profile))
         .then(() => {
           return dispatch(appActions.getGeolocation());
+          debugger;
         })
         .then(() => {
           return dispatch(storageActions.loadListingsFromStorage());

@@ -6,17 +6,17 @@ import { connect } from 'react-redux';
 
 import favoriteActions from '../actions/favorite-actions';
 
-import TrailList from '../components/trail/trailList.component';
+import List from '../components/list/List.component';
 
-const Trails = (props) => {
+const Home = (props) => {
   const { state, actions } = props;
   return (
-    <TrailList navigator={props.navigator} isFetching={state.listingsReducer.isFetching}
-               trails={state.listingsReducer.homeData}
-               favorites={state.listingsReducer.favorites}
-               userLocation={state.appReducer.geolocation}
-               userId={state.userReducer.userId}
-               {...actions} />
+    <List  navigator={props.navigator} isFetching={state.listingsReducer.isFetching}
+           items={state.listingsReducer.homeData}
+           favorites={state.listingsReducer.favorites}
+           userLocation={state.appReducer.geolocation}
+           userId={state.userReducer.userId}
+           {...actions} />
   );
 };
 
@@ -35,4 +35,4 @@ const mapDispatchToProps = function(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Trails);
+)(Home);
