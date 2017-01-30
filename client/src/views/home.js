@@ -8,19 +8,24 @@ import favoriteActions from '../actions/favorite-actions';
 
 import List from '../components/list/List.component';
 
-const Home = (props) => {
-  const { state, actions } = props;
-  return (
-    <List  navigator={props.navigator}
-           isFetching={state.listingsReducer.isFetching}
-           items={state.listingsReducer.homeData}
-           favorites={state.listingsReducer.favorites}
-           userLocation={state.appReducer.geolocation}
-           userId={state.userReducer.userId}
-           actions={{ ...actions }}
-     />
-  );
-};
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <List  navigator={this.props.navigator}
+             isFetching={this.props.state.listingsReducer.isFetching}
+             items={this.props.state.listingsReducer.homeData}
+             favorites={this.props.state.listingsReducer.favorites}
+             userLocation={this.props.state.appReducer.geolocation}
+             userId={this.props.state.userReducer.userId}
+             actions={{ ...this.props.actions }}
+      />
+    );
+  }
+}
 
 const mapStateToProps = function(state) {
   return {

@@ -4,10 +4,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ListView } from 'react-native';
 import * as _ from 'lodash';
 
-import Row from '../trail/reviewListItem.component';
+import Review from './Review.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Map from '../map/Map.component';
-import Dashboard from '../../archive/favorite/favoriteMapDashboard.component';
 import colors from '../colors';
 
 
@@ -145,7 +144,7 @@ export default class Details extends React.Component {
         <Text style={styles.reviewtitle}>Reviews: </Text>
         <ListView automaticallyAdjustContentInsets={false}
                   dataSource={this.state.dataSource}
-                  renderRow={(data) => <Row {...data}/>}
+                  renderRow={(data) => <Review {...data}/>}
                   renderSeparator={(sectionId, rowId) =>
                     <View key={rowId} style={styles.separator} />}
         />

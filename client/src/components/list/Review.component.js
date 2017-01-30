@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ActivityIndicator } from 'react-native';
 import colors from '../colors';
 
-const ReviewListItem = (props) => (
+const Review = (props) => (
   <View>
     <View style={styles.rowContainer}>
       <View>
@@ -20,7 +20,7 @@ const ReviewListItem = (props) => (
   </View>
 )
 
-export default ReviewListItem;
+export default Review;
 
 const styles = StyleSheet.create({
   rowContainer: {
