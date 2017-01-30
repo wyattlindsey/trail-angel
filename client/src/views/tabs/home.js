@@ -4,9 +4,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import favoriteActions from '../actions/favorite-actions';
+import favoriteActions from '../../actions/favorite-actions';
 
-import List from '../components/list/List.component';
+import List from '../../components/list/List.component';
 
 class Home extends React.Component {
   constructor(props) {

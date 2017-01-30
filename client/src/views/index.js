@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 
 import icons from '../components/icons';
 import colors from '../components/style/colors';
-import Home from './home';
-import Favorites from './favorites';
-import Search from './search';
-import More from './more';
+import Home from './tabs/home';
+import Favorites from './tabs/favorites';
+import Search from './tabs/search';
+import More from './tabs/more';
 
 import appActions from '../actions/app-actions';
 

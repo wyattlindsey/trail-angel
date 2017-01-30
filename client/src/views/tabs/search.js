@@ -7,11 +7,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import searchActions from '../actions/search-actions';
-import favoriteActions from '../actions/favorite-actions';
-import List from '../components/list/List.component';
+import searchActions from '../../actions/search-actions';
+import favoriteActions from '../../actions/favorite-actions';
+import List from '../../components/list/List.component';
 
-import colors from '../components/style/colors';
+import colors from '../../components/style/colors';
 
 class Search extends React.Component {
   constructor(props) {

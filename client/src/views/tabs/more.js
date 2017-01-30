@@ -14,10 +14,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect  } from 'react-redux';
 
-import googleApi from '../api/google-api';
-import userActions from '../actions/user-actions';
-import Login from './login';
-import colors from '../components/style/colors';
+import googleApi from '../../api/google-api';
+import userActions from '../../actions/user-actions';
+import Login from '../login';
+import colors from '../../components/style/colors';
 
 class More extends React.Component {
   constructor(props) {
@@ -107,8 +107,8 @@ class More extends React.Component {
           <View style={styles.separator} />
         </View>
         <View style={styles.logos}>
-          <Image source={require('../../img/powered-by-google-on-white.png')} />
-          <Image source={require('../../img/powered-by-darksky.png')}
+          <Image source={require('../../../img/powered-by-google-on-white.png')} />
+          <Image source={require('../../../img/powered-by-darksky.png')}
                  style={{ marginTop: 5, opacity: 0.5 }}/>
         </View>
       </View>
