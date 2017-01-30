@@ -1,8 +1,56 @@
 'use strict';
 
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  ActivityIndicator,
+  ListView
+} from 'react-native';
+
 import colors from '../colors';
+
+export default class Reviews extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+    this.state = {
+      dataSource: this.ds
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.reviews !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(this.props.reviews)
+      });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.reviews !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(nextProps.reviews)
+      });
+    }
+  }
+
+  render() {
+    return (
+      <ListView automaticallyAdjustContentInsets={false}
+                dataSource={this.state.dataSource}
+                renderRow={(data) => <Review {...data}/>}
+                renderSeparator={(sectionId, rowId) =>
+                  <View key={rowId} style={styles.separator} />}
+      />
+    );
+  }
+}
 
 const Review = (props) => (
   <View>
@@ -19,8 +67,6 @@ const Review = (props) => (
     </View>
   </View>
 )
-
-export default Review;
 
 const styles = StyleSheet.create({
   rowContainer: {

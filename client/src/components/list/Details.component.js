@@ -1,10 +1,16 @@
 'use strict';
 
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight, ListView } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight
+} from 'react-native';
 import * as _ from 'lodash';
 
-import Review from './Review.component';
+import Reviews from './Reviews.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Map from '../map/Map.component';
 import colors from '../colors';
@@ -14,23 +20,12 @@ export default class Details extends React.Component {
   constructor(props) {
     super(props);
 
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
     this.state = {
-      dataSource: this.ds,
       address: ''
     };
   }
 
   componentDidMount() {
-    console.log(this.props.photoLargeUrl);
-
-    if (this.props.reviews !== undefined) {
-      this.setState({
-        dataSource: this.ds.cloneWithRows(this.props.reviews)
-      });
-    }
-
     if (this.props.formatted_address !== undefined) {
       this.setState({
         address: this.props.formatted_address.replace(/, /g, '\n')
@@ -44,12 +39,6 @@ export default class Details extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.reviews !== undefined) {
-      this.setState({
-        dataSource: this.ds.cloneWithRows(nextProps.reviews)
-      });
-    }
-
     if (this.props.formatted_address !== undefined) {
       this.setState({
         address: this.props.formatted_address.replace(/, /g, '\n')
@@ -142,12 +131,7 @@ export default class Details extends React.Component {
         </View>
         <View style={styles.separator}/>
         <Text style={styles.reviewtitle}>Reviews: </Text>
-        <ListView automaticallyAdjustContentInsets={false}
-                  dataSource={this.state.dataSource}
-                  renderRow={(data) => <Review {...data}/>}
-                  renderSeparator={(sectionId, rowId) =>
-                    <View key={rowId} style={styles.separator} />}
-        />
+        <Reviews {...this.props} />
       </View>
     );
   }

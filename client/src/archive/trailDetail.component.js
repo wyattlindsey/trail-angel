@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ListView } from 'react-native';
 import * as _ from 'lodash';
 
-import Row from '../components/list/Review.component';
+import Row from '../components/list/Reviews.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 import TrailMap from './map.component';
