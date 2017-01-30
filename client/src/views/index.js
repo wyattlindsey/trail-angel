@@ -9,7 +9,7 @@ import icons from '../components/icons';
 import colors from '../components/colors';
 import Trails from './home';
 import Favorites from './favorites';
-import Search from './/search-container';
+import Search from './search';
 import Settings from '../components/trail/trailSettings.component';
 import appActions from '../actions/app-actions';
 

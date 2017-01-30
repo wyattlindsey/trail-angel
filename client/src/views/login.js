@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import TrailAngel from '../../views/index.js';
-import colors from '../colors';
+import TrailAngel from './index.js';
+import colors from '../components/colors';
 
 import Auth0Lock from 'react-native-lock';
-import { secrets, paths } from '../../../config';
+import { secrets, paths } from '../../config';
 
 const lock = new Auth0Lock(secrets.auth0);
 const tokenKey = secrets.asyncstorage.tokenKey;
@@ -144,7 +143,7 @@ class Login extends Component {
           <View style={styles.messageBox}>
             <Image
               style={styles.badge}
-              source={require('../../../img/backpack.png')}
+              source={require('../../img/backpack.png')}
             />
             <Text style={styles.title}>TrailAngel</Text>
             <Text style={styles.subtitle}>Hike your heart out on your favorite trails.</Text>

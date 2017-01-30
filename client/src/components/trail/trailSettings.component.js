@@ -14,11 +14,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect  } from 'react-redux';
 import userActions from '../../actions/user-actions';
-import Login from '../auth/login.component';
+import Login from '../../views/login';
 import googleApi from '../../api/google-api';
 import colors from '../colors';
-
-const { height, width} = Dimensions.get('window');
 
 class TrailSettings extends React.Component {
   constructor(props) {
