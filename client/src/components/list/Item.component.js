@@ -81,7 +81,7 @@ export default class Item extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const isFavorite = this._checkIsFavorite(this.props.id, nextProps.favorites);
+    const isFavorite = this._checkIsFavorite(nextProps.id, nextProps.favorites);
 
     this.setState({
       isFavorite
