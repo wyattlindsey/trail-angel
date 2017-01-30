@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 import TrailMap from './map.component';
 import Dashboard from './favorite/favoriteMapDashboard.component';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 
 export default class TraillistDetail extends React.Component {

@@ -4,7 +4,7 @@ import React from 'react';
 import { Text, View, ListView, StyleSheet, ActivityIndicator } from 'react-native';
 
 import Item from './Item.component';
-import colors from '../colors';
+import colors from '../style/colors';
 
 export default class List extends React.Component {
   constructor(props) {

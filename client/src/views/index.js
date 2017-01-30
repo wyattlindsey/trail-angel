@@ -6,11 +6,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
 import icons from '../components/icons';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 import Home from './home';
 import Favorites from './favorites';
 import Search from './search';
-import Settings from '../components/trail/trailSettings.component';
+import More from './more';
+
 import appActions from '../actions/app-actions';
 
 class Index extends Component {
@@ -86,8 +87,8 @@ class Index extends Component {
               selectedTab: 'more',
             });
           }}>
-          <Settings navigator={this.props.navigator}
-                    favoritesCount={this.props.state.listingsReducer.favorites.length} />
+          <More navigator={this.props.navigator}
+                favoritesCount={this.props.state.listingsReducer.favorites.length} />
         </TabBarIOS.Item>
       </TabBarIOS>
     );

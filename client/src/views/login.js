@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStor
 import { connect } from 'react-redux';
 
 import Index from './index.js';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 import Auth0Lock from 'react-native-lock';
 import { secrets, paths } from '../../config';

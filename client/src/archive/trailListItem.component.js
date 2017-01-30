@@ -13,7 +13,7 @@ import WeatherIcon from '../components/weather/weather-icon.component';
 import DailyWeatherForecast from '../components/weather/weather-forecast.component';
 import Details from './trailDetail.component';
 import dataApi from '../../api';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 export default class TraillistItem extends React.Component {
   constructor(props) {

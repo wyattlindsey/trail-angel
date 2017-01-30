@@ -5,7 +5,7 @@ import { Image, View, ListView, StyleSheet,
   Text, ActivityIndicator } from 'react-native';
 import Row from './trailListItem.component';
 import dataApi from '../../api/';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 export default class TrailList extends React.Component {
   constructor(props) {

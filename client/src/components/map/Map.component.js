@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import trailAngelApi from '../../api/trailangel-api';
 import googleApi from '../../api/google-api';
 import trailcalc from '../../utils/trail-calculations';
-import colors from '../colors';
+import colors from '../style/colors';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;

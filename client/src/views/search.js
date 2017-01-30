@@ -11,7 +11,7 @@ import searchActions from '../actions/search-actions';
 import favoriteActions from '../actions/favorite-actions';
 import List from '../components/list/List.component';
 
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 class Search extends React.Component {
   constructor(props) {

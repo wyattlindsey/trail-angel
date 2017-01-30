@@ -5,7 +5,7 @@ import { View, Text, ScrollView, TouchableHighlight, StyleSheet } from 'react-na
 import time from '../../utils/time';
 import WeatherIcon from './weather-icon.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import colors from '../colors';
+import colors from '../style/colors';
 
 const DailyWeatherForecast = (props) => (
   <ScrollView style={styles.scrollContainer}>

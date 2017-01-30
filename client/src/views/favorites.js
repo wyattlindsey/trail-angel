@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import favoriteActions from '../actions/favorite-actions';
 import List from '../components/list/List.component';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 class Favorites extends React.Component {
   constructor(props) {

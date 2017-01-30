@@ -11,7 +11,7 @@ import {
   ListView
 } from 'react-native';
 
-import colors from '../colors';
+import colors from '../style/colors';
 
 export default class Reviews extends React.Component {
   constructor(props) {

@@ -13,7 +13,7 @@ import WeatherIcon from '../weather/weather-icon.component';
 import DailyWeatherForecast from '../weather/weather-forecast.component';
 import Details from './Details.component';
 import dataApi from '../../api';
-import colors from '../colors';
+import colors from '../style/colors';
 
 export default class Item extends React.Component {
   constructor(props) {

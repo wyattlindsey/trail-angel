@@ -1,14 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import TrailListItem from '../../../archive/trailListItem.component';
+import TrailDetail from '../../trailDetail.component';
 
 
-describe('Trail List Item component', () => {
+describe('Trail Detail component', () => {
   it('renders correctly', () => {
 
     const tree = renderer.create(
-      <TrailListItem />
+      <TrailDetail />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

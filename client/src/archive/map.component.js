@@ -13,7 +13,7 @@ import MapView from 'react-native-maps';
 import dataApi from '../../api';
 import time from '../utils/time';
 import WeatherIcon from '../components/weather/weather-icon.component';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 export default class TrailMap extends React.Component {
   constructor(props) {

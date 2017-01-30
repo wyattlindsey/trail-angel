@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 import Reviews from './Reviews.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Map from '../map/Map.component';
-import colors from '../colors';
+import colors from '../style/colors';
 
 
 export default class Details extends React.Component {

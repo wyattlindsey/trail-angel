@@ -6,7 +6,7 @@ import { View, Text, StyleSheet, TextInput,
 import * as _ from 'lodash';
 
 import Row from './trailListItem.component';
-import colors from '../components/colors';
+import colors from '../components/style/colors';
 
 export default class SearchBar extends React.Component {
   constructor(props) {
