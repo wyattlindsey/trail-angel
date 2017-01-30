@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { View, NavigatorIOS, StyleSheet } from 'react-native';
 
-import Login from '../components/auth/login.component';
+import Login from './login';
 import colors from '../components/colors';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
