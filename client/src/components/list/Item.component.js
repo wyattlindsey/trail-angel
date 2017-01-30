@@ -129,7 +129,9 @@ export default class Item extends React.Component {
   }
 
   _checkIsFavorite(id, favorites) {
-    return _.findIndex(favorites, { id }) !== -1;
+    if (favorites.length > 0) {
+      return _.findIndex(favorites, { id }) !== -1;
+    }
   }
 
   render() {

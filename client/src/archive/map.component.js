@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 import dataApi from '../../api';
-import time from '../../utils/time';
-import WeatherIcon from '../weather/weather-icon.component';
-import colors from '../colors';
+import time from '../utils/time';
+import WeatherIcon from '../components/weather/weather-icon.component';
+import colors from '../components/colors';
 
 export default class TrailMap extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class TrailMap extends React.Component {
        coordinate: {latitude: this.props.geometry.location.lat,
                     longitude: this.props.geometry.location.lng},
       title: this.props.name,
-      image: require('../../../img/trekking-128.png')
+      image: require('../../img/trekking-128.png')
     };
     const region = {
       latitude: this.props.geometry.location.lat,

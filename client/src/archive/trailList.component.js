@@ -5,7 +5,7 @@ import { Image, View, ListView, StyleSheet,
   Text, ActivityIndicator } from 'react-native';
 import Row from './trailListItem.component';
 import dataApi from '../../api/';
-import colors from '../colors';
+import colors from '../components/colors';
 
 export default class TrailList extends React.Component {
   constructor(props) {
@@ -65,7 +65,7 @@ export default class TrailList extends React.Component {
             {this.state.randomPhotoUrl ?
               <View style={styles.homeImage}>
                 <Image
-                  source={require('../../../img/home.jpg')}
+                  source={require('../../img/home.jpg')}
                 />
               </View> :
           <View />}

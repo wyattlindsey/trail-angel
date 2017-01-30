@@ -6,8 +6,8 @@ import * as _ from 'lodash';
 
 import Row from '../trail/reviewListItem.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import TrailMap from '../trail/map.component';
-import Dashboard from '../favorite/favoriteMapDashboard.component';
+import Map from '../map/Map.component';
+import Dashboard from '../../archive/favorite/favoriteMapDashboard.component';
 import colors from '../colors';
 
 
@@ -64,24 +64,14 @@ export default class Details extends React.Component {
     });
   }
 
-  _selectMap() {
-    this.props.navigator.push({
-      title: 'Map View',
-      component: TrailMap,
-      passProps: {
-        ...this.props
-      }
-    });
-  }
-
   _toggleFavorite() {
     if (!this.state.isFavorite) {
-      this.props.addFavorite(this.props.id);
+      this.props.actions.addFavorite(this.props.id);
       this.setState({
         isFavorite: true
       });
     } else {
-      this.props.removeFavorite(this.props.id);
+      this.props.actions.removeFavorite(this.props.id);
       this.setState({
         isFavorite: false
       });
@@ -94,7 +84,7 @@ export default class Details extends React.Component {
     }
     this.props.navigator.push({
       title: 'Dashboard',
-      component: Dashboard,
+      component: Map,
       passProps: {
         ...this.props
       }
@@ -117,7 +107,7 @@ export default class Details extends React.Component {
       latitude: this.props.geometry.location.lat,
       longitude: this.props.geometry.location.lng,
       latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421  //comment
+      longitudeDelta: 0.0421
     };
 
     const FavoriteIcon = this.state.isFavorite ?

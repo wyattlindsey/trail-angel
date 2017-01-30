@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, ListView, StyleSheet, Text, ActivityIndicator } from 'react-native';
-import Row from '../favorite/favoriteListItem.component';
+import Row from './favoriteListItem.component';
 import colors from '../colors';
 
 export default class FavoriteList extends React.Component {

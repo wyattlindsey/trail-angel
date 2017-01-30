@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import TrailListItem from '../trailListItem.component';
+import TrailListItem from '../../../archive/trailListItem.component';
 
 
 describe('Trail List Item component', () => {

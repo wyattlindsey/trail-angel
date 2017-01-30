@@ -4,12 +4,12 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ListView } from 'react-native';
 import * as _ from 'lodash';
 
-import Row from './reviewListItem.component';
+import Row from '../components/trail/reviewListItem.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 import TrailMap from './map.component';
-import Dashboard from '../favorite/favoriteMapDashboard.component';
-import colors from '../colors';
+import Dashboard from './favorite/favoriteMapDashboard.component';
+import colors from '../components/colors';
 
 
 export default class TraillistDetail extends React.Component {

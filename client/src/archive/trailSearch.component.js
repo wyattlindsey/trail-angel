@@ -5,8 +5,8 @@ import { View, Text, StyleSheet, TextInput,
           ListView, ActivityIndicator, Switch } from 'react-native';
 import * as _ from 'lodash';
 
-import Row from '../trail/trailListItem.component';
-import colors from '../colors';
+import Row from './trailListItem.component';
+import colors from '../components/colors';
 
 export default class SearchBar extends React.Component {
   constructor(props) {

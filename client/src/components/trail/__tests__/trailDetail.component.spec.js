@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import TrailDetail from '../trailDetail.component';
+import TrailDetail from '../../../archive/trailDetail.component';
 
 
 describe('Trail Detail component', () => {
