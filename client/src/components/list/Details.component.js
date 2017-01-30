@@ -6,7 +6,6 @@ import * as _ from 'lodash';
 
 import Row from '../trail/reviewListItem.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MapView from 'react-native-maps';
 import TrailMap from '../trail/map.component';
 import Dashboard from '../favorite/favoriteMapDashboard.component';
 import colors from '../colors';

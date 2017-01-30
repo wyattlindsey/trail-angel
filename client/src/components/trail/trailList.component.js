@@ -67,7 +67,7 @@ export default class TrailList extends React.Component {
                 <Image
                   source={require('../../../img/home.jpg')}
                 />
-              </View> : 
+              </View> :
           <View />}
             <ListView automaticallyAdjustContentInsets={false}
               dataSource={this.state.dataSource}

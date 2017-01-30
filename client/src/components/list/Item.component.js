@@ -94,12 +94,12 @@ export default class Item extends React.Component {
 
   _toggleFavorite() {
     if (!this.state.isFavorite) {
-      this.props.addFavorite(this.props.id);
+      this.props.actions.addFavorite(this.props.id);
       this.setState({
         isFavorite: true
       });
     } else {
-      this.props.removeFavorite(this.props.id);
+      this.props.actions.removeFavorite(this.props.id);
       this.setState({
         isFavorite: false
       });
@@ -137,7 +137,8 @@ export default class Item extends React.Component {
 
     return (
       <View>
-        <TouchableHighlight onPress={this._selectItem.bind(this)} underlayColor='white'>
+        <TouchableHighlight onPress={this._selectItem.bind(this)}
+                            underlayColor='white'>
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
@@ -167,7 +168,8 @@ export default class Item extends React.Component {
                   {/* after a timeout, display nothing */}
                   {this.state.weather ?
                     <View>
-                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='white'>
+                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
+                                          underlayColor='white'>
                         <View>
                           <WeatherIcon icon={this.state.weather.currently.icon}
                                        color={colors.weatherIconColor}

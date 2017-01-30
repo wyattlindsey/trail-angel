@@ -1,23 +1,31 @@
 'use strict';
 
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import favoriteActions from '../actions/favorite-actions';
-import FavoriteList from '../components/favorite/favoriteList.component';
+import List from '../components/list/List.component';
+import colors from '../components/colors';
 
-const Favorites = (props) => {
-  const { state, actions } = props;
-  return (
-    <FavoriteList isFetching={state.listingsReducer.isFetching}
-                  listings={state.listingsReducer.cache}
-                  favorites={state.listingsReducer.favorites}
-                  userId={state.userReducer.userId}
-                  userLocation={state.appReducer.geolocation}
-                  navigator={props.navigator}
-                  {...actions} />
-  );
+class Favorites extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <List items={this.props.state.listingsReducer.favorites}
+            navigator={this.props.navigator}
+            isFetching={this.props.state.listingsReducer.isFetching}
+            favorites={this.props.state.listingsReducer.favorites}
+            userLocation={this.props.state.appReducer.geolocation}
+            userId={this.props.state.userReducer.userId}
+            actions={this.props.actions}
+      />
+    );
+  }
 };
 
 const mapStateToProps = function(state) {
@@ -36,3 +44,23 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Favorites);
+
+const styles = StyleSheet.create({
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: colors.separator,
+  },
+  container: {
+    marginTop: 65,
+    marginBottom: 40
+  },
+  favoritesTitle: {
+    color: colors.darkgray,
+    fontSize: 16,
+    fontWeight: '400',
+    padding: 20,
+  },
+  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
+  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, }
+});

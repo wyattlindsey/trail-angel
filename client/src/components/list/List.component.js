@@ -18,7 +18,11 @@ export default class List extends React.Component {
   }
 
   componentDidMount() {
-
+    if (this.props.items !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(this.props.items)
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,7 +38,6 @@ export default class List extends React.Component {
       <View style={styles.container}>
         {this.props.fetching ?
           <ActivityIndicator animating={this.props.isFetching}
-                             style={{}}
                              color={colors.seafoam}
                              size='large'
           />
@@ -42,9 +45,8 @@ export default class List extends React.Component {
           <ListView automaticallyAdjustContentInsets={false}
                     dataSource={this.state.dataSource}
                     renderRow={(data) => <Item  navigator={this.props.navigator}
+                                                actions={this.props.actions}
                                                 favorites={this.props.favorites}
-                                                addFavorite={this.props.addFavorite}
-                                                removeFavorite={this.props.removeFavorite}
                                                 userLocation={this.props.userLocation}
                                                 userId={this.props.userId}
                                                 {...data} />}

@@ -11,12 +11,14 @@ import List from '../components/list/List.component';
 const Home = (props) => {
   const { state, actions } = props;
   return (
-    <List  navigator={props.navigator} isFetching={state.listingsReducer.isFetching}
+    <List  navigator={props.navigator}
+           isFetching={state.listingsReducer.isFetching}
            items={state.listingsReducer.homeData}
            favorites={state.listingsReducer.favorites}
            userLocation={state.appReducer.geolocation}
            userId={state.userReducer.userId}
-           {...actions} />
+           actions={{ ...actions }}
+     />
   );
 };
 
