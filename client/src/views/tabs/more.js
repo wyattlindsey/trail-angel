@@ -13,17 +13,16 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect  } from 'react-redux';
-import userActions from '../../actions/user-actions';
-import Login from '../auth/login.component';
+
 import googleApi from '../../api/google-api';
-import colors from '../colors';
+import userActions from '../../actions/user-actions';
+import Login from '../login';
+import colors from '../../components/style/colors';
 
-const { height, width} = Dimensions.get('window');
-
-class TrailSettings extends React.Component {
+class More extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       city: 'Unavailable'
     }
@@ -31,26 +30,26 @@ class TrailSettings extends React.Component {
 
   componentWillMount() {
     googleApi.getCity(this.props.state.appReducer.geolocation.coords)
-    .then((city) => {
-      this.setState({
-        city: city
+      .then((city) => {
+        this.setState({
+          city: city
+        });
+      })
+      .catch((err) => {
+        console.error('Error retrieving location: ', err);
       });
-    })
-    .catch((err) => {
-      console.error('Error retrieving location: ', err);
-    });
   }
 
-  _logoutPress() {
+  _handleLogoutPress() {
     this.props.actions.logoutUser()
-    .then(() => {
-      this.props.navigator.push({
-      title: 'Welcome to TrailAngel',
-      component: Login,
-      // hack to remove back button leading to login page
-      leftButtonTitle: ' ',
-      });
-    })
+      .then(() => {
+        this.props.navigator.push({
+          title: 'Welcome to TrailAngel',
+          component: Login,
+          // hack to remove back button leading to login page
+          leftButtonTitle: ' ',
+        });
+      })
   }
 
   render() {
@@ -59,7 +58,7 @@ class TrailSettings extends React.Component {
       nickname: this.props.state.userReducer.nickname,
     }
     return (
-        <View style={styles.outerContainer}>
+      <View style={styles.outerContainer}>
         <View style={styles.profileContainer}>
           <Image
             source={{uri: profile.avatarUrl}}
@@ -75,48 +74,48 @@ class TrailSettings extends React.Component {
 
         </View>
         <View style={styles.separator} />
-          <View style={styles.menuContainer}>
+        <View style={styles.menuContainer}>
           <TouchableHighlight
-                underlayColor={colors.lightgray}
-                onPress={this._logoutPress.bind(this)}>
-                <View style={styles.menuItemContainer}>
-                  <Icon style={styles.listUl} name='list-ul' size={17} color={colors.lightgray} />
-                  <Text style={styles.logoutText}>Supply List</Text>
-                  <Icon style={styles.chevronRight1} name='chevron-right' size={12} />
-                </View>
+            underlayColor={colors.lightgray}
+            onPress={this._handleLogoutPress.bind(this)}>
+            <View style={styles.menuItemContainer}>
+              <Icon style={styles.listUl} name='list-ul' size={17} color={colors.lightgray} />
+              <Text style={styles.logoutText}>Supply List</Text>
+              <Icon style={styles.chevronRight1} name='chevron-right' size={12} />
+            </View>
           </TouchableHighlight>
           <View style={styles.separator} />
           <TouchableHighlight
-                underlayColor={colors.lightgray}
-                onPress={this._logoutPress.bind(this)}>
-                <View style={styles.menuItemContainer}>
-                <Icon  name='cog' size={20} color={colors.lightgray} />
-                  <Text style={styles.logoutText}>Settings</Text>
-                  <Icon style={styles.chevronRight2} name='chevron-right' size={12} />
-                </View>
+            underlayColor={colors.lightgray}
+            onPress={this._handleLogoutPress.bind(this)}>
+            <View style={styles.menuItemContainer}>
+              <Icon  name='cog' size={20} color={colors.lightgray} />
+              <Text style={styles.logoutText}>Settings</Text>
+              <Icon style={styles.chevronRight2} name='chevron-right' size={12} />
+            </View>
           </TouchableHighlight>
           <View style={styles.separator} />
           <TouchableHighlight
-                underlayColor={colors.lightgray}
-                onPress={this._logoutPress.bind(this)}>
-                <View style={styles.menuItemContainer}>
-                  <Icon  name='sign-out' size={20} color={colors.lightgray} />
-                  <Text style={styles.logoutText}>Log Out</Text>
-                  <Icon style={styles.chevronRight3} name='chevron-right' size={12} />
-                </View>
+            underlayColor={colors.lightgray}
+            onPress={this._handleLogoutPress.bind(this)}>
+            <View style={styles.menuItemContainer}>
+              <Icon  name='sign-out' size={20} color={colors.lightgray} />
+              <Text style={styles.logoutText}>Log Out</Text>
+              <Icon style={styles.chevronRight3} name='chevron-right' size={12} />
+            </View>
           </TouchableHighlight>
           <View style={styles.separator} />
-          </View>
-          <View style={styles.logos}>
-            <Image source={require('../../../img/powered-by-google-on-white.png')} />
-            <Image source={require('../../../img/powered-by-darksky.png')}
-                   style={{ marginTop: 5, opacity: 0.5 }}/>
-          </View>
         </View>
+        <View style={styles.logos}>
+          <Image source={require('../../../img/powered-by-google-on-white.png')} />
+          <Image source={require('../../../img/powered-by-darksky.png')}
+                 style={{ marginTop: 5, opacity: 0.5 }}/>
+        </View>
+      </View>
 
     );
   }
-}
+};
 
 const mapStateToProps = function(state) {
   return {
@@ -124,13 +123,16 @@ const mapStateToProps = function(state) {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = function(dispatch) {
   return {
     actions: bindActionCreators(userActions, dispatch)
-  };
+  }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrailSettings);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(More);
 
 const styles = StyleSheet.create({
   outerContainer: {

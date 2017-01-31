@@ -5,15 +5,16 @@ import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
-import icons from '../components/icons';
-import colors from '../components/colors';
-import Trails from './trails-container';
-import Favorites from './favorites-container';
-import Search from '../containers/search-container';
-import Settings from '../components/trail/trailSettings.component';
+import icons from './tabs/icons';
+import colors from '../components/style/colors';
+import Home from './tabs/home';
+import Favorites from './tabs/favorites';
+import Search from './tabs/search';
+import More from './tabs/more';
+
 import appActions from '../actions/app-actions';
 
-class TrailAngel extends Component {
+class Index extends Component {
   constructor(props) {
     super(props);
 
@@ -56,7 +57,7 @@ class TrailAngel extends Component {
               selectedTab: 'home',
             });
           }}>
-          <Trails navigator={this.props.navigator}/>
+          <Home navigator={this.props.navigator}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon='search'
@@ -86,8 +87,8 @@ class TrailAngel extends Component {
               selectedTab: 'more',
             });
           }}>
-          <Settings navigator={this.props.navigator}
-                    favoritesCount={this.props.state.listingsReducer.favorites.length} />
+          <More navigator={this.props.navigator}
+                favoritesCount={this.props.state.listingsReducer.favorites.length} />
         </TabBarIOS.Item>
       </TabBarIOS>
     );
@@ -106,7 +107,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrailAngel);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
 
 const styles = StyleSheet.create({
   tabContent: {

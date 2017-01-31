@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import TrailAngel from '../../containers/trail-angel.js';
-import colors from '../colors';
+import Index from './index.js';
+import colors from '../components/style/colors';
 
 import Auth0Lock from 'react-native-lock';
-import { secrets, paths } from '../../../config';
+import { secrets, paths } from '../../config';
 
 const lock = new Auth0Lock(secrets.auth0);
 const tokenKey = secrets.asyncstorage.tokenKey;
@@ -56,10 +55,10 @@ class Login extends Component {
   reroute(profile, token) {
     this.props.navigator.push({
       title: 'TrailAngel',
-      component: TrailAngel,
+      component: Index,
       passProps: {
-          profile: profile,
-          token: token
+        profile: profile,
+        token: token
       },
       // hack to remove back button leading to login page
       leftButtonTitle: ' '
@@ -68,34 +67,34 @@ class Login extends Component {
 
   async setToken(token) {
     try {
-        await AsyncStorage.setItem(tokenKey, JSON.stringify(token));
-      } catch (err) {
-        console.error('Error setting token to AsyncStorage: ', err);
-      }
+      await AsyncStorage.setItem(tokenKey, JSON.stringify(token));
+    } catch (err) {
+      console.error('Error setting token to AsyncStorage: ', err);
+    }
   }
 
   async setProfile(profile) {
     try {
-        await AsyncStorage.setItem(profileKey, JSON.stringify(profile));
-      } catch (err) {
-        console.error('Error setting profile to AsyncStorage: ', err);
-      }
+      await AsyncStorage.setItem(profileKey, JSON.stringify(profile));
+    } catch (err) {
+      console.error('Error setting profile to AsyncStorage: ', err);
+    }
   }
 
   async removeToken() {
     try {
-        await AsyncStorage.removeItem(tokenKey);
-      } catch (err) {
-        console.error('Error removing token from AsyncStorage: ', err);
-      }
+      await AsyncStorage.removeItem(tokenKey);
+    } catch (err) {
+      console.error('Error removing token from AsyncStorage: ', err);
+    }
   }
 
   async removeProfile() {
     try {
-        await AsyncStorage.removeItem(profileKey);
-      } catch (err) {
-        console.error('Error removing profile from AsyncStorage: ', err);
-      }
+      await AsyncStorage.removeItem(profileKey);
+    } catch (err) {
+      console.error('Error removing profile from AsyncStorage: ', err);
+    }
   }
 
   addOrFindUser(profile) {
@@ -112,9 +111,9 @@ class Login extends Component {
         user: userId
       })
     })
-    .catch(err => {
-      console.error('Add or find user request error: ', err);
-    });
+      .catch(err => {
+        console.error('Add or find user request error: ', err);
+      });
   }
 
   onLogin() {
@@ -144,17 +143,17 @@ class Login extends Component {
           <View style={styles.messageBox}>
             <Image
               style={styles.badge}
-              source={require('../../../img/backpack.png')}
+              source={require('../../img/backpack.png')}
             />
             <Text style={styles.title}>TrailAngel</Text>
             <Text style={styles.subtitle}>Hike your heart out on your favorite trails.</Text>
           </View>
-            <TouchableHighlight
-              style={styles.signInButton}
-              underlayColor={colors.lightgray}
-              onPress={this.onLogin.bind(this)}>
-              <Text>Log In</Text>
-            </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.signInButton}
+            underlayColor={colors.lightgray}
+            onPress={this.onLogin.bind(this)}>
+            <Text>Log In</Text>
+          </TouchableHighlight>
         </View>
     );
   }

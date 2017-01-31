@@ -11,11 +11,11 @@ import {  View,
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
 import DailyWeatherForecast from '../weather/weather-forecast.component';
-import Details from './trailDetail.component';
+import Details from './Details.component';
 import dataApi from '../../api';
-import colors from '../colors';
+import colors from '../style/colors';
 
-export default class TraillistItem extends React.Component {
+export default class Item extends React.Component {
   constructor(props) {
     super(props);
 
@@ -61,7 +61,7 @@ export default class TraillistItem extends React.Component {
       });
 
     dataApi.weather(this.props.geometry.location.lat,
-                    this.props.geometry.location.lng)
+      this.props.geometry.location.lng)
       .then((weather) => {
         if (this._isMounted && weather) {
           this.setState({
@@ -81,7 +81,7 @@ export default class TraillistItem extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const isFavorite = this._checkIsFavorite(this.props.id, nextProps.favorites);
+    const isFavorite = this._checkIsFavorite(nextProps.id, nextProps.favorites);
 
     this.setState({
       isFavorite
@@ -94,18 +94,18 @@ export default class TraillistItem extends React.Component {
 
   _toggleFavorite() {
     if (!this.state.isFavorite) {
-      this.props.addFavorite(this.props.id);
+      this.props.actions.addFavorite(this.props.id);
       this.setState({
         isFavorite: true
       });
     } else {
-      this.props.removeFavorite(this.props.id);
+      this.props.actions.removeFavorite(this.props.id);
       this.setState({
         isFavorite: false
       });
     }
   }
-  
+
   _handlePressWeather() {
     this.props.navigator.push({
       title: 'Daily Forecast',
@@ -118,26 +118,37 @@ export default class TraillistItem extends React.Component {
     })
   }
 
-  _selectTrail() {
+  _selectItem() {
     this.props.navigator.push({
-      title: 'Trail Detail',
+      title: 'Detail',
       component: Details,
       passProps: {
         ...this.props
       }
-    }); 
+    });
   }
 
   _checkIsFavorite(id, favorites) {
-    return _.findIndex(favorites, { id }) !== -1;
+    if (favorites.length > 0) {
+      return _.findIndex(favorites, { id }) !== -1;
+    }
   }
 
   render() {
-    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color={colors.warning} /> : <Icon name='star-o' size={20} color={colors.warning} />;
+    const FavoriteIcon = this.state.isFavorite ?  <Icon name='star'
+                                                        size={20}
+                                                        color={colors.warning}
+                                                  />
+                                                    :
+                                                  <Icon name='star-o'
+                                                        size={20}
+                                                        color={colors.warning}
+                                                  />;
 
     return (
       <View>
-        <TouchableHighlight onPress={this._selectTrail.bind(this)} underlayColor='white'>
+        <TouchableHighlight onPress={this._selectItem.bind(this)}
+                            underlayColor='white'>
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.leftColumn}>
@@ -150,31 +161,32 @@ export default class TraillistItem extends React.Component {
               </View>
               <View style={styles.middleColumn}>
                 <Text style={styles.title}>{this.props.name}</Text>
-                
+
                 <Text style={styles.location}>{this.state.vicinity}</Text>
                 {this.props.rating === undefined ? <View /> :
                   <Text style={styles.rating}>Rating: {this.props.rating} </Text>
                 }
               </View>
               <View style={styles.rightColumn}>
-               
+
                 <Text style={styles.distance}>
                   {this.state.distance ? this.state.distance : ''}
                 </Text>
                 <View>
                   {/* Display activity monitor until icon is
-                      loaded from api.  If no icon is ever received */}
+                   loaded from api.  If no icon is ever received */}
                   {/* after a timeout, display nothing */}
-                  {this.state.weather ? 
+                  {this.state.weather ?
                     <View>
-                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)} underlayColor='white'>
+                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
+                                          underlayColor='white'>
                         <View>
                           <WeatherIcon icon={this.state.weather.currently.icon}
                                        color={colors.weatherIconColor}
                                        size={30}
                                        style={{
                                          opacity: 0.8
-                                     }}
+                                       }}
                           />
                           <Text style={styles.weather}>
                             {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
@@ -184,8 +196,8 @@ export default class TraillistItem extends React.Component {
                     </View>
                     :
                     this.state.weatherTimeout ?
-                    <View /> :
-                    <ActivityIndicator  size='small' color={colors.seafoam} style={{ opacity: 0.8 }} />
+                      <View /> :
+                      <ActivityIndicator  size='small' color={colors.seafoam} style={{ opacity: 0.8 }} />
                   }
                 </View>
               </View>

@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import trailAngelApi from '../../api/trailangel-api';
 import googleApi from '../../api/google-api';
 import trailcalc from '../../utils/trail-calculations';
-import colors from '../colors';
+import colors from '../style/colors';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -59,26 +59,26 @@ export default class CustomMarkers extends React.Component {
   getMappedTrail(trailId, options) {
     let savedMarkers;
     trailAngelApi.getGeo(this.props.id, this.props.userId)
-    .then(data => {
-      if (data.length > 0) {
-        id = 0;
-        savedMarkers = data.map(coordinate => {
-          return {
-            coordinate: {
-              latitude: parseFloat(coordinate[1]),
-              longitude: parseFloat(coordinate[0]),
-            },
-            key: `${id++}`,
-          };
-        });
-        this.setState({
-          markers: savedMarkers
-        }, this.getTotalDistance);
-      }
-    })
-    .catch(err => {
-      console.error("Failed to get mapped trail: ", err);
-    });
+      .then(data => {
+        if (data.length > 0) {
+          id = 0;
+          savedMarkers = data.map(coordinate => {
+            return {
+              coordinate: {
+                latitude: parseFloat(coordinate[1]),
+                longitude: parseFloat(coordinate[0]),
+              },
+              key: `${id++}`,
+            };
+          });
+          this.setState({
+            markers: savedMarkers
+          }, this.getTotalDistance);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to get mapped trail: ", err);
+      });
   }
 
   getElevationGain() {
@@ -111,22 +111,22 @@ export default class CustomMarkers extends React.Component {
     };
     if (!removedPin) {
       trailAngelApi.addGeo(trailId, options)
-      .then(response => {
-        this.getTotalDistance();
-        this.getElevationGain();
-      })
-      .catch(err => {
-        Alert.alert('There was an error saving your trail: ', err);
-      });
+        .then(response => {
+          this.getTotalDistance();
+          this.getElevationGain();
+        })
+        .catch(err => {
+          Alert.alert('There was an error saving your trail: ', err);
+        });
     } else {
       trailAngelApi.updateGeo(trailId, options)
-      .then(response => {
-        this.getTotalDistance();
-        this.getElevationGain();
-      })
-      .catch(err => {
-        Alert.alert('There was an error saving your trail: ', err);
-      });
+        .then(response => {
+          this.getTotalDistance();
+          this.getElevationGain();
+        })
+        .catch(err => {
+          Alert.alert('There was an error saving your trail: ', err);
+        });
     }
 
   }
@@ -136,21 +136,21 @@ export default class CustomMarkers extends React.Component {
       userId: this.props.userId
     };
     trailAngelApi.removeGeo(this.props.id, options)
-    .then(response => {
-      this.resetTrail();
-    })
-    .catch(err => {
-      console.error('Error deleting mapped trail: ', err);
-    });
+      .then(response => {
+        this.resetTrail();
+      })
+      .catch(err => {
+        console.error('Error deleting mapped trail: ', err);
+      });
   }
 
   resetTrail() {
     id = 0;
     this.setState({
       markers: [{
-          coordinate: {
-            latitude: this.props.geometry.location.lat,
-            longitude: this.props.geometry.location.lng
+        coordinate: {
+          latitude: this.props.geometry.location.lat,
+          longitude: this.props.geometry.location.lng
         },
         key: `${id++}`,
       }],
@@ -253,23 +253,23 @@ export default class CustomMarkers extends React.Component {
             if (index === 0) {
               return (
                 <MapView.Marker draggable
-                  image={require('../../../img/trekking-128.png')}
-                  title={marker.key}
-                  key={marker.key}
-                  coordinate={marker.coordinate}
-                  onDragEnd={this.onDragEnd.bind(this, marker.key)}
+                                image={require('../../../img/trekking-128.png')}
+                                title={marker.key}
+                                key={marker.key}
+                                coordinate={marker.coordinate}
+                                onDragEnd={this.onDragEnd.bind(this, marker.key)}
                 />
               )
             } else {
-          return (
-            <MapView.Marker draggable
-              image={require('../../../img/red-pin-small.png')}
-              title={marker.key}
-              key={marker.key}
-              coordinate={marker.coordinate}
-              onDragEnd={this.onDragEnd.bind(this, marker.key)}
-            />
-          )}})}
+              return (
+                <MapView.Marker draggable
+                                image={require('../../../img/red-pin-small.png')}
+                                title={marker.key}
+                                key={marker.key}
+                                coordinate={marker.coordinate}
+                                onDragEnd={this.onDragEnd.bind(this, marker.key)}
+                />
+              )}})}
           {coordinates.length > 1 ? this.state.markers.map(polyline => (
             <MapView.Polyline
               key={polyline.key}
@@ -281,7 +281,7 @@ export default class CustomMarkers extends React.Component {
           )) : null}
         </MapView>
         <View style={styles.infoContainer}>
-         <TouchableOpacity
+          <TouchableOpacity
             onPress={this.toggleMilesKilometers.bind(this)}
             style={styles.topBubble}
           >
@@ -306,12 +306,12 @@ export default class CustomMarkers extends React.Component {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => {
-                this.state.markers.pop();
-                id--;
-                this.setState({
-                  markers: this.state.markers
-                }, this.saveMappedTrail.bind(this, true));
-              }
+              this.state.markers.pop();
+              id--;
+              this.setState({
+                markers: this.state.markers
+              }, this.saveMappedTrail.bind(this, true));
+            }
             }
             style={styles.bubble}
           >

@@ -2,20 +2,22 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, TextInput,
-          ListView, ActivityIndicator, Switch } from 'react-native';
+  ListView, ActivityIndicator, Switch } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import Row from '../trail/trailListItem.component';
-import colors from '../colors';
+import searchActions from '../../actions/search-actions';
+import favoriteActions from '../../actions/favorite-actions';
+import List from '../../components/list/List.component';
 
-export default class SearchBar extends React.Component {
+import colors from '../../components/style/colors';
+
+class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
     this.state = {
-      dataSource: this.ds,
       searchTimeout: false,
       localSearch: true,
       searchText: ''
@@ -34,18 +36,18 @@ export default class SearchBar extends React.Component {
       searchTimeout: false
     });
     if (text === '') {
-      this.props.cancelRequest();
+      this.props.actions.cancelRequest();
     } else {
       const location = this.state.localSearch ? {
-                                                 latitude: this.props.userLocation.coords.latitude,
-                                                 longitude: this.props.userLocation.coords.longitude
-                                               }
-                                                 : null
-      this.props.search(textInput, location)
+        latitude: this.props.state.appReducer.geolocation.coords.latitude,
+        longitude: this.props.state.appReducer.geolocation.coords.longitude
+      }
+        : null
+      this.props.actions.search(textInput, location)
         .then((data) => {
           if (data === undefined ||
-              data.searchResults === undefined ||
-              data.searchResults.length === 0)
+            data.searchResults === undefined ||
+            data.searchResults.length === 0)
           {
             this.setState({
               searchTimeout: true
@@ -65,7 +67,7 @@ export default class SearchBar extends React.Component {
   _handleLocalSwitch(value) {
     this.setState({ localSearch: value });
     this._clearInput();
-    this.props.cancelRequest();
+    this.props.actions.cancelRequest();
   }
 
   componentDidMount() {
@@ -85,7 +87,7 @@ export default class SearchBar extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <View>
         <View style={styles.searchBar}>
           <TextInput
@@ -102,42 +104,30 @@ export default class SearchBar extends React.Component {
                   value={this.state.localSearch}
                   onTintColor={colors.seafoam}>
             <Text style={{  top: 40,
-                            fontSize: 12,
-                            textAlign: 'center'
-                        }}>Local Search</Text>
+              fontSize: 12,
+              textAlign: 'center'
+            }}>Local Search</Text>
           </Switch>
         </View>
         <View style={styles.searchResults}>
           {this.state.searchTimeout ?
             <View style={{ justifyContent: 'center',
-                           padding: 40 }}>
+              padding: 40 }}>
               <Text style={{ fontSize: 18 }}>
                 No results found
               </Text>
             </View>
-             :
+            :
             <View>
-              {this.props.isFetching ?
-                <ActivityIndicator animating={this.props.isFetching}
-                                   style={[styles.centering, styles.horizontal,
-                                     { height: 100}]}
-                                   color={colors.seafoam}
-                                   size='large' />
-                :
-                <ListView
-                  dataSource={this.state.dataSource}
-                  renderRow={(data) => <Row favorites={this.props.favorites}
-                                            addFavorite={this.props.addFavorite}
-                                            removeFavorite={this.props.removeFavorite}
-                                            userLocation={this.props.userLocation}
-                                            navigator={this.props.navigator}
-                                            {...data} />}
-                  enableEmptySections={true}
-                  style={styles.searchResults}
-                  renderSeparator={(sectionId, rowId) => <View key={rowId}
-                                                               style={styles.separator} />}
-                />
-              }
+
+              <List  navigator={this.props.navigator}
+                     isFetching={this.props.state.listingsReducer.isFetching}
+                     items={this.props.state.listingsReducer.searchResults}
+                     favorites={this.props.state.listingsReducer.favorites}
+                     userLocation={this.props.state.appReducer.geolocation}
+                     userId={this.props.state.userReducer.userId}
+                     actions={this.props.actions}
+              />
 
 
             </View>
@@ -146,7 +136,25 @@ export default class SearchBar extends React.Component {
       </View>
     );
   }
-}
+
+};
+
+const mapStateToProps = function(state) {
+  return {
+    state: state
+  };
+};
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    actions: bindActionCreators({ ...searchActions, ...favoriteActions }, dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Search);
 
 const styles = StyleSheet.create({
   searchBar: {

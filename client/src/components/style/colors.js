@@ -16,7 +16,7 @@ const colors = {
 
   warning:                  '#e56452',
 
-  mapColor:                 '#f7d548',
+  mapColor:                 '#5e9fa1',
   weatherIconColor:         '#52b3d9',
 }
 
