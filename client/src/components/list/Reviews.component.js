@@ -42,7 +42,8 @@ export default class Reviews extends React.Component {
 
   render() {
     return (
-      <ListView automaticallyAdjustContentInsets={false}
+      <ListView style={styles.reviews}
+                automaticallyAdjustContentInsets={false}
                 dataSource={this.state.dataSource}
                 renderRow={(data) => <Review {...data}/>}
                 renderSeparator={(sectionId, rowId) =>
@@ -54,12 +55,12 @@ export default class Reviews extends React.Component {
 
 const Review = (props) => (
   <View>
-    <View style={styles.rowContainer}>
+    <View style={styles.review}>
       <View>
         <Image source={{uri: `https:${props.profile_photo_url}`}}
                style={styles.photo} />
       </View>
-      <View style={styles.textContainer}>
+      <View style={styles.reviewText}>
         <Text style={styles.title}>{props.author_name}</Text>
         <Text style={styles.location}>Rating: {props.rating} </Text>
         <Text style={styles.description} numberOfLines={10}>{props.text}</Text>
@@ -69,11 +70,14 @@ const Review = (props) => (
 )
 
 const styles = StyleSheet.create({
-  rowContainer: {
+  reviews: {
+    height: 600
+  },
+  review: {
     flexDirection: 'row',
     padding: 20,
   },
-  textContainer: {
+  reviewText: {
     flex: 1,
     flexDirection: 'column',
     width: 50

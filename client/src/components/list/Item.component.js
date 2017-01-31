@@ -135,7 +135,15 @@ export default class Item extends React.Component {
   }
 
   render() {
-    const FavoriteIcon = this.state.isFavorite ? <Icon name='star' size={20} color={colors.warning} /> : <Icon name='star-o' size={20} color={colors.warning} />;
+    const FavoriteIcon = this.state.isFavorite ?  <Icon name='star'
+                                                        size={20}
+                                                        color={colors.warning}
+                                                  />
+                                                    :
+                                                  <Icon name='star-o'
+                                                        size={20}
+                                                        color={colors.warning}
+                                                  />;
 
     return (
       <View>

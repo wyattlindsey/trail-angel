@@ -102,16 +102,16 @@ export default class Details extends React.Component {
       <Icon name='star' size={30} color={colors.warning} /> :
       <Icon name='star-o' size={30} color={colors.warning} />;
 
-    const MapIcon = this.state.isFavorite ?
-      <Icon name='map' size={20} color={colors.mapColor} style={{ opacity: 1.0 }} /> :
-      <Icon name='map' size={20} color={colors.mapColor} style={{ opacity: 0.6 }} />
+    const MapIcon = <Icon name='map'
+                          size={25}
+                          color={colors.mapColor} />
     return (
-      <View style={styles.rowContainer}>
+      <View style={styles.details}>
         <Image
-          style={{ flex: 1}}
+          style={styles.photo}
           source={{ uri: this.props.photoLargeUrl }}
         />
-        <View style={styles.textContainer}>
+        <View style={styles.description}>
           <View style={styles.leftCol}>
             <Text style={styles.title}>{this.props.name}</Text>
             <Text style={styles.location}>{this.state.address}</Text>
@@ -130,7 +130,7 @@ export default class Details extends React.Component {
           </View>
         </View>
         <View style={styles.separator}/>
-        <Text style={styles.reviewtitle}>Reviews: </Text>
+        <Text style={styles.reviewTitle}>Reviews: </Text>
         <Reviews {...this.props} />
       </View>
     );
@@ -138,27 +138,25 @@ export default class Details extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  rowContainer: {
+  details: {
     marginTop: 65,
   },
-  mapContainer: {
-    height: 200,
+  photo: {
+    flex: 1
   },
-  textContainer: {
+  description: {
     flex: 1,
     flexDirection: 'row',
     padding: 20,
+    marginBottom: -100
   },
   leftCol: {
-    width: 100,
+    width: 150
   },
   rightCol: {
-    width: 200,
     top: 20,
+    width: 180,
     flexDirection: 'row'
-  },
-  map: {
-    flex: 1,
   },
   title: {
     color: colors.darkgreen,
@@ -167,10 +165,9 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   location: {
-    color: colors.darktan,
-    paddingBottom: 20
+    color: colors.darktan
   },
-  reviewtitle: {
+  reviewTitle: {
     color: colors.darkgray,
     fontSize: 16,
     fontWeight: '400',
