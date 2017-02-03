@@ -37,6 +37,11 @@
     "unmockedModulePathPatterns": [
       "node_modules/react",
       "node_modules/nock"
+    ],
+    "testPathIgnorePatterns": [
+      "fixtures/*",
+      "node_modules/*",
+      "__inactive__tests__"
     ]
   }
 }
