@@ -10,7 +10,7 @@ import { DailyWeatherForecast,
 
 describe('weather forecast component', () => {
   it('renders daily forecast correctly', () => {
-    const tree = (
+    const tree = renderer.create(
       <DailyWeatherForecast forecast={weatherData} />
     );
     expect(tree).toMatchSnapshot();
@@ -18,8 +18,8 @@ describe('weather forecast component', () => {
 
   it('renders hourly forecast correctly', () => {
     const hourlyWeatherData = weatherData.hourly.data;
-    const tree = (
-      <HourlyWeatherForecast hourlyForecast={weatherData} />
+    const tree = renderer.create(
+      <HourlyWeatherForecast hourlyForecast={hourlyWeatherData} />
     );
     expect(tree).toMatchSnapshot();
   });
