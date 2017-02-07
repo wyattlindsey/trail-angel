@@ -1,4 +1,4 @@
-exports[`test fetches geolocation 1`] = `
+exports[`appReducer fetches geolocation 1`] = `
 Object {
   "geolocation": null,
   "gettingLocation": true,
@@ -6,7 +6,7 @@ Object {
 }
 `;
 
-exports[`test initializes app 1`] = `
+exports[`appReducer initializes app 1`] = `
 Object {
   "geolocation": null,
   "gettingLocation": false,
@@ -14,7 +14,7 @@ Object {
 }
 `;
 
-exports[`test receives geolocation 1`] = `
+exports[`appReducer receives geolocation 1`] = `
 Object {
   "geolocation": Object {
     "coords": Object {

@@ -24,8 +24,7 @@ export default function usersReducer(state = initialState, action = {}) {
 
     case actionTypes.LOGIN_USER:
       return {
-        ...state,
-
+        ...state
       };
 
     case actionTypes.LOGOUT_USER:
