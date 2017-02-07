@@ -67,7 +67,6 @@ export default class Details extends React.Component {
   }
 
   _handleGoToMapDashboard() {
-    debugger;
     this.props.navigator.push({
       title: 'Dashboard',
       component: Map,

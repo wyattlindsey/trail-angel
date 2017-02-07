@@ -25,7 +25,7 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 1;
 
-export default class CustomMarkers extends React.Component {
+export default class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -277,7 +277,8 @@ export default class CustomMarkers extends React.Component {
               strokeColor="#228b22"
               strokeWidth={4}
               lineCap='round'
-              lineJoin='round'/>
+              lineJoin='round'
+            />
           )) : null}
         </MapView>
         <View style={styles.infoContainer}>
