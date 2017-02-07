@@ -1,0 +1,10 @@
+exports[`weather icon component renders correctly 1`] = `
+<View>
+  <WeatherIcon
+    icon="snow" />
+  <WeatherIcon
+    icon="snow" />
+  <WeatherIcon
+    icon="rain" />
+</View>
+`;
