@@ -5,8 +5,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Item from '../../list/Item.component';
-import homeData from '../fixtures/home-data';
-import geolocationData from '../fixtures/geolocation-data';
+import homeData from '../../../../__tests__/fixtures/home-data';
+import geolocationData from '../../../../__tests__/fixtures/geolocation-data';
 
 jest.mock('../../list/Details.component', () => 'Details');
 jest.mock('../../../api/google-api');

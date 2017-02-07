@@ -5,8 +5,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import List from '../../list/List.component';
-import homeData from '../fixtures/home-data';
-import geolocationData from '../fixtures/geolocation-data';
+import homeData from '../../../../__tests__/fixtures/home-data';
+import geolocationData from '../../../../__tests__/fixtures/geolocation-data';
 
 jest.mock('../../list/Item.component', () => 'Item');
 

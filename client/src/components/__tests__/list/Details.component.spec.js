@@ -5,7 +5,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Details from '../../list/Details.component';
-import homeData from '../fixtures/home-data';
+import homeData from '../../../../__tests__/fixtures/home-data';
 
 test('renders correctly', () => {
   const data = homeData[0];

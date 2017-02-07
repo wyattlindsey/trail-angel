@@ -1,11 +1,12 @@
 'use strict';
 
 import actionTypes from '../actions/action-types';
+
 let initialState = {
   isLoaded: false,
   geolocation: null,
   gettingLocation: false
-}
+};
 
 export default function appReducer(state = initialState, action = {}) {
   switch(action.type) {

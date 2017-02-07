@@ -16,7 +16,6 @@ const getWeatherForGeolocation = (latitude, longitude) => {
       if (response === undefined) {
         return Promise.resolve(false);
       } else {
-        debugger;
         return response;
       }
     })
