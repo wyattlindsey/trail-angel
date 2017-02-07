@@ -10,7 +10,7 @@ import {  View,
           ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
-import DailyWeatherForecast from '../weather/weather-forecast.component';
+import { DailyWeatherForecast } from '../weather/weather-forecast.component';
 import Details from './Details.component';
 import dataApi from '../../api';
 import colors from '../style/colors';
