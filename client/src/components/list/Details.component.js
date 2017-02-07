@@ -121,8 +121,7 @@ export default class Details extends React.Component {
               {FavoriteIcon}
             </TouchableHighlight>
             <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
-                                underlayColor='white'
-                                disabled={!this.state.isFavorite}>
+                                underlayColor='white'>
               {MapIcon}
             </TouchableHighlight>
           </View>
