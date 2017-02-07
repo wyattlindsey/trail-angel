@@ -111,7 +111,6 @@ export default class Item extends React.Component {
       title: 'Daily Forecast',
       component: DailyWeatherForecast,
       passProps: {
-        ...this.state.weather,
         forecast: this.state.weather,
         navigator: this.props.navigator,
       }
