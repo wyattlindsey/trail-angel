@@ -1,0 +1,19 @@
+exports[`colors module exports the correct colors 1`] = `
+Object {
+  "beige": "#e3e0d7",
+  "darkgray": "#333333",
+  "darkgreen": "#2f5e4e",
+  "darktan": "#786048",
+  "lightgray": "#949494",
+  "mapColor": "#5e9fa1",
+  "midgray": "#8e8e8e",
+  "peagreen": "#727b24",
+  "seafoam": "#5e9fa1",
+  "separator": "#8e8e8e",
+  "tabBarColor": "#414141",
+  "tabBarSelected": "white",
+  "tabBarUnselected": "#cccccc",
+  "warning": "#e56452",
+  "weatherIconColor": "#52b3d9",
+}
+`;

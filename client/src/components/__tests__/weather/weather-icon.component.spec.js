@@ -8,7 +8,6 @@ import weatherData from '../../../../__tests__/fixtures/weather-data';
 
 describe('weather icon component', () => {
   it('renders correctly', () => {
-    console.log(weatherData.daily);
     const tree = (
       <View>
         <WeatherIcon icon={weatherData.daily.data[0].icon} />
