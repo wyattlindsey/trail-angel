@@ -17,8 +17,10 @@ test('fetches geolocation', () => {
 });
 
 test('receives geolocation', () => {
-  expect(appReducer(initialState, { type: actionTypes.RECEIVE_GEOLOCATION,
-                                    geolocation: geolocationData
-                                  }
-        )).toMatchSnapshot();
+  expect(appReducer(initialState,
+                    {
+                      type: actionTypes.RECEIVE_GEOLOCATION,
+                      geolocation: geolocationData
+                    }
+                    )).toMatchSnapshot();
 });
