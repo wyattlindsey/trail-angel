@@ -8,18 +8,20 @@ const initialState = {
   gettingLocation: false
 };
 
-test('initializes app', () => {
-  expect(appReducer(initialState, { type: actionTypes.INITIALIZE_APP })).toMatchSnapshot();
-});
+describe('appReducer', () => {
+  it('initializes app', () => {
+    expect(appReducer(initialState, { type: actionTypes.INITIALIZE_APP })).toMatchSnapshot();
+  });
 
-test('fetches geolocation', () => {
-  expect(appReducer(initialState, { type: actionTypes.GET_GEOLOCATION })).toMatchSnapshot();
-});
+  it('fetches geolocation', () => {
+    expect(appReducer(initialState, { type: actionTypes.GET_GEOLOCATION })).toMatchSnapshot();
+  });
 
-test('receives geolocation', () => {
-  expect(appReducer(initialState,
-    {
-      type: actionTypes.RECEIVE_GEOLOCATION,
-      geolocation: geolocationData
-    })).toMatchSnapshot();
+  it('receives geolocation', () => {
+    expect(appReducer(initialState,
+      {
+        type: actionTypes.RECEIVE_GEOLOCATION,
+        geolocation: geolocationData
+      })).toMatchSnapshot();
+  });
 });
