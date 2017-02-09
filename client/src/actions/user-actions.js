@@ -1,7 +1,7 @@
 'use strict';
 
 import actionTypes from './action-types';
-import { NavigatorIOS, AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { secrets } from '../../config';
 
 const userActions = {
@@ -12,7 +12,7 @@ const userActions = {
   },
 
   logoutUser: () => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
       return AsyncStorage.removeItem(secrets.asyncstorage.tokenKey)
         .then(() => {
           return AsyncStorage.removeItem(secrets.asyncstorage.profileKey);
