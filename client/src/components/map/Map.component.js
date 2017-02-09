@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import trailAngelApi from '../../api/trailangel-api';
 import googleApi from '../../api/google-api';
-import trailcalc from '../../utils/trail-calculations';
+import trailCalc from '../../utils/trail-calculations';
 import colors from '../style/colors';
 
 const { width, height } = Dimensions.get('window');
@@ -288,7 +288,7 @@ export default class Map extends React.Component {
           >
             <Text>
               {displayMiles ? `${distance.toPrecision(2)} mi` :
-                `${(trailcalc.convertToKm(distance)).toPrecision(2)} km`}
+                `${(trailCalc.convertToKm(distance)).toPrecision(2)} km`}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -296,12 +296,12 @@ export default class Map extends React.Component {
             style={styles.topBubble}
           >
             <Text>
-              {displayFeet ? `${Math.round(trailcalc.convertToFeet(elevation))} ft` :
+              {displayFeet ? `${Math.round(trailCalc.convertToFeet(elevation))} ft` :
                 `${Math.round(elevation)} m`}
             </Text>
           </TouchableOpacity>
           <View style={styles.estimatedTime}>
-            <Text>{trailcalc.calcEstimatedTime(elevation, distance)}</Text>
+            <Text>{trailCalc.calcEstimatedTime(elevation, distance)}</Text>
           </View>
         </View>
         <View style={styles.buttonContainer}>
