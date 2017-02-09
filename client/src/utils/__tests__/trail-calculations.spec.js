@@ -1,3 +1,5 @@
+'use strict';
+
 import trailCalc from '../trail-calculations';
 
 describe('trail calculations utility module', () => {

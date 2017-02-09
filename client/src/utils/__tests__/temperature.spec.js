@@ -1,3 +1,5 @@
+'use strict';
+
 import temperature from '../temperature';
 
 describe('temperature conversion module', () => {
