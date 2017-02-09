@@ -22,7 +22,7 @@ const userActions = {
         })
         .catch((err) => {
           console.error('User Actions: logoutUser failed: ', err);
-        })
+        });
     };
   },
 

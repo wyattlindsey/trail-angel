@@ -2,12 +2,11 @@
 
 import { AsyncStorage } from 'react-native';
 import actionTypes from './action-types';
-import dataApi from '../api';
 
 const storageActions = {
   loadListingsFromStorage: () => {
     return (dispatch) => {
-      AsyncStorage.getAllKeys()
+      return AsyncStorage.getAllKeys()
         .then((keys) => {
           return AsyncStorage.multiGet(keys);
         })
@@ -28,7 +27,7 @@ const storageActions = {
           return listings;
         })
         .then((listings) => {
-          dispatch({
+          return dispatch({
             type: actionTypes.LOAD_LISTINGS_FROM_STORAGE,
             listings
           });
@@ -42,7 +41,7 @@ const storageActions = {
   saveToStorage: (listing) => {
     return (dispatch) => {
       const keyName = `listing:${listing.id}`;
-      AsyncStorage.setItem(keyName, JSON.stringify(listing))
+      return AsyncStorage.setItem(keyName, JSON.stringify(listing))
         .then(() => {
           dispatch ({
             type: actionTypes.SAVE_TO_STORAGE,
@@ -55,10 +54,10 @@ const storageActions = {
 
   removeFromStorage: (id) => {
     return (dispatch) => {
-      const keyName = `listing:${listing.id}`;
-      AsyncStorage.removeItem(`listing:${listing.id}`)
+      const keyName = `listing:${id}`;
+      return AsyncStorage.removeItem(keyName)
         .then(() => {
-          dispatch ({
+          return dispatch ({
             type: actionTypes.REMOVE_FROM_STORAGE,
             id
           });
@@ -68,16 +67,16 @@ const storageActions = {
 
   clearAllListingsFromStorage: () => {
     return (dispatch) => {
-      AsyncStorage.getAllKeys()
+      return AsyncStorage.getAllKeys()
         .then((keys) => {
           const keysArray = keys.filter((k) => (/^listing:/.test(k)));
           AsyncStorage.multiRemove(keysArray);
         })
         .then(() => {
-          dispatch({
+          return dispatch({
             type: actionTypes.CLEAR_ALL_FROM_STORAGE
-          })
-        })
+          });
+        });
     };
   }
 };

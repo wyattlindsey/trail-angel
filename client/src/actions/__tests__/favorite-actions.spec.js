@@ -7,8 +7,8 @@ const mockAsyncStorage = require('mock-async-storage');
 
 const middlewares = [thunk];
 
-import userActions from '../user-actions';
-import profileData from '../../../__tests__/fixtures/profile-data';
+import favoriteActions from '../favorite-actions';
+import homeData from '../../../__tests__/fixtures/home-data';
 
 const mockStore = configureStore(middlewares);
 
@@ -23,21 +23,10 @@ describe('user actions', () => {
   });
 
   it('should dispatch login user action', () => {
-    return mockStore.dispatch(userActions.loginUser(profileData))
+    // mockStore.replaceReducer(() => { return {  } })
+    return mockStore.dispatch(favoriteActions.loadFavorites(123))
       .then((result) => {
         expect(result).toMatchSnapshot();
       });
-  });
-
-  it('should dispatch logout user action', () => {
-    return mockStore.dispatch(userActions.logoutUser())
-      .then((result) => {
-        expect(result).toMatchSnapshot();
-      });
-  });
-
-  it('should receive user data', () => {
-    expect(mockStore.dispatch(userActions.receiveUserData(profileData)))
-      .toMatchSnapshot();
   });
 });
