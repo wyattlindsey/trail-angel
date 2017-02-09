@@ -41,7 +41,7 @@ const time = {
       offset: 0,
       ...options
     };
-    
+
     const date = new Date(UNIX_timestamp * 1000 + (optionsWithDefaults.offset * 3600000));
     const year = date.getFullYear();
     const month = monthsAbbreviated[date.getMonth()];

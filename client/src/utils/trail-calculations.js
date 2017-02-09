@@ -3,7 +3,6 @@
 const trailCalc = {
   // Naismith's Rule to calculate estimated hiking time:
   calcEstimatedTime: (elevationMeters, distanceMiles) => {
-    debugger;
     const hours = ((elevationMeters / 600) + (distanceMiles * 1.60934) / 5).toPrecision(2);
     if (hours < 1) {
       const minutes = Math.round(hours * 60);
