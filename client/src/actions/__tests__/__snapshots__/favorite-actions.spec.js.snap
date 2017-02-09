@@ -1,0 +1,13 @@
+exports[`user actions should remove favorite 1`] = `
+Object {
+  "id": 123,
+  "type": "ADD_FAVORITE",
+}
+`;
+
+exports[`user actions should remove favorite 2`] = `
+Object {
+  "id": 123,
+  "type": "REMOVE_FAVORITE",
+}
+`;
