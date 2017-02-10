@@ -51,7 +51,7 @@ Object {
         },
       ],
       "adr_address": "<span class=\"street-address\">E Welches Rd</span>, <span class=\"locality\">Welches</span>, <span class=\"region\">OR</span> <span class=\"postal-code\">97067</span>, <span class=\"country-name\">USA</span>",
-      "cacheTimestamp": 1486768917934,
+      "cacheTimestamp": 1486769050453,
       "formatted_address": "E Welches Rd, Welches, OR 97067, USA",
       "geometry": Object {
         "location": Object {

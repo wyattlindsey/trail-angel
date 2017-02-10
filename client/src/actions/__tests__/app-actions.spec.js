@@ -43,7 +43,6 @@ jest.mock('../../utils/request', () => {
 });
 
 jest.mock('../search-actions', () => {
-  const actionTypes = require('../action-types').default;
   const homeData = require('../../../__tests__/fixtures/home-data').default;
   return {
     search: jest.fn(() => {

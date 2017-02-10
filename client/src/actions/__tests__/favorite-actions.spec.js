@@ -41,7 +41,6 @@ jest.mock('../../api/trailangel-api', () => {
 import trailAngelApi from '../../api/trailangel-api';
 
 jest.mock('../search-actions', () => {
-  const actionTypes = require('../action-types').default;
   const homeData = require('../../../__tests__/fixtures/home-data').default;
   return {
     getDetails: jest.fn(() => {

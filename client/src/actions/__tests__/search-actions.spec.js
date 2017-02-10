@@ -5,10 +5,8 @@ import thunk from 'redux-thunk';
 
 const middlewares = [thunk];
 
-import actionTypes from '../action-types';
 import searchActions from '../search-actions';
 import geolocationData from '../../../__tests__/fixtures/geolocation-data';
-import searchResultsSimple from '../../../__tests__/fixtures/search-results-simple';
 import searchResultsDetailed from '../../../__tests__/fixtures/search-results-detailed';
 
 const mockStore = configureStore(middlewares);
