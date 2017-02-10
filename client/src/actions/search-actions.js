@@ -72,7 +72,7 @@ const searchActions = {
           const now = Date.now();
           // and it's less than 2 weeks old
           if (cacheTimestamp !== undefined &&
-            time.elapsedTime(cacheTimestamp, now) > 1209600000 /* two weeks */) {
+            time.elapsedTime(now, cacheTimestamp) > 1209600000 /* two weeks */) {
             dispatch({
               type: actionTypes.REMOVE_FROM_STORAGE,
               id
@@ -81,19 +81,21 @@ const searchActions = {
             // use the cached version
             return cache[id];
           }
-        } else {
-          // uncached and cached-but-expired listings should be re-fetched
-          return dataApi.googlePlaces.fetchDetails(id)
-            .then((details) => {
-              const now = Date.now();
-              const data = {
-                ...details,
-                cacheTimestamp: now
-              };
-              dispatch(storageActions.saveToStorage(data));
-              return details;
-            });
         }
+
+        // fallthrough for:
+        // uncached and cached-but-expired listings, since
+        // they should be re-fetched
+        return dataApi.googlePlaces.fetchDetails(id)
+          .then((details) => {
+            const now = Date.now();
+            const data = {
+              ...details,
+              cacheTimestamp: now
+            };
+            dispatch(storageActions.saveToStorage(data));
+            return details;
+          });
       });
 
       return Promise.all(promises);
@@ -102,13 +104,17 @@ const searchActions = {
 
   cancelRequest: () => {
     return (dispatch) => {
-      dispatch({
-        type: actionTypes.CANCEL_REQUEST
-      });
+      return new Promise((resolve) => {
+        dispatch({
+          type: actionTypes.CANCEL_REQUEST
+        });
 
-      dispatch({
-        type: actionTypes.RECEIVE_SEARCH_RESULTS,
-        searchResults: []
+        dispatch({
+          type: actionTypes.RECEIVE_SEARCH_RESULTS,
+          searchResults: []
+        });
+
+        resolve();
       });
     }
   }

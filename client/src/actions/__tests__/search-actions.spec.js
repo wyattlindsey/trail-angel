@@ -11,22 +11,29 @@ import geolocationData from '../../../__tests__/fixtures/geolocation-data';
 import searchResultsSimple from '../../../__tests__/fixtures/search-results-simple';
 import searchResultsDetailed from '../../../__tests__/fixtures/search-results-detailed';
 
-const id = searchResultsDetailed[0].id;
-
 const mockStore = configureStore(middlewares);
 const store = mockStore({
   listingsReducer: {
     cache: {
-      [id]: {
-        ...searchResultsDetailed[0]
+      // fresh listing
+      [searchResultsDetailed[0].id]: {
+        cacheTimestamp: Date.now(),
+        ...searchResultsDetailed[0],
+      },
+
+      // stale listing
+      [searchResultsDetailed[1].id]: {
+        cacheTimestamp: Date.now() - 1209700000,
+        ...searchResultsDetailed[1]
       }
     }
   }
 });
 
-jest.unmock('../favorite-actions');
 jest.unmock('redux-mock-store');
 jest.unmock('redux-thunk');
+
+jest.unmock('../favorite-actions');
 
 jest.mock('../../utils/request', () => {
   return {
@@ -67,6 +74,7 @@ import googlePlaces from '../../api/google-places-api';
 describe('search actions', () => {
   afterEach(() => {
     store.clearActions();
+    googlePlaces.fetchDetails.mockClear();
   });
 
   it('searches for listings', () => {
@@ -75,8 +83,9 @@ describe('search actions', () => {
       longitude: geolocationData.coords.longitude
     }))
       .then((results) => {
+
         const actions = store.getActions();
-        expect(actions.length).toBe(2);
+        expect(actions[0]).toEqual({type: 'SUBMIT_SEARCH'});
 
         expect(googlePlaces.search).toBeCalledWith({
           query: 'mountain',
@@ -89,19 +98,41 @@ describe('search actions', () => {
   });
 
   it('gets details for listings', () => {
-    googlePlaces.fetchDetails.mockClear();
-
     return store.dispatch(searchActions.search('mountain', {
       latitude: geolocationData.coords.latitude,
       longitude: geolocationData.coords.longitude
     }))
       .then((results) => {
-        // the number of calls to fetchDetails should only
+        // The number of calls to fetchDetails should only
         // include needed requests for listings not yet
-        // in the cache
+        // in the cache, but not include expired cache listings,
+        // so we only have one listing that is really a cache hit.
         expect(googlePlaces.fetchDetails.mock.calls.length)
-          .toBe(results.searchResults.length
-            - Object.keys(store.getState().listingsReducer.cache).length);
+          .toBe(results.searchResults.length - 1);
+
+        const actions = store.getActions();
+        expect(actions.length).toBe(3);
+
+        // verify that action to remove stale listing is dispatched
+        expect(actions[1]).toEqual(
+          {
+            id: searchResultsDetailed[1].id,
+            type: 'REMOVE_FROM_STORAGE'
+          });
       });
   });
+
+  it('cancels the search request', () => {
+    return store.dispatch(searchActions.cancelRequest())
+      .then(() => {
+        const actions = store.getActions();
+        expect(actions.length).toBe(2);
+        expect(actions[0]).toEqual({type: 'CANCEL_REQUEST'});
+        expect(actions[1]).toEqual(
+          {
+            searchResults: [],
+            type: 'RECEIVE_SEARCH_RESULTS'
+          });
+      });
+  })
 });
