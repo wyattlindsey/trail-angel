@@ -7,7 +7,7 @@ import searchActions from '../actions/search-actions';
 const favoriteActions = {
   loadFavorites: () => {
     return (dispatch, getState) => {
-      dataApi.trailAngelApi.getFavorites(getState().userReducer.userId)
+      return dataApi.trailAngelApi.getFavorites(getState().userReducer.userId)
         .then((favoriteIDs) => {
           return dispatch(searchActions.getDetails(favoriteIDs));
         })
