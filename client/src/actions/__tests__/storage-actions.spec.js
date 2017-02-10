@@ -8,7 +8,6 @@ const mockAsyncStorage = require('mock-async-storage');
 const middlewares = [thunk];
 
 import storageActions from '../storage-actions';
-import homeData from '../../../__tests__/fixtures/home-data';
 
 const mockStore = configureStore(middlewares);
 
