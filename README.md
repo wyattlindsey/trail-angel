@@ -85,3 +85,5 @@ View the project roadmap [here](https://wireframepro.mockflow.com/view/Dd1fbd276
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+<style>table {border: 'hidden'} </style>
