@@ -62,6 +62,7 @@ const searchActions = {
   },
 
   getDetails: (IDs) => {
+    console.log(IDs);
     return (dispatch, getState) => {
       let cache = getState().listingsReducer.cache;
       if (!Array.isArray(IDs)) IDs = [IDs];
