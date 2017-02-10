@@ -2,7 +2,7 @@
 
 > Break new trails and share with your friends.  The holy grail of trail apps.
 
-![landscape_screenshot](https://res.cloudinary.com/dayskokep/image/upload/v1486751164/iphone6_spacegrey_landscape_ywjwfn.png)
+![landscape_screenshot](https://res.cloudinary.com/dayskokep/image/upload/v1486753853/iphone6_spacegrey_landscape_eheprh.png)
 
 | | | |
 | ------------ | ------------ | ------------ |
