@@ -1,0 +1,25 @@
+exports[`storage actions clears all listings from storage 1`] = `
+Object {
+  "type": "CLEAR_ALL_FROM_STORAGE",
+}
+`;
+
+exports[`storage actions loads listings from storage 1`] = `
+Object {
+  "listings": Object {},
+  "type": "LOAD_LISTINGS_FROM_STORAGE",
+}
+`;
+
+exports[`storage actions removes from storage 1`] = `
+Object {
+  "id": 123,
+  "type": "REMOVE_FROM_STORAGE",
+}
+`;
+
+exports[`storage actions saves to storage 1`] = `
+Object {
+  "foo": "bar",
+}
+`;

@@ -30,20 +30,25 @@ const time = {
 
   formattedDayAndMonth: (UNIX_timestamp, offset = 0) => {
     const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
-    const day = weekday(date.getDay());
+    const day = date.getDate();
     const month = monthsAbbreviated[date.getMonth()];
     return `${day} ${month}`;
   },
 
-  formattedDateAndTime: (UNIX_timestamp, offset = 0) => {
-    const date = new Date(UNIX_timestamp * 1000 + (offset * 3600000));
+  formattedDateAndTime: (UNIX_timestamp, options) => {
+    const optionsWithDefaults = {
+      twelveHour: true,
+      offset: 0,
+      ...options
+    };
+
+    const date = new Date(UNIX_timestamp * 1000 + (optionsWithDefaults.offset * 3600000));
     const year = date.getFullYear();
     const month = monthsAbbreviated[date.getMonth()];
     const day = date.getDate();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    return `${day} ${month} ${year} ${hours}:${minutes}:${seconds}`;
+    const formattedTime = optionsWithDefaults.twelveHour ?
+      time.formatted12HourTime(date / 1000) : time.formatted24HourTime(date / 1000);
+    return `${day} ${month} ${year} ${formattedTime}`;
   },
 
   formatted12HourTime: (UNIX_timestamp, offset = 0) => {

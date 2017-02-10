@@ -7,7 +7,7 @@ import searchActions from '../actions/search-actions';
 const favoriteActions = {
   loadFavorites: () => {
     return (dispatch, getState) => {
-      dataApi.trailAngelApi.getFavorites(getState().userReducer.userId)
+      return dataApi.trailAngelApi.getFavorites(getState().userReducer.userId)
         .then((favoriteIDs) => {
           return dispatch(searchActions.getDetails(favoriteIDs));
         })
@@ -23,9 +23,9 @@ const favoriteActions = {
 
   addFavorite: (id) => {
     return (dispatch, getState) => {
-      dataApi.trailAngelApi.addFavorite(getState().userReducer.userId, id)
+      return dataApi.trailAngelApi.addFavorite(getState().userReducer.userId, id)
         .then(() => {
-          dispatch({
+          return dispatch({
             type: actionTypes.ADD_FAVORITE,
             id
           });
@@ -35,9 +35,9 @@ const favoriteActions = {
 
   removeFavorite: (id) => {
     return (dispatch, getState) => {
-      dataApi.trailAngelApi.removeFavorite(getState().userReducer.userId, id)
+      return dataApi.trailAngelApi.removeFavorite(getState().userReducer.userId, id)
         .then(() => {
-          dispatch({
+          return dispatch({
             type: actionTypes.REMOVE_FAVORITE,
             id
           });

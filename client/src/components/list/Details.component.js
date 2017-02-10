@@ -67,9 +67,6 @@ export default class Details extends React.Component {
   }
 
   _handleGoToMapDashboard() {
-    if (!this.state.isFavorite) {
-      return;
-    }
     this.props.navigator.push({
       title: 'Dashboard',
       component: Map,
@@ -123,8 +120,7 @@ export default class Details extends React.Component {
               {FavoriteIcon}
             </TouchableHighlight>
             <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
-                                underlayColor='white'
-                                disabled={!this.state.isFavorite}>
+                                underlayColor='white'>
               {MapIcon}
             </TouchableHighlight>
           </View>

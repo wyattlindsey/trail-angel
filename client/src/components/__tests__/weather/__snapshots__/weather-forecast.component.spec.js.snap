@@ -1,0 +1,6104 @@
+exports[`weather forecast component renders daily forecast correctly 1`] = `
+<ScrollView
+  style={
+    Object {
+      "backgroundColor": "#8e8e8e",
+      "marginTop": 12,
+    }
+  }>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }>
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={false}
+              ellipsizeMode="tail"
+              icon="snow"
+              style={
+                Array [
+                  Object {
+                    "color": "#5e9fa1",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }>
+              
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#5e9fa1",
+                "fontSize": 18,
+                "fontStyle": "italic",
+                "lineHeight": 35,
+                "marginRight": 15,
+              }
+            }>
+            Today
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Snow (3–6 in.) throughout the day.
+        </Text>
+        <View />
+      </View>
+      <View>
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hitSlop={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "alignItems": "center",
+                "height": 50,
+                "justifyContent": "center",
+                "width": 50,
+              },
+            ]
+          }
+          testID={undefined}>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 25,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }>
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={false}
+              ellipsizeMode="tail"
+              icon="snow"
+              style={
+                Array [
+                  Object {
+                    "color": "#5e9fa1",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }>
+              
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#5e9fa1",
+                "fontSize": 18,
+                "fontStyle": "italic",
+                "lineHeight": 35,
+                "marginRight": 15,
+              }
+            }>
+            Tuesday
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Snow (1–2 in.) throughout the day.
+        </Text>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            H: 36F° 2:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            L: 19 F° 5:00 AM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            
+          </Text>
+        </View>
+      </View>
+      <View>
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hitSlop={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "alignItems": "center",
+                "height": 50,
+                "justifyContent": "center",
+                "width": 50,
+              },
+            ]
+          }
+          testID={undefined}>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 25,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }>
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={false}
+              ellipsizeMode="tail"
+              icon="rain"
+              style={
+                Array [
+                  Object {
+                    "color": "#5e9fa1",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }>
+              
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#5e9fa1",
+                "fontSize": 18,
+                "fontStyle": "italic",
+                "lineHeight": 35,
+                "marginRight": 15,
+              }
+            }>
+            Wednesday
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain throughout the day.
+        </Text>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            H: 39F° 11:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            L: 28 F° 1:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            
+          </Text>
+        </View>
+      </View>
+      <View>
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hitSlop={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "alignItems": "center",
+                "height": 50,
+                "justifyContent": "center",
+                "width": 50,
+              },
+            ]
+          }
+          testID={undefined}>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 25,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }>
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={false}
+              ellipsizeMode="tail"
+              icon="rain"
+              style={
+                Array [
+                  Object {
+                    "color": "#5e9fa1",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }>
+              
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#5e9fa1",
+                "fontSize": 18,
+                "fontStyle": "italic",
+                "lineHeight": 35,
+                "marginRight": 15,
+              }
+            }>
+            Thursday
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain throughout the day.
+        </Text>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            H: 37F° 1:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            L: 30 F° 11:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            
+          </Text>
+        </View>
+      </View>
+      <View />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }>
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={false}
+              ellipsizeMode="tail"
+              icon="rain"
+              style={
+                Array [
+                  Object {
+                    "color": "#5e9fa1",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }>
+              
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#5e9fa1",
+                "fontSize": 18,
+                "fontStyle": "italic",
+                "lineHeight": 35,
+                "marginRight": 15,
+              }
+            }>
+            Friday
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light rain throughout the day.
+        </Text>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            H: 36F° 7:00 AM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            L: 30 F° 12:00 AM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            
+          </Text>
+        </View>
+      </View>
+      <View />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }>
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={false}
+              ellipsizeMode="tail"
+              icon="partly-cloudy-day"
+              style={
+                Array [
+                  Object {
+                    "color": "#5e9fa1",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }>
+              
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#5e9fa1",
+                "fontSize": 18,
+                "fontStyle": "italic",
+                "lineHeight": 35,
+                "marginRight": 15,
+              }
+            }>
+            Saturday
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Mostly cloudy until evening.
+        </Text>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            H: 39F° 3:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            L: 29 F° 11:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            
+          </Text>
+        </View>
+      </View>
+      <View />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }>
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={false}
+              ellipsizeMode="tail"
+              icon="partly-cloudy-day"
+              style={
+                Array [
+                  Object {
+                    "color": "#5e9fa1",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }>
+              
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#5e9fa1",
+                "fontSize": 18,
+                "fontStyle": "italic",
+                "lineHeight": 35,
+                "marginRight": 15,
+              }
+            }>
+            Sunday
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Mostly cloudy until evening.
+        </Text>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            H: 45F° 2:00 PM
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }>
+            L: 27 F° 6:00 AM
+          </Text>
+          <View />
+        </View>
+      </View>
+      <View />
+    </View>
+    <View />
+  </View>
+</ScrollView>
+`;
+
+exports[`weather forecast component renders hourly forecast correctly 1`] = `
+<ScrollView
+  style={
+    Object {
+      "backgroundColor": "#8e8e8e",
+      "marginTop": 12,
+    }
+  }>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          9:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          24F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          10:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          24F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          11:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Flurries
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          23F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="cloudy"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          12:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Overcast
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          23F°
+        </Text>
+        <View />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="cloudy"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          1:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Overcast
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          26F°
+        </Text>
+        <View />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="cloudy"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          2:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Overcast
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          26F°
+        </Text>
+        <View />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="cloudy"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          3:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Overcast
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          21F°
+        </Text>
+        <View />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="cloudy"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          4:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Overcast
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          19F°
+        </Text>
+        <View />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="cloudy"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          5:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Overcast
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          19F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          6:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Flurries
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          19F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          7:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Flurries
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          20F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          8:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          21F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          9:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          24F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          10:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          27F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          11:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          30F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          12:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          35F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          1:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          35F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          2:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          36F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          3:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          35F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          4:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          35F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          5:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          34F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          6:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          32F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          7:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          8:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          9:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          10:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          11:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          12:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          1:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          2:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          31F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          3:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          32F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          4:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          32F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          5:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          32F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          6:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          32F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          7:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          30F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          8:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Snow
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          29F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="snow"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          9:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Flurries
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          29F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          10:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Drizzle
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          29F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          11:00 AM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          29F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          12:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          28F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          1:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Light Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          28F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          2:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          28F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          3:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          28F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          4:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          28F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          5:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          29F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          6:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          29F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          7:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          30F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          8:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          32F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "margin": 12,
+          "padding": 16,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            icon="rain"
+            style={
+              Array [
+                Object {
+                  "color": "#5e9fa1",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+              ]
+            }>
+            
+          </Text>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#5e9fa1",
+              "fontSize": 18,
+              "fontStyle": "italic",
+              "lineHeight": 35,
+              "marginRight": 15,
+            }
+          }>
+          9:00 PM
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "paddingBottom": 10,
+            }
+          }>
+          Rain
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          35F°
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 11,
+            }
+          }>
+          
+        </Text>
+      </View>
+    </View>
+  </View>
+</ScrollView>
+`;

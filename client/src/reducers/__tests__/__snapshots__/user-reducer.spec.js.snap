@@ -1,0 +1,32 @@
+exports[`appReducer logs in a user 1`] = `
+Object {
+  "avatarUrl": null,
+  "email": null,
+  "hasToken": false,
+  "nickname": null,
+  "userId": null,
+}
+`;
+
+exports[`appReducer logs out a user 1`] = `
+Object {
+  "hasToken": false,
+  "initialState": Object {
+    "avatarUrl": null,
+    "email": null,
+    "hasToken": false,
+    "nickname": null,
+    "userId": null,
+  },
+}
+`;
+
+exports[`appReducer receives user data 1`] = `
+Object {
+  "avatarUrl": "https://lh6.googleusercontent.com/-PHUnYsSh0kM/AAAAAAAAAAI/AAAAAAAAAQQ/Y5SZ33EhyYo/photo.jpg",
+  "email": "wyatt.b.lindsey@gmail.com",
+  "hasToken": true,
+  "nickname": "wyatt.b.lindsey",
+  "userId": "113879522060780032239",
+}
+`;

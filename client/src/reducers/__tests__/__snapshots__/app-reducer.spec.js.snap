@@ -1,0 +1,34 @@
+exports[`appReducer fetches geolocation 1`] = `
+Object {
+  "geolocation": null,
+  "gettingLocation": true,
+  "isLoaded": false,
+}
+`;
+
+exports[`appReducer initializes app 1`] = `
+Object {
+  "geolocation": null,
+  "gettingLocation": false,
+  "isLoaded": true,
+}
+`;
+
+exports[`appReducer receives geolocation 1`] = `
+Object {
+  "geolocation": Object {
+    "coords": Object {
+      "accuracy": 5,
+      "altitude": 0,
+      "altitudeAccuracy": -1,
+      "heading": -1,
+      "latitude": 45.3296,
+      "longitude": -121.9112,
+      "speed": -1,
+    },
+    "timestamp": 1486169476048.98,
+  },
+  "gettingLocation": false,
+  "isLoaded": false,
+}
+`;

@@ -131,8 +131,6 @@ const HourlyForecastListItem = (props) => (
   </View>
 );
 
-// todo: this needs to navigate to another weather forecast component filled with hourly list items
-
 const handleDailyForecastPress = (props) => {
   const startAndEnd = getForecastHoursIndicesForDay(props.dailyForecast.time, props.offset);
   const hours = [...props.forecast.hourly.data].slice(startAndEnd.startIndex,
@@ -180,7 +178,10 @@ const getForecastHoursIndicesForDay = (timestamp, offset) => {
 };
 
 
-export default DailyWeatherForecast;
+export {
+  DailyWeatherForecast,
+  HourlyWeatherForecast
+};
 
 const styles = StyleSheet.create({
   scrollContainer: {

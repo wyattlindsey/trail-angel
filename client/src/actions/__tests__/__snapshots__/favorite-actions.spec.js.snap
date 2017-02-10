@@ -1,0 +1,684 @@
+exports[`user actions loads favorites 1`] = `
+Object {
+  "favorites": Array [
+    Object {
+      "address_components": Array [
+        Object {
+          "long_name": "Welches",
+          "short_name": "Welches",
+          "types": Array [
+            "neighborhood",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "Clackamas County",
+          "short_name": "Clackamas County",
+          "types": Array [
+            "administrative_area_level_2",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "Oregon",
+          "short_name": "OR",
+          "types": Array [
+            "administrative_area_level_1",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": Array [
+            "country",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "97055",
+          "short_name": "97055",
+          "types": Array [
+            "postal_code",
+          ],
+        },
+      ],
+      "adr_address": "<span class=\"locality\">Welches</span>, <span class=\"region\">OR</span> <span class=\"postal-code\">97055</span>, <span class=\"country-name\">USA</span>",
+      "formatted_address": "Welches, OR 97055, USA",
+      "formatted_phone_number": "(503) 622-3191",
+      "geometry": Object {
+        "location": Object {
+          "lat": 45.308508,
+          "lng": -121.943211,
+        },
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "ChIJiZo1O9sgvlQRcGBrry12NmE",
+      "international_phone_number": "+1 503-622-3191",
+      "name": "Old Salmon River Trailhead",
+      "opening_hours": Object {
+        "open_now": true,
+        "periods": Array [
+          Object {
+            "open": Object {
+              "day": 0,
+              "time": "0000",
+            },
+          },
+        ],
+        "weekday_text": Array [
+          "Monday: Open 24 hours",
+          "Tuesday: Open 24 hours",
+          "Wednesday: Open 24 hours",
+          "Thursday: Open 24 hours",
+          "Friday: Open 24 hours",
+          "Saturday: Open 24 hours",
+          "Sunday: Open 24 hours",
+        ],
+      },
+      "photoLargeUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CoQBdwAAAHAO1waHOwzcT8DCkFgK1BeyTIYAbo3kgKCax8kW3OrcnpN5OmZ6D9M7MzIfQ_PBKop-GFr5u6Pks-5ohsp2LQKmaTOyhh11ctQ_42uCLOTOXMZZri4Khr9VtlVgYuqYcEhiOlq374JRs821q1LCSoEKAJSQjS9rkMV9Q_GkBLQKEhCDKC4MuQY7vjnc0DC5wh6rGhRzR8J7SGGrmS9wXxXN1yavkwOXPA&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photoThumbUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=CoQBdwAAAHAO1waHOwzcT8DCkFgK1BeyTIYAbo3kgKCax8kW3OrcnpN5OmZ6D9M7MzIfQ_PBKop-GFr5u6Pks-5ohsp2LQKmaTOyhh11ctQ_42uCLOTOXMZZri4Khr9VtlVgYuqYcEhiOlq374JRs821q1LCSoEKAJSQjS9rkMV9Q_GkBLQKEhCDKC4MuQY7vjnc0DC5wh6rGhRzR8J7SGGrmS9wXxXN1yavkwOXPA&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photoThumbnailUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=CoQBdwAAAFVOF9vQsY7u9MuWaDAA2VvNr8wDc5lTq99-BHXmizDXvXZfAK49VnQP80jvEDz7nEi5zvnD-ve9vOuUzPLbcs7zsD3xHO74c0bhUuar19_J7dLcu3SUuXuE5YcaVschjUI-5e6NY-fdr_xu_fVF1vVmQtkuU-fDCgyYc-qB0KHYEhC7hA-9Mlehu3OI3VEslNqQGhQqas9upAHkoejM0jSkP7IVW1ONVA&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photos": Array [
+        Object {
+          "height": 2988,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/109562121196769707357/photos\">Aaron Taylor</a>",
+          ],
+          "photo_reference": "CoQBdwAAAFVOF9vQsY7u9MuWaDAA2VvNr8wDc5lTq99-BHXmizDXvXZfAK49VnQP80jvEDz7nEi5zvnD-ve9vOuUzPLbcs7zsD3xHO74c0bhUuar19_J7dLcu3SUuXuE5YcaVschjUI-5e6NY-fdr_xu_fVF1vVmQtkuU-fDCgyYc-qB0KHYEhC7hA-9Mlehu3OI3VEslNqQGhQqas9upAHkoejM0jSkP7IVW1ONVA",
+          "width": 5312,
+        },
+        Object {
+          "height": 3264,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/115812411634246154937/photos\">Justin P</a>",
+          ],
+          "photo_reference": "CoQBdwAAAEyT6B6FBQ8eKFBFl-FsHlgVwEn-qt_N33gWvGzXkCPLCeaSBZ1CJXekgMK5iKF5nOoYO4DffY_nhIl7Mg6ELopSeg0C6fZYV-3p_O0TcHWyWzI4LM6Ht4gSHGBNDmR676PfNSHVdXzDC3-9qB5DGSaiFV9dQvsfpihpN_sPs1pNEhC4rlQ_EC29_sWyOSJhGwBuGhSxSSddOZwpKWqcpyyUDyt8exQgeA",
+          "width": 2448,
+        },
+        Object {
+          "height": 2988,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/111538479751871015143/photos\">Eric Swain</a>",
+          ],
+          "photo_reference": "CoQBdwAAAI6_rLrgsMaGi_OGQERSDvdauvn_z_ErKHbuzXUS6FIHjv1uThP4GhmKRsQIxs7uiniCWcak-hl3EsQ9UPkNc49_rqhDXl_Yck_O0Hwv8uqyEBfAC3iQZqSiPV26BZN7b3m3b5veUI01HVL_x2BE6gvHFRXZ8qur-T2fzbNkxmLoEhCqrl0SDtvfwxykqNyLpKjTGhSapd959f6-nIy_cqv-E1ewe0L0Jg",
+          "width": 5312,
+        },
+        Object {
+          "height": 2988,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/111538479751871015143/photos\">Eric Swain</a>",
+          ],
+          "photo_reference": "CoQBdwAAANq4GoKz8TpMi7dQjRwtPdQiiE7Qiq_tkhoq9aF15hq0olZmeKTGywE2uaJn2Wo9ryk_61EwrAka5uxGoMBPUPQzQ6WamCKhs9CS4z1lbMikbSn5T-R7GFiyiCqx7UpKuAn26ZkHYYM067aS0NnJivFKAaQlxtBdUQMxGlX5AlVbEhBrMwaI5zjq8PbhRlKRr2aAGhRTBQJfYX4jVgv7cWIcwjIfJrxAuQ",
+          "width": 5312,
+        },
+        Object {
+          "height": 5312,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/111538479751871015143/photos\">Eric Swain</a>",
+          ],
+          "photo_reference": "CoQBdwAAAMjolJRe5o0FtGBT_VE3x0nH2lx0wr4rpPU79iOK-GhXzTwjYYDUqVTU1vIo_TCpBpj6S83Y9Q9fEl6NuPdHzdwKei09OoqcwOSZ6sgSepw-kdG0T2hnxjRbv0GhxIGpJ8-5vns23cxSIBdxgnQWNwl5PEIEqj_XmOwRTHYGiIgmEhDPlE6uJrBqLJhJYsy6If_mGhRXotwwFWFcIR4TZ8cUkg5vAYtbjw",
+          "width": 2988,
+        },
+        Object {
+          "height": 1440,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/110704666471784106656/photos\">Paul Lathrop</a>",
+          ],
+          "photo_reference": "CoQBdwAAALUb4kAD8P8jOam9f6TFXjJI992qXHYJySVSaB1nUF0roGdU5tDZ7xdEqpqaV0_2bq9rxvsmlFBHx1mxU3_kE5y9w9PoDaRHDv4id0bFVGRyRtL9IvcWY_EoCEpE34VPOImgp465g3hEGBGPYFBCmIn80mtVZAarzoe8FsbAYDIGEhDOStAVDo7DZkjncDYY7ZWRGhTvbWAGPDdjuqhQskD_W9pJ19bDVg",
+          "width": 1440,
+        },
+        Object {
+          "height": 4032,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/107300249230532224670/photos\">Ricardo Hernández</a>",
+          ],
+          "photo_reference": "CoQBdwAAAM7FDhRCMq6_2D4QFdhVMvPvUw9EuQDTthIeHLQ5w_0k8lLrM95kQPYfThmWgic1OEmfmKKkfzdBP_mQclMdJ-6xfDRtFnfC-9xV4ZDryPI2haxTU-QKcQdVpLSSR-X_xg-sFffWEGak7w3EvLzmpa5ADC58mXMF6fLI9FSpbo_KEhAmsQfqpMmTU2Df9cTaAb-sGhSiabHJYKxaq9H0dH87KnRx1GkzNw",
+          "width": 3024,
+        },
+        Object {
+          "height": 5312,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/106930972425679409914/photos\">Tracy Loring</a>",
+          ],
+          "photo_reference": "CoQBdwAAAHAO1waHOwzcT8DCkFgK1BeyTIYAbo3kgKCax8kW3OrcnpN5OmZ6D9M7MzIfQ_PBKop-GFr5u6Pks-5ohsp2LQKmaTOyhh11ctQ_42uCLOTOXMZZri4Khr9VtlVgYuqYcEhiOlq374JRs821q1LCSoEKAJSQjS9rkMV9Q_GkBLQKEhCDKC4MuQY7vjnc0DC5wh6rGhRzR8J7SGGrmS9wXxXN1yavkwOXPA",
+          "width": 2988,
+        },
+        Object {
+          "height": 2070,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/100343460856501765750/photos\">Clive Charlwood</a>",
+          ],
+          "photo_reference": "CoQBdwAAAN1Mf6lkmttNakE-WYOHa3x-xYZCAPV4kwX9_iugUDyIhIGOCXa1rG1MwMnkrBJVTZ3b4TfZWkpxBqbk_0RlCLao2WOEWqYN23RYmXi-6tCe-eqbes1iosK0r3jNvrkglBiTgtnwJ__Lsxh5A1Sktq1cuWlw_jM2B3LYu9BkD-ZgEhB4VtQ8kvCLygL9uneIQm7NGhRHeLfSOjhCMK4yipIZ5lQQ8NlRNA",
+          "width": 3816,
+        },
+        Object {
+          "height": 5312,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/106930972425679409914/photos\">Tracy Loring</a>",
+          ],
+          "photo_reference": "CoQBdwAAADLRtoWQJx_VtPqLdDwquBZWUZQgJ0r3G3zGS7xz2BWDMP7oi9u6DEgV0MMhY2AcZPDDkg3ZJ4Rm7uUbN0k90C9r0mGVRFYoGzMyFj7D6VlLI3beGifFWxCrpOvpTeXmgp4aB0vQyteKabDTJKI1Db0X5O-IwduO-8nPAqA_Ry6vEhB9R05mW55koWsNfYc6nX-dGhRdTQqcmiRPDvXuXSTr3cY90UfJPw",
+          "width": 2988,
+        },
+      ],
+      "place_id": "ChIJiZo1O9sgvlQRcGBrry12NmE",
+      "rating": 4.7,
+      "reference": "CmRRAAAAYM_9vBdGbkdWA48x50T8F9Mh_NFL9Tx3XIK_uk-RtBaVUwpeRaKRYMlHm1i7IH8jLliKmNp9cVkf5J623PbNRam0udNCwc1GlIJT_pcHuoEmhx78hiDqZ13yQ5riCFeAEhC0blBlh7Olhx5oZwoBbtnFGhSmq-lPsYrQSSc8D2PpY69jb3ZsJA",
+      "reviews": Array [
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Tracy Loring",
+          "author_url": "https://www.google.com/maps/contrib/106930972425679409914/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh6.googleusercontent.com/-FuG2lZ4ub3o/AAAAAAAAAAI/AAAAAAAAA2c/FVy4JfdSKss/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "5 months ago",
+          "text": "This is a gorgeous trail with lots of spots to hike down to the river. The trailhead is at the top with not a huge amount of parking. ",
+          "time": 1472442199,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Justin P",
+          "author_url": "https://www.google.com/maps/contrib/115812411634246154937/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh6.googleusercontent.com/--5g7p0LNWTY/AAAAAAAAAAI/AAAAAAAAATs/WgPL6no7yiQ/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "9 months ago",
+          "text": "Kickoff point for beautiful hikes along the Salmon River. Bring a raincoat during the spring. Dog friendly.",
+          "time": 1460329125,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 2,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Ricardo Hernández",
+          "author_url": "https://www.google.com/maps/contrib/107300249230532224670/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh3.googleusercontent.com/-1aRrzAAWF2Y/AAAAAAAAAAI/AAAAAAAAHAA/fUGaaez9djA/s128/photo.jpg",
+          "rating": 4,
+          "relative_time_description": "6 months ago",
+          "text": "Beautiful trail. Pack lunch and enjoy it by the river.",
+          "time": 1468379985,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Andrew Fry",
+          "author_url": "https://www.google.com/maps/contrib/114823544022643247257/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh4.googleusercontent.com/-WGG1XLtiKNc/AAAAAAAAAAI/AAAAAAAAAyA/Nmpt0PXl8dQ/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "7 months ago",
+          "text": "Love this trail!! Beautiful river, great fishing.",
+          "time": 1466657478,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 2,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Aaron Taylor",
+          "author_url": "https://www.google.com/maps/contrib/109562121196769707357/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh3.googleusercontent.com/-GW8RNh1QUFk/AAAAAAAAAAI/AAAAAAAAAc0/0rOOVA9lHBg/s128/photo.jpg",
+          "rating": 4,
+          "relative_time_description": "6 months ago",
+          "text": "Beautiful cool hike next to the river",
+          "time": 1469494012,
+        },
+      ],
+      "scope": "GOOGLE",
+      "types": Array [
+        "park",
+        "point_of_interest",
+        "establishment",
+      ],
+      "url": "https://maps.google.com/?cid=7004916209010040944",
+      "utc_offset": -480,
+      "vicinity": "Welches",
+      "website": "http://www.fs.usda.gov/recarea/mthood/recarea/?recid=53442",
+    },
+    Object {
+      "address_components": Array [
+        Object {
+          "long_name": "E Welches Rd",
+          "short_name": "E Welches Rd",
+          "types": Array [
+            "route",
+          ],
+        },
+        Object {
+          "long_name": "Welches",
+          "short_name": "Welches",
+          "types": Array [
+            "neighborhood",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "Clackamas County",
+          "short_name": "Clackamas County",
+          "types": Array [
+            "administrative_area_level_2",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "Oregon",
+          "short_name": "OR",
+          "types": Array [
+            "administrative_area_level_1",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": Array [
+            "country",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "97067",
+          "short_name": "97067",
+          "types": Array [
+            "postal_code",
+          ],
+        },
+      ],
+      "adr_address": "<span class=\"street-address\">E Welches Rd</span>, <span class=\"locality\">Welches</span>, <span class=\"region\">OR</span> <span class=\"postal-code\">97067</span>, <span class=\"country-name\">USA</span>",
+      "formatted_address": "E Welches Rd, Welches, OR 97067, USA",
+      "geometry": Object {
+        "location": Object {
+          "lat": 45.27786669999999,
+          "lng": -121.9397449,
+        },
+        "viewport": Object {
+          "northeast": Object {
+            "lat": 45.2779237,
+            "lng": -121.93969325,
+          },
+          "southwest": Object {
+            "lat": 45.27784769999999,
+            "lng": -121.93989985,
+          },
+        },
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "ChIJa9wAg5kgvlQR2N_C16irlVI",
+      "name": "Salmon River Trail",
+      "opening_hours": Object {
+        "open_now": true,
+        "periods": Array [
+          Object {
+            "open": Object {
+              "day": 0,
+              "time": "0000",
+            },
+          },
+        ],
+        "weekday_text": Array [
+          "Monday: Open 24 hours",
+          "Tuesday: Open 24 hours",
+          "Wednesday: Open 24 hours",
+          "Thursday: Open 24 hours",
+          "Friday: Open 24 hours",
+          "Saturday: Open 24 hours",
+          "Sunday: Open 24 hours",
+        ],
+      },
+      "photoLargeUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CoQBdwAAAIA-MRY0LDRbNjB7_Udb966lc5pH6EYAznalo5DQhbDw4O1pudklac-2Q53m6b3BQaQTVZsgXBo6OZkmd2TnUL6WD82-GMvBvijUmWeLivhlqIG-rbPz58sTlzA6ZHkvVahYpTo5mXKoqZiISNpDquKcnQ0jy3daGQlrq6jpQiPeEhB6cuEIvVjDDO5zQ3dzk15KGhQxwQ_D4Sgm2Rhti27l8T9LV2nfTQ&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photoThumbUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=CoQBdwAAAIA-MRY0LDRbNjB7_Udb966lc5pH6EYAznalo5DQhbDw4O1pudklac-2Q53m6b3BQaQTVZsgXBo6OZkmd2TnUL6WD82-GMvBvijUmWeLivhlqIG-rbPz58sTlzA6ZHkvVahYpTo5mXKoqZiISNpDquKcnQ0jy3daGQlrq6jpQiPeEhB6cuEIvVjDDO5zQ3dzk15KGhQxwQ_D4Sgm2Rhti27l8T9LV2nfTQ&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photoThumbnailUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=CoQBdwAAANBrSfZZ-ASpNu-G3VdMJ9tD05mMV9t2Wda2HEofeQ8jXWRgS516eMLJYDn0j-NZkKzPYo2KiwEVleWQnql-IdtfVHCTSmr_FEAtAZC9Gt59K6Hk-FLleO5pOCkitY5vA_VmXz4a7pRHo01LLZFemOx2uVwjotrNxwesdzveej4xEhBTUKhawawz4R6B4lfht12HGhTN8ADOtWeeqy5Egm0e8TIJSrg9Og&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photos": Array [
+        Object {
+          "height": 2340,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/116868353320281566071/photos\">Jory Mason</a>",
+          ],
+          "photo_reference": "CoQBdwAAANBrSfZZ-ASpNu-G3VdMJ9tD05mMV9t2Wda2HEofeQ8jXWRgS516eMLJYDn0j-NZkKzPYo2KiwEVleWQnql-IdtfVHCTSmr_FEAtAZC9Gt59K6Hk-FLleO5pOCkitY5vA_VmXz4a7pRHo01LLZFemOx2uVwjotrNxwesdzveej4xEhBTUKhawawz4R6B4lfht12HGhTN8ADOtWeeqy5Egm0e8TIJSrg9Og",
+          "width": 4160,
+        },
+        Object {
+          "height": 2432,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/103174693142714958827/photos\">Tami Keller-Sheets</a>",
+          ],
+          "photo_reference": "CoQBdwAAAOVjk585kgh5mosiGNFzR94YyVgHC5H-RJuE9dd5bIBDJhfZMtFpvgbYBQkaRgYVr4_iTIHu9lRzkyBMFnVjMzfYR6DaMWDq7Oib7SpikCDXQdo-0IS8fjKIV5qWuk7TcCqmIOgX47JdoB5NmQJ__2QRhlkm3_1h6nKAKlY8QwWZEhBT7NLqHlJ9SLiHem9FG2sCGhTrTl4bRhcQvBXkA29GGn4m284doQ",
+          "width": 4320,
+        },
+        Object {
+          "height": 3456,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/101807673048422184408/photos\">Thomas Mendoza</a>",
+          ],
+          "photo_reference": "CoQBdwAAAHYe_HqWAp3D58AK8rdyahz-ESC8az3h_6fKWCtSh5ibYwifGFyt2l9e-7SsjxPf28xTy8VJJldCmyVSiebPkdnVKoXrZoxN2JJScUZlzY6Z2jsruJnLUrNkpLvD_dcBsbHGTBE-azMVXdksYGWGyhrpm10lACEyJA1icS5tKKIeEhANBH2O_v5BeKE_xyL_oVrwGhRzl1n9ijC9b762yNyAfAeRKaOa7A",
+          "width": 4608,
+        },
+        Object {
+          "height": 4608,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/101807673048422184408/photos\">Thomas Mendoza</a>",
+          ],
+          "photo_reference": "CoQBdwAAAPjxiYY4wmiw6SXZN-iMP3Qv-726GdeVCGVYsoGFZ0TFlZpxH3A7GqkLYnvgNfYVOE6NJvhnVCkJstrjqDgTIk0tOG1fiN8X6yxmx--b13B_Wlswa7PnJgv_z7hHXAw_2yMQ2rIfWp0zZLhgBKYzSotRjkmtSViC8-lcoY_GtJAsEhCqcSsiUOx6EZtoVT9areBiGhTGOhhA2omACaOYfmK7KmN30ldGEA",
+          "width": 3456,
+        },
+        Object {
+          "height": 2988,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/103940783118839931307/photos\">EJ Reed</a>",
+          ],
+          "photo_reference": "CoQBdwAAALMkfoAr9akkwMBZpkalPwCDDegq0zIDVFY7q1PaAmOoGDn6IgacDEDipoFwaAQjDhAN4tVKnGTumRcM-hpfikAsUGqCo-Vx3HpnQDakGRyaeKpHMgmIhae_dByO3YBbifQySnylF-cSb53rUKjlWO1qJeqIQe_mJqIJhdC56LHWEhAewfUvfSfF0Q-xIUe-OcH7GhSx5YoaB26p8Mjo6RGyJbEmA_-LMQ",
+          "width": 5312,
+        },
+        Object {
+          "height": 4320,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/103174693142714958827/photos\">Tami Keller-Sheets</a>",
+          ],
+          "photo_reference": "CoQBdwAAAI3dDEX1eJW5W4B70uHAWJPslYzyNR4CkfSxAfeHauV7ykpLSK4LihfL5_5XIHPFgjYadz3fI2HArin-Yub7n237HOXlAljz9-xLxrTN-gqK4gHglIoboCvY1opqwj2AgBqqsrYN9qhkLVp0yDFgUZR8In5M29CG6iCAbStDNuuyEhA0liosCmOKDZtrkkH5DxkKGhQMwL82a75qJo1XRy1luyhHF0Fzrw",
+          "width": 2432,
+        },
+        Object {
+          "height": 1248,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/116868353320281566071/photos\">Jory Mason</a>",
+          ],
+          "photo_reference": "CoQBdwAAAIA-MRY0LDRbNjB7_Udb966lc5pH6EYAznalo5DQhbDw4O1pudklac-2Q53m6b3BQaQTVZsgXBo6OZkmd2TnUL6WD82-GMvBvijUmWeLivhlqIG-rbPz58sTlzA6ZHkvVahYpTo5mXKoqZiISNpDquKcnQ0jy3daGQlrq6jpQiPeEhB6cuEIvVjDDO5zQ3dzk15KGhQxwQ_D4Sgm2Rhti27l8T9LV2nfTQ",
+          "width": 3528,
+        },
+        Object {
+          "height": 4640,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/104607734629048896770/photos\">Ezra Brunken</a>",
+          ],
+          "photo_reference": "CoQBdwAAAHAf0rybWwVStNaussDvby0m4TussFyo9qFOgX_PekkaJ2gchAbmvwhdG8hQ5nGQSOB4d67d19X5hVDVBtQcNe6dmMPPH5me49XZ8se6fYKUiO0VN_tcdEK_wSL-5ElVnL_lPMjNTeqH3GCbHw5LfUOh7gq4AxFfGVFpgLhFnEkMEhD6kOdzclzkDJX0nWf7aqu4GhR0FQjK1lz4heV1N2_CsZ8qK4jMrA",
+          "width": 3480,
+        },
+        Object {
+          "height": 3456,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/101807673048422184408/photos\">Thomas Mendoza</a>",
+          ],
+          "photo_reference": "CoQBdwAAACimgWSZMDyESHy1UJQ41SAo5YgCGg8h-iNGKejnmavxDRSrqrBGr4JRCYmZMeYsAMFriOnZ9EMcKhMRcxpQkebBS2AB3pq3WWOq1s6KsYXTtqWTtDcX6xc1cqmQb4rnezRoi7O5XdExiQCW9dHcn5e84OeZt-egyiVfLvVa57r0EhDkpNDhj7qWeQyvO-5klfK_GhQ2AIBYs9h8K_i2rx8ETH-kTHhEgQ",
+          "width": 4608,
+        },
+        Object {
+          "height": 4320,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/103174693142714958827/photos\">Tami Keller-Sheets</a>",
+          ],
+          "photo_reference": "CoQBdwAAAAXDi0pTMA88wf1v6_TLoRHS-MhSpBQZ8wZRUDjRgNkFevR7c4PlqXpcPmi3xTYCH9_uuHXSge771wA_CuhcM3q82OxjQ_umtV84hZE5QAXvmKS3lSwzw_QpiqZuWHOOrOmAwfIBygtStdZfpp7Z16kVS3eLIGJxImfAXW5JjeHLEhC_lcjsfrw0UaI46E4A60uwGhQluYS6ZYD53pGgmqXkZhH570AxAQ",
+          "width": 2432,
+        },
+      ],
+      "place_id": "ChIJa9wAg5kgvlQR2N_C16irlVI",
+      "rating": 4.8,
+      "reference": "CmRRAAAA8wxgJG6VTpstBHS1XD0FF-LYYTr5YGFyMvwCkdCgUchQ2jxuu4ydjFY5Zg1ixLPMg1eyuXgCWY2_SSHZBAyPdsBYD0PeaRRPqQBymbT6-mr0-pNvCD_HiTYbThnP6gwvEhDJbZQrPgB6tgXw3jSPh2VgGhRYjZ2rcxAlXSGqLC6yXnL6TjihAg",
+      "reviews": Array [
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Brandi Boersma",
+          "author_url": "https://www.google.com/maps/contrib/103226030469504495565/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh5.googleusercontent.com/-WZhOUK9afbE/AAAAAAAAAAI/AAAAAAAAAEw/qI2jC8pxh88/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "a month ago",
+          "text": "Beautiful area. Not too busy in winter. Dispersed camping nearby. Pup-friendly!",
+          "time": 1482783586,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 2,
+              "type": "overall",
+            },
+          ],
+          "author_name": "EJ Reed",
+          "author_url": "https://www.google.com/maps/contrib/103940783118839931307/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh3.googleusercontent.com/-oc3uVa6fep4/AAAAAAAAAAI/AAAAAAAAFsw/vHNOKT3RFC8/s128/photo.jpg",
+          "rating": 4,
+          "relative_time_description": "7 months ago",
+          "text": "Old growth forest along a very pretty river. The trails are not too strenuous, and if you look around after passing the lookout there are falls you can drop down to. Be advised, the off trail falls are dangerous to get to, but not that difficult of a scramble for an experienced hiker. New hikers should be fine as well, just exercise caution as the slopes are steep followed by a cliff, and a boulder strewn riverbed below... a very beautiful river.",
+          "time": 1466833517,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Tami Keller-Sheets",
+          "author_url": "https://www.google.com/maps/contrib/103174693142714958827/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh3.googleusercontent.com/-YDqvc0jBd10/AAAAAAAAAAI/AAAAAAAAH2g/DOTL0QG86fI/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "8 months ago",
+          "text": "The Salmon River Trail is always a great hike.  It gets a little busy on the weekends.  I try to go early or on the weekdays.  Great for weekday backpacking.  Perfect hike for friendly off leash Pups.",
+          "time": 1464027094,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Trevor R. Scott",
+          "author_url": "https://www.google.com/maps/contrib/109245326332678774882/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh4.googleusercontent.com/-LjLHxed8BtY/AAAAAAAAAAI/AAAAAAAADS4/YxbXbEnzFLc/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "2 months ago",
+          "text": "wonderful hike but \"water at the top\" was a bit misleading had to put a nalgene there overnight to get enough water...would bring extra next time.",
+          "time": 1480305958,
+        },
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Ezra Brunken",
+          "author_url": "https://www.google.com/maps/contrib/104607734629048896770/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh5.googleusercontent.com/-jq3ZcpwAGnk/AAAAAAAAAAI/AAAAAAAAADI/4VjGSh3G4IU/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "2 months ago",
+          "text": "Absolutely beautiful hike with amazing views.",
+          "time": 1480593916,
+        },
+      ],
+      "scope": "GOOGLE",
+      "types": Array [
+        "park",
+        "point_of_interest",
+        "establishment",
+      ],
+      "url": "https://maps.google.com/?cid=5950851224302706648",
+      "utc_offset": -480,
+      "vicinity": "E Welches Rd, Welches",
+      "website": "http://www.fs.usda.gov/recarea/mthood/recarea/?recid=53608",
+    },
+    Object {
+      "address_components": Array [
+        Object {
+          "long_name": "Still Creek Road",
+          "short_name": "Still Creek Rd",
+          "types": Array [
+            "route",
+          ],
+        },
+        Object {
+          "long_name": "Rhododendron",
+          "short_name": "Rhododendron",
+          "types": Array [
+            "locality",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "Clackamas County",
+          "short_name": "Clackamas County",
+          "types": Array [
+            "administrative_area_level_2",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "Oregon",
+          "short_name": "OR",
+          "types": Array [
+            "administrative_area_level_1",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": Array [
+            "country",
+            "political",
+          ],
+        },
+        Object {
+          "long_name": "97049",
+          "short_name": "97049",
+          "types": Array [
+            "postal_code",
+          ],
+        },
+      ],
+      "adr_address": "<span class=\"street-address\">Still Creek Rd</span>, <span class=\"locality\">Rhododendron</span>, <span class=\"region\">OR</span> <span class=\"postal-code\">97049</span>, <span class=\"country-name\">USA</span>",
+      "formatted_address": "Still Creek Rd, Rhododendron, OR 97049, USA",
+      "formatted_phone_number": "(503) 622-3191",
+      "geometry": Object {
+        "location": Object {
+          "lat": 45.297442,
+          "lng": -121.884319,
+        },
+        "viewport": Object {
+          "northeast": Object {
+            "lat": 45.2974921,
+            "lng": -121.8843115,
+          },
+          "southwest": Object {
+            "lat": 45.29736690000001,
+            "lng": -121.8843303,
+          },
+        },
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "ChIJfbCxxgohvlQRz8evgr6fWxA",
+      "international_phone_number": "+1 503-622-3191",
+      "name": "Cool Creek Trailhead",
+      "opening_hours": Object {
+        "open_now": true,
+        "periods": Array [
+          Object {
+            "open": Object {
+              "day": 0,
+              "time": "0000",
+            },
+          },
+        ],
+        "weekday_text": Array [
+          "Monday: Open 24 hours",
+          "Tuesday: Open 24 hours",
+          "Wednesday: Open 24 hours",
+          "Thursday: Open 24 hours",
+          "Friday: Open 24 hours",
+          "Saturday: Open 24 hours",
+          "Sunday: Open 24 hours",
+        ],
+      },
+      "photoLargeUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CoQBdwAAAJ-pSLDm4dwYO5hUN_8koP_2rwjpGU3k1nWDX3PvJO-h_tvNUQFhMEjakEHwRbLYnBAHJHvsjoRO0e_ZOlKfBmMaIbC7OPEK5HeLcja9J-eE_HcN6pz9QbaqllW48DBlBFKIOFhdIm3E70zfFwxEP-35gjnzGMDvS8rXoKTyZ-hdEhANBMC3JcJKCFbj6yisQyosGhTqKU-5Vk2xuyJR0k7SI76h-Y6alw&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photoThumbUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=CoQBdwAAAJ-pSLDm4dwYO5hUN_8koP_2rwjpGU3k1nWDX3PvJO-h_tvNUQFhMEjakEHwRbLYnBAHJHvsjoRO0e_ZOlKfBmMaIbC7OPEK5HeLcja9J-eE_HcN6pz9QbaqllW48DBlBFKIOFhdIm3E70zfFwxEP-35gjnzGMDvS8rXoKTyZ-hdEhANBMC3JcJKCFbj6yisQyosGhTqKU-5Vk2xuyJR0k7SI76h-Y6alw&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photoThumbnailUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=CoQBdwAAAJ-pSLDm4dwYO5hUN_8koP_2rwjpGU3k1nWDX3PvJO-h_tvNUQFhMEjakEHwRbLYnBAHJHvsjoRO0e_ZOlKfBmMaIbC7OPEK5HeLcja9J-eE_HcN6pz9QbaqllW48DBlBFKIOFhdIm3E70zfFwxEP-35gjnzGMDvS8rXoKTyZ-hdEhANBMC3JcJKCFbj6yisQyosGhTqKU-5Vk2xuyJR0k7SI76h-Y6alw&key=AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As",
+      "photos": Array [
+        Object {
+          "height": 3264,
+          "html_attributions": Array [
+            "<a href=\"https://maps.google.com/maps/contrib/106616734836717405682/photos\">Lindsay Higa</a>",
+          ],
+          "photo_reference": "CoQBdwAAAJ-pSLDm4dwYO5hUN_8koP_2rwjpGU3k1nWDX3PvJO-h_tvNUQFhMEjakEHwRbLYnBAHJHvsjoRO0e_ZOlKfBmMaIbC7OPEK5HeLcja9J-eE_HcN6pz9QbaqllW48DBlBFKIOFhdIm3E70zfFwxEP-35gjnzGMDvS8rXoKTyZ-hdEhANBMC3JcJKCFbj6yisQyosGhTqKU-5Vk2xuyJR0k7SI76h-Y6alw",
+          "width": 1836,
+        },
+      ],
+      "place_id": "ChIJfbCxxgohvlQRz8evgr6fWxA",
+      "reference": "CmRRAAAAtTSjDg-AJBPG8xf36cTPjr98vafbWv_5S-nAMdBcrAniio3ucPdm3vzbaU_JYQ1zc7KfNn8l1ocv-uYPMeXw5ERdJZKObFhPPmw_IwiXnUK9-x-bzlXqE7IKGIGkaEODEhBfuU1B_QT2p4_cj-rd6e47GhRjsj0rXGR1KRZAnDdss0_uGzKBCg",
+      "reviews": Array [
+        Object {
+          "aspects": Array [
+            Object {
+              "rating": 3,
+              "type": "overall",
+            },
+          ],
+          "author_name": "Lindsay Higa",
+          "author_url": "https://www.google.com/maps/contrib/106616734836717405682/reviews",
+          "language": "en",
+          "profile_photo_url": "//lh3.googleusercontent.com/-pNmuwb2Vs2A/AAAAAAAAAAI/AAAAAAAAaNc/DO6ysXAbOL0/s128/photo.jpg",
+          "rating": 5,
+          "relative_time_description": "2 months ago",
+          "text": "Great, well maintained trail. Leads to a fire lookout with a great view of Mt Hood. ",
+          "time": 1478544084,
+        },
+      ],
+      "scope": "GOOGLE",
+      "types": Array [
+        "park",
+        "point_of_interest",
+        "establishment",
+      ],
+      "url": "https://maps.google.com/?cid=1178711368072677327",
+      "utc_offset": -480,
+      "vicinity": "Still Creek Road, Rhododendron",
+      "website": "http://www.fs.usda.gov/recarea/mthood/recarea/?recid=53064",
+    },
+  ],
+  "type": "LOAD_FAVORITES",
+}
+`;
+
+exports[`user actions should remove favorite 1`] = `
+Object {
+  "id": 123,
+  "type": "ADD_FAVORITE",
+}
+`;
+
+exports[`user actions should remove favorite 2`] = `
+Object {
+  "id": 123,
+  "type": "REMOVE_FAVORITE",
+}
+`;

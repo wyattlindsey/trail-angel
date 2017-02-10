@@ -1,0 +1,29 @@
+exports[`user actions should dispatch login user action 1`] = `
+Object {
+  "profile": Object {
+    "avatarUrl": "https://lh6.googleusercontent.com/-PHUnYsSh0kM/AAAAAAAAAAI/AAAAAAAAAQQ/Y5SZ33EhyYo/photo.jpg",
+    "email": "wyatt.b.lindsey@gmail.com",
+    "nickname": "wyatt.b.lindsey",
+    "userId": "113879522060780032239",
+  },
+  "type": "RECEIVE_USER_DATA",
+}
+`;
+
+exports[`user actions should dispatch logout user action 1`] = `
+Object {
+  "type": "LOGOUT_USER",
+}
+`;
+
+exports[`user actions should receive user data 1`] = `
+Object {
+  "profile": Object {
+    "avatarUrl": "https://lh6.googleusercontent.com/-PHUnYsSh0kM/AAAAAAAAAAI/AAAAAAAAAQQ/Y5SZ33EhyYo/photo.jpg",
+    "email": "wyatt.b.lindsey@gmail.com",
+    "nickname": "wyatt.b.lindsey",
+    "userId": "113879522060780032239",
+  },
+  "type": "RECEIVE_USER_DATA",
+}
+`;
