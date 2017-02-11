@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 const middlewares = [thunk];
 
 import searchActions from '../search-actions';
+import googlePlaces from '../../api/google-places-api';
 import geolocationData from '../../../__tests__/fixtures/geolocation-data';
 import searchResultsDetailed from '../../../__tests__/fixtures/search-results-detailed';
 
@@ -41,9 +42,6 @@ jest.mock('../../utils/request', () => {
   };
 });
 
-
-// let googlePlaces = jest.genMockFromModule('../../api/google-places-api').default;
-
 jest.mock('../../api/google-places-api', () => {
   const searchResultsSimple =
     require('../../../__tests__/fixtures/search-results-simple').default;
@@ -67,8 +65,6 @@ jest.mock('../../api/google-places-api', () => {
 
 });
 
-import googlePlaces from '../../api/google-places-api';
-
 describe('search actions', () => {
   afterEach(() => {
     store.clearActions();
@@ -90,8 +86,6 @@ describe('search actions', () => {
           latitude: geolocationData.coords.latitude,
           longitude: geolocationData.coords.longitude
         });
-
-        expect(results).toMatchSnapshot();
       });
   });
 

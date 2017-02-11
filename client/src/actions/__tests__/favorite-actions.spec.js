@@ -8,6 +8,8 @@ const mockAsyncStorage = require('mock-async-storage');
 const middlewares = [thunk];
 
 import favoriteActions from '../favorite-actions';
+import trailAngelApi from '../../api/trailangel-api';
+import searchActions from '../search-actions';
 
 const mockStore = configureStore(middlewares);
 const store = mockStore({
@@ -38,8 +40,6 @@ jest.mock('../../api/trailangel-api', () => {
   };
 });
 
-import trailAngelApi from '../../api/trailangel-api';
-
 jest.mock('../search-actions', () => {
   const homeData = require('../../../__tests__/fixtures/home-data').default;
   return {
@@ -51,8 +51,6 @@ jest.mock('../search-actions', () => {
     })
   };
 });
-
-import searchActions from '../search-actions';
 
 describe('user actions', () => {
   beforeEach(() => {
