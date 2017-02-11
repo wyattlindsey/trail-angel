@@ -1,0 +1,3 @@
+const elevationData = {"results":[{"elevation":634.72119140625,"location":{"lat":45.38189223739646,"lng":-121.8592974543571},"resolution":4.771975994110107},{"elevation":787.18310546875,"location":{"lat":45.38294668139875,"lng":-121.8479785323143},"resolution":4.771975994110107},{"elevation":698.0155029296875,"location":{"lat":45.38971945633649,"lng":-121.8438479304314},"resolution":4.771975994110107},{"elevation":698.5328979492188,"location":{"lat":45.38930629678752,"lng":-121.8438479304314},"resolution":4.771975994110107},{"elevation":733.9969482421875,"location":{"lat":45.38674876313775,"lng":-121.8346962332726},"resolution":4.771975994110107}],"status":"OK"};
+
+export default elevationData;

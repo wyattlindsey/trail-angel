@@ -1,0 +1,10 @@
+exports[`google api module returns distance data 1`] = `
+Object {
+  "text": "7.1 mi",
+  "value": 11414,
+}
+`;
+
+exports[`google api module returns the city 1`] = `"Rhododendron"`;
+
+exports[`google api module returns the elevation 1`] = `188.443359375`;
