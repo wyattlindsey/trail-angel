@@ -1,7 +1,7 @@
 import listingsReducer from '../listings-reducer';
 import actionTypes from '../../actions/action-types';
-import searchResultsData
-  from '../../../__tests__/fixtures/search-results-detailed';
+import placeResultsData
+  from '../../../__tests__/fixtures/place-results-detailed';
 import homeData from '../../../__tests__/fixtures/home-data';
 
 const initialState = {
@@ -26,7 +26,7 @@ describe('listingsReducer', () => {
     expect(listingsReducer(initialState,
       {
         type: actionTypes.RECEIVE_SEARCH_RESULTS,
-        searchResults: searchResultsData
+        searchResults: placeResultsData
       }
     )).toMatchSnapshot();
   });

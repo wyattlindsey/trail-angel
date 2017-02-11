@@ -8,22 +8,22 @@ const middlewares = [thunk];
 import searchActions from '../search-actions';
 import googlePlaces from '../../api/google-places-api';
 import geolocationData from '../../../__tests__/fixtures/geolocation-data';
-import searchResultsDetailed from '../../../__tests__/fixtures/search-results-detailed';
+import placeResultsDetailed from '../../../__tests__/fixtures/place-results-detailed';
 
 const mockStore = configureStore(middlewares);
 const store = mockStore({
   listingsReducer: {
     cache: {
       // fresh listing
-      [searchResultsDetailed[0].id]: {
+      [placeResultsDetailed[0].id]: {
         cacheTimestamp: Date.now(),
-        ...searchResultsDetailed[0],
+        ...placeResultsDetailed[0],
       },
 
       // stale listing
-      [searchResultsDetailed[1].id]: {
+      [placeResultsDetailed[1].id]: {
         cacheTimestamp: Date.now() - 1209700000,
-        ...searchResultsDetailed[1]
+        ...placeResultsDetailed[1]
       }
     }
   }
@@ -43,18 +43,18 @@ jest.mock('../../utils/request', () => {
 });
 
 jest.mock('../../api/google-places-api', () => {
-  const searchResultsSimple =
-    require('../../../__tests__/fixtures/search-results-simple').default;
-  const searchResultsDetailed =
-    require('../../../__tests__/fixtures/search-results-detailed').default;
+  const placeResultsSimple =
+    require('../../../__tests__/fixtures/place-results-simple').default;
+  const placeResultsDetailed =
+    require('../../../__tests__/fixtures/place-results-detailed').default;
 
   return {
     search: jest.fn(() => {
-      return Promise.resolve(searchResultsSimple);
+      return Promise.resolve(placeResultsSimple);
     }),
 
     fetchDetails: jest.fn(() => {
-      return Promise.resolve(searchResultsDetailed);
+      return Promise.resolve(placeResultsDetailed);
     }),
 
     getUrlForPhoto: jest.fn(() => {
@@ -108,7 +108,7 @@ describe('search actions', () => {
         // verify that action to remove stale listing is dispatched
         expect(actions[1]).toEqual(
           {
-            id: searchResultsDetailed[1].id,
+            id: placeResultsDetailed[1].id,
             type: 'REMOVE_FROM_STORAGE'
           });
       });

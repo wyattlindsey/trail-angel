@@ -2,6 +2,7 @@
 
 import { secrets } from '../../config';
 import request from '../utils/request';
+import googlePlacesApi from './google-places-api';
 
 const googleApi = {
   getDistance2Points: (origin, destination) => {
@@ -70,7 +71,9 @@ const googleApi = {
       .catch((err) => {
         console.error('Error fetching city data: ', err);
       });
-  }
+  },
+
+  ...googlePlacesApi
 };
 
 export default googleApi;
