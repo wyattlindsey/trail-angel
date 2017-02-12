@@ -5,8 +5,6 @@ import request from '../../utils/request';
 import { secrets } from '../../../config';
 import geolocationData from '../../../__tests__/fixtures/geolocation-data';
 
-jest.unmock('../darksky-api');
-
 jest.mock('../../utils/request', () => {
   const distanceData = require('../../../__tests__/fixtures/distance-data').default;
   const reverseGeoLookupData

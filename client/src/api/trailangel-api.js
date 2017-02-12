@@ -32,7 +32,7 @@ const trailAngelApi = {
     return request.remove(`${baseUrl}/api/trailfaves/${trailId}`, { userId });
   },
 
-    /**
+  /**
    *      Geolocations - coordinates for saved mapped trails
    *
    *
@@ -60,7 +60,7 @@ const trailAngelApi = {
     return request.remove(`${baseUrl}/api/geolocations/${trailId}`, options);
   },
 
-      /**
+  /**
    *      Geolocations - distance
    *
    *
