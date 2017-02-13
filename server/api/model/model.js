@@ -1,4 +1,4 @@
-var db = require('../../mysql.server').db;
+var db = require('../../config/mysql.server.js').db;
 var Sequelize = require('sequelize');
 
 

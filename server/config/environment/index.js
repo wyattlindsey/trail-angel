@@ -1,13 +1,15 @@
 'use strict';
 
 /*
-  These are the default settings that all environments can extend/override
- */
+  default settings available for all environments to extend and override
+*/
 
 const all = {
   ENV: process.env.NODE_ENV || 'development',
 
-  PORT: process.env.PORT || 4000
+  PORT: process.env.PORT || 4000,
+
+  REDIS_PORT: 6379
 };
 
 const envPath = `./${all.ENV}`;

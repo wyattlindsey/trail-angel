@@ -5,8 +5,8 @@ const app = express();
 
 const config = require('./config/environment');
 
-require('./mysql.server');
-require('./redis.server');
+require('./config/mysql.server.js');
+require('./config/redis.server.js');
 require('./api/model/model.js');
 
 app.use(morgan('dev'));

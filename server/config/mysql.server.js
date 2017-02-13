@@ -1,9 +1,9 @@
 var Sequelize = require('sequelize');
-const config = require('./config/environment');
+const config = require('./environment/index');
 
-var db = new Sequelize(config.DB_NAME, config.DB_USERNAME, config.DB_PASSWORD, {
-      host: config.DB_HOSTNAME,
-      port: config.DB_PORT,
+var db = new Sequelize(config.MYSQL_DB_NAME, config.MYSQL_DB_USERNAME, config.MYSQL_DB_PASSWORD, {
+      host: config.MYSQL_DB_HOSTNAME,
+      port: config.MYSQL_DB_PORT,
       dialect: 'mysql'
     });
 
