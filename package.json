@@ -4,8 +4,8 @@
   "description": "> Break new trails and share with your friends.  The holy grail of trail apps.",
   "main": "server/server.js",
   "scripts": {
-    "start": "cd client && react-native run-ios && cd .. & node server/server.js",
-    "test": "mocha server/**/*.spec.js & cd client && jest"
+    "start": "cd client && react-native run-ios && cd .. & cd server && npm start",
+    "test": "cd server && npm test & cd client && jest"
   },
   "repository": {
     "type": "git",
@@ -13,24 +13,8 @@
   },
   "author": "",
   "license": "ISC",
+  "homepage": "https://github.com/hrr20-nebula/trail-angel#readme",
   "bugs": {
     "url": "https://github.com/hrr20-nebula/trail-angel/issues"
-  },
-  "homepage": "https://github.com/hrr20-nebula/trail-angel#readme",
-  "dependencies": {
-    "bluebird": "^3.4.7",
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "morgan": "^1.7.0",
-    "mysql": "^2.12.0",
-    "redis": "^2.6.3",
-    "request": "^2.79.0",
-    "sequelize": "^3.28.0"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
-    "sinon": "^1.17.6",
-    "supertest": "^2.0.1"
   }
 }
