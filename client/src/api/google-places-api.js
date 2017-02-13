@@ -1,9 +1,9 @@
 'use strict';
 
-import * as config from '../../config';
+import config from '../../config';
 import request from '../utils/request';
 
-const apiKey = config.secrets.google.apiKey;
+const apiKey = config.GOOGLE_API;
 
 const googlePlacesApi = {
 
@@ -57,7 +57,7 @@ const googlePlacesApi = {
   },
 
   fetchDetails: (id) => {
-    return request.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${config.secrets.google.apiKey}`)
+    return request.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${config.GOOGLE_API}`)
       .then((data) => {
         if (data === undefined) {
           Promise.reject('Error retrieving Google place data by ID');

@@ -1,0 +1,16 @@
+'use strict';
+
+/*
+  These are the default settings that all environments can extend/override
+ */
+
+const all = {
+  ENV: process.env.NODE_ENV || 'development',
+
+  PORT: process.env.PORT || 4000
+};
+
+const envPath = `./${all.ENV}`;
+const env = require(envPath);
+
+module.exports = Object.assign(all, env || {});

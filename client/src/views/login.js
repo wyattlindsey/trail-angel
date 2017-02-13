@@ -6,11 +6,11 @@ import Index from './index.js';
 import colors from '../components/style/colors';
 
 import Auth0Lock from 'react-native-lock';
-import { secrets, paths } from '../../config';
+import config from '../../config';
 
-const lock = new Auth0Lock(secrets.auth0);
-const tokenKey = secrets.asyncstorage.tokenKey;
-const profileKey = secrets.asyncstorage.profileKey;
+const lock = new Auth0Lock({ clientId: config.AUTH0_CLIENT_ID, domain: config.AUTH0_DOMAIN });
+const tokenKey = config.ASYNC_STORAGE_TOKEN_KEY;
+const profileKey = config.ASYNC_STORAGE_PROFILE_KEY;
 
 class Login extends Component {
   constructor(props) {

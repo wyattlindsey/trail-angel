@@ -1,10 +1,10 @@
 'use strict';
 
-import { secrets } from '../../config';
+import config from '../../config';
 import request from '../utils/request';
 
 const getUrl = (latitude, longitude) => {
-  return `https://api.darksky.net/forecast/${secrets.darksky.apiKey}/${latitude},${longitude}`;
+  return `https://api.darksky.net/forecast/${config.DARKSKY_API}/${latitude},${longitude}`;
 };
 
 const getWeatherForGeolocation = (latitude, longitude) => {

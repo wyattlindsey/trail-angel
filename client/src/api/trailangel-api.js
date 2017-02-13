@@ -1,13 +1,11 @@
 'use strict';
 
-import { paths } from '../../config';
+import config from '../../config';
 import request from '../utils/request';
 
-const baseUrl = paths.trailAngel.baseUrl;
+const baseUrl = config.TRAIL_ANGEL_API_URL
 
 const trailAngelApi = {
-  baseUrl,
-
   /**
    *      Favorites
    *

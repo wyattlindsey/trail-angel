@@ -1,7 +1,10 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('trailangel', 'root', '', {
-      dialect: "mysql",
-      port:    3306,
+const config = require('./config/environment');
+
+var db = new Sequelize(config.DB_NAME, config.DB_USERNAME, config.DB_PASSWORD, {
+      host: config.DB_HOSTNAME,
+      port: config.DB_PORT,
+      dialect: 'mysql'
     });
 
 db

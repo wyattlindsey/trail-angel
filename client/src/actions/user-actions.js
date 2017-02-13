@@ -2,7 +2,7 @@
 
 import actionTypes from './action-types';
 import { AsyncStorage } from 'react-native';
-import { secrets } from '../../config';
+import config from '../../config';
 
 const userActions = {
   loginUser: (profile) => {
@@ -13,9 +13,9 @@ const userActions = {
 
   logoutUser: () => {
     return (dispatch) => {
-      return AsyncStorage.removeItem(secrets.asyncstorage.tokenKey)
+      return AsyncStorage.removeItem(config.ASYNC_STORAGE_TOKEN_KEY)
         .then(() => {
-          return AsyncStorage.removeItem(secrets.asyncstorage.profileKey);
+          return AsyncStorage.removeItem(config.ASYNC_STORAGE_PROFILE_KEY);
         })
         .then(() => {
           return dispatch({type: actionTypes.LOGOUT_USER});
