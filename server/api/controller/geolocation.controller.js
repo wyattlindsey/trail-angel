@@ -1,4 +1,4 @@
-var geoMapper = require('../../redis.server').geoMapper;
+var geoMapper = require('../../config/redis.server.js').geoMapper;
 
 
 module.exports = {
