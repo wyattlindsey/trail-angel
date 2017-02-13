@@ -7,5 +7,5 @@ module.exports = {
   MYSQL_DB_HOSTNAME:  process.env.RDS_HOSTNAME,
   MYSQL_DB_PORT:      process.env.RDS_PORT,
 
-  REDIS_HOST:         'url'
+  REDIS_HOST:         'redis-staging.78dvd2.ng.0001.usw2.cache.amazonaws.com:6379'
 };
