@@ -5,7 +5,7 @@
 */
 
 const all = {
-  ENV: process.env.NODE_ENV || 'development',
+  ENV: process.env.NODE_ENV || 'staging',
 
   PORT: process.env.PORT || 4000,
 

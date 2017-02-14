@@ -1,11 +1,7 @@
 'use strict';
 
 module.exports = {
-  MYSQL_DB_NAME:      process.env.RDS_DB_NAME,
-  MYSQL_DB_USERNAME:  process.env.RDS_USERNAME,
-  MYSQL_DB_PASSWORD:  process.env.RDS_PASSWORD,
-  MYSQL_DB_HOSTNAME:  process.env.RDS_HOSTNAME,
-  MYSQL_DB_PORT:      process.env.RDS_PORT,
+  MYSQL_DATABASE_URL: 'mysql://eayjbr8g5akqk19u:va09dmifobpgce3d@l7cup2om0gngra77.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/cqlv5eav3fvny29o',
 
-  REDIS_HOST:         'redis-staging.78dvd2.ng.0001.usw2.cache.amazonaws.com:6379'
+  REDIS_HOST:         'localhost'
 };

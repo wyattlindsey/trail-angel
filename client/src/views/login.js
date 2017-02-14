@@ -100,7 +100,7 @@ class Login extends Component {
   addOrFindUser(profile) {
 
     const userId = profile.identities[0].userId;
-    const userEndpoint = paths.trailAngel.baseUrl + '/api/users';
+    const userEndpoint = config.TRAIL_ANGEL_API_URL + '/api/users';
     return fetch(userEndpoint, {
       method: 'POST',
       headers: {
