@@ -3,7 +3,8 @@
 import config from '../../config';
 import request from '../utils/request';
 
-const baseUrl = config.TRAIL_ANGEL_API_URL
+let baseUrl = config.TRAIL_ANGEL_API_URL.trim();
+baseUrl = baseUrl.replace(/\/$/, '');
 
 const trailAngelApi = {
   /**
