@@ -7,9 +7,7 @@
 const all = {
   ENV: process.env.NODE_ENV || 'staging',
 
-  PORT: process.env.PORT || 4000,
-
-  REDIS_PORT: 6379
+  PORT: process.env.PORT || 4000
 };
 
 const envPath = `./${all.ENV}`;
