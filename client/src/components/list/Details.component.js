@@ -147,11 +147,11 @@ const styles = StyleSheet.create({
     marginBottom: -100
   },
   leftCol: {
-    width: 150
+    width: 100
   },
   rightCol: {
     top: 20,
-    width: 180,
+    width: 158,
     flexDirection: 'row'
   },
   title: {

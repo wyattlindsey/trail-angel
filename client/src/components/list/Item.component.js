@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import {  View,
           Text,
           StyleSheet,
+          Dimensions,
           Image,
           TouchableHighlight,
           ActivityIndicator } from 'react-native';
@@ -144,6 +145,8 @@ export default class Item extends React.Component {
                                                         color={colors.warning}
                                                   />;
 
+    const { height, width } = Dimensions.get('window');
+
     return (
       <View>
         <TouchableHighlight onPress={this._selectItem.bind(this)}
@@ -215,26 +218,24 @@ const styles = StyleSheet.create({
   },
   leftColumn: {
     padding: 20,
-    width: 90,
     height: 90,
     alignItems: 'center',
   },
   middleColumn: {
     padding: 20,
-    width: 190,
+    width: 150,
     height: 150,
   },
   rightColumn: {
     padding: 20,
-    width: 100,
+    width: 80,
     height: 150,
     alignItems: 'center',
   },
   title: {
     fontWeight: '500',
-    fontSize: 16,
+    fontSize: 15,
     color: colors.darkgreen,
-    width: 200,
   },
   photo: {
     borderRadius: 30,
