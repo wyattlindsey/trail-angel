@@ -187,10 +187,13 @@ export default class Item extends React.Component {
                                        color={colors.weatherIconColor}
                                        size={30}
                                        style={{
-                                         opacity: 0.8
+                                         opacity: 0.8,
+                                         paddingLeft: 8
                                        }}
                           />
-                          <Text style={styles.weather}>
+                          <Text style={{
+                                        paddingLeft: 8
+                                      }}>
                             {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
                           </Text>
                         </View>
