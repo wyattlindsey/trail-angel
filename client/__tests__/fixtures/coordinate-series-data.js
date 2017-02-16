@@ -1,0 +1,3 @@
+const coordinateSeriesData = [{"coordinate":{"latitude":45.381892,"longitude":-121.859297},"key":"0"},{"coordinate":{"longitude":-121.8479805439711,"latitude":45.38294722026033},"key":"1"},{"coordinate":{"longitude":-121.8438475951552,"latitude":45.38972010399486},"key":"2"},{"coordinate":{"longitude":-121.8438475951552,"latitude":45.38930546096428},"key":"3"},{"coordinate":{"longitude":-121.8346962332725,"latitude":45.38674854612881},"key":"4"}];
+
+export default coordinateSeriesData;

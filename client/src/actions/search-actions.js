@@ -20,7 +20,7 @@ const searchActions = {
         longitude: location.longitude
       } : { query };
 
-      return dataApi.googlePlaces.search(options)
+      return dataApi.google.search(options)
         .then((results) => {
           if (results === undefined ||
             !Array.isArray(results) ||
@@ -36,9 +36,9 @@ const searchActions = {
                     const randomIndex = Math.floor(Math.random() * result.photos.length);
                     return {
                       ...result,
-                      photoThumbUrl: dataApi.googlePlaces.getUrlForPhoto
+                      photoThumbUrl: dataApi.google.getUrlForPhoto
                       (result.photos[randomIndex].photo_reference, 100),
-                      photoLargeUrl: dataApi.googlePlaces.getUrlForPhoto
+                      photoLargeUrl: dataApi.google.getUrlForPhoto
                       (result.photos[randomIndex].photo_reference, 400)
                     };
                   }
@@ -86,7 +86,7 @@ const searchActions = {
         // fallthrough for:
         // uncached and cached-but-expired listings, since
         // they should be re-fetched
-        return dataApi.googlePlaces.fetchDetails(id)
+        return dataApi.google.fetchDetails(id)
           .then((details) => {
             const now = Date.now();
             const data = {

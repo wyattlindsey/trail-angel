@@ -1,4 +1,4 @@
-exports[`user actions should dispatch login user action 1`] = `
+exports[`user actions should log a user in 1`] = `
 Object {
   "profile": Object {
     "avatarUrl": "https://lh6.googleusercontent.com/-PHUnYsSh0kM/AAAAAAAAAAI/AAAAAAAAAQQ/Y5SZ33EhyYo/photo.jpg",
@@ -10,7 +10,7 @@ Object {
 }
 `;
 
-exports[`user actions should dispatch logout user action 1`] = `
+exports[`user actions should logout a user 1`] = `
 Object {
   "type": "LOGOUT_USER",
 }

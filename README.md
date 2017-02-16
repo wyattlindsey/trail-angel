@@ -49,10 +49,15 @@ To set up the Redis datastore, download the stable version and follow instructio
 
 ### Building the project for the iOS simulator
 
-From within the client directory:
+From within the root directory:
 
 ```sh
 npm install
+```
+
+From within the client directory:
+
+```sh
 sudo gem install cocoapods
 react-native link
 react-native unlink react-native-maps
@@ -61,10 +66,9 @@ pod install
 cd ..
 ```
 
-From within the root directory:
+To run both the server and iOS simulator:
 
 ```sh
-npm install
 npm start
 ```
 

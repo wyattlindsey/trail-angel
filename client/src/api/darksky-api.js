@@ -9,7 +9,9 @@ const getUrl = (latitude, longitude) => {
 
 const getWeatherForGeolocation = (latitude, longitude) => {
   if (latitude === undefined || longitude === undefined) {
-    return Promise.resolve(false);
+    const errString = 'Invalid latitude/longitude provided.';
+    console.error(errString);
+    return Promise.reject(errString);
   }
   return request.get(getUrl(latitude, longitude))
     .then((response) => {

@@ -8,6 +8,8 @@ const mockAsyncStorage = require('mock-async-storage');
 const middlewares = [thunk];
 
 import favoriteActions from '../favorite-actions';
+import trailAngelApi from '../../api/trailangel-api';
+import searchActions from '../search-actions';
 
 const mockStore = configureStore(middlewares);
 const store = mockStore({
@@ -22,32 +24,31 @@ jest.unmock('redux-thunk');
 
 jest.mock('../../api/trailangel-api', () => {
   return {
-    getFavorites: () => {
-      return new Promise((resolve) => {
-        return resolve();
-      });
-    },
+    getFavorites: jest.fn(() => {
+      const homeData = require('../../../__tests__/fixtures/home-data').default;
+      const IDs = homeData.map((item) => item.id);
+      return Promise.resolve(IDs);
+    }),
 
-    addFavorite: () => {
+    addFavorite: jest.fn(() => {
       return Promise.resolve();
-    },
+    }),
 
-    removeFavorite: () => {
+    removeFavorite: jest.fn(() => {
       return Promise.resolve();
-    }
+    })
   };
 });
 
 jest.mock('../search-actions', () => {
-  const actionTypes = require('../action-types').default;
   const homeData = require('../../../__tests__/fixtures/home-data').default;
   return {
-    getDetails: () => {
+    getDetails: jest.fn(() => {
       return {
-        type: actionTypes.LOAD_FAVORITES,
-        favorites: homeData.slice(0, 3)
+        type: 'LOAD_FAVORITES',
+        favorites: homeData
       };
-    }
+    })
   };
 });
 
@@ -64,20 +65,60 @@ describe('user actions', () => {
   it('loads favorites', () => {
     return store.dispatch(favoriteActions.loadFavorites())
       .then((result) => {
+        const actions = store.getActions();
+        const homeData = require('../../../__tests__/fixtures/home-data').default;
+        const IDs = homeData.map((item) => item.id);
+
+        expect(trailAngelApi.getFavorites).toBeCalled();
+        expect(searchActions.getDetails).toBeCalledWith(IDs);
+
+        expect(actions.length).toBe(2);
+        expect(actions[0]).toEqual(
+          {
+            type: 'LOAD_FAVORITES',
+            favorites: homeData
+          }
+        );
         expect(result).toMatchSnapshot();
       });
   });
 
   it('should remove favorite', () => {
-    return store.dispatch(favoriteActions.addFavorite(123))
+    return store.dispatch(favoriteActions.addFavorite(456))
       .then((result) => {
+        const actions = store.getActions();
+
+        expect(trailAngelApi.addFavorite)
+          .toBeCalledWith(store.getState().userReducer.userId, 456);
+
+        expect(actions.length).toBe(1);
+        expect(actions[0]).toEqual(
+          {
+            type: 'ADD_FAVORITE',
+            id: 456
+          }
+        );
+
         expect(result).toMatchSnapshot();
       });
   });
 
   it('should remove favorite', () => {
-    return store.dispatch(favoriteActions.removeFavorite(123))
+    return store.dispatch(favoriteActions.removeFavorite(456))
       .then((result) => {
+        const actions = store.getActions();
+
+        expect(trailAngelApi.removeFavorite)
+          .toBeCalledWith(store.getState().userReducer.userId, 456);
+
+        expect(actions.length).toBe(1);
+        expect(actions[0]).toEqual(
+          {
+            type: 'REMOVE_FAVORITE',
+            id: 456
+          }
+        );
+
         expect(result).toMatchSnapshot();
       });
   });

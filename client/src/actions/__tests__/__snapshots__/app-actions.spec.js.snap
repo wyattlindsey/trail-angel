@@ -1,6 +1,24 @@
-exports[`user actions loads favorites 1`] = `
+exports[`app actions gets geolocation data 1`] = `
 Object {
-  "favorites": Array [
+  "geolocation": Object {
+    "coords": Object {
+      "accuracy": 5,
+      "altitude": 0,
+      "altitudeAccuracy": -1,
+      "heading": -1,
+      "latitude": 45.3296,
+      "longitude": -121.9112,
+      "speed": -1,
+    },
+    "timestamp": 1486169476048.98,
+  },
+  "type": "RECEIVE_GEOLOCATION",
+}
+`;
+
+exports[`app actions initializes the app 1`] = `
+Object {
+  "searchResults": Array [
     Object {
       "address_components": Array [
         Object {
@@ -3264,20 +3282,6 @@ Object {
       "website": "http://www.recreation.gov/camping/tollgate/r/campgroundDetails.do?contractCode=NRSO&parkId=71619",
     },
   ],
-  "type": "LOAD_FAVORITES",
-}
-`;
-
-exports[`user actions should remove favorite 1`] = `
-Object {
-  "id": 456,
-  "type": "ADD_FAVORITE",
-}
-`;
-
-exports[`user actions should remove favorite 2`] = `
-Object {
-  "id": 456,
-  "type": "REMOVE_FAVORITE",
+  "type": "RECEIVE_SEARCH_RESULTS",
 }
 `;

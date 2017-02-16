@@ -12,32 +12,62 @@ import profileData from '../../../__tests__/fixtures/profile-data';
 
 const mockStore = configureStore(middlewares);
 
+const store = mockStore({});
+
+jest.unmock('redux-mock-store');
+jest.unmock('redux-thunk');
+
+jest.unmock('../user-actions');
+
 describe('user actions', () => {
   beforeEach(() => {
     mockAsyncStorage.mock();
   });
 
   afterEach(() => {
-    mockStore.clearActions();
+    store.clearActions();
     mockAsyncStorage.release();
   });
 
-  it('should dispatch login user action', () => {
-    return mockStore.dispatch(userActions.loginUser(profileData))
+  it('should log a user in', () => {
+    return store.dispatch(userActions.loginUser(profileData))
       .then((result) => {
+        const actions = store.getActions();
+        expect(actions.length).toBe(1);
+        expect(actions[0]).toEqual(
+          {
+            type: 'RECEIVE_USER_DATA',
+            profile: profileData
+          }
+        );
+
         expect(result).toMatchSnapshot();
       });
   });
 
-  it('should dispatch logout user action', () => {
-    return mockStore.dispatch(userActions.logoutUser())
+  it('should logout a user', () => {
+    return store.dispatch(userActions.logoutUser())
       .then((result) => {
+        const actions = store.getActions();
+        expect(actions.length).toBe(1);
+        expect(actions[0]).toEqual({ type: 'LOGOUT_USER' });
         expect(result).toMatchSnapshot();
       });
   });
 
   it('should receive user data', () => {
-    expect(mockStore.dispatch(userActions.receiveUserData(profileData)))
+    const dispatchReceiveUserData
+      = store.dispatch(userActions.receiveUserData(profileData));
+    const actions = store.getActions();
+
+    expect(actions.length).toBe(1);
+    expect(actions[0]).toEqual(
+      {
+        type: 'RECEIVE_USER_DATA',
+        profile: profileData
+      });
+
+    expect(dispatchReceiveUserData)
       .toMatchSnapshot();
   });
 });
