@@ -4,6 +4,7 @@
   "description": "> Break new trails and share with your friends.  The holy grail of trail apps.",
   "main": "server/server.js",
   "scripts": {
+    "postinstall": "cd server && npm install && cd ../client && npm install",
     "start": "cd client && react-native run-ios && cd .. & node server/server.js",
     "test": "mocha server/**/*.spec.js & cd client && npm test"
   },
