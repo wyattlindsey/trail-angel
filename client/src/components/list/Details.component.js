@@ -116,11 +116,12 @@ export default class Details extends React.Component {
           <View style={styles.rightCol}>
             <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
                                 underlayColor='white'
-                                style={{ marginRight: 30, marginLeft: 100 }}>
+                                style={{ paddingRight: 15, paddingLeft: 100 }}>
               {FavoriteIcon}
             </TouchableHighlight>
             <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
-                                underlayColor='white'>
+                                underlayColor='white'
+                                style={{ paddingRight: 30, paddingLeft: 15 }}>
               {MapIcon}
             </TouchableHighlight>
           </View>
@@ -147,11 +148,11 @@ const styles = StyleSheet.create({
     marginBottom: -100
   },
   leftCol: {
-    width: 150
+    width: 100
   },
   rightCol: {
     top: 20,
-    width: 180,
+    width: 158,
     flexDirection: 'row'
   },
   title: {

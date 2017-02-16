@@ -1,6 +1,6 @@
 'use strict';
 
-import { secrets } from '../../config';
+import config from '../../config';
 import request from '../utils/request';
 import googlePlacesApi from './google-places-api';
 
@@ -10,7 +10,7 @@ const googleApi = {
       return Promise.resolve(false);
     }
 
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.latitude},${origin.longitude}&destinations=${destination.latitude},${destination.longitude}&key=${secrets.google.apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.latitude},${origin.longitude}&destinations=${destination.latitude},${destination.longitude}&key=${config.GOOGLE_API}`;
 
     return request.get(url)
       .then((response) => {
@@ -30,7 +30,7 @@ const googleApi = {
       return Promise.resolve(false);
     }
 
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${secrets.google.apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${config.GOOGLE_API}`;
 
     return request.get(url)
       .then((response) => {
@@ -55,7 +55,8 @@ const googleApi = {
       return `${pin.coordinate.latitude},${pin.coordinate.longitude}`;
     }).join('|');
 
-    const url = `https://maps.googleapis.com/maps/api/elevation/json?locations=${locations}&key=${secrets.google.apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/elevation/json?locations=${locations}&key=${config.GOOGLE_API}`;
+
     return request.get(url)
       .then((response) => {
         let elevations = response.results;

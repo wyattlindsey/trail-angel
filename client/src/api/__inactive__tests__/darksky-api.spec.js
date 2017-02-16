@@ -2,7 +2,7 @@ fetch = jest.fn(() => new Promise(resolve => resolve()));
 jest.mock('../../utils/request');
 request = require.requireMock('../../utils/request');
 import weather from '../darksky-api';
-import { secrets } from '../../../config';
+import config from '../../../config';
 
 // jest.mock('../../utils/request');
 
@@ -17,6 +17,6 @@ describe('trail angel client-side api', () => {
     expect(request.get).toHaveBeenCalled();
 
     expect(request.get)
-      .toHaveBeenCalledWith(`https://api.darksky.net/forecast/${secrets.darksky.apiKey}/45.3296,-121.9112`);
+      .toHaveBeenCalledWith(`https://api.darksky.net/forecast/${config.DARKSKY_API}/45.3296,-121.9112`);
   });
 });

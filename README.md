@@ -8,10 +8,6 @@
 | ------------ | ------------ | ------------ |
 | ![screenshot1](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_scdijp.png) | ![screenshot2](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_side2_lpnlqw.png) | ![screenshot3](http://res.cloudinary.com/dayskokep/image/upload/v1485065345/iphone6plus_gold_portrait_1_mcgbij.png) |
 
-## Team
-
-  - __Development Team Members__: [Prithvi Anantharaj](https://github.com/orgs/hrr20-nebula/people/Prithvi-A), [Johanna Tchon](https://github.com/orgs/hrr20-nebula/people/JotheElephant), [Wyatt Lindsey](https://github.com/orgs/hrr20-nebula/people/wyattlindsey), [Andrew Cookro](https://github.com/orgs/hrr20-nebula/people/galaxode)
-
 ## Table of Contents
 
 1. [Usage](#Usage)
@@ -39,7 +35,7 @@ Go through React-Native Getting Started Instructions [here](https://facebook.git
 
 ## Development
 
-### Building the project for the iOS simulator
+### Setting up the back end locally
 
 Setting up MySQL database server:
 
@@ -47,11 +43,11 @@ Setting up MySQL database server:
 mysql.server start
 mysql -u root -p
 ```
-When prompted for a password, press enter.  In the MySQL command line, enter the command ```create database trailangel; ```.
+When prompted for a password, press enter.  In the MySQL command line, enter the command `create database trailangel;`.
 
-Setting up Redis database server:
+To set up the Redis datastore, download the stable version and follow instructions under installation [here](https://redis.io/download).
 
-Download Redis stable version and follow instructions under installation [here](https://redis.io/download)
+### Building the project for the iOS simulator
 
 From within the client directory:
 
@@ -77,13 +73,10 @@ To run backend and frontend tests
 npm test
 ```
 
-### Roadmap
-
-View the project roadmap [here](https://wireframepro.mockflow.com/view/Dd1fbd2768b3b14ee38b89e8f11f05f90)
-
-
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
-<style>table {border: 'hidden'} </style>
+## Team
+
+__Development Team Members__: [Prithvi Anantharaj](https://github.com/orgs/hrr20-nebula/people/Prithvi-A), [Johanna Tchon](https://github.com/orgs/hrr20-nebula/people/JotheElephant), [Wyatt Lindsey](https://github.com/orgs/hrr20-nebula/people/wyattlindsey), [Andrew Cookro](https://github.com/orgs/hrr20-nebula/people/galaxode)
