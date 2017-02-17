@@ -177,12 +177,13 @@ export default class Item extends React.Component {
                     paddingTop: 10,
                     marginLeft: 10,
                     marginRight: 10,
-                    alignItems: 'center'
+                    alignItems: 'flex-start'
                   }}
             >
               <Text style={{
                 fontWeight: '500',
                 fontSize: 15,
+                textAlign: 'left',
                 marginBottom: 5,
                 color: colors.darkgreen
               }}>
