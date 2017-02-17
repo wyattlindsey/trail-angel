@@ -119,6 +119,7 @@ export default class Item extends React.Component {
   }
 
   _selectItem() {
+    console.log(this.props.orientation);
     this.props.navigator.push({
       title: 'Detail',
       component: Details,
@@ -195,7 +196,9 @@ export default class Item extends React.Component {
                 {this.state.vicinity}
               </Text>
               {this.props.rating === undefined ? <View /> :
-                <Text style={{ color: colors.peagreen }}>Rating: {this.props.rating} </Text>
+                <Text style={{ color: colors.peagreen }}>
+                  Rating: {this.props.rating}
+                </Text>
               }
             </Col>
             <Col size={25}  style={{

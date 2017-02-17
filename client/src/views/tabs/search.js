@@ -121,6 +121,7 @@ class Search extends React.Component {
             <View>
 
               <List  navigator={this.props.navigator}
+                     orientation={this.props.orientation}
                      isFetching={this.props.state.listingsReducer.isFetching}
                      items={this.props.state.listingsReducer.searchResults}
                      favorites={this.props.state.listingsReducer.favorites}

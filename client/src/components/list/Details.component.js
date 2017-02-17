@@ -15,6 +15,7 @@ import Reviews from './Reviews.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Map from '../map/Map.component';
 import colors from '../style/colors';
+import dimensions from '../style/dimensions';
 
 
 export default class Details extends React.Component {
@@ -23,9 +24,9 @@ export default class Details extends React.Component {
 
     this.state = {
       address: '',
-      dimensions: {
-        width: 0,
-        height: 0
+      dimensions: {   // Details view keeps track of its own orientation and dimensions
+        width: 0,     // since these aren't updated after parent props are passed
+        height: 0     // in via Navigator's passProps method
       },
       imageRegionDimensions: {
         width: 0,
@@ -121,9 +122,9 @@ export default class Details extends React.Component {
   }
 
   render() {
-    let orientation = this.state.dimensions.width < this.state.dimensions.height ?
+    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
-
+    
     const FavoriteIcon = this.state.isFavorite ?
       <Icon name='star' size={30} color={colors.warning} /> :
       <Icon name='star-o' size={30} color={colors.warning} />;
@@ -142,7 +143,8 @@ export default class Details extends React.Component {
       ...this.props
     }
 
-    const aspectRatio = this.state.imageDimensions.width / this.state.imageDimensions.height;
+    const aspectRatio =
+      this.state.imageDimensions.width / this.state.imageDimensions.height;
 
     return (
       <Grid onLayout={this._onLayoutChange}>
@@ -175,7 +177,8 @@ export default class Details extends React.Component {
             :
           <Grid style={{
                   alignItems: 'center'
-                }}>
+                }}
+          >
             <Row size={40}
                  onLayout={this._getImageRegionDimensions}
             >

@@ -17,6 +17,7 @@ class Favorites extends React.Component {
   render() {
     return (
       <List items={this.props.state.listingsReducer.favorites}
+            orientation={this.props.orientation}
             navigator={this.props.navigator}
             isFetching={this.props.state.listingsReducer.isFetching}
             favorites={this.props.state.listingsReducer.favorites}
