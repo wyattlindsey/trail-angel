@@ -124,7 +124,7 @@ export default class Details extends React.Component {
   render() {
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
-    
+
     const FavoriteIcon = this.state.isFavorite ?
       <Icon name='star' size={30} color={colors.warning} /> :
       <Icon name='star-o' size={30} color={colors.warning} />;

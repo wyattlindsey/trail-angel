@@ -229,7 +229,9 @@ export default class Item extends React.Component {
                                      }}
                         />
                         <Text style={{ paddingLeft: 8 }}>
-                          {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
+                          {`${Math.round(Number(
+                            this.state.weather.currently.temperature))
+                          }°F`}
                         </Text>
                       </View>
                     </TouchableHighlight>
