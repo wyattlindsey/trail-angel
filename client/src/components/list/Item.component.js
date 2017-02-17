@@ -5,10 +5,10 @@ import * as _ from 'lodash';
 import {  View,
           Text,
           StyleSheet,
-          Dimensions,
           Image,
           TouchableHighlight,
           ActivityIndicator } from 'react-native';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WeatherIcon from '../weather/weather-icon.component';
 import { DailyWeatherForecast } from '../weather/weather-forecast.component';
@@ -145,69 +145,91 @@ export default class Item extends React.Component {
                                                         color={colors.warning}
                                                   />;
 
-    const { height, width } = Dimensions.get('window');
-
     return (
       <View>
         <TouchableHighlight onPress={this._selectItem.bind(this)}
                             underlayColor='white'>
-          <View>
-            <View style={styles.rowContainer}>
-              <View style={styles.leftColumn}>
-                <Image source={{uri: this.props.photoThumbnailUrl}} style={styles.photo} />
+          <Grid>
+            <Col size={25} style={{ alignItems: 'center',
+                                    padding: 10}}
+            >
+              <Row>
+                <Image source={{uri: this.props.photoThumbnailUrl}}
+                       style={styles.photo}
+                />
+              </Row>
+              <Row>
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
-                                    style={styles.favorite}
+                                    style={{}}
                                     underlayColor='white'>
                   <View>{FavoriteIcon}</View>
                 </TouchableHighlight>
-              </View>
-              <View style={styles.middleColumn}>
-                <Text style={styles.title}>{this.props.name}</Text>
-
-                <Text style={styles.location}>{this.state.vicinity}</Text>
-                {this.props.rating === undefined ? <View /> :
-                  <Text style={styles.rating}>Rating: {this.props.rating} </Text>
-                }
-              </View>
-              <View style={styles.rightColumn}>
-
-                <Text style={styles.distance}>
+              </Row>
+            </Col>
+            <Col size={75} style={{
+                            paddingTop: 10,
+                            marginLeft: 10,
+                            marginRight: 10
+                           }}
+            >
+              <Text style={styles.title}>
+                {this.props.name}
+              </Text>
+              <Text style={{
+                      color: colors.darktan,
+                      marginBottom: 5
+                    }}
+              >
+                {this.state.vicinity}
+              </Text>
+              {this.props.rating === undefined ? <View /> :
+                <Text style={{ color: colors.peagreen }}>Rating: {this.props.rating} </Text>
+              }
+            </Col>
+            <Col size={25}  style={{
+                              alignItems: 'center',
+                              padding: 10
+                            }}
+            >
+              <Row>
+                <Text>
                   {this.state.distance ? this.state.distance : ''}
                 </Text>
-                <View>
-                  {/* Display activity monitor until icon is
-                   loaded from api.  If no icon is ever received */}
-                  {/* after a timeout, display nothing */}
-                  {this.state.weather ?
-                    <View>
-                      <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
-                                          underlayColor='white'>
-                        <View>
-                          <WeatherIcon icon={this.state.weather.currently.icon}
-                                       color={colors.weatherIconColor}
-                                       size={30}
-                                       style={{
-                                         opacity: 0.8,
-                                         paddingLeft: 8
-                                       }}
-                          />
-                          <Text style={{
-                                        paddingLeft: 8
-                                      }}>
-                            {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
-                          </Text>
-                        </View>
-                      </TouchableHighlight>
-                    </View>
-                    :
-                    this.state.weatherTimeout ?
-                      <View /> :
-                      <ActivityIndicator  size='small' color={colors.seafoam} style={{ opacity: 0.8 }} />
-                  }
-                </View>
-              </View>
-            </View>
-          </View>
+              </Row>
+              <Row>
+                {/* Display activity monitor until icon is
+                 loaded from api.  If no icon is ever received */}
+                {/* after a timeout, display nothing */}
+                {this.state.weather ?
+                  <View>
+                    <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
+                                        underlayColor='white'>
+                      <View>
+                        <WeatherIcon icon={this.state.weather.currently.icon}
+                                     color={colors.weatherIconColor}
+                                     size={30}
+                                     style={{
+                                       opacity: 0.8,
+                                       paddingLeft: 8
+                                     }}
+                        />
+                        <Text style={{ paddingLeft: 8 }}>
+                          {`${Math.round(Number(this.state.weather.currently.temperature))}°F`}
+                        </Text>
+                      </View>
+                    </TouchableHighlight>
+                  </View>
+                  :
+                  this.state.weatherTimeout ?
+                    <View /> :
+                    <ActivityIndicator  size='small'
+                                        color={colors.seafoam}
+                                        style={{ opacity: 0.8 }}
+                    />
+                }
+              </Row>
+            </Col>
+          </Grid>
         </TouchableHighlight>
       </View>
     );
@@ -215,61 +237,44 @@ export default class Item extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  rowContainer: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  leftColumn: {
-    padding: 20,
-    height: 90,
-    alignItems: 'center',
-  },
-  middleColumn: {
-    padding: 20,
-    width: 150,
-    height: 150,
-  },
-  rightColumn: {
-    padding: 20,
-    width: 80,
-    height: 150,
-    alignItems: 'center',
-  },
   title: {
     fontWeight: '500',
     fontSize: 15,
+    marginBottom: 5,
     color: colors.darkgreen,
+    textAlign: 'center'
   },
   photo: {
     borderRadius: 30,
     width: 60,
     height: 60,
+    marginBottom: 10
   },
-  location: {
-    color: colors.darktan
-  },
-  rating: {
-    color: colors.peagreen,
-    paddingTop: 10
-  },
-  description: {
-    lineHeight: 20,
-    fontSize: 14,
-    color: colors.darkgray,
-    textAlign: 'left',
-    marginTop: 8,
-  },
-  favorite: {
-    marginTop: 20,
-    width: 20,
-    height: 20,
-
-  },
-  distance: {
-    paddingTop: 2,
-    paddingBottom: 15
-  },
-  weatherBlock: {
-    backgroundColor: colors.warning
-  }
+//   location: {
+//     color: colors.darktan
+//   },
+//   rating: {
+//     color: colors.peagreen,
+//     paddingTop: 10
+//   },
+//   description: {
+//     lineHeight: 20,
+//     fontSize: 14,
+//     color: colors.darkgray,
+//     textAlign: 'left',
+//     marginTop: 8,
+//   },
+//   favorite: {
+//     marginTop: 20,
+//     width: 20,
+//     height: 20,
+//
+//   },
+//   distance: {
+//     paddingTop: 2,
+//     paddingBottom: 15
+//   },
+//   weatherBlock: {
+//     backgroundColor: colors.warning
+//   }
 });
