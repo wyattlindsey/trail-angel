@@ -2,7 +2,7 @@
 
 import google from '../google-api';
 import request from '../../utils/request';
-import { secrets } from '../../../config';
+import config from '../../../config';
 import geolocationData from '../../../__tests__/fixtures/geolocation-data';
 
 jest.mock('../../utils/request', () => {
@@ -41,7 +41,7 @@ describe('google api module', () => {
     const url = `https://maps.googleapis.com/maps/api/distancematrix/` +
                 `json?units=imperial&origins=${origin.latitude},` +
                 `${origin.longitude}&destinations=${destination.latitude},` +
-                `${destination.longitude}&key=${secrets.google.apiKey}`;
+                `${destination.longitude}&key=${config.GOOGLE_API}`;
 
     return google.getDistance2Points(origin, destination)
       .then((results) => {
@@ -58,7 +58,7 @@ describe('google api module', () => {
 
     const url = `https://maps.googleapis.com/maps/api/geocode/json?` +
                 `latlng=${coords.latitude},${coords.longitude}` +
-                `&key=${secrets.google.apiKey}`
+                `&key=${config.GOOGLE_API}`
 
     return google.getCity(coords)
       .then((results) => {
