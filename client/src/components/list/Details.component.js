@@ -165,7 +165,11 @@ export default class Details extends React.Component {
             </Row>
             <View style={styles.separator}/>
             <Row>
-              <Reviews {...this.props} />
+              {this.props.reviews === undefined ?
+                <Text style={styles.reviewTitle}>This trail has no reviews</Text>
+                  :
+                <Reviews {...this.props} />
+              }
             </Row>
           </Grid>
             :
@@ -188,16 +192,17 @@ export default class Details extends React.Component {
             </Row>
             <Row size={60}>
               <Col size={60}>
-                <Reviews {...this.props} />
+                {this.props.reviews === undefined ?
+                  <Text style={styles.reviewTitle}>This trail has no reviews</Text>
+                  :
+                  <Reviews {...this.props} />
+                }
               </Col>
               <Col size={40}>
                 <DetailsDashboard {...detailsProps} />
               </Col>
             </Row>
             <View style={styles.separator}/>
-            <Row>
-              <Reviews {...this.props} />
-            </Row>
           </Grid>
         }
       </Grid>

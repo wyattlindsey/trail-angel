@@ -43,20 +43,13 @@ export default class Reviews extends React.Component {
 
   render() {
     return (
-      <View>
-        {this.props.reviews !== undefined ?
-          <ListView style={styles.reviews}
-                    automaticallyAdjustContentInsets={false}
-                    dataSource={this.state.dataSource}
-                    renderRow={(data) => <Review {...data}/>}
-                    renderSeparator={(sectionId, rowId) =>
-                      <View key={rowId} style={styles.separator} />}
-          />
-            :
-          <View />
-        }
-
-      </View>
+      <ListView style={styles.reviews}
+                automaticallyAdjustContentInsets={false}
+                dataSource={this.state.dataSource}
+                renderRow={(data) => <Review {...data}/>}
+                renderSeparator={(sectionId, rowId) =>
+                  <View key={rowId} style={styles.separator} />}
+      />
     );
   }
 }
