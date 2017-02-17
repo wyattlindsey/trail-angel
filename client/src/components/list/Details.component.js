@@ -24,8 +24,16 @@ export default class Details extends React.Component {
     this.state = {
       address: '',
       dimensions: {
-        width: null,
-        height: null
+        width: 0,
+        height: 0
+      },
+      imageRegionDimensions: {
+        width: 0,
+        height: 0
+      },
+      imageDimensions: {
+        width: 0,
+        height: 0
       }
     };
   }
@@ -41,6 +49,15 @@ export default class Details extends React.Component {
     this.setState({
       isFavorite
     });
+
+    Image.getSize(this.props.photoLargeUrl, (width, height) => {
+      this.setState({
+        imageDimensions: { width, height }
+      });
+    },
+      (err) => {
+        console.error('Error retrieving image size: ', err);
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -94,11 +111,18 @@ export default class Details extends React.Component {
     });
   }
 
+  _getImageRegionDimensions = (e) => {
+    this.setState({
+      imageRegionDimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
+
   render() {
     let orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
-
-    console.log(this.state.dimensions.height);
 
     const FavoriteIcon = this.state.isFavorite ?
       <Icon name='star' size={30} color={colors.warning} /> :
@@ -118,17 +142,23 @@ export default class Details extends React.Component {
       ...this.props
     }
 
+    const aspectRatio = this.state.imageDimensions.width / this.state.imageDimensions.height;
+
     return (
       <Grid onLayout={this._onLayoutChange}>
         {orientation === 'portrait' ?
           <Grid>
             <Row>
-              <Image
-                source={{ uri: this.props.photoLargeUrl }}
-                style={{
-                  flex: 1
-                }}
-              />
+              <Col style={{ alignItems: 'center' }}>
+                <Image
+                  source={{ uri: this.props.photoLargeUrl }}
+                  style={{
+                    width: (this.state.imageRegionDimensions.height - 64) * aspectRatio,
+                    height: this.state.imageRegionDimensions.height - 64,
+                    marginTop: 32
+                  }}
+                />
+              </Col>
             </Row>
             <Row>
               <DetailsDashboard {...detailsProps} />
@@ -139,14 +169,22 @@ export default class Details extends React.Component {
             </Row>
           </Grid>
             :
-          <Grid>
-            <Row size={40}>
-              <Image
-                source={{ uri: this.props.photoLargeUrl }}
-                style={{
-                  flex: 1
-                }}
-              />
+          <Grid style={{
+                  alignItems: 'center'
+                }}>
+            <Row size={40}
+                 onLayout={this._getImageRegionDimensions}
+            >
+              <View>
+                <Image
+                  source={{ uri: this.props.photoLargeUrl }}
+                  style={{
+                    width: (this.state.imageRegionDimensions.height - 32) * aspectRatio,
+                    height: this.state.imageRegionDimensions.height - 32,
+                    marginTop: 32
+                  }}
+                />
+              </View>
             </Row>
             <Row size={60}>
               <Col size={60}>
