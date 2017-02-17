@@ -155,7 +155,12 @@ export default class Item extends React.Component {
             >
               <Row>
                 <Image source={{uri: this.props.photoThumbnailUrl}}
-                       style={styles.photo}
+                       style={{
+                         borderRadius: 30,
+                         width: 60,
+                         height: 60,
+                         marginBottom: 10
+                       }}
                 />
               </Row>
               <Row>
@@ -172,7 +177,13 @@ export default class Item extends React.Component {
                             marginRight: 10
                            }}
             >
-              <Text style={styles.title}>
+              <Text style={{
+                fontWeight: '500',
+                fontSize: 15,
+                marginBottom: 5,
+                color: colors.darkgreen,
+                textAlign: 'center'
+              }}>
                 {this.props.name}
               </Text>
               <Text style={{
@@ -235,46 +246,3 @@ export default class Item extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontWeight: '500',
-    fontSize: 15,
-    marginBottom: 5,
-    color: colors.darkgreen,
-    textAlign: 'center'
-  },
-  photo: {
-    borderRadius: 30,
-    width: 60,
-    height: 60,
-    marginBottom: 10
-  },
-//   location: {
-//     color: colors.darktan
-//   },
-//   rating: {
-//     color: colors.peagreen,
-//     paddingTop: 10
-//   },
-//   description: {
-//     lineHeight: 20,
-//     fontSize: 14,
-//     color: colors.darkgray,
-//     textAlign: 'left',
-//     marginTop: 8,
-//   },
-//   favorite: {
-//     marginTop: 20,
-//     width: 20,
-//     height: 20,
-//
-//   },
-//   distance: {
-//     paddingTop: 2,
-//     paddingBottom: 15
-//   },
-//   weatherBlock: {
-//     backgroundColor: colors.warning
-//   }
-});
