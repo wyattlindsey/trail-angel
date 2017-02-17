@@ -8,6 +8,7 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 import * as _ from 'lodash';
 
 import Reviews from './Reviews.component';
@@ -21,7 +22,11 @@ export default class Details extends React.Component {
     super(props);
 
     this.state = {
-      address: ''
+      address: '',
+      dimensions: {
+        width: null,
+        height: null
+      }
     };
   }
 
@@ -66,7 +71,7 @@ export default class Details extends React.Component {
     }
   }
 
-  _handleGoToMapDashboard() {
+  _handleGoToMap() {
     this.props.navigator.push({
       title: 'Dashboard',
       component: Map,
@@ -80,20 +85,20 @@ export default class Details extends React.Component {
     return _.findIndex(favorites, { id }) !== -1;
   }
 
-  render() {
-    let marker = {
-      coordinate: { latitude: this.props.geometry.location.lat,
-        longitude: this.props.geometry.location.lng},
-      title: this.props.name,
-      description: this.props.reviews === undefined ? '' : this.props.reviews[0].text
-    };
+  _onLayoutChange = (e) => {
+    this.setState({
+      dimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
 
-    let region = {
-      latitude: this.props.geometry.location.lat,
-      longitude: this.props.geometry.location.lng,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421
-    };
+  render() {
+    let orientation = this.state.dimensions.width < this.state.dimensions.height ?
+      'portrait' : 'landscape';
+
+    console.log(this.state.dimensions.height);
 
     const FavoriteIcon = this.state.isFavorite ?
       <Icon name='star' size={30} color={colors.warning} /> :
@@ -101,68 +106,110 @@ export default class Details extends React.Component {
 
     const MapIcon = <Icon name='map'
                           size={25}
-                          color={colors.mapColor} />
+                          color={colors.mapColor}
+                    />
+
+    const detailsProps = {
+      toggleFavorite: this._toggleFavorite.bind(this),
+      goToMap: this._handleGoToMap.bind(this),
+      FavoriteIcon,
+      MapIcon,
+      address: this.state.address,
+      ...this.props
+    }
+
     return (
-      <View style={styles.details}>
-        <Image
-          style={styles.photo}
-          source={{ uri: this.props.photoLargeUrl }}
-        />
-        <View style={styles.description}>
-          <View style={styles.leftCol}>
-            <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}>{this.state.address}</Text>
-          </View>
-          <View style={styles.rightCol}>
-            <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
-                                underlayColor='white'
-                                style={{ paddingRight: 15, paddingLeft: 100 }}>
-              {FavoriteIcon}
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
-                                underlayColor='white'
-                                style={{ paddingRight: 30, paddingLeft: 15 }}>
-              {MapIcon}
-            </TouchableHighlight>
-          </View>
-        </View>
-        <View style={styles.separator}/>
-        <Text style={styles.reviewTitle}>Reviews: </Text>
-        <Reviews {...this.props} />
-      </View>
+      <Grid onLayout={this._onLayoutChange}>
+        {orientation === 'portrait' ?
+          <Grid>
+            <Row>
+              <Image
+                source={{ uri: this.props.photoLargeUrl }}
+                style={{
+                  flex: 1
+                }}
+              />
+            </Row>
+            <Row>
+              <DetailsDashboard {...detailsProps} />
+            </Row>
+            <View style={styles.separator}/>
+            <Row>
+              <Reviews {...this.props} />
+            </Row>
+          </Grid>
+            :
+          <Grid>
+            <Row size={40}>
+              <Image
+                source={{ uri: this.props.photoLargeUrl }}
+                style={{
+                  flex: 1
+                }}
+              />
+            </Row>
+            <Row size={60}>
+              <Col size={60}>
+                <Reviews {...this.props} />
+              </Col>
+              <Col size={40}>
+                <DetailsDashboard {...detailsProps} />
+              </Col>
+            </Row>
+            <View style={styles.separator}/>
+            <Row>
+              <Reviews {...this.props} />
+            </Row>
+          </Grid>
+        }
+      </Grid>
     );
   }
 }
 
+const DetailsDashboard = (props) => (
+  <Grid>
+    <Col size={60}
+         style={{
+           padding: 20
+         }}
+    >
+      <Text style={styles.title}>{props.name}</Text>
+      <Text style={{ color: colors.darktan }}>{props.address}</Text>
+    </Col>
+    <Col  size={40}
+          style={{
+            padding: 10,
+            alignItems: 'center'
+          }}
+    >
+      <TouchableHighlight onPress={props.toggleFavorite}
+                          underlayColor='white'
+                          style={{
+                            alignItems: 'center',
+                            padding: 20
+                          }}
+      >
+        {props.FavoriteIcon}
+      </TouchableHighlight>
+      <TouchableHighlight onPress={props.goToMap}
+                          underlayColor='white'
+                          style={{
+                            alignItems: 'center',
+                            padding: 20
+                          }}>
+        {props.MapIcon}
+      </TouchableHighlight>
+    </Col>
+  </Grid>
+);
+
 const styles = StyleSheet.create({
-  details: {
-    marginTop: 65,
-  },
-  photo: {
-    flex: 1
-  },
-  description: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 20,
-    marginBottom: -100
-  },
-  leftCol: {
-    width: 100
-  },
-  rightCol: {
-    top: 20,
-    width: 158,
-    flexDirection: 'row'
-  },
   title: {
     color: colors.darkgreen,
     fontSize: 16,
     fontWeight: '600',
     paddingBottom: 10
-  },
-  location: {
-    color: colors.darktan
   },
   reviewTitle: {
     color: colors.darkgray,

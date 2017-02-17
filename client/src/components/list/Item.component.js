@@ -171,18 +171,19 @@ export default class Item extends React.Component {
                 </TouchableHighlight>
               </Row>
             </Col>
-            <Col size={75} style={{
-                            paddingTop: 10,
-                            marginLeft: 10,
-                            marginRight: 10
-                           }}
+            <Col  size={75}
+                  style={{
+                    paddingTop: 10,
+                    marginLeft: 10,
+                    marginRight: 10,
+                    alignItems: 'center'
+                  }}
             >
               <Text style={{
                 fontWeight: '500',
                 fontSize: 15,
                 marginBottom: 5,
-                color: colors.darkgreen,
-                textAlign: 'center'
+                color: colors.darkgreen
               }}>
                 {this.props.name}
               </Text>
