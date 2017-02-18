@@ -110,7 +110,6 @@ export default class Details extends React.Component {
         height: e.nativeEvent.layout.height
       }
     });
-    this._getImageRegionDimensions(e);
   }
 
   _getImageRegionDimensions = (e) => {

@@ -253,7 +253,7 @@ export default class Map extends React.Component {
     const displayMiles = this.state.displayMiles;
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
-    
+
     return (
       <View style={styles.container}
             onLayout={this.onLayoutChange}
