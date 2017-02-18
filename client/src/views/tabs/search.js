@@ -19,6 +19,7 @@ import favoriteActions from '../../actions/favorite-actions';
 import List from '../../components/list/List.component';
 
 import colors from '../../components/style/colors';
+import dimensions from '../../components/style/dimensions';
 
 class Search extends React.Component {
   constructor(props) {
@@ -95,10 +96,18 @@ class Search extends React.Component {
 
   render() {
     const height = Dimensions.get('window').height;
-    console.log('height: ', height);
+    console.log(this.props.orientation);
     return (
       <Grid>
-        <Row size={20} style={styles.searchBar}>
+        <Row size={20} style={{
+                                padding: 8,
+                                marginBottom: 45,
+                                alignItems: 'center',
+                                backgroundColor: 'white',
+                                marginTop: dimensions.navHeight(this.props.orientation)
+                                            + 32
+                              }}
+        >
           <Col size={80}>
             <TextInput
               ref={(component) => this._textInput = component}
@@ -178,13 +187,6 @@ export default connect(
 )(Search);
 
 const styles = StyleSheet.create({
-  searchBar: {
-    padding: 8,
-    marginBottom: 45,
-    alignItems: 'center',
-    backgroundColor: 'white',
-    marginTop: 65,
-  },
   input: {
     height: 30,
     margin: 5,
