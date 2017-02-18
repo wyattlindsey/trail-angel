@@ -1,8 +1,15 @@
 'use strict';
 
 import React from 'react';
-import { View, Text, StyleSheet, TextInput,
-  ListView, ActivityIndicator, Switch } from 'react-native';
+import {  View,
+          Text,
+          StyleSheet,
+          TextInput,
+          ListView,
+          ActivityIndicator,
+          Dimensions,
+          Switch } from 'react-native';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
@@ -87,54 +94,67 @@ class Search extends React.Component {
   }
 
   render() {
+    const height = Dimensions.get('window').height;
+    console.log('height: ', height);
     return (
-      <View>
-        <View style={styles.searchBar}>
-          <TextInput
-            ref={(component) => this._textInput = component}
-            style={styles.input}
-            placeholder='Search...'
-            onChangeText={(text) => {this._debouncedHandleInput(text)}}
-            autoCapitalize='none'
-            autoCorrect={false}
-            autoFocus={true}
-          />
-          <Switch style={styles.localSearch}
-                  onValueChange={this._handleLocalSwitch.bind(this)}
-                  value={this.state.localSearch}
-                  onTintColor={colors.seafoam}>
-            <Text style={{  top: 40,
-              fontSize: 12,
-              textAlign: 'center'
-            }}>Local Search</Text>
-          </Switch>
-        </View>
-        <View style={styles.searchResults}>
-          {this.state.searchTimeout ?
-            <View style={{ justifyContent: 'center',
-              padding: 40 }}>
-              <Text style={{ fontSize: 18 }}>
-                No results found
-              </Text>
-            </View>
-            :
-            <View>
+      <Grid>
+        <Row size={20} style={styles.searchBar}>
+          <Col size={80}>
+            <TextInput
+              ref={(component) => this._textInput = component}
+              style={styles.input}
+              placeholder='Search...'
+              onChangeText={(text) => {this._debouncedHandleInput(text)}}
+              autoCapitalize='none'
+              autoCorrect={false}
+              autoFocus={true}
+            />
+          </Col>
+          <Col size={20}>
+            <Switch style={styles.localSearch}
+                    onValueChange={this._handleLocalSwitch.bind(this)}
+                    value={this.state.localSearch}
+                    onTintColor={colors.seafoam}>
+              <Text style={{  top: 40,
+                fontSize: 12,
+                textAlign: 'center'
+              }}>Local Search</Text>
+            </Switch>
+          </Col>
+        </Row>
+        <Row size={80}>
+          <Col>
+            {this.state.searchTimeout ?
+              <View style={{ justifyContent: 'center',
+                             padding: 40 }}
+              >
+                <Text style={{ fontSize: 18 }}>
+                  No results found
+                </Text>
+              </View>
+              :
+              <View style={{
+                              marginTop: 20,
+                              height: Math.round(height / 0.9)
+                          }}
+              >
 
-              <List  navigator={this.props.navigator}
-                     orientation={this.props.orientation}
-                     isFetching={this.props.state.listingsReducer.isFetching}
-                     items={this.props.state.listingsReducer.searchResults}
-                     favorites={this.props.state.listingsReducer.favorites}
-                     userLocation={this.props.state.appReducer.geolocation}
-                     userId={this.props.state.userReducer.userId}
-                     actions={this.props.actions}
-              />
+                <List  navigator={this.props.navigator}
+                       orientation={this.props.orientation}
+                       isFetching={this.props.state.listingsReducer.isFetching}
+                       items={this.props.state.listingsReducer.searchResults}
+                       favorites={this.props.state.listingsReducer.favorites}
+                       userLocation={this.props.state.appReducer.geolocation}
+                       userId={this.props.state.userReducer.userId}
+                       actions={this.props.actions}
+                />
 
 
-            </View>
-          }
-        </View>
-      </View>
+              </View>
+            }
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 
@@ -159,18 +179,14 @@ export default connect(
 
 const styles = StyleSheet.create({
   searchBar: {
-    flex: 1,
     padding: 8,
-    paddingBottom: 45,
-    flexDirection: 'row',
+    marginBottom: 45,
     alignItems: 'center',
     backgroundColor: 'white',
     marginTop: 65,
-    height: 120
   },
   input: {
     height: 30,
-    flex: 1,
     margin: 5,
     marginRight: 20,
     marginTop: 15,
@@ -181,7 +197,6 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   localSearch: {
-    top: 14,
     marginRight: 5,
     alignItems: 'center'
   },
@@ -189,14 +204,5 @@ const styles = StyleSheet.create({
     flex: 1,
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.midgray,
-  },
-  centering: { alignItems: 'center', justifyContent: 'center', padding: 8, },
-  gray: { backgroundColor: colors.darkgray, },
-  horizontal: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, },
-  searchResults: {
-    backgroundColor: 'white',
-    height: 600,
-    marginTop: 30,
-    marginBottom: 130
   }
 });
