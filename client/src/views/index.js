@@ -65,6 +65,7 @@ class Index extends Component {
           tintColor={colors.tabBarSelected}
           barTintColor={colors.tabBarColor}>
           <TabBarIOS.Item
+            title='Home'
             icon={{uri: icons.homeIcon, scale: 5}}
             selected={this.state.selectedTab === 'home'}
             onPress={() => {
