@@ -35,8 +35,9 @@ export default class List extends React.Component {
   }
 
   render() {
+    console.log(dimensions.navHeight(this.props.orientation));
     return (
-      <View style={styles.container}>
+      <View>
         {this.props.fetching ?
           <ActivityIndicator animating={this.props.isFetching}
                              color={colors.seafoam}
@@ -44,6 +45,10 @@ export default class List extends React.Component {
           />
             :
           <ListView automaticallyAdjustContentInsets={false}
+                    style={{
+                      marginTop: dimensions.navHeight(this.props.orientation),
+                      marginBottom: dimensions.tabBarHeight()
+                    }}
                     dataSource={this.state.dataSource}
                     renderRow={(data) => <Item  navigator={this.props.navigator}
                                                 orientation={this.props.orientation}
@@ -69,9 +74,5 @@ const styles = StyleSheet.create({
     flex: 1,
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.midgray
-  },
-  container: {
-    marginTop: 65,
-    marginBottom: 50
   }
 });

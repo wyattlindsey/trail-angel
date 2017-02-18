@@ -110,6 +110,7 @@ export default class Details extends React.Component {
         height: e.nativeEvent.layout.height
       }
     });
+    this._getImageRegionDimensions(e);
   }
 
   _getImageRegionDimensions = (e) => {
@@ -146,27 +147,30 @@ export default class Details extends React.Component {
     const aspectRatio =
       this.state.imageDimensions.width / this.state.imageDimensions.height;
 
+    const navHeight = dimensions.navHeight(orientation);
     return (
-      <Grid onLayout={this._onLayoutChange}>
+      <Grid onLayout={this._onLayoutChange}
+      >
         {orientation === 'portrait' ?
-          <Grid>
-            <Row>
+          <Grid style={{ marginTop: navHeight }}>
+            <Row size={35}>
               <Col style={{ alignItems: 'center' }}>
                 <Image
                   source={{ uri: this.props.photoLargeUrl }}
                   style={{
-                    width: (this.state.imageRegionDimensions.height - 64) * aspectRatio,
-                    height: this.state.imageRegionDimensions.height - 64,
-                    marginTop: 32
+                    width: (this.state.imageRegionDimensions.height
+                              - navHeight) * aspectRatio,
+                    height: this.state.imageRegionDimensions.height
+                              - navHeight
                   }}
                 />
               </Col>
             </Row>
-            <Row>
+            <Row size={25}>
               <DetailsDashboard {...detailsProps} />
             </Row>
             <View style={styles.separator}/>
-            <Row>
+            <Row size={40}>
               {this.props.reviews === undefined ?
                 <Text style={styles.reviewTitle}>This trail has no reviews</Text>
                   :
@@ -176,7 +180,8 @@ export default class Details extends React.Component {
           </Grid>
             :
           <Grid style={{
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  marginTop: navHeight
                 }}
           >
             <Row size={40}
@@ -186,9 +191,8 @@ export default class Details extends React.Component {
                 <Image
                   source={{ uri: this.props.photoLargeUrl }}
                   style={{
-                    width: (this.state.imageRegionDimensions.height - 32) * aspectRatio,
-                    height: this.state.imageRegionDimensions.height - 32,
-                    marginTop: 32
+                    width: this.state.imageRegionDimensions.height * aspectRatio,
+                    height: this.state.imageRegionDimensions.height
                   }}
                 />
               </View>
