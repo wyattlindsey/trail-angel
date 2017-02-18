@@ -119,7 +119,6 @@ export default class Item extends React.Component {
   }
 
   _selectItem() {
-    console.log(this.props.orientation);
     this.props.navigator.push({
       title: 'Detail',
       component: Details,
