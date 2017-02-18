@@ -37,7 +37,8 @@ const googlePlacesApi = {
       }
     }, '');
 
-    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?${parameters}`;
+    const url = `https://maps.googleapis.com/maps/api/place/` +
+                `textsearch/json?${parameters}`;
     return request.get(url)
       .then((data) => {
         if (data === undefined || data.results === undefined) {
@@ -60,7 +61,7 @@ const googlePlacesApi = {
     return request.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${config.GOOGLE_API}`)
       .then((data) => {
         if (data === undefined) {
-          Promise.reject('Error retrieving Google place data by ID');
+          return Promise.reject('Error retrieving Google place data by ID');
         }
 
         let photoReference = false;
@@ -68,8 +69,10 @@ const googlePlacesApi = {
         let photoLargeUrl = false;
 
         if (data.result.photos !== undefined && Array.isArray(data.result.photos)) {
-          photoThumbnailUrl = googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 100);
-          photoLargeUrl = googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 400);
+          photoThumbnailUrl =
+            googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 100);
+          photoLargeUrl =
+            googlePlacesApi.getUrlForPhoto(data.result.photos[0].photo_reference, 400);
           photoReference = data.result.photo_reference;
         }
 
@@ -84,7 +87,8 @@ const googlePlacesApi = {
   },
 
   getUrlForPhoto:(photoReference, maxWidth) => {
-    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photoreference=${photoReference}&key=${apiKey}`;
+    return `https://maps.googleapis.com/maps/api/place/photo?` +
+      `maxwidth=${maxWidth}&photoreference=${photoReference}&key=${apiKey}`;
   }
 
 };
