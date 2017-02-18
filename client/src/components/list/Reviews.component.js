@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   ListView
 } from 'react-native';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 
 import colors from '../style/colors';
 
@@ -54,33 +55,26 @@ export default class Reviews extends React.Component {
 }
 
 const Review = (props) => (
-  <View>
-    <View style={styles.review}>
-      <View>
-        <Image source={{uri: `https:${props.profile_photo_url}`}}
-               style={styles.photo} />
-      </View>
-      <View style={styles.reviewText}>
-        <Text style={styles.title}>{props.author_name}</Text>
-        <Text style={styles.location}>Rating: {props.rating} </Text>
-        <Text style={styles.description} numberOfLines={10}>{props.text}</Text>
-      </View>
-    </View>
-  </View>
+  <Grid style={styles.review}>
+    <Col  size={25}
+          style={{
+            alignItems: 'center'
+          }}
+    >
+      <Image source={{uri: `https:${props.profile_photo_url}`}}
+             style={styles.photo} />
+    </Col>
+    <Col size={75}>
+      <Text style={styles.title}>{props.author_name}</Text>
+      <Text style={styles.location}>Rating: {props.rating} </Text>
+      <Text style={styles.description} numberOfLines={10}>{props.text}</Text>
+    </Col>
+  </Grid>
 )
 
 const styles = StyleSheet.create({
-  reviews: {
-    height: 600
-  },
   review: {
-    flexDirection: 'row',
     padding: 20,
-  },
-  reviewText: {
-    flex: 1,
-    flexDirection: 'column',
-    width: 50
   },
   title: {
     fontWeight: '600',
@@ -88,7 +82,6 @@ const styles = StyleSheet.create({
     color: colors.seafoam
   },
   photo: {
-    marginRight: 20,
     borderRadius: 20,
     width: 40,
     height: 40,

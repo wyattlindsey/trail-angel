@@ -8,12 +8,14 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 import * as _ from 'lodash';
 
 import Reviews from './Reviews.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Map from '../map/Map.component';
 import colors from '../style/colors';
+import dimensions from '../style/dimensions';
 
 
 export default class Details extends React.Component {
@@ -21,7 +23,19 @@ export default class Details extends React.Component {
     super(props);
 
     this.state = {
-      address: ''
+      address: '',
+      dimensions: {   // Details view keeps track of its own orientation and dimensions
+        width: 0,     // since these aren't updated after parent props are passed
+        height: 0     // in via Navigator's passProps method
+      },
+      imageRegionDimensions: {
+        width: 0,
+        height: 0
+      },
+      imageDimensions: {
+        width: 0,
+        height: 0
+      }
     };
   }
 
@@ -36,6 +50,15 @@ export default class Details extends React.Component {
     this.setState({
       isFavorite
     });
+
+    Image.getSize(this.props.photoLargeUrl, (width, height) => {
+      this.setState({
+        imageDimensions: { width, height }
+      });
+    },
+      (err) => {
+        console.error('Error retrieving image size: ', err);
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,7 +89,7 @@ export default class Details extends React.Component {
     }
   }
 
-  _handleGoToMapDashboard() {
+  _handleGoToMap() {
     this.props.navigator.push({
       title: 'Dashboard',
       component: Map,
@@ -80,20 +103,27 @@ export default class Details extends React.Component {
     return _.findIndex(favorites, { id }) !== -1;
   }
 
-  render() {
-    let marker = {
-      coordinate: { latitude: this.props.geometry.location.lat,
-        longitude: this.props.geometry.location.lng},
-      title: this.props.name,
-      description: this.props.reviews === undefined ? '' : this.props.reviews[0].text
-    };
+  _onLayoutChange = (e) => {
+    this.setState({
+      dimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
 
-    let region = {
-      latitude: this.props.geometry.location.lat,
-      longitude: this.props.geometry.location.lng,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421
-    };
+  _getImageRegionDimensions = (e) => {
+    this.setState({
+      imageRegionDimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
+
+  render() {
+    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
+      'portrait' : 'landscape';
 
     const FavoriteIcon = this.state.isFavorite ?
       <Icon name='star' size={30} color={colors.warning} /> :
@@ -101,68 +131,134 @@ export default class Details extends React.Component {
 
     const MapIcon = <Icon name='map'
                           size={25}
-                          color={colors.mapColor} />
+                          color={colors.mapColor}
+                    />
+
+    const detailsProps = {
+      toggleFavorite: this._toggleFavorite.bind(this),
+      goToMap: this._handleGoToMap.bind(this),
+      FavoriteIcon,
+      MapIcon,
+      address: this.state.address,
+      ...this.props
+    }
+
+    const aspectRatio =
+      this.state.imageDimensions.width / this.state.imageDimensions.height;
+
+    const navHeight = dimensions.navHeight(orientation);
     return (
-      <View style={styles.details}>
-        <Image
-          style={styles.photo}
-          source={{ uri: this.props.photoLargeUrl }}
-        />
-        <View style={styles.description}>
-          <View style={styles.leftCol}>
-            <Text style={styles.title}>{this.props.name}</Text>
-            <Text style={styles.location}>{this.state.address}</Text>
-          </View>
-          <View style={styles.rightCol}>
-            <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
-                                underlayColor='white'
-                                style={{ paddingRight: 15, paddingLeft: 100 }}>
-              {FavoriteIcon}
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this._handleGoToMapDashboard.bind(this)}
-                                underlayColor='white'
-                                style={{ paddingRight: 30, paddingLeft: 15 }}>
-              {MapIcon}
-            </TouchableHighlight>
-          </View>
-        </View>
-        <View style={styles.separator}/>
-        <Text style={styles.reviewTitle}>Reviews: </Text>
-        <Reviews {...this.props} />
-      </View>
+      <Grid onLayout={this._onLayoutChange}
+      >
+        {orientation === 'portrait' ?
+          <Grid style={{ marginTop: navHeight }}>
+            <Row size={35}>
+              <Col style={{ alignItems: 'center' }}>
+                <Image
+                  source={{ uri: this.props.photoLargeUrl }}
+                  style={{
+                    width: (this.state.imageRegionDimensions.height
+                              - navHeight) * aspectRatio,
+                    height: this.state.imageRegionDimensions.height
+                              - navHeight
+                  }}
+                />
+              </Col>
+            </Row>
+            <Row size={25}>
+              <DetailsDashboard {...detailsProps} />
+            </Row>
+            <View style={styles.separator}/>
+            <Row size={40}>
+              {this.props.reviews === undefined ?
+                <Text style={styles.reviewTitle}>This trail has no reviews</Text>
+                  :
+                <Reviews {...this.props} />
+              }
+            </Row>
+          </Grid>
+            :
+          <Grid style={{
+                  alignItems: 'center',
+                  marginTop: navHeight
+                }}
+          >
+            <Row size={40}
+                 onLayout={this._getImageRegionDimensions}
+            >
+              <View>
+                <Image
+                  source={{ uri: this.props.photoLargeUrl }}
+                  style={{
+                    width: this.state.imageRegionDimensions.height * aspectRatio,
+                    height: this.state.imageRegionDimensions.height
+                  }}
+                />
+              </View>
+            </Row>
+            <Row size={60}>
+              <Col size={60}>
+                {this.props.reviews === undefined ?
+                  <Text style={styles.reviewTitle}>This trail has no reviews</Text>
+                  :
+                  <Reviews {...this.props} />
+                }
+              </Col>
+              <Col size={40}>
+                <DetailsDashboard {...detailsProps} />
+              </Col>
+            </Row>
+            <View style={styles.separator}/>
+          </Grid>
+        }
+      </Grid>
     );
   }
 }
 
+const DetailsDashboard = (props) => (
+  <Grid>
+    <Col size={60}
+         style={{
+           padding: 20
+         }}
+    >
+      <Text style={styles.title}>{props.name}</Text>
+      <Text style={{ color: colors.darktan }}>{props.address}</Text>
+    </Col>
+    <Col  size={40}
+          style={{
+            padding: 10,
+            alignItems: 'center'
+          }}
+    >
+      <TouchableHighlight onPress={props.toggleFavorite}
+                          underlayColor='white'
+                          style={{
+                            alignItems: 'center',
+                            padding: 20
+                          }}
+      >
+        {props.FavoriteIcon}
+      </TouchableHighlight>
+      <TouchableHighlight onPress={props.goToMap}
+                          underlayColor='white'
+                          style={{
+                            alignItems: 'center',
+                            padding: 20
+                          }}>
+        {props.MapIcon}
+      </TouchableHighlight>
+    </Col>
+  </Grid>
+);
+
 const styles = StyleSheet.create({
-  details: {
-    marginTop: 65,
-  },
-  photo: {
-    flex: 1
-  },
-  description: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 20,
-    marginBottom: -100
-  },
-  leftCol: {
-    width: 100
-  },
-  rightCol: {
-    top: 20,
-    width: 158,
-    flexDirection: 'row'
-  },
   title: {
     color: colors.darkgreen,
     fontSize: 16,
     fontWeight: '600',
     paddingBottom: 10
-  },
-  location: {
-    color: colors.darktan
   },
   reviewTitle: {
     color: colors.darkgray,

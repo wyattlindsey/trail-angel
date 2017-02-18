@@ -19,7 +19,11 @@ class Index extends Component {
     super(props);
 
     this.state = {
-      selectedTab: 'home'
+      selectedTab: 'home',
+      dimensions: {
+        width: 0,
+        height: 0
+      }
     };
   }
 
@@ -42,55 +46,84 @@ class Index extends Component {
       });
   }
 
+  _onLayoutChange = (e) => {
+    this.setState({
+      dimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
+
   render() {
+    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
+      'portrait' : 'landscape';
+
     return (
-      <TabBarIOS
-        unselectedTintColor={colors.tabBarUnselected}
-        tintColor={colors.tabBarSelected}
-        barTintColor={colors.tabBarColor}>
-        <TabBarIOS.Item
-          title ='Home'
-          icon={{uri: icons.homeIcon, scale: 5}}
-          selected={this.state.selectedTab === 'home'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'home',
-            });
-          }}>
-          <Home navigator={this.props.navigator}/>
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          systemIcon='search'
-          selected={this.state.selectedTab === 'search'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'search',
-            });
-          }}>
-        <Search navigator={this.props.navigator}/>
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          systemIcon ='favorites'
-          selected={this.state.selectedTab === 'favorites'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'favorites',
-            });
-          }}>
-          <Favorites navigator={this.props.navigator}/>
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          systemIcon ='more'
-          selected={this.state.selectedTab === 'more'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'more',
-            });
-          }}>
-          <More navigator={this.props.navigator}
-                favoritesCount={this.props.state.listingsReducer.favorites.length} />
-        </TabBarIOS.Item>
-      </TabBarIOS>
+        <TabBarIOS
+          unselectedTintColor={colors.tabBarUnselected}
+          tintColor={colors.tabBarSelected}
+          barTintColor={colors.tabBarColor}>
+          <TabBarIOS.Item
+            title='Home'
+            icon={{uri: icons.homeIcon, scale: 5}}
+            selected={this.state.selectedTab === 'home'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'home',
+              });
+            }}>
+            <View onLayout={this._onLayoutChange}>
+              <Home navigator={this.props.navigator}
+                    orientation={orientation}
+              />
+            </View>
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            systemIcon='search'
+            selected={this.state.selectedTab === 'search'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'search',
+              });
+            }}>
+            <View onLayout={this._onLayoutChange}>
+              <Search navigator={this.props.navigator}
+                      orientation={orientation}
+              />
+            </View>
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            systemIcon ='favorites'
+            selected={this.state.selectedTab === 'favorites'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'favorites',
+              });
+            }}>
+            <View onLayout={this._onLayoutChange}>
+              <Favorites navigator={this.props.navigator}
+                         orientation={orientation}
+              />
+            </View>
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            orientation={orientation}
+            systemIcon ='more'
+            selected={this.state.selectedTab === 'more'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'more',
+              });
+            }}>
+            <View onLayout={this._onLayoutChange}>
+              <More navigator={this.props.navigator}
+                    favoritesCount={this.props.state.listingsReducer.favorites.length}
+                    orientation={orientation}
+              />
+            </View>
+          </TabBarIOS.Item>
+        </TabBarIOS>
     );
   }
 }

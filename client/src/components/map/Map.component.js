@@ -10,6 +10,7 @@ import {
   Switch,
   Alert
 } from 'react-native';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 import MapView from 'react-native-maps';
 import FoundationIcon from 'react-native-vector-icons/Foundation';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,6 +19,7 @@ import trailAngelApi from '../../api/trailangel-api';
 import googleApi from '../../api/google-api';
 import trailCalc from '../../utils/trail-calculations';
 import colors from '../style/colors';
+import dimensions from '../style/dimensions';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -47,7 +49,11 @@ export default class Map extends React.Component {
       }],
       displayMiles: true,
       displayFeet: true,
-      mapType: 'terrain'
+      mapType: 'terrain',
+      dimensions: {   // Map view keeps track of its own orientation and dimensions
+        width: 0,     // since these aren't updated after parent props are passed
+        height: 0     // in via Navigator's passProps method
+      },
     };
     this.onMapPress = this.onMapPress.bind(this);
   }
@@ -228,20 +234,30 @@ export default class Map extends React.Component {
     }
   }
 
+  onLayoutChange = (e) => {
+    this.setState({
+      dimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
+
   render() {
-    let trailheadCoordinate = {
-      latitude: this.state.region.latitude,
-      longitude: this.state.region.longitude
-    };
-    let coordinates = this.state.markers.map( (marker) => {
+    const coordinates = this.state.markers.map( (marker) => {
       return marker.coordinate;
     });
-    let distance = this.state.distance;
-    let elevation = this.state.elevation;
-    let displayFeet = this.state.displayFeet;
-    let displayMiles = this.state.displayMiles;
+    const distance = this.state.distance;
+    const elevation = this.state.elevation;
+    const displayFeet = this.state.displayFeet;
+    const displayMiles = this.state.displayMiles;
+    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
+      'portrait' : 'landscape';
+    
     return (
-      <View style={styles.container}>
+      <View style={styles.container}
+            onLayout={this.onLayoutChange}
+      >
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
           style={styles.map}
@@ -281,75 +297,89 @@ export default class Map extends React.Component {
             />
           )) : null}
         </MapView>
-        <View style={styles.infoContainer}>
-          <TouchableOpacity
-            onPress={this.toggleMilesKilometers.bind(this)}
-            style={styles.topBubble}
+
+        <Grid style={{ alignItems: 'center' }}>
+          <Row style={{
+                        backgroundColor: 'transparent',
+                        marginTop: dimensions.navHeight(orientation) + 10,
+                        height: 32
+                     }}
           >
-            <Text>
-              {displayMiles ? `${distance.toPrecision(2)} mi` :
-                `${(trailCalc.convertToKm(distance)).toPrecision(2)} km`}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={this.toggleFeetMeters.bind(this)}
-            style={styles.topBubble}
+            <TouchableOpacity
+              onPress={this.toggleMilesKilometers.bind(this)}
+              style={styles.bubble}
+            >
+              <Text>
+                {displayMiles ? `${distance.toPrecision(2)} mi` :
+                  `${(trailCalc.convertToKm(distance)).toPrecision(2)} km`}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.toggleFeetMeters.bind(this)}
+              style={styles.bubble}
+            >
+              <Text>
+                {displayFeet ? `${Math.round(trailCalc.convertToFeet(elevation))} ft` :
+                  `${Math.round(elevation)} m`}
+              </Text>
+            </TouchableOpacity>
+            <View style={styles.bubble}>
+              <Text>{trailCalc.calcEstimatedTime(elevation, distance)}</Text>
+            </View>
+          </Row>
+          <Row />
+          <Row style={{
+                         marginBottom: 10,
+                         height: 32
+                      }}
           >
-            <Text>
-              {displayFeet ? `${Math.round(trailCalc.convertToFeet(elevation))} ft` :
-                `${Math.round(elevation)} m`}
-            </Text>
-          </TouchableOpacity>
-          <View style={styles.estimatedTime}>
-            <Text>{trailCalc.calcEstimatedTime(elevation, distance)}</Text>
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              this.state.markers.pop();
-              id--;
-              this.setState({
-                markers: this.state.markers
-              }, this.saveMappedTrail.bind(this, true));
-            }
-            }
-            style={styles.bubble}
-          >
-            <Text>Remove Last Pin</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              Alert.alert(
-                'Are you sure?',
-                'This will delete your mapped trail permanently.',
-                [
-                  {text: 'Cancel'},
-                  {text: 'OK', onPress: () => this.deleteMappedTrail()},
-                ]
-              )}
-            }
-            style={styles.bubble}
-          >
-            <Text>Delete</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bubble}
-                            onPress={this.toggleSatelliteMode.bind(this)}
-          >
-            <Icon name='globe'
-                  size={20}
-                  color={colors.darkgray}
-                  style={{opacity: this.state.mapType === 'hybrid' ? 1.0 : 0.5}} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bubble}
-                            onPress={this.toggleTerrainMode.bind(this)}
-          >
-            <FoundationIcon name='mountains'
-                            size={20}
-                            color={colors.darkgray}
-                            style={{opacity: this.state.mapType === 'terrain' ? 1.0 : 0.5}} />
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              onPress={() => {
+                this.state.markers.pop();
+                id--;
+                this.setState({
+                  markers: this.state.markers
+                }, this.saveMappedTrail.bind(this, true));
+              }
+              }
+              style={styles.bubble}
+            >
+              <Text>Remove Last Pin</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert(
+                  'Are you sure?',
+                  'This will delete your mapped trail permanently.',
+                  [
+                    {text: 'Cancel'},
+                    {text: 'OK', onPress: () => this.deleteMappedTrail()},
+                  ]
+                )}
+              }
+              style={styles.bubble}
+            >
+              <Text>Delete</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.bubble}
+                              onPress={this.toggleSatelliteMode.bind(this)}
+            >
+              <Icon name='globe'
+                    size={20}
+                    color={colors.darkgray}
+                    style={{opacity: this.state.mapType === 'hybrid' ? 1.0 : 0.5}}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.bubble}
+                              onPress={this.toggleTerrainMode.bind(this)}
+            >
+              <FoundationIcon name='mountains'
+                              size={20}
+                              color={colors.darkgray}
+                              style={{opacity: this.state.mapType === 'terrain' ? 1.0 : 0.5}} />
+            </TouchableOpacity>
+          </Row>
+        </Grid>
       </View>
     );
   }
@@ -358,7 +388,6 @@ export default class Map extends React.Component {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
     alignItems: 'center'
   },
   map: {
@@ -372,38 +401,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginRight: 5
   },
-  estimatedTime: {
-    backgroundColor: 'rgba(255,255,255,0.7)',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-    width: 90
-  },
-  topBubble: {
-    backgroundColor: 'rgba(255,255,255,0.7)',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-    width: 95,
-    marginRight: 5,
-    borderRadius: 5
-  },
-  infoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: height - 200,
-    backgroundColor: 'transparent'
-  },
-  latlng: {
-    width: 200,
-    alignItems: 'stretch'
-  },
-  button: {
-    width: 80,
-    paddingHorizontal: 12,
-    alignItems: 'center',
-    marginHorizontal: 10
-  },
   buttonContainer: {
-    flexDirection: 'row',
     marginVertical: 20,
     backgroundColor: 'transparent'
   }

@@ -16,6 +16,7 @@ class Home extends React.Component {
   render() {
     return (
       <List  navigator={this.props.navigator}
+             orientation={this.props.orientation}
              isFetching={this.props.state.listingsReducer.isFetching}
              items={this.props.state.listingsReducer.homeData}
              favorites={this.props.state.listingsReducer.favorites}

@@ -2,7 +2,7 @@
 
 import googlePlacesApi from '../google-places-api';
 import request from '../../utils/request';
-import { secrets } from '../../../config';
+import config from '../../../config';
 import geolocationData from '../../../__tests__/fixtures/geolocation-data';
 
 jest.mock('../../utils/request', () => {
@@ -36,7 +36,7 @@ describe('google places api module', () => {
           .toBeCalledWith(`https://maps.googleapis.com/maps/api/place/` +
             `textsearch/json?query=mountain%20hiking%20trails&location=` +
             `${coords.latitude},${coords.longitude}&key=` +
-            `${secrets.google.apiKey}`);
+            `${config.GOOGLE_API}`);
       });
   });
 });

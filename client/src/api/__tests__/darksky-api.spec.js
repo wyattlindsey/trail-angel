@@ -2,7 +2,7 @@
 
 import weather from '../darksky-api';
 import request from '../../utils/request';
-import { secrets } from '../../../config';
+import config from '../../../config';
 import geolocationData from '../../../__tests__/fixtures/geolocation-data';
 
 jest.unmock('../darksky-api');
@@ -23,7 +23,7 @@ describe('darksky api', () => {
       .then((results) => {
         expect(request.get)
           .toBeCalledWith(`https://api.darksky.net/forecast/` +
-                          `${secrets.darksky.apiKey}/` +
+                          `${config.DARKSKY_API}/` +
                           `${geolocationData.coords.latitude},` +
                           `${geolocationData.coords.longitude}`);
 

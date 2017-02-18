@@ -3,15 +3,15 @@
 import React, { Component } from 'react';
 import { View, NavigatorIOS, StyleSheet } from 'react-native';
 
-import Login from './login';
-import colors from '../components/style/colors';
+import Login from './views/login';
+import colors from './components/style/colors';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import reducers from '../reducers';
+import reducers from './reducers';
 
 const logger = createLogger();
 const middleware = [
