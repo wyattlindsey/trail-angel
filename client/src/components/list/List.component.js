@@ -35,7 +35,6 @@ export default class List extends React.Component {
   }
 
   render() {
-    console.log(dimensions.navHeight(this.props.orientation));
     return (
       <View>
         {this.props.fetching ?
