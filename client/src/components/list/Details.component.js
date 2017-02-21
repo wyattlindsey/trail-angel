@@ -25,16 +25,16 @@ export default class Details extends React.Component {
     this.state = {
       address: '',
       dimensions: {   // Details view keeps track of its own orientation and dimensions
-        width: 0,     // since these aren't updated after parent props are passed
-        height: 0     // in via Navigator's passProps method
+        width: 1,     // since these aren't updated after parent props are passed
+        height: 1     // in via Navigator's passProps method
       },
       imageRegionDimensions: {
-        width: 0,
-        height: 0
+        width: 1,
+        height: 1
       },
       imageDimensions: {
-        width: 0,
-        height: 0
+        width: 1,
+        height: 1
       }
     };
   }

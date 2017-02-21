@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import {  TabBarIOS,
           StyleSheet,
           View,
-          Text,
-          Dimensions} from 'react-native';
+          Text} from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
@@ -21,13 +20,8 @@ import appActions from '../actions/app-actions';
 class Index extends Component {
   constructor(props) {
     super(props);
-    let { width, height } = Dimensions.get('window');
     this.state = {
-      selectedTab: 'home',
-      dimensions: {
-        width: width,
-        height: height
-      }
+      selectedTab: 'home'
     };
   }
 
@@ -50,20 +44,7 @@ class Index extends Component {
       });
   }
 
-  _onLayoutChange = (e) => {
-    let { width, height } = Dimensions.get('window');
-    this.setState({
-      dimensions: {
-        width,
-        height
-      }
-    });
-  }
-
   render() {
-    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
-      'portrait' : 'landscape';
-
     return (
         <TabBarIOS
           unselectedTintColor={colors.tabBarUnselected}
@@ -79,9 +60,7 @@ class Index extends Component {
               });
             }}>
             <View>
-              <Home navigator={this.props.navigator}
-                    orientation={orientation}
-              />
+              <Home navigator={this.props.navigator} />
             </View>
           </TabBarIOS.Item>
           <TabBarIOS.Item
@@ -93,9 +72,7 @@ class Index extends Component {
               });
             }}>
             <View>
-              <Search navigator={this.props.navigator}
-                      orientation={orientation}
-              />
+              <Search navigator={this.props.navigator} />
             </View>
           </TabBarIOS.Item>
           <TabBarIOS.Item
@@ -107,13 +84,10 @@ class Index extends Component {
               });
             }}>
             <View>
-              <Favorites navigator={this.props.navigator}
-                         orientation={orientation}
-              />
+              <Favorites navigator={this.props.navigator} />
             </View>
           </TabBarIOS.Item>
           <TabBarIOS.Item
-            orientation={orientation}
             systemIcon ='more'
             selected={this.state.selectedTab === 'more'}
             onPress={() => {
@@ -124,7 +98,6 @@ class Index extends Component {
             <View>
               <More navigator={this.props.navigator}
                     favoritesCount={this.props.state.listingsReducer.favorites.length}
-                    orientation={orientation}
               />
             </View>
           </TabBarIOS.Item>
