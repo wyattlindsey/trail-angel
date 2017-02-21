@@ -1,7 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
+import {  TabBarIOS,
+          StyleSheet,
+          View,
+          Text,
+          Dimensions} from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
@@ -17,12 +21,12 @@ import appActions from '../actions/app-actions';
 class Index extends Component {
   constructor(props) {
     super(props);
-
+    let { width, height } = Dimensions.get('window');
     this.state = {
       selectedTab: 'home',
       dimensions: {
-        width: 0,
-        height: 0
+        width: width,
+        height: height
       }
     };
   }
@@ -47,10 +51,11 @@ class Index extends Component {
   }
 
   _onLayoutChange = (e) => {
+    let { width, height } = Dimensions.get('window');
     this.setState({
       dimensions: {
-        width: e.nativeEvent.layout.width,
-        height: e.nativeEvent.layout.height
+        width,
+        height
       }
     });
   }
@@ -58,6 +63,9 @@ class Index extends Component {
   render() {
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
+
+    console.log('width: ', this.state.dimensions.width);
+    console.log('height: ', this.state.dimensions.height);
 
     return (
         <TabBarIOS
@@ -73,7 +81,7 @@ class Index extends Component {
                 selectedTab: 'home',
               });
             }}>
-            <View onLayout={this._onLayoutChange}>
+            <View>
               <Home navigator={this.props.navigator}
                     orientation={orientation}
               />
@@ -87,7 +95,7 @@ class Index extends Component {
                 selectedTab: 'search',
               });
             }}>
-            <View onLayout={this._onLayoutChange}>
+            <View>
               <Search navigator={this.props.navigator}
                       orientation={orientation}
               />
@@ -101,7 +109,7 @@ class Index extends Component {
                 selectedTab: 'favorites',
               });
             }}>
-            <View onLayout={this._onLayoutChange}>
+            <View>
               <Favorites navigator={this.props.navigator}
                          orientation={orientation}
               />
@@ -116,7 +124,7 @@ class Index extends Component {
                 selectedTab: 'more',
               });
             }}>
-            <View onLayout={this._onLayoutChange}>
+            <View>
               <More navigator={this.props.navigator}
                     favoritesCount={this.props.state.listingsReducer.favorites.length}
                     orientation={orientation}
