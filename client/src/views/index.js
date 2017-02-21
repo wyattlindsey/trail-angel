@@ -64,9 +64,6 @@ class Index extends Component {
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
 
-    console.log('width: ', this.state.dimensions.width);
-    console.log('height: ', this.state.dimensions.height);
-
     return (
         <TabBarIOS
           unselectedTintColor={colors.tabBarUnselected}
