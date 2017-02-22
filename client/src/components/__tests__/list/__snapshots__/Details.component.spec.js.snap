@@ -13,6 +13,7 @@ exports[`test renders correctly 1`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "column",
+        "marginTop": 32,
       }
     }>
     <View
@@ -33,9 +34,8 @@ exports[`test renders correctly 1`] = `
           }
           style={
             Object {
-              "height": -32,
-              "marginTop": 32,
-              "width": NaN,
+              "height": 1,
+              "width": 1,
             }
           } />
       </View>
