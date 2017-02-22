@@ -1,10 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {  TabBarIOS,
-          StyleSheet,
-          View,
-          Text} from 'react-native';
+import {
+  TabBarIOS,
+  View,
+  Text
+} from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
@@ -49,7 +50,8 @@ class Index extends Component {
         <TabBarIOS
           unselectedTintColor={colors.tabBarUnselected}
           tintColor={colors.tabBarSelected}
-          barTintColor={colors.tabBarColor}>
+          barTintColor={colors.tabBarColor}
+        >
           <TabBarIOS.Item
             title='Home'
             icon={{uri: icons.homeIcon, scale: 5}}
@@ -58,7 +60,8 @@ class Index extends Component {
               this.setState({
                 selectedTab: 'home',
               });
-            }}>
+            }}
+          >
             <View>
               <Home navigator={this.props.navigator} />
             </View>
@@ -70,7 +73,8 @@ class Index extends Component {
               this.setState({
                 selectedTab: 'search',
               });
-            }}>
+            }}
+          >
             <View>
               <Search navigator={this.props.navigator} />
             </View>
@@ -82,7 +86,8 @@ class Index extends Component {
               this.setState({
                 selectedTab: 'favorites',
               });
-            }}>
+            }}
+          >
             <View>
               <Favorites navigator={this.props.navigator} />
             </View>
@@ -94,7 +99,8 @@ class Index extends Component {
               this.setState({
                 selectedTab: 'more',
               });
-            }}>
+            }}
+          >
             <View>
               <More navigator={this.props.navigator}
                     favoritesCount={this.props.state.listingsReducer.favorites.length}
@@ -119,14 +125,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);
-
-const styles = StyleSheet.create({
-  tabContent: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabText: {
-    color: 'white',
-    margin: 50,
-  },
-});

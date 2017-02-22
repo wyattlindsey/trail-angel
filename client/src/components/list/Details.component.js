@@ -179,10 +179,9 @@ export default class Details extends React.Component {
           </Grid>
             :
           <Grid style={{
-                  alignItems: 'center',
-                  marginTop: navHeight
-                }}
-          >
+            alignItems: 'center',
+            marginTop: navHeight
+          }}>
             <Row size={40}
                  onLayout={this._getImageRegionDimensions}
             >
@@ -246,7 +245,8 @@ const DetailsDashboard = (props) => (
                           style={{
                             alignItems: 'center',
                             padding: 20
-                          }}>
+                          }}
+      >
         {props.MapIcon}
       </TouchableHighlight>
     </Col>
@@ -260,12 +260,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     paddingBottom: 10
   },
+
   reviewTitle: {
     color: colors.darkgray,
     fontSize: 16,
     fontWeight: '400',
-    padding: 20,
+    padding: 20
   },
+
   separator: {
     height: 1,
     backgroundColor: colors.beige

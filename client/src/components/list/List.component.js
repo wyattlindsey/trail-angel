@@ -54,9 +54,6 @@ export default class List extends React.Component {
   }
 
   render() {
-    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
-      'portrait' : 'landscape';
-
     return (
       <View onLayout={this._onLayoutChange}>
         <View style={{ height: dimensions.windowHeight().height }}>
@@ -76,11 +73,12 @@ export default class List extends React.Component {
                                                   userId={this.props.userId}
                                                   {...data} />}
                       enableEmptySections={true}
-                      renderSeparator={(sectionId, rowId) => <View key={rowId}
-                                                                   style=
-                                                                     {styles.separator}
-                                                             />
-                                      }
+                      renderSeparator={
+                        (sectionId, rowId) => <View key={rowId}
+                                                    style=
+                                                      {styles.separator}
+                                              />
+                      }
             />
           }
         </View>

@@ -285,7 +285,10 @@ export default class Map extends React.Component {
                                 coordinate={marker.coordinate}
                                 onDragEnd={this.onDragEnd.bind(this, marker.key)}
                 />
-              )}})}
+              )
+            }
+          })}
+
           {coordinates.length > 1 ? this.state.markers.map(polyline => (
             <MapView.Polyline
               key={polyline.key}
@@ -302,12 +305,11 @@ export default class Map extends React.Component {
           alignItems: 'center'
         }}>
           <View style={{
-                        backgroundColor: 'transparent',
-                        marginTop: dimensions.navHeight(orientation) + 10,
-                        height: 32,
-                        flexDirection: 'row'
-                     }}
-          >
+            backgroundColor: 'transparent',
+            marginTop: dimensions.navHeight(orientation) + 10,
+            height: 32,
+            flexDirection: 'row'
+          }}>
             <TouchableOpacity
               onPress={this.toggleMilesKilometers.bind(this)}
               style={styles.bubble}
@@ -331,16 +333,19 @@ export default class Map extends React.Component {
             </View>
           </View>
           <View style={{
-            position: 'absolute',
-            top: this.state.dimensions.height - 64,
-            left: 0,
-            right: 0,
-            bottom: 0}}>
+                  position: 'absolute',
+                  top: this.state.dimensions.height - 64,
+                  left: 0,
+                  right: 0,
+                  bottom: 0
+                }}
+          >
           <View style={{
-            height: 32,
-            flexDirection: 'row',
-            justifyContent: 'center'
-          }}>
+                  height: 32,
+                  flexDirection: 'row',
+                  justifyContent: 'center'
+                }}
+          >
             <TouchableOpacity
               onPress={() => {
                 this.state.markers.pop();
@@ -348,8 +353,7 @@ export default class Map extends React.Component {
                 this.setState({
                   markers: this.state.markers
                 }, this.saveMappedTrail.bind(this, true));
-              }
-              }
+              }}
               style={styles.bubble}
             >
               <Text>Remove Last Pin</Text>
@@ -404,9 +408,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center'
   },
+
   map: {
     ...StyleSheet.absoluteFillObject
   },
+
   bubble: {
     backgroundColor: 'rgba(255,255,255,0.7)',
     paddingHorizontal: 8,

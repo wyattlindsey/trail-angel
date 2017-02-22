@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableHighlight, TextInput, Text, Image, AsyncStorage } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableHighlight,
+  TextInput,
+  Text,
+  Image,
+  AsyncStorage
+} from 'react-native';
 import { connect } from 'react-redux';
 
 import Index from './index.js';
@@ -146,7 +154,9 @@ class Login extends Component {
               source={require('../../img/backpack.png')}
             />
             <Text style={styles.title}>TrailAngel</Text>
-            <Text style={styles.subtitle}>Hike your heart out on your favorite trails.</Text>
+            <Text style={styles.subtitle}>
+              Hike your heart out on your favorite trails.
+            </Text>
           </View>
           <TouchableHighlight
             style={styles.signInButton}
@@ -175,28 +185,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.beige,
   },
+
   messageBox: {
     flex: 1,
     justifyContent: 'center',
   },
+
   badge: {
     alignSelf: 'center',
     height: 200,
     width: 200,
   },
+
   title: {
     fontSize: 17,
     textAlign: 'center',
     marginTop: 8,
   },
+
   subtitle: {
     fontSize: 17,
     textAlign: 'center',
     marginTop: 4,
   },
+
   welcome: {
     color: 'white'
   },
+
   signInButton: {
     height: 50,
     alignSelf: 'stretch',
@@ -204,6 +220,6 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 5,
     justifyContent: 'center',
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
 });

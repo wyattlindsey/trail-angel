@@ -74,8 +74,8 @@ class Search extends React.Component {
       this.props.actions.search(textInput, location)
         .then((data) => {
           if (data === undefined ||
-            data.searchResults === undefined ||
-            data.searchResults.length === 0)
+              data.searchResults === undefined ||
+              data.searchResults.length === 0)
           {
             this.setState({
               searchTimeout: true
@@ -113,21 +113,26 @@ class Search extends React.Component {
 
     return (
       <View onLayout={this._onLayoutChange}>
-        <View style={{
-          height: dimensions.windowHeight().height
-        }}>
-          <View style={{
-            flexDirection: 'column',
-            flex: 1
-          }}>
-            <View style={{
-                          padding: 8,
-                          alignItems: 'flex-start',
-                          backgroundColor: 'white',
-                          marginTop: dimensions.navHeight(orientation) + 16,
-                          flex: 1,
-                          flexDirection: 'row'
-                        }}
+        <View style=
+                {{
+                  height: dimensions.windowHeight().height
+                }}
+        >
+          <View style=
+                  {{
+                    flexDirection: 'column',
+                    flex: 1
+                  }}
+          >
+            <View style=
+                    {{
+                      padding: 8,
+                      alignItems: 'flex-start',
+                      backgroundColor: 'white',
+                      marginTop: dimensions.navHeight(orientation) + 16,
+                      flex: 1,
+                      flexDirection: 'row'
+                    }}
             >
               <View style={{ flex: 5 }}>
                 <TextInput
@@ -145,11 +150,12 @@ class Search extends React.Component {
                         onValueChange={this._handleLocalSwitch.bind(this)}
                         value={this.state.localSearch}
                         onTintColor={colors.seafoam}>
-                  <Text style={{
-                                top: 40,
-                                fontSize: 11,
-                                textAlign: 'center'
-                              }}
+                  <Text style=
+                          {{
+                            top: 40,
+                            fontSize: 11,
+                            textAlign: 'center'
+                          }}
                   >
                     Local Search
                   </Text>
@@ -160,10 +166,12 @@ class Search extends React.Component {
               flex: orientation === 'portrait' ? 5 : 4
             }}>
               {this.state.searchTimeout ?
-                <Row style={{
-                              justifyContent: 'center',
-                              padding: 40
-                            }}
+                <Row style=
+                       {{
+
+                         justifyContent: 'center',
+                         padding: 40
+                       }}
                 >
                   <Text style={{ fontSize: 18 }}>
                     No results found
@@ -217,15 +225,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'white',
     backgroundColor: colors.midgray,
-    borderRadius: 2,
+    borderRadius: 2
   },
+
   localSearch: {
     marginRight: 5,
     alignItems: 'center'
   },
+
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.midgray,
+    backgroundColor: colors.midgray
   }
 });

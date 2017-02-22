@@ -74,16 +74,19 @@ class More extends React.Component {
       nickname: this.props.state.userReducer.nickname,
     }
     return (
-      <View style={{
-                     marginTop: dimensions.navHeight(orientation),
-                     alignItems: 'center'
-                  }}
+      <View style=
+              {{
+                marginTop: dimensions.navHeight(orientation),
+                alignItems: 'center'
+              }}
             onLayout={this._onLayoutChange}
       >
-        <View style={{  flexWrap: 'wrap',
-                        alignItems: 'flex-start',
-                        flexDirection:'row'
-                    }}
+        <View style=
+                {{
+                  flexWrap: 'wrap',
+                  alignItems: 'flex-start',
+                  flexDirection:'row'
+                }}
         >
           <Image
             source={{uri: profile.avatarUrl}}
@@ -171,10 +174,11 @@ const Menu = (props) => (
 );
 
 const Logos = (props) => (
-  <View style={{
-                marginTop: props.orientation === 'portrait' ? 64: 10,
-                alignItems: 'center'
-              }}>
+  <View style=
+          {{
+            marginTop: props.orientation === 'portrait' ? 64: 10,
+            alignItems: 'center'
+          }}>
     <Image source={require('../../../img/powered-by-google-on-white.png')} />
     <Image source={require('../../../img/powered-by-darksky.png')}
            style={{ marginTop: 5, opacity: 0.5 }}/>
@@ -219,6 +223,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 8
   },
+
   chevron: {
     paddingTop: 4,
     marginLeft: 8,
