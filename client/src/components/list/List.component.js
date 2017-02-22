@@ -56,7 +56,7 @@ export default class List extends React.Component {
   render() {
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
-    
+
     return (
       <View onLayout={this._onLayoutChange}>
         <View style={{ height: dimensions.windowHeight().height }}>

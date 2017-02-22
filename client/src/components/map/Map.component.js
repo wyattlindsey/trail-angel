@@ -10,7 +10,6 @@ import {
   Switch,
   Alert
 } from 'react-native';
-import { Grid, Row, Col } from 'react-native-easy-grid';
 import MapView from 'react-native-maps';
 import FoundationIcon from 'react-native-vector-icons/Foundation';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -50,9 +49,9 @@ export default class Map extends React.Component {
       displayMiles: true,
       displayFeet: true,
       mapType: 'terrain',
-      dimensions: {   // Map view keeps track of its own orientation and dimensions
-        width: 0,     // since these aren't updated after parent props are passed
-        height: 0     // in via Navigator's passProps method
+      dimensions: {
+        width: 0,
+        height: 0
       },
     };
     this.onMapPress = this.onMapPress.bind(this);
@@ -251,6 +250,7 @@ export default class Map extends React.Component {
     const elevation = this.state.elevation;
     const displayFeet = this.state.displayFeet;
     const displayMiles = this.state.displayMiles;
+
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
     
@@ -298,11 +298,14 @@ export default class Map extends React.Component {
           )) : null}
         </MapView>
 
-        <Grid style={{ alignItems: 'center' }}>
-          <Row style={{
+        <View style={{
+          alignItems: 'center'
+        }}>
+          <View style={{
                         backgroundColor: 'transparent',
                         marginTop: dimensions.navHeight(orientation) + 10,
-                        height: 32
+                        height: 32,
+                        flexDirection: 'row'
                      }}
           >
             <TouchableOpacity
@@ -326,13 +329,18 @@ export default class Map extends React.Component {
             <View style={styles.bubble}>
               <Text>{trailCalc.calcEstimatedTime(elevation, distance)}</Text>
             </View>
-          </Row>
-          <Row />
-          <Row style={{
-                         marginBottom: 10,
-                         height: 32
-                      }}
-          >
+          </View>
+          <View style={{
+            position: 'absolute',
+            top: this.state.dimensions.height - 64,
+            left: 0,
+            right: 0,
+            bottom: 0}}>
+          <View style={{
+            height: 32,
+            flexDirection: 'row',
+            justifyContent: 'center'
+          }}>
             <TouchableOpacity
               onPress={() => {
                 this.state.markers.pop();
@@ -367,7 +375,9 @@ export default class Map extends React.Component {
               <Icon name='globe'
                     size={20}
                     color={colors.darkgray}
-                    style={{opacity: this.state.mapType === 'hybrid' ? 1.0 : 0.5}}
+                    style={{
+                      opacity: this.state.mapType === 'hybrid' ? 1.0 : 0.5
+                    }}
               />
             </TouchableOpacity>
             <TouchableOpacity style={styles.bubble}
@@ -376,10 +386,14 @@ export default class Map extends React.Component {
               <FoundationIcon name='mountains'
                               size={20}
                               color={colors.darkgray}
-                              style={{opacity: this.state.mapType === 'terrain' ? 1.0 : 0.5}} />
+                              style={{
+                                opacity: this.state.mapType === 'terrain' ? 1.0 : 0.5
+                              }}
+              />
             </TouchableOpacity>
-          </Row>
-        </Grid>
+          </View>
+          </View>
+        </View>
       </View>
     );
   }
@@ -400,9 +414,5 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
     borderRadius: 5,
     marginRight: 5
-  },
-  buttonContainer: {
-    marginVertical: 20,
-    backgroundColor: 'transparent'
   }
 });
