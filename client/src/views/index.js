@@ -1,7 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { TabBarIOS, StyleSheet, View, Text } from 'react-native';
+import {
+  TabBarIOS,
+  View,
+  Text
+} from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
@@ -17,13 +21,8 @@ import appActions from '../actions/app-actions';
 class Index extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      selectedTab: 'home',
-      dimensions: {
-        width: 0,
-        height: 0
-      }
+      selectedTab: 'home'
     };
   }
 
@@ -46,24 +45,13 @@ class Index extends Component {
       });
   }
 
-  _onLayoutChange = (e) => {
-    this.setState({
-      dimensions: {
-        width: e.nativeEvent.layout.width,
-        height: e.nativeEvent.layout.height
-      }
-    });
-  }
-
   render() {
-    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
-      'portrait' : 'landscape';
-
     return (
         <TabBarIOS
           unselectedTintColor={colors.tabBarUnselected}
           tintColor={colors.tabBarSelected}
-          barTintColor={colors.tabBarColor}>
+          barTintColor={colors.tabBarColor}
+        >
           <TabBarIOS.Item
             title='Home'
             icon={{uri: icons.homeIcon, scale: 5}}
@@ -72,11 +60,10 @@ class Index extends Component {
               this.setState({
                 selectedTab: 'home',
               });
-            }}>
-            <View onLayout={this._onLayoutChange}>
-              <Home navigator={this.props.navigator}
-                    orientation={orientation}
-              />
+            }}
+          >
+            <View>
+              <Home navigator={this.props.navigator} />
             </View>
           </TabBarIOS.Item>
           <TabBarIOS.Item
@@ -86,11 +73,10 @@ class Index extends Component {
               this.setState({
                 selectedTab: 'search',
               });
-            }}>
-            <View onLayout={this._onLayoutChange}>
-              <Search navigator={this.props.navigator}
-                      orientation={orientation}
-              />
+            }}
+          >
+            <View>
+              <Search navigator={this.props.navigator} />
             </View>
           </TabBarIOS.Item>
           <TabBarIOS.Item
@@ -100,26 +86,24 @@ class Index extends Component {
               this.setState({
                 selectedTab: 'favorites',
               });
-            }}>
-            <View onLayout={this._onLayoutChange}>
-              <Favorites navigator={this.props.navigator}
-                         orientation={orientation}
-              />
+            }}
+          >
+            <View>
+              <Favorites navigator={this.props.navigator} />
             </View>
           </TabBarIOS.Item>
           <TabBarIOS.Item
-            orientation={orientation}
             systemIcon ='more'
             selected={this.state.selectedTab === 'more'}
             onPress={() => {
               this.setState({
                 selectedTab: 'more',
               });
-            }}>
-            <View onLayout={this._onLayoutChange}>
+            }}
+          >
+            <View>
               <More navigator={this.props.navigator}
                     favoritesCount={this.props.state.listingsReducer.favorites.length}
-                    orientation={orientation}
               />
             </View>
           </TabBarIOS.Item>
@@ -141,14 +125,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);
-
-const styles = StyleSheet.create({
-  tabContent: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabText: {
-    color: 'white',
-    margin: 50,
-  },
-});

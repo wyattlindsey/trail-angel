@@ -25,16 +25,16 @@ export default class Details extends React.Component {
     this.state = {
       address: '',
       dimensions: {   // Details view keeps track of its own orientation and dimensions
-        width: 0,     // since these aren't updated after parent props are passed
-        height: 0     // in via Navigator's passProps method
+        width: 1,     // since these aren't updated after parent props are passed
+        height: 1     // in via Navigator's passProps method
       },
       imageRegionDimensions: {
-        width: 0,
-        height: 0
+        width: 1,
+        height: 1
       },
       imageDimensions: {
-        width: 0,
-        height: 0
+        width: 1,
+        height: 1
       }
     };
   }
@@ -179,10 +179,9 @@ export default class Details extends React.Component {
           </Grid>
             :
           <Grid style={{
-                  alignItems: 'center',
-                  marginTop: navHeight
-                }}
-          >
+            alignItems: 'center',
+            marginTop: navHeight
+          }}>
             <Row size={40}
                  onLayout={this._getImageRegionDimensions}
             >
@@ -246,7 +245,8 @@ const DetailsDashboard = (props) => (
                           style={{
                             alignItems: 'center',
                             padding: 20
-                          }}>
+                          }}
+      >
         {props.MapIcon}
       </TouchableHighlight>
     </Col>
@@ -260,12 +260,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     paddingBottom: 10
   },
+
   reviewTitle: {
     color: colors.darkgray,
     fontSize: 16,
     fontWeight: '400',
-    padding: 20,
+    padding: 20
   },
+
   separator: {
     height: 1,
     backgroundColor: colors.beige

@@ -1,6 +1,6 @@
 'use strict';
 
-import { Platform, StatusBar } from 'react-native';
+import { Platform, StatusBar, Dimensions } from 'react-native';
 
 const dimensions = {
   navHeight: (orientation = 'portrait') => {
@@ -14,6 +14,10 @@ const dimensions = {
 
   tabBarHeight: () => {
     return Platform.OS === 'ios'? 50 : 56;
+  },
+
+  windowHeight: () => {
+    return Dimensions.get('window');
   }
 };
 

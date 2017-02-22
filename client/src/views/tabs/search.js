@@ -7,7 +7,6 @@ import {  View,
           TextInput,
           ListView,
           ActivityIndicator,
-          Dimensions,
           Switch } from 'react-native';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { bindActionCreators } from 'redux';
@@ -28,12 +27,33 @@ class Search extends React.Component {
     this.state = {
       searchTimeout: false,
       localSearch: true,
-      searchText: ''
+      searchText: '',
+      dimensions: {
+        width: 1,
+        height: 1
+      }
     };
 
     this._debouncedHandleInput = _.debounce(this._handleInput, 300);
     this._clearInput = this._clearInput.bind(this);
   }
+
+  componentDidMount() {
+    if (this.props.searchResults !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(this.props.searchResults)
+      });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searchResults !== undefined) {
+      this.setState({
+        dataSource: this.ds.cloneWithRows(nextProps.searchResults)
+      });
+    }
+  }
+
 
   _handleInput(text) {
     this.setState({
@@ -54,8 +74,8 @@ class Search extends React.Component {
       this.props.actions.search(textInput, location)
         .then((data) => {
           if (data === undefined ||
-            data.searchResults === undefined ||
-            data.searchResults.length === 0)
+              data.searchResults === undefined ||
+              data.searchResults.length === 0)
           {
             this.setState({
               searchTimeout: true
@@ -78,92 +98,103 @@ class Search extends React.Component {
     this.props.actions.cancelRequest();
   }
 
-  componentDidMount() {
-    if (this.props.searchResults !== undefined) {
-      this.setState({
-        dataSource: this.ds.cloneWithRows(this.props.searchResults)
-      });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.searchResults !== undefined) {
-      this.setState({
-        dataSource: this.ds.cloneWithRows(nextProps.searchResults)
-      });
-    }
+  _onLayoutChange = (e) => {
+    this.setState({
+      dimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
   }
 
   render() {
-    const height = Dimensions.get('window').height;
-    console.log(this.props.orientation);
+    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
+      'portrait' : 'landscape';
+
     return (
-      <Grid>
-        <Row size={20} style={{
-                                padding: 8,
-                                marginBottom: 45,
-                                alignItems: 'center',
-                                backgroundColor: 'white',
-                                marginTop: dimensions.navHeight(this.props.orientation)
-                                            + 32
-                              }}
+      <View onLayout={this._onLayoutChange}>
+        <View style=
+                {{
+                  height: dimensions.windowHeight().height
+                }}
         >
-          <Col size={80}>
-            <TextInput
-              ref={(component) => this._textInput = component}
-              style={styles.input}
-              placeholder='Search...'
-              onChangeText={(text) => {this._debouncedHandleInput(text)}}
-              autoCapitalize='none'
-              autoCorrect={false}
-              autoFocus={true}
-            />
-          </Col>
-          <Col size={20}>
-            <Switch style={styles.localSearch}
-                    onValueChange={this._handleLocalSwitch.bind(this)}
-                    value={this.state.localSearch}
-                    onTintColor={colors.seafoam}>
-              <Text style={{  top: 40,
-                fontSize: 12,
-                textAlign: 'center'
-              }}>Local Search</Text>
-            </Switch>
-          </Col>
-        </Row>
-        <Row size={80}>
-          <Col>
-            {this.state.searchTimeout ?
-              <View style={{ justifyContent: 'center',
-                             padding: 40 }}
-              >
-                <Text style={{ fontSize: 18 }}>
-                  No results found
-                </Text>
-              </View>
-              :
-              <View style={{
-                              marginTop: 20,
-                              height: Math.round(height / 0.9)
-                          }}
-              >
-
-                <List  navigator={this.props.navigator}
-                       orientation={this.props.orientation}
-                       isFetching={this.props.state.listingsReducer.isFetching}
-                       items={this.props.state.listingsReducer.searchResults}
-                       favorites={this.props.state.listingsReducer.favorites}
-                       userLocation={this.props.state.appReducer.geolocation}
-                       userId={this.props.state.userReducer.userId}
-                       actions={this.props.actions}
+          <View style=
+                  {{
+                    flexDirection: 'column',
+                    flex: 1
+                  }}
+          >
+            <View style=
+                    {{
+                      padding: 8,
+                      alignItems: 'flex-start',
+                      backgroundColor: 'white',
+                      marginTop: dimensions.navHeight(orientation) + 16,
+                      flex: 1,
+                      flexDirection: 'row'
+                    }}
+            >
+              <View style={{ flex: 5 }}>
+                <TextInput
+                  ref={(component) => this._textInput = component}
+                  style={styles.input}
+                  placeholder='Search...'
+                  onChangeText={(text) => {this._debouncedHandleInput(text)}}
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  autoFocus={true}
                 />
-
-
               </View>
-            }
-          </Col>
-        </Row>
-      </Grid>
+              <View style={{ flex: 1 }}>
+                <Switch style={styles.localSearch}
+                        onValueChange={this._handleLocalSwitch.bind(this)}
+                        value={this.state.localSearch}
+                        onTintColor={colors.seafoam}>
+                  <Text style=
+                          {{
+                            top: 40,
+                            fontSize: 11,
+                            textAlign: 'center'
+                          }}
+                  >
+                    Local Search
+                  </Text>
+                </Switch>
+              </View>
+            </View>
+            <View style={{
+              flex: orientation === 'portrait' ? 5 : 4
+            }}>
+              {this.state.searchTimeout ?
+                <Row style=
+                       {{
+
+                         justifyContent: 'center',
+                         padding: 40
+                       }}
+                >
+                  <Text style={{ fontSize: 18 }}>
+                    No results found
+                  </Text>
+                </Row>
+                :
+                <Col>
+                  <List  navigator={this.props.navigator}
+                         isFetching={this.props.state.listingsReducer.isFetching}
+                         items={this.props.state.listingsReducer.searchResults}
+                         favorites={this.props.state.listingsReducer.favorites}
+                         userLocation={this.props.state.appReducer.geolocation}
+                         userId={this.props.state.userReducer.userId}
+                         automaticallyAdjustContentInsets={false}
+                         actions={this.props.actions}
+
+                  />
+                </Col>
+              }
+            </View>
+          </View>
+        </View>
+      </View>
     );
   }
 
@@ -189,22 +220,22 @@ export default connect(
 const styles = StyleSheet.create({
   input: {
     height: 30,
-    margin: 5,
     marginRight: 20,
-    marginTop: 15,
     paddingHorizontal: 8,
     fontSize: 15,
     color: 'white',
     backgroundColor: colors.midgray,
-    borderRadius: 2,
+    borderRadius: 2
   },
+
   localSearch: {
     marginRight: 5,
     alignItems: 'center'
   },
+
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.midgray,
+    backgroundColor: colors.midgray
   }
 });

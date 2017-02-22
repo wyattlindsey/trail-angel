@@ -18,7 +18,7 @@ export default class Reviews extends React.Component {
   constructor(props) {
     super(props);
 
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
     this.state = {
       dataSource: this.ds
@@ -46,9 +46,12 @@ export default class Reviews extends React.Component {
       <ListView style={styles.reviews}
                 automaticallyAdjustContentInsets={false}
                 dataSource={this.state.dataSource}
-                renderRow={(data) => <Review {...data}/>}
+                renderRow={(data) => <Review {...data} />}
                 renderSeparator={(sectionId, rowId) =>
-                  <View key={rowId} style={styles.separator} />}
+                  <View key={rowId}
+                        style={styles.separator}
+                  />
+                }
       />
     );
   }
@@ -62,7 +65,8 @@ const Review = (props) => (
           }}
     >
       <Image source={{uri: `https:${props.profile_photo_url}`}}
-             style={styles.photo} />
+             style={styles.photo}
+      />
     </Col>
     <Col size={75}>
       <Text style={styles.title}>{props.author_name}</Text>
@@ -74,34 +78,39 @@ const Review = (props) => (
 
 const styles = StyleSheet.create({
   review: {
-    padding: 20,
+    padding: 20
   },
+
   title: {
     fontWeight: '600',
     fontSize: 16,
     color: colors.seafoam
   },
+
   photo: {
     borderRadius: 20,
     width: 40,
-    height: 40,
+    height: 40
   },
+
   location: {
     color: colors.darktan
   },
+
   rating: {
     color: colors.peagreen
   },
+
   description: {
     lineHeight: 20,
     fontSize: 14,
     color: colors.darktan,
     textAlign: 'left',
-    marginTop: 8,
+    marginTop: 8
   },
+
   separator: {
     backgroundColor: colors.beige,
     height: 1
   }
-
 });

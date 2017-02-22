@@ -48,8 +48,10 @@ export default class Item extends React.Component {
       }
     }, 4000);
 
-    dataApi.google.getDistance2Points(this.props.userLocation.coords,
-      { latitude: this.props.geometry.location.lat , longitude: this.props.geometry.location.lng})
+    dataApi.google.getDistance2Points(this.props.userLocation.coords, {
+      latitude: this.props.geometry.location.lat ,
+      longitude: this.props.geometry.location.lng
+    })
       .then((distance) => {
         if (this._isMounted && distance) {
           this.setState({
@@ -150,8 +152,11 @@ export default class Item extends React.Component {
         <TouchableHighlight onPress={this._selectItem.bind(this)}
                             underlayColor='white'>
           <Grid>
-            <Col size={25} style={{ alignItems: 'center',
-                                    padding: 10}}
+            <Col size={25}
+                 style={{
+                   alignItems: 'center',
+                   padding: 10
+                 }}
             >
               <Row>
                 <Image source={{uri: this.props.photoThumbnailUrl}}
@@ -165,19 +170,18 @@ export default class Item extends React.Component {
               </Row>
               <Row>
                 <TouchableHighlight onPress={this._toggleFavorite.bind(this)}
-                                    style={{}}
                                     underlayColor='white'>
                   <View>{FavoriteIcon}</View>
                 </TouchableHighlight>
               </Row>
             </Col>
-            <Col  size={75}
-                  style={{
-                    paddingTop: 10,
-                    marginLeft: 10,
-                    marginRight: 10,
-                    alignItems: 'center'
-                  }}
+            <Col size={75}
+                 style={{
+                   paddingTop: 10,
+                   marginLeft: 10,
+                   marginRight: 10,
+                   alignItems: 'center'
+                }}
             >
               <Text style={{
                 fontWeight: '500',
@@ -189,10 +193,9 @@ export default class Item extends React.Component {
                 {this.props.name}
               </Text>
               <Text style={{
-                      color: colors.darktan,
-                      marginBottom: 5
-                    }}
-              >
+                color: colors.darktan,
+                marginBottom: 5
+              }}>
                 {this.state.vicinity}
               </Text>
               {this.props.rating === undefined ? <View /> :
@@ -201,10 +204,11 @@ export default class Item extends React.Component {
                 </Text>
               }
             </Col>
-            <Col size={25}  style={{
-                              alignItems: 'center',
-                              padding: 10
-                            }}
+            <Col size={25}
+                 style={{
+                   alignItems: 'center',
+                   padding: 10
+                 }}
             >
               <Row>
                 <Text>

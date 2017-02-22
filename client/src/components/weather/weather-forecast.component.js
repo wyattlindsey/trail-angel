@@ -64,9 +64,11 @@ const DailyForecastListItem = (props) => (
           </Text>
           {props.dailyForecast.precipProbability > 0 ?
             <Text style={{ fontSize: 11, color: 'white' }}>
-                  {props.dailyForecast.precipProbability * 100 + '% chance of ' +
-                    props.dailyForecast.precipType === undefined ? props.dailyForecast.precipType : ''
-                  }
+              {
+                props.dailyForecast.precipProbability * 100 + '% chance of ' +
+                props.dailyForecast.precipType === undefined ?
+                props.dailyForecast.precipType : ''
+              }
           </Text> : <View />
         }
       </View> : <View />
@@ -82,7 +84,9 @@ const DailyForecastListItem = (props) => (
                 color={colors.seafoam}
           />
         </TouchableHighlight>
-      </View> : <View />
+      </View>
+        :
+      <View />
     }
   </View>
 );
@@ -117,15 +121,20 @@ const HourlyForecastListItem = (props) => (
       </Text>
     </View>
     <View style={styles.forecastDetails}>
-      <Text style={{ paddingBottom: 10, color: 'white' }}>{props.hourlyForecast.summary}</Text>
+      <Text style={{ paddingBottom: 10, color: 'white' }}>
+        {props.hourlyForecast.summary}
+      </Text>
       <Text style={{ fontSize: 11, color: 'white' }}>
         {Math.round(props.hourlyForecast.apparentTemperature) + 'F°'}
       </Text>
       {props.hourlyForecast.precipProbability > 0 ?
         <Text style={{ fontSize: 11, color: 'white' }}>
-          {props.hourlyForecast.precipProbability * 100 + '% chance of ' +
+          {
+            props.hourlyForecast.precipProbability * 100 + '% chance of ' +
             props.hourlyForecast.precipType === undefined ?
-            props.hourlyForecast.precipType : ''}</Text> : <View />
+            props.hourlyForecast.precipType : ''
+          }
+        </Text> : <View />
       }
     </View>
   </View>
@@ -134,7 +143,7 @@ const HourlyForecastListItem = (props) => (
 const handleDailyForecastPress = (props) => {
   const startAndEnd = getForecastHoursIndicesForDay(props.dailyForecast.time, props.offset);
   const hours = [...props.forecast.hourly.data].slice(startAndEnd.startIndex,
-                                                     startAndEnd.endIndex);
+                                                      startAndEnd.endIndex);
 
   if (startAndEnd) {
     props.navigator.push({
