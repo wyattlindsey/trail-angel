@@ -57,7 +57,7 @@ export default class List extends React.Component {
     return (
       <View onLayout={this._onLayoutChange}>
         <View style={{ height: dimensions.windowHeight().height }}>
-          {this.props.fetching ?
+          {this.props.isFetching ?
             <ActivityIndicator animating={this.props.isFetching}
                                color={colors.seafoam}
                                size='large'
