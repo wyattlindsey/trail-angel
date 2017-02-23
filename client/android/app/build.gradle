@@ -96,6 +96,10 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    packagingOptions {
+             exclude 'META-INF/LICENSE'
+             exclude 'META-INF/NOTICE'
+         }
     splits {
         abi {
             reset()
