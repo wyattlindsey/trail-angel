@@ -194,7 +194,8 @@ export default class Item extends React.Component {
               </Text>
               <Text style={{
                 color: colors.darktan,
-                marginBottom: 5
+                marginBottom: 5,
+                textAlign: 'center'
               }}>
                 {this.state.vicinity}
               </Text>
@@ -204,52 +205,68 @@ export default class Item extends React.Component {
                 </Text>
               }
             </Col>
-            <Col size={25}
-                 style={{
-                   alignItems: 'center',
-                   padding: 10
-                 }}
-            >
-              <Row>
-                <Text>
-                  {this.state.distance ? this.state.distance : ''}
-                </Text>
-              </Row>
-              <Row>
-                {/* Display activity monitor until icon is
-                 loaded from api.  If no icon is ever received */}
-                {/* after a timeout, display nothing */}
-                {this.state.weather ?
-                  <View>
-                    <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
-                                        underlayColor='white'>
-                      <View>
+            <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
+                                underlayColor='white'>
+              <Col size={25}
+                   style={{
+                     alignItems: 'center',
+                     padding: 10
+                   }}
+              >
+                <Row>
+                  <Text style={{ color: colors.darkgreen }}>
+                    {this.state.distance ? this.state.distance : ''}
+                  </Text>
+                </Row>
+                <Row>
+                  {/* Display activity monitor until icon is
+                   loaded from api.  If no icon is ever received */}
+                  {/* after a timeout, display nothing */}
+                  {this.state.weather ?
+                    <View>
+                      <View style={{
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                              opacity: 0.8
+                            }}
+                      >
                         <WeatherIcon icon={this.state.weather.currently.icon}
                                      color={colors.weatherIconColor}
                                      size={30}
                                      style={{
-                                       opacity: 0.8,
                                        paddingLeft: 8
                                      }}
                         />
-                        <Text style={{ paddingLeft: 8 }}>
-                          {`${Math.round(Number(
-                            this.state.weather.currently.temperature))
-                          }°F`}
-                        </Text>
+                        <Icon name='chevron-right'
+                              color={colors.seafoam}
+                              style={{
+                                marginLeft: 8
+                              }}
+                        />
                       </View>
-                    </TouchableHighlight>
-                  </View>
-                  :
-                  this.state.weatherTimeout ?
-                    <View /> :
-                    <ActivityIndicator size='small'
-                                       color={colors.seafoam}
-                                       style={{ opacity: 0.8 }}
-                    />
-                }
-              </Row>
-            </Col>
+                      <Text style={{
+                              color: colors.seafoam,
+                              fontSize: 11,
+                              fontWeight: 'bold',
+                              paddingLeft: 8
+                            }}
+                      >
+                        {`${Math.round(Number(
+                          this.state.weather.currently.temperature))
+                        }°F`}
+                      </Text>
+                    </View>
+                    :
+                    this.state.weatherTimeout ?
+                      <View /> :
+                      <ActivityIndicator size='small'
+                                         color={colors.seafoam}
+                                         style={{ opacity: 0.8 }}
+                      />
+                  }
+                </Row>
+              </Col>
+            </TouchableHighlight>
           </Grid>
         </TouchableHighlight>
       </View>

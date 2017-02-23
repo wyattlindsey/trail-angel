@@ -137,7 +137,7 @@ exports[`test renders correctly 1`] = `
               "fontSize": 15,
               "fontWeight": "500",
               "marginBottom": 5,
-              "textAlign": "left",
+              "textAlign": "center",
             }
           }>
           Old Salmon River Trailhead

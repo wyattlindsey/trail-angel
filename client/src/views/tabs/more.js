@@ -176,7 +176,7 @@ const Menu = (props) => (
 const Logos = (props) => (
   <View style=
           {{
-            marginTop: props.orientation === 'portrait' ? 64: 10,
+            marginTop: 0,
             alignItems: 'center'
           }}>
     <Image source={require('../../../img/powered-by-google-on-white.png')} />
@@ -187,8 +187,8 @@ const Logos = (props) => (
 
 const styles = StyleSheet.create({
   avatar: {
-    height: 145,
-    width: 145,
+    height: 130,
+    width: 130,
     borderRadius: 20,
     margin: 10
   },
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     textAlign: 'center',
-    lineHeight: 60
+    lineHeight: 30
   },
 
   separator: {
@@ -209,7 +209,8 @@ const styles = StyleSheet.create({
   menuContainer: {
     flexDirection: 'column',
     width: 300,
-    margin: 10
+    margin: 10,
+    marginTop: 0
   },
 
   menuItemContainer: {
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
   },
 
   logoutText: {
-    fontSize: 16,
+    fontSize: 14,
     paddingLeft: 8
   },
 
