@@ -211,7 +211,7 @@ export default class Item extends React.Component {
                  }}
             >
               <Row>
-                <Text>
+                <Text style={{ color: colors.darkgreen }}>
                   {this.state.distance ? this.state.distance : ''}
                 </Text>
               </Row>
@@ -224,15 +224,33 @@ export default class Item extends React.Component {
                     <TouchableHighlight onPress={this._handlePressWeather.bind(this)}
                                         underlayColor='white'>
                       <View>
-                        <WeatherIcon icon={this.state.weather.currently.icon}
-                                     color={colors.weatherIconColor}
-                                     size={30}
-                                     style={{
-                                       opacity: 0.8,
-                                       paddingLeft: 8
-                                     }}
-                        />
-                        <Text style={{ paddingLeft: 8 }}>
+                        <View style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                opacity: 0.8
+                              }}
+                        >
+                          <WeatherIcon icon={this.state.weather.currently.icon}
+                                       color={colors.weatherIconColor}
+                                       size={30}
+                                       style={{
+                                         paddingLeft: 8
+                                       }}
+                          />
+                          <Icon name='chevron-right'
+                                color={colors.seafoam}
+                                style={{
+                                  marginLeft: 8
+                                }}
+                          />
+                        </View>
+                        <Text style={{
+                                color: colors.seafoam,
+                                fontSize: 11,
+                                fontWeight: 'bold',
+                                paddingLeft: 8
+                              }}
+                        >
                           {`${Math.round(Number(
                             this.state.weather.currently.temperature))
                           }°F`}
