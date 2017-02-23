@@ -186,7 +186,7 @@ export default class Item extends React.Component {
               <Text style={{
                 fontWeight: '500',
                 fontSize: 15,
-                textAlign: 'left',
+                textAlign: 'center',
                 marginBottom: 5,
                 color: colors.darkgreen
               }}>
@@ -243,9 +243,9 @@ export default class Item extends React.Component {
                   :
                   this.state.weatherTimeout ?
                     <View /> :
-                    <ActivityIndicator  size='small'
-                                        color={colors.seafoam}
-                                        style={{ opacity: 0.8 }}
+                    <ActivityIndicator size='small'
+                                       color={colors.seafoam}
+                                       style={{ opacity: 0.8 }}
                     />
                 }
               </Row>

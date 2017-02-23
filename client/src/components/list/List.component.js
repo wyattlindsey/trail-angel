@@ -21,10 +21,15 @@ export default class List extends React.Component {
 
     this.state = {
       dataSource: this.ds,
-      dimensions: {
+      containerDimensions: {
         width: 1,
         height: 1
-      }
+      },
+      listDimensions: {
+        width: 1,
+        height: 1
+      },
+      orientation: null
     };
   }
 
@@ -46,7 +51,16 @@ export default class List extends React.Component {
 
   _onLayoutChange = (e) => {
     this.setState({
-      dimensions: {
+      containerDimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
+
+  _getListDimensions = (e) => {
+    this.setState({
+      listDimensions: {
         width: e.nativeEvent.layout.width,
         height: e.nativeEvent.layout.height
       }
@@ -54,32 +68,65 @@ export default class List extends React.Component {
   }
 
   render() {
+    const orientation =
+      this.state.containerDimensions.width < this.state.containerDimensions.height ?
+        'portrait' : 'landscape';
+
     return (
-      <View onLayout={this._onLayoutChange}>
-        <View style={{ height: dimensions.windowHeight().height }}>
-          {this.props.fetching ?
-            <ActivityIndicator animating={this.props.isFetching}
-                               color={colors.seafoam}
-                               size='large'
-            />
+      <View onLayout={this._onLayoutChange}
+            style={{
+              height: dimensions.windowHeight().height
+            }}
+      >
+        <View>
+          {this.props.isFetching ?
+            <View style={{
+                    marginTop: this.props.fullScreen ?
+                      dimensions.navHeight(orientation) + 32 : 0
+                  }}
+            >
+              <ActivityIndicator animating={this.props.isFetching}
+                                 color={colors.seafoam}
+                                 size='large'
+              />
+            </View>
               :
-            <ListView dataSource={this.state.dataSource}
-                      automaticallyAdjustContentInsets=
-                        {this.props.automaticallyAdjustContentInsets || true}
-                      renderRow={(data) => <Item  navigator={this.props.navigator}
-                                                  actions={this.props.actions}
-                                                  favorites={this.props.favorites}
-                                                  userLocation={this.props.userLocation}
-                                                  userId={this.props.userId}
-                                                  {...data} />}
-                      enableEmptySections={true}
-                      renderSeparator={
-                        (sectionId, rowId) => <View key={rowId}
-                                                    style=
-                                                      {styles.separator}
-                                              />
-                      }
-            />
+            <View style={{
+                    height: dimensions.windowHeight().height
+                              - (dimensions.tabBarHeight()
+                                + dimensions.navHeight(orientation)
+                                + (this.props.subtractDimensions !== undefined
+                                    && this.props.subtractDimensions.height || 0)),
+                    width: dimensions.windowHeight().width
+                            - (this.props.subtractDimensions !== undefined
+                              && this.props.subtractDimensions.width || 0),
+                    marginTop: this.props.fullScreen ?
+                                dimensions.navHeight(orientation) : 0
+                  }}
+                  onLayout={this._getListDimensions}
+            >
+              <ListView dataSource={this.state.dataSource}
+                        automaticallyAdjustContentInsets=
+                          {this.props.automaticallyAdjustContentInsets !== undefined ?
+                            this.props.automaticallyAdjustContentInsets : true
+                          }
+                        renderRow={
+                          (data) => <Item navigator={this.props.navigator}
+                                          actions={this.props.actions}
+                                          favorites={this.props.favorites}
+                                          userLocation={this.props.userLocation}
+                                          userId={this.props.userId}
+                                          {...data} />
+                        }
+                        enableEmptySections={true}
+                        renderSeparator={
+                          (sectionId, rowId) => <View key={rowId}
+                                                      style=
+                                                        {styles.separator}
+                                                />
+                        }
+              />
+            </View>
           }
         </View>
       </View>
