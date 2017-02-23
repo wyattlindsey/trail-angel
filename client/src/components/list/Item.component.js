@@ -194,7 +194,8 @@ export default class Item extends React.Component {
               </Text>
               <Text style={{
                 color: colors.darktan,
-                marginBottom: 5
+                marginBottom: 5,
+                textAlign: 'center'
               }}>
                 {this.state.vicinity}
               </Text>
