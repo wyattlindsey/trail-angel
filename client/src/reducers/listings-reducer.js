@@ -58,9 +58,16 @@ const listingsReducer = (state = initialState, action = {}) => {
         homeData: action.data
       };
 
-    case actionTypes.LOAD_FAVORITES:
+    case actionTypes.FETCH_FAVORITES:
       return {
         ...state,
+        isFetching: true
+      }
+
+    case actionTypes.RECEIVE_FAVORITES:
+      return {
+        ...state,
+        isFetching: false,
         favorites: action.favorites
       };
 

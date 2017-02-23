@@ -49,7 +49,7 @@ export default class Map extends React.Component {
       displayMiles: true,
       displayFeet: true,
       mapType: 'terrain',
-      dimensions: {
+      containerDimensions: {
         width: 0,
         height: 0
       },
@@ -235,7 +235,7 @@ export default class Map extends React.Component {
 
   onLayoutChange = (e) => {
     this.setState({
-      dimensions: {
+      containerDimensions: {
         width: e.nativeEvent.layout.width,
         height: e.nativeEvent.layout.height
       }
@@ -251,8 +251,9 @@ export default class Map extends React.Component {
     const displayFeet = this.state.displayFeet;
     const displayMiles = this.state.displayMiles;
 
-    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
-      'portrait' : 'landscape';
+    const orientation =
+      this.state.containerDimensions.width < this.state.containerDimensions.height ?
+        'portrait' : 'landscape';
     
     return (
       <View style={styles.container}
@@ -334,7 +335,7 @@ export default class Map extends React.Component {
           </View>
           <View style={{
                   position: 'absolute',
-                  top: this.state.dimensions.height - 64,
+                  top: this.state.containerDimensions.height - 64,
                   left: 0,
                   right: 0,
                   bottom: 0

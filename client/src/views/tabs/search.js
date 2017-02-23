@@ -8,7 +8,6 @@ import {  View,
           ListView,
           ActivityIndicator,
           Switch } from 'react-native';
-import { Grid, Row, Col } from 'react-native-easy-grid';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
@@ -28,9 +27,13 @@ class Search extends React.Component {
       searchTimeout: false,
       localSearch: true,
       searchText: '',
-      dimensions: {
+      containerDimensions: {
         width: 1,
         height: 1
+      },
+      searchBarDimensions: {
+        height: 1,
+        width: 1
       }
     };
 
@@ -100,7 +103,16 @@ class Search extends React.Component {
 
   _onLayoutChange = (e) => {
     this.setState({
-      dimensions: {
+      containerDimensions: {
+        width: e.nativeEvent.layout.width,
+        height: e.nativeEvent.layout.height
+      }
+    });
+  }
+
+  _getSearchBarDimensions = (e) => {
+    this.setState({
+      searchBarDimensions: {
         width: e.nativeEvent.layout.width,
         height: e.nativeEvent.layout.height
       }
@@ -108,9 +120,11 @@ class Search extends React.Component {
   }
 
   render() {
-    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
-      'portrait' : 'landscape';
+    const orientation =
+      this.state.containerDimensions.width < this.state.containerDimensions.height ?
+        'portrait' : 'landscape';
 
+    console.log(this.state.searchBarDimensions);
     return (
       <View onLayout={this._onLayoutChange}>
         <View style=
@@ -133,6 +147,7 @@ class Search extends React.Component {
                       flex: 1,
                       flexDirection: 'row'
                     }}
+                  onLayout={this._getSearchBarDimensions}
             >
               <View style={{ flex: 5 }}>
                 <TextInput
@@ -163,10 +178,11 @@ class Search extends React.Component {
               </View>
             </View>
             <View style={{
-              flex: orientation === 'portrait' ? 5 : 4
-            }}>
+                    flex: orientation === 'portrait' ? 5 : 4
+                  }}
+            >
               {this.state.searchTimeout ?
-                <Row style=
+                <View style=
                        {{
 
                          justifyContent: 'center',
@@ -176,9 +192,9 @@ class Search extends React.Component {
                   <Text style={{ fontSize: 18 }}>
                     No results found
                   </Text>
-                </Row>
+                </View>
                 :
-                <Col>
+                <View>
                   <List  navigator={this.props.navigator}
                          isFetching={this.props.state.listingsReducer.isFetching}
                          items={this.props.state.listingsReducer.searchResults}
@@ -186,10 +202,15 @@ class Search extends React.Component {
                          userLocation={this.props.state.appReducer.geolocation}
                          userId={this.props.state.userReducer.userId}
                          automaticallyAdjustContentInsets={false}
+                         fullScreen={false}
+                         subtractDimensions={{
+                           height: this.state.searchBarDimensions.height + 16,
+                           width: 0
+                         }}
                          actions={this.props.actions}
 
                   />
-                </Col>
+                </View>
               }
             </View>
           </View>
@@ -221,6 +242,7 @@ const styles = StyleSheet.create({
   input: {
     height: 30,
     marginRight: 20,
+    marginLeft: 10,
     paddingHorizontal: 8,
     fontSize: 15,
     color: 'white',

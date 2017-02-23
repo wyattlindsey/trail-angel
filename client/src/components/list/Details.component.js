@@ -24,9 +24,9 @@ export default class Details extends React.Component {
 
     this.state = {
       address: '',
-      dimensions: {   // Details view keeps track of its own orientation and dimensions
-        width: 1,     // since these aren't updated after parent props are passed
-        height: 1     // in via Navigator's passProps method
+      containerDimensions: {
+        width: 1,
+        height: 1
       },
       imageRegionDimensions: {
         width: 1,
@@ -105,7 +105,7 @@ export default class Details extends React.Component {
 
   _onLayoutChange = (e) => {
     this.setState({
-      dimensions: {
+      containerDimensions: {
         width: e.nativeEvent.layout.width,
         height: e.nativeEvent.layout.height
       }
@@ -122,8 +122,9 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const orientation = this.state.dimensions.width < this.state.dimensions.height ?
-      'portrait' : 'landscape';
+    const orientation =
+      this.state.containerDimensions.width < this.state.containerDimensions.height ?
+        'portrait' : 'landscape';
 
     const FavoriteIcon = this.state.isFavorite ?
       <Icon name='star' size={30} color={colors.warning} /> :
@@ -245,7 +246,7 @@ const DetailsDashboard = (props) => (
                           style={{
                             alignItems: 'center',
                             padding: 20
-                          }}
+                            }}
       >
         {props.MapIcon}
       </TouchableHighlight>

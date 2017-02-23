@@ -21,6 +21,8 @@ class Favorites extends React.Component {
             favorites={this.props.state.listingsReducer.favorites}
             userLocation={this.props.state.appReducer.geolocation}
             userId={this.props.state.userReducer.userId}
+            automaticallyAdjustContentInsets={false}
+            fullScreen={true}
             actions={this.props.actions}
       />
     );

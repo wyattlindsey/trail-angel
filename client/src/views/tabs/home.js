@@ -15,14 +15,15 @@ class Home extends React.Component {
 
   render() {
     return (
-      <List  navigator={this.props.navigator}
-             orientation={this.props.orientation}
-             isFetching={this.props.state.listingsReducer.isFetching}
-             items={this.props.state.listingsReducer.homeData}
-             favorites={this.props.state.listingsReducer.favorites}
-             userLocation={this.props.state.appReducer.geolocation}
-             userId={this.props.state.userReducer.userId}
-             actions={{ ...this.props.actions }}
+      <List navigator={this.props.navigator}
+            isFetching={this.props.state.listingsReducer.isFetching}
+            items={this.props.state.listingsReducer.homeData}
+            favorites={this.props.state.listingsReducer.favorites}
+            userLocation={this.props.state.appReducer.geolocation}
+            userId={this.props.state.userReducer.userId}
+            automaticallyAdjustContentInsets={false}
+            fullScreen={true}
+            actions={{ ...this.props.actions }}
       />
     );
   }
