@@ -169,8 +169,10 @@ export default class Details extends React.Component {
             <Row size={25}>
               <DetailsDashboard {...detailsProps} />
             </Row>
+
             <View style={styles.separator}/>
-            <Row size={40}>
+
+            <Row size={35}>
               {this.props.reviews === undefined ?
                 <Text style={styles.reviewTitle}>This trail has no reviews</Text>
                   :
@@ -224,7 +226,13 @@ const DetailsDashboard = (props) => (
          }}
     >
       <Text style={styles.title}>{props.name}</Text>
-      <Text style={{ color: colors.darktan }}>{props.address}</Text>
+      <Text style={{
+              color: colors.darktan,
+              fontSize: 12
+            }}
+      >
+        {props.address}
+      </Text>
     </Col>
     <Col  size={40}
           style={{
@@ -236,7 +244,7 @@ const DetailsDashboard = (props) => (
                           underlayColor='white'
                           style={{
                             alignItems: 'center',
-                            padding: 20
+                            padding: 16
                           }}
       >
         {props.FavoriteIcon}
@@ -245,7 +253,7 @@ const DetailsDashboard = (props) => (
                           underlayColor='white'
                           style={{
                             alignItems: 'center',
-                            padding: 20
+                            padding: 16
                             }}
       >
         {props.MapIcon}
@@ -257,14 +265,14 @@ const DetailsDashboard = (props) => (
 const styles = StyleSheet.create({
   title: {
     color: colors.darkgreen,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     paddingBottom: 10
   },
 
   reviewTitle: {
     color: colors.darkgray,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '400',
     padding: 20
   },
