@@ -1,9 +1,10 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Navigator, StyleSheet } from 'react-native';
+import { View, Text, Navigator, StyleSheet } from 'react-native';
 
 import Login from './views/login';
+import Index from './views/index';
 import colors from './components/style/colors';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -31,6 +32,20 @@ export default class App extends Component {
         <Navigator initialRoute={{
                      title: 'Welcome to TrailAngel',
                      index: 0
+                   }}
+                   renderScene={(route, navigator) => {
+
+                     if (route.index === 0) {
+                       return (
+                         <Login navigator={navigator} />
+                       );
+                     } else if (route.index === 1) {
+                       return (
+                         <Index navigator={navigator}
+                                passProps={{...route.passProps}}
+                         />
+                       );
+                     }
                    }}
         />
       </Provider>

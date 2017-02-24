@@ -6,11 +6,12 @@ import {
   TextInput,
   Text,
   Image,
-  AsyncStorage
+  AsyncStorage,
+  Platform
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import Index from './index.js';
+import Index from './index';
 import colors from '../components/style/colors';
 
 import Auth0Lock from 'react-native-lock';
@@ -61,16 +62,28 @@ class Login extends Component {
   }
 
   reroute(profile, token) {
-    this.props.navigator.push({
-      title: 'TrailAngel',
-      component: Index,
-      passProps: {
-        profile: profile,
-        token: token
-      },
-      // hack to remove back button leading to login page
-      leftButtonTitle: ' '
-    });
+    if (Platform.OS === 'ios') {
+      this.props.navigator.push({
+        title: 'TrailAngel',
+        component: Index,
+        passProps: {
+          profile,
+          token
+        },
+        // hack to remove back button leading to login page
+        leftButtonTitle: ' '
+      });
+    } else if (Platform.OS === 'android') {
+      this.props.navigator.push({
+        title: 'TrailAngel',
+        index: 1,
+        passProps: {
+          profile,
+          token
+        }
+      });
+    }
+
   }
 
   async setToken(token) {
@@ -141,8 +154,6 @@ class Login extends Component {
 
   render() {
     return (
-
-
       this.props.state.userReducer.hasToken ?
 
         <Text>...Logging In...</Text> :

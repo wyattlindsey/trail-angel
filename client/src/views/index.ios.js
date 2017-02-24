@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-
+;
 import icons from './tabs/icons';
 import colors from '../components/style/colors';
 import Home from './tabs/home';
