@@ -2,6 +2,9 @@
 
 import React from 'react';
 import { View, Text, ScrollView, TouchableHighlight, StyleSheet } from 'react-native';
+
+import { routes } from '../../router';
+
 import time from '../../utils/time';
 import WeatherIcon from './weather-icon.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -149,6 +152,7 @@ const handleDailyForecastPress = (props) => {
     props.navigator.push({
       title: 'Hourly',
       component: HourlyWeatherForecast,
+      index: routes.hourlyWeatherForecast,
       passProps: {
         hourlyForecast: hours,
         offset: props.forecast.offset

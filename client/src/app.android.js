@@ -3,9 +3,7 @@
 import React, { Component } from 'react';
 import { View, Text, Navigator, StyleSheet } from 'react-native';
 
-import Login from './views/login';
-import Index from './views/index';
-import colors from './components/style/colors';
+import router, { routes } from './router';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -31,31 +29,11 @@ export default class App extends Component {
       <Provider store={store}>
         <Navigator initialRoute={{
                      title: 'Welcome to TrailAngel',
-                     index: 0
+                     index: routes.login
                    }}
-                   renderScene={(route, navigator) => {
-
-                     if (route.index === 0) {
-                       return (
-                         <Login navigator={navigator} />
-                       );
-                     } else if (route.index === 1) {
-                       return (
-                         <Index navigator={navigator}
-                                passProps={{...route.passProps}}
-                         />
-                       );
-                     }
-                   }}
+                   renderScene={(route, navigator) => router(route, navigator)}
         />
       </Provider>
     );
   }
 };
-
-let styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.seafoam
-  }
-});

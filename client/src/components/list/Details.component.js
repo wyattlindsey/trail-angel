@@ -11,6 +11,8 @@ import {
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import * as _ from 'lodash';
 
+import { routes } from '../../router';
+
 import Reviews from './Reviews.component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Map from '../map/Map.component';
@@ -93,6 +95,7 @@ export default class Details extends React.Component {
     this.props.navigator.push({
       title: 'Dashboard',
       component: Map,
+      index: routes.map,
       passProps: {
         ...this.props
       }

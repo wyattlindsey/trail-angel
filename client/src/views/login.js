@@ -6,11 +6,11 @@ import {
   TextInput,
   Text,
   Image,
-  AsyncStorage,
-  Platform
+  AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 
+import { routes } from '../router';
 import Index from './index';
 import colors from '../components/style/colors';
 
@@ -62,28 +62,17 @@ class Login extends Component {
   }
 
   reroute(profile, token) {
-    if (Platform.OS === 'ios') {
-      this.props.navigator.push({
-        title: 'TrailAngel',
-        component: Index,
-        passProps: {
-          profile,
-          token
-        },
-        // hack to remove back button leading to login page
-        leftButtonTitle: ' '
-      });
-    } else if (Platform.OS === 'android') {
-      this.props.navigator.push({
-        title: 'TrailAngel',
-        index: 1,
-        passProps: {
-          profile,
-          token
-        }
-      });
-    }
-
+    this.props.navigator.push({
+      title: 'TrailAngel',
+      component: Index,
+      index: routes.index,
+      passProps: {
+        profile,
+        token
+      },
+      // hack to remove back button leading to login page
+      leftButtonTitle: ' '
+    });
   }
 
   async setToken(token) {

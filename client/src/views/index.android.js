@@ -22,10 +22,10 @@ class Index extends React.Component {
 
   componentDidMount() {
     let profile = {};
-    if (typeof this.props.passProps.profile === 'string') {
-      profile = JSON.parse(this.props.passProps.profile);
+    if (typeof this.props.profile === 'string') {
+      profile = JSON.parse(this.props.profile);
     } else {
-      profile = this.props.passProps.profile;
+      profile = this.props.profile;
     }
 
     this.props.actions.initializeApp({
@@ -42,10 +42,10 @@ class Index extends React.Component {
   render() {
     return (
       <ScrollableTabView>
-        <Home tabLabel='Home' />
-        <Search tabLabel='Search' />
-        <Favorites tabLabel='Favorites' />
-        <More tabLabel='More' />
+        <Home tabLabel='Home' {...this.props} />
+        <Search tabLabel='Search' {...this.props} />
+        <Favorites tabLabel='Favorites' {...this.props} />
+        <More tabLabel='More' {...this.props} />
       </ScrollableTabView>
     );
   }
