@@ -157,7 +157,6 @@ class Search extends React.Component {
                   onChangeText={(text) => {this._debouncedHandleInput(text)}}
                   autoCapitalize='none'
                   autoCorrect={false}
-                  autoFocus={true}
                 />
               </View>
               <View style={{ flex: 1 }}>

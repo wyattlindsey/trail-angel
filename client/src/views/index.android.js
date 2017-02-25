@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-;
+
 import icons from './tabs/icons';
 import colors from '../components/style/colors';
 import Home from './tabs/home';
@@ -40,9 +41,12 @@ class Index extends React.Component {
 
   render() {
     return (
-      <View style={{ marginTop: 100 }}>
-        <Text>Hello World</Text>
-      </View>
+      <ScrollableTabView>
+        <Home tabLabel='Home' />
+        <Search tabLabel='Search' />
+        <Favorites tabLabel='Favorites' />
+        <More tabLabel='More' />
+      </ScrollableTabView>
     );
   }
 }
