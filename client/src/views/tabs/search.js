@@ -157,23 +157,29 @@ class Search extends React.Component {
                   onChangeText={(text) => {this._debouncedHandleInput(text)}}
                   autoCapitalize='none'
                   autoCorrect={false}
+                  autoFocus={true}
+                  disableFullscreenUI={true}
+                  underlineColorAndroid='transparent'
                 />
               </View>
-              <View style={{ flex: 1 }}>
+              <View style={{
+                      flex: 1,
+                      alignItems: 'center'
+                    }}
+              >
                 <Switch style={styles.localSearch}
                         onValueChange={this._handleLocalSwitch.bind(this)}
                         value={this.state.localSearch}
-                        onTintColor={colors.seafoam}>
-                  <Text style=
-                          {{
-                            top: 40,
-                            fontSize: 11,
-                            textAlign: 'center'
-                          }}
-                  >
-                    Local Search
-                  </Text>
-                </Switch>
+                        onTintColor={colors.seafoam} />
+                <Text style=
+                        {{
+                          paddingTop: 8,
+                          fontSize: 11,
+                          textAlign: 'center'
+                        }}
+                >
+                  Local Search
+                </Text>
               </View>
             </View>
             <View style={{
@@ -183,9 +189,9 @@ class Search extends React.Component {
               {this.state.searchTimeout ?
                 <View style=
                        {{
-
+                         alignItems: 'center',
                          justifyContent: 'center',
-                         padding: 40
+                         marginTop: 32
                        }}
                 >
                   <Text style={{ fontSize: 18 }}>
@@ -243,7 +249,8 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 10,
     paddingHorizontal: 8,
-    fontSize: 15,
+    paddingVertical: 0,
+    fontSize: 14,
     color: 'white',
     backgroundColor: colors.midgray,
     borderRadius: 2
