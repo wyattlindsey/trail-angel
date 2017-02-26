@@ -41,7 +41,11 @@ class Index extends React.Component {
 
   render() {
     return (
-      <ScrollableTabView>
+      <ScrollableTabView tabBarBackgroundColor={colors.tabBarColor}
+                         tabBarActiveTextColor={colors.tabBarSelected}
+                         tabBarInactiveTextColor={colors.tabBarUnselected}
+                         tabBarUnderlineStyle={{ backgroundColor: colors.seafoam }}
+      >
         <Home tabLabel='Home' {...this.props} />
         <Search tabLabel='Search' {...this.props} />
         <Favorites tabLabel='Favorites' {...this.props} />
