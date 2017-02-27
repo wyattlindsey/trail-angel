@@ -199,7 +199,7 @@ export {
 const styles = StyleSheet.create({
   scrollContainer: {
     backgroundColor: colors.midgray,
-    marginTop: 12
+    paddingTop: 12
   },
 
   forecastListItem: {
