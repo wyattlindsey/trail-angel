@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { BackAndroid } from 'react-native';
 
 import Login from './views/login';
 import Index from './views/index';
@@ -19,14 +19,28 @@ const components = {
   HourlyWeatherForecast
 }
 
-const router = (route, navigator) => {
-  const Component = components[route.index];
-  return (
-    <Component navigator={navigator}
-               {...route.passProps}
-    />
-  );
-};
+class Router extends React.Component {
+  constructor(props) {
+    super(props);
+
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      if (props.navigator && props.navigator.getCurrentRoutes().length > 2) {
+        props.navigator.pop();
+        return true;
+      }
+      return false;
+    });
+  }
+
+  render() {
+    const Component = components[this.props.route.index];
+    return (
+      <Component navigator={this.props.navigator}
+                 {...this.props.route.passProps}
+      />
+    );
+  }
+}
 
 export const routes = {
   login: 'Login',
@@ -37,4 +51,4 @@ export const routes = {
   hourlyWeatherForecast: 'HourlyWeatherForecast'
 };
 
-export default router;
+export default Router;

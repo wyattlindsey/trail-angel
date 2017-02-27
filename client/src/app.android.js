@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { View, Text, Navigator, StyleSheet } from 'react-native';
 
-import router, { routes } from './router';
+import Router, { routes } from './router';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -20,15 +20,18 @@ const store = createStoreWithMiddleware(reducer);
 
 export default class App extends Component {
 
-
   render() {
     return (
       <Provider store={store}>
-        <Navigator initialRoute={{
+        <Navigator initialRoute=
+                   {{
                      title: 'Welcome to TrailAngel',
                      index: routes.login
                    }}
-                   renderScene={(route, navigator) => router(route, navigator)}
+                   renderScene={(route, navigator) => <Router route={route}
+                                                              navigator={navigator}
+                                                      />
+                   }
         />
       </Provider>
     );
