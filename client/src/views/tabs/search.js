@@ -168,7 +168,8 @@ class Search extends React.Component {
                   underlineColorAndroid='transparent'
                 />
               </View>
-              <View style={{
+              <View style=
+                    {{
                       flex: 1,
                       alignItems: 'center'
                     }}
@@ -188,7 +189,8 @@ class Search extends React.Component {
                 </Text>
               </View>
             </View>
-            <View style={{
+            <View style=
+                  {{
                     flex: orientation === 'portrait' ? 5 : 4
                   }}
             >
