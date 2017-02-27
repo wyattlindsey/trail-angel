@@ -8,14 +8,11 @@ import router, { routes } from './router';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
 
 import reducers from './reducers';
 
-const logger = createLogger();
 const middleware = [
-  thunk,
-  __DEV__ && logger
+  thunk
 ].filter(Boolean);
 const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
 const reducer = combineReducers(reducers);
