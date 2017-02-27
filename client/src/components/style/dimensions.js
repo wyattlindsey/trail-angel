@@ -8,12 +8,13 @@ const dimensions = {
       return orientation === 'portrait' ?
         64 : 32
     } else if (Platform.OS === 'android') {
+      console.log(StatusBar.currentHeight);
       return StatusBar.currentHeight;
     }
   },
 
   tabBarHeight: () => {
-    return Platform.OS === 'ios'? 50 : 56;
+    return Platform.OS === 'ios'? 50 : 50;
   },
 
   windowHeight: () => {

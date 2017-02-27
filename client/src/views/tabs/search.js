@@ -1,13 +1,16 @@
 'use strict';
 
 import React from 'react';
-import {  View,
-          Text,
-          StyleSheet,
-          TextInput,
-          ListView,
-          ActivityIndicator,
-          Switch } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  ListView,
+  ActivityIndicator,
+  Switch,
+  Platform
+} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
@@ -124,7 +127,10 @@ class Search extends React.Component {
       this.state.containerDimensions.width < this.state.containerDimensions.height ?
         'portrait' : 'landscape';
 
-    console.log(this.state.searchBarDimensions);
+    const marginTop = Platform.OS === 'ios' ?
+                            dimensions.navHeight(orientation) + 16
+                            : 0;
+
     return (
       <View onLayout={this._onLayoutChange}>
         <View style=
@@ -143,7 +149,7 @@ class Search extends React.Component {
                       padding: 8,
                       alignItems: 'flex-start',
                       backgroundColor: 'white',
-                      marginTop: dimensions.navHeight(orientation) + 16,
+                      marginTop,
                       flex: 1,
                       flexDirection: 'row'
                     }}
