@@ -53,6 +53,9 @@
         </activity>
         <!--Auth0 Lock Passwordless End-->
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyDB5zzhpIGeUa2tU4vsqkUAVH0a5q-i_As"/>
     </application>
 
 </manifest>

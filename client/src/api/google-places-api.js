@@ -44,7 +44,8 @@ const googlePlacesApi = {
         if (data === undefined || data.results === undefined) {
           return false;
         } else {
-          return data.results.map((result) => {
+          let results = data.results.slice(0, 5);
+          return results.map((result) => {
             return {
               ...result,
               id: result.place_id
