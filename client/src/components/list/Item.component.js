@@ -2,14 +2,19 @@
 
 import React from 'react';
 import * as _ from 'lodash';
-import {  View,
-          Text,
-          StyleSheet,
-          Image,
-          TouchableHighlight,
-          ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  ActivityIndicator
+} from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { routes } from '../../router';
+
 import WeatherIcon from '../weather/weather-icon.component';
 import { DailyWeatherForecast } from '../weather/weather-forecast.component';
 import Details from './Details.component';
@@ -113,17 +118,19 @@ export default class Item extends React.Component {
     this.props.navigator.push({
       title: 'Daily Forecast',
       component: DailyWeatherForecast,
+      index: routes.dailyWeatherForecast,
       passProps: {
         forecast: this.state.weather,
-        navigator: this.props.navigator,
+        navigator: this.props.navigator
       }
-    })
+    });
   }
 
   _selectItem() {
     this.props.navigator.push({
       title: 'Detail',
       component: Details,
+      index: routes.details,
       passProps: {
         ...this.props
       }

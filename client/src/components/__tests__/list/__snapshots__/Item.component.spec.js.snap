@@ -150,6 +150,7 @@ exports[`test renders correctly 1`] = `
             Object {
               "color": "#786048",
               "marginBottom": 5,
+              "textAlign": "center",
             }
           }>
           Welches
@@ -168,46 +169,74 @@ exports[`test renders correctly 1`] = `
         </Text>
       </View>
       <View
-        size={25}
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
-          Object {
-            "alignItems": "center",
-            "flex": 25,
-            "flexDirection": "column",
-            "padding": 10,
-          }
-        }>
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID={undefined}>
         <View
+          size={25}
           style={
             Object {
-              "flex": 1,
-              "flexDirection": "row",
+              "alignItems": "center",
+              "flex": 25,
+              "flexDirection": "column",
+              "padding": 10,
             }
           }>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail">
-            
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "flex": 1,
-              "flexDirection": "row",
-            }
-          }>
-          <ActivityIndicator
-            animating={true}
-            color="#5e9fa1"
-            hidesWhenStopped={true}
-            size="small"
+          <View
             style={
               Object {
-                "opacity": 0.8,
+                "flex": 1,
+                "flexDirection": "row",
               }
-            } />
+            }>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2f5e4e",
+                }
+              }>
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+              }
+            }>
+            <ActivityIndicator
+              animating={true}
+              color="#5e9fa1"
+              hidesWhenStopped={true}
+              size="small"
+              style={
+                Object {
+                  "opacity": 0.8,
+                }
+              } />
+          </View>
         </View>
       </View>
     </View>

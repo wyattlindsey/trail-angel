@@ -1,13 +1,16 @@
 'use strict';
 
 import React from 'react';
-import {  View,
-          Text,
-          StyleSheet,
-          TextInput,
-          ListView,
-          ActivityIndicator,
-          Switch } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  ListView,
+  ActivityIndicator,
+  Switch,
+  Platform
+} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
@@ -124,7 +127,10 @@ class Search extends React.Component {
       this.state.containerDimensions.width < this.state.containerDimensions.height ?
         'portrait' : 'landscape';
 
-    console.log(this.state.searchBarDimensions);
+    const marginTop = Platform.OS === 'ios' ?
+                            dimensions.navHeight(orientation) + 16
+                            : 0;
+
     return (
       <View onLayout={this._onLayoutChange}>
         <View style=
@@ -143,7 +149,7 @@ class Search extends React.Component {
                       padding: 8,
                       alignItems: 'flex-start',
                       backgroundColor: 'white',
-                      marginTop: dimensions.navHeight(orientation) + 16,
+                      marginTop,
                       flex: 1,
                       flexDirection: 'row'
                     }}
@@ -158,35 +164,42 @@ class Search extends React.Component {
                   autoCapitalize='none'
                   autoCorrect={false}
                   autoFocus={true}
+                  disableFullscreenUI={true}
+                  underlineColorAndroid='transparent'
                 />
               </View>
-              <View style={{ flex: 1 }}>
+              <View style=
+                    {{
+                      flex: 1,
+                      alignItems: 'center'
+                    }}
+              >
                 <Switch style={styles.localSearch}
                         onValueChange={this._handleLocalSwitch.bind(this)}
                         value={this.state.localSearch}
-                        onTintColor={colors.seafoam}>
-                  <Text style=
-                          {{
-                            top: 40,
-                            fontSize: 11,
-                            textAlign: 'center'
-                          }}
-                  >
-                    Local Search
-                  </Text>
-                </Switch>
+                        onTintColor={colors.seafoam} />
+                <Text style=
+                        {{
+                          paddingTop: 8,
+                          fontSize: 11,
+                          textAlign: 'center'
+                        }}
+                >
+                  Local Search
+                </Text>
               </View>
             </View>
-            <View style={{
+            <View style=
+                  {{
                     flex: orientation === 'portrait' ? 5 : 4
                   }}
             >
               {this.state.searchTimeout ?
                 <View style=
                        {{
-
+                         alignItems: 'center',
                          justifyContent: 'center',
-                         padding: 40
+                         marginTop: 32
                        }}
                 >
                   <Text style={{ fontSize: 18 }}>
@@ -244,7 +257,8 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 10,
     paddingHorizontal: 8,
-    fontSize: 15,
+    paddingVertical: 0,
+    fontSize: 14,
     color: 'white',
     backgroundColor: colors.midgray,
     borderRadius: 2

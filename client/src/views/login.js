@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import Index from './index.js';
+import { routes } from '../router';
+import Index from './index';
 import colors from '../components/style/colors';
 
 import Auth0Lock from 'react-native-lock';
@@ -64,9 +65,10 @@ class Login extends Component {
     this.props.navigator.push({
       title: 'TrailAngel',
       component: Index,
+      index: routes.index,
       passProps: {
-        profile: profile,
-        token: token
+        profile,
+        token
       },
       // hack to remove back button leading to login page
       leftButtonTitle: ' '
@@ -141,8 +143,6 @@ class Login extends Component {
 
   render() {
     return (
-
-
       this.props.state.userReducer.hasToken ?
 
         <Text>...Logging In...</Text> :

@@ -13,8 +13,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect  } from 'react-redux';
 
+import { routes } from '../../router';
 import googleApi from '../../api/google-api';
 import userActions from '../../actions/user-actions';
+
 import Login from '../login';
 import colors from '../../components/style/colors';
 import dimensions from '../../components/style/dimensions';
@@ -50,6 +52,7 @@ class More extends React.Component {
         this.props.navigator.push({
           title: 'Welcome to TrailAngel',
           component: Login,
+          index: routes.login,
           // hack to remove back button leading to login page
           leftButtonTitle: ' ',
         });
