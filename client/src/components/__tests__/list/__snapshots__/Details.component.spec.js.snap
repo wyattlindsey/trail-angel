@@ -563,7 +563,7 @@ exports[`test renders correctly 1`] = `
               style={
                 Object {
                   "color": "#2f5e4e",
-                  "fontSize": 16,
+                  "fontSize": 14,
                   "fontWeight": "600",
                   "paddingBottom": 10,
                 }
@@ -577,6 +577,7 @@ exports[`test renders correctly 1`] = `
               style={
                 Object {
                   "color": "#786048",
+                  "fontSize": 12,
                 }
               }>
               Welches
@@ -614,7 +615,7 @@ exports[`test renders correctly 1`] = `
                   },
                   Object {
                     "alignItems": "center",
-                    "padding": 20,
+                    "padding": 16,
                   },
                 ]
               }
@@ -660,7 +661,7 @@ exports[`test renders correctly 1`] = `
                   },
                   Object {
                     "alignItems": "center",
-                    "padding": 20,
+                    "padding": 16,
                   },
                 ]
               }
