@@ -21,6 +21,10 @@ const dimensions = {
   // We may want to change the name of this dimensions property.
   windowHeight: () => {
     return Dimensions.get('window');
+  },
+
+  windowWidth: () => {
+    return Dimensions.get('window').width;
   }
 };
 

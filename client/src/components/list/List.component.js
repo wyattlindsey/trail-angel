@@ -97,7 +97,7 @@ export default class List extends React.Component {
                                 + dimensions.navHeight(orientation)
                                 + (this.props.subtractDimensions !== undefined
                                     && this.props.subtractDimensions.height || 0)),
-                    width: dimensions.windowHeight().width
+                    width: dimensions.windowWidth()
                             - (this.props.subtractDimensions !== undefined
                               && this.props.subtractDimensions.width || 0),
                     marginTop: this.props.fullScreen ?
