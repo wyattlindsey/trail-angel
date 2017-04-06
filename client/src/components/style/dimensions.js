@@ -16,11 +16,8 @@ const dimensions = {
     return Platform.OS === 'ios'? 50 : 50 + StatusBar.currentHeight;
   },
 
-  // Note: this returns an object with the following shape:
-  // {width: 375, scale: 2, height: 667}
-  // We may want to change the name of this dimensions property.
   windowHeight: () => {
-    return Dimensions.get('window');
+    return Dimensions.get('window').height;
   },
 
   windowWidth: () => {

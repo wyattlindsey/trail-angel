@@ -75,7 +75,7 @@ export default class List extends React.Component {
     return (
       <View onLayout={this._onLayoutChange}
             style={{
-              height: dimensions.windowHeight().height
+              height: dimensions.windowHeight()
             }}
       >
         <View>
@@ -92,7 +92,7 @@ export default class List extends React.Component {
             </View>
               :
             <View style={{
-                    height: dimensions.windowHeight().height
+                    height: dimensions.windowHeight()
                               - (dimensions.tabBarHeight()
                                 + dimensions.navHeight(orientation)
                                 + (this.props.subtractDimensions !== undefined
