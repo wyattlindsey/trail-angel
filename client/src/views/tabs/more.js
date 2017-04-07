@@ -18,6 +18,7 @@ import googleApi from '../../api/google-api';
 import userActions from '../../actions/user-actions';
 
 import Login from '../login';
+import SupplyList from '../../components/supply-list/SupplyList.component'
 import colors from '../../components/style/colors';
 import dimensions from '../../components/style/dimensions';
 
@@ -57,6 +58,16 @@ class More extends React.Component {
           leftButtonTitle: ' ',
         });
       })
+  }
+
+  _handleSupplyListPress() {
+
+    this.props.navigator.push({
+      title: 'Supply List',
+      component: SupplyList,
+      index: routes.supplylist,
+      leftButtonTitle: 'Back',
+    });
   }
 
   _onLayoutChange = (e) => {
@@ -108,12 +119,14 @@ class More extends React.Component {
         <View style={{ height: 400 }}>
           {orientation === 'portrait' ?
             <View style={{ flexDirection: 'column' }}>
-              <Menu handleLogoutPress={this._handleLogoutPress.bind(this)} />
+              <Menu handleLogoutPress={this._handleLogoutPress.bind(this)}
+                    handleSupplyListPress={this._handleSupplyListPress.bind(this)} />
               <Logos orientation={orientation}/>
             </View>
               :
             <View style={{ flexDirection: 'row' }}>
-              <Menu handleLogoutPress={this._handleLogoutPress.bind(this)} />
+              <Menu handleLogoutPress={this._handleLogoutPress.bind(this)}
+                    handleSupplyListPress={this._handleSupplyListPress.bind(this)} />
               <Logos orientation={orientation} />
             </View>
           }
@@ -145,7 +158,7 @@ const Menu = (props) => (
   <View style={styles.menuContainer}>
     <TouchableHighlight
       underlayColor={colors.lightgray}
-      onPress={props.handleLogoutPress}>
+      onPress={props.handleSupplyListPress}>
       <View style={styles.menuItemContainer}>
         <Icon name='list-ul' size={17} color={colors.lightgray} />
         <Text style={styles.logoutText}>Supply List</Text>
