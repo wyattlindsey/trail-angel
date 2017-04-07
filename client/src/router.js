@@ -5,6 +5,7 @@ import Login from './views/login';
 import Index from './views/index';
 import Details from './components/list/Details.component';
 import Map from './components/map/Map.component';
+import SupplyList from './components/supply-list/SupplyList.component'
 import {
   DailyWeatherForecast,
   HourlyWeatherForecast
@@ -15,6 +16,7 @@ const components = {
   Index,
   Details,
   Map,
+  SupplyList,
   DailyWeatherForecast,
   HourlyWeatherForecast
 }
