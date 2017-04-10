@@ -17,7 +17,21 @@ import colors from '../components/style/colors';
 import Auth0Lock from 'react-native-lock';
 import config from '../../config';
 
-const lock = new Auth0Lock({ clientId: config.AUTH0_CLIENT_ID, domain: config.AUTH0_DOMAIN });
+const lock = new Auth0Lock({
+  clientId: config.AUTH0_CLIENT_ID,
+  domain: config.AUTH0_DOMAIN,
+  style: {
+    ios: {
+      primaryButtonTextColor: '#000000',
+      primaryButtonNormalColor: colors.midgray,
+      primaryButtonHighlightedColor: colors.lightgray,
+      secondaryButtonBackgroundColor: colors.midgray,
+      credentialBoxBackgroundColor: '#FFFFFF',
+      screenBackgroundColor: colors.beige,
+      iconImageName: '../../img/backpack-lock-icon.png'
+    }
+  }
+});
 const tokenKey = config.ASYNC_STORAGE_TOKEN_KEY;
 const profileKey = config.ASYNC_STORAGE_PROFILE_KEY;
 
