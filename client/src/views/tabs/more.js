@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
-  NavigatorIOS
+  NavigatorIOS,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
@@ -170,7 +171,15 @@ const Menu = (props) => (
     <View style={styles.separator} />
     <TouchableHighlight
       underlayColor={colors.lightgray}
-      onPress={props.handleLogoutPress}>
+      onPress={() => {
+                Alert.alert(
+                  'Settings',
+                  'This feature is not yet available.',
+                  [
+                    {text: 'OK'}
+                  ]
+                )}
+              }>
       <View style={styles.menuItemContainer}>
         <Icon  name='cog' size={20} color={colors.lightgray} />
         <Text style={styles.logoutText}>Settings</Text>
