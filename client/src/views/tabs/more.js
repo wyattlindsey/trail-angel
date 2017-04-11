@@ -67,6 +67,8 @@ class More extends React.Component {
       component: SupplyList,
       index: routes.supplylist,
       leftButtonTitle: 'Back',
+      onLeftButtonPress: this.props.navigator.pop
+
     });
   }
 
