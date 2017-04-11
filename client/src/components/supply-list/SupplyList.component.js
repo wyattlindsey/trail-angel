@@ -4,6 +4,7 @@ import React from 'react';
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
   Image,
   TouchableHighlight,
@@ -29,7 +30,8 @@ class SupplyList extends React.Component {
       dimensions: {
         width: 1,
         height: 1
-      }
+      },
+      inputText: ''
     }
   }
 
@@ -53,15 +55,54 @@ class SupplyList extends React.Component {
       <View style=
               {{
                 marginTop: dimensions.navHeight(orientation),
+                width: dimensions.windowWidth(),
+                height: dimensions.windowHeight(),
+                //backgroundColor: colors.beige,
+                flexDirection: 'column',
                 alignItems: 'center'
               }}
             onLayout={this._onLayoutChange}
       >
-        <Text>This is a list.</Text>
+        <TextInput style=
+                        {{
+                          marginTop: 20,
+                          paddingLeft: 10,
+                          height: 40,
+                          width: 200,
+                          alignSelf: 'center',
+                          borderColor: colors.midgray,
+                          borderWidth: 0.5,
+                          borderRadius: 5
+                        }}
+                      placeholder="Input supply list item"
+                      onChangeText={(text) => this.setState({inputText: text})}
+        />
+        <View style=
+                {{
+                  marginTop: 20,
+                  flexWrap: 'wrap',
+                  alignItems: 'flex-start',
+                  flexDirection:'column',
+                  backgroundColor: colors.beige,
+                  borderRadius: 5
+                }}
+        >
+
+          <SupplyListItem supplyItemName={`blablabla`} />
+          <View style={styles.separator} />
+          <SupplyListItem supplyItemName={`funnnnyy`} />
+          <View style={styles.separator} />
+          <SupplyListItem supplyItemName={`Emergency Blanketfdfdfd`} />
+          <View style={styles.separator} />
+          <SupplyListItem supplyItemName={`Flashlight`} />
+
+        </View>
       </View>
     );
   }
 };
+
+
 
 const mapStateToProps = function(state) {
   return {
@@ -80,25 +121,26 @@ export default connect(
   mapDispatchToProps
 )(SupplyList);
 
+const SupplyListItem = (props) => (
+  <View style=
+          {{
+            margin: 10,
+            flexWrap: 'wrap',
+            justifyContent: 'flex-start',
+            flexDirection:'row',
+          }}
+  >
+    <Icon name="square-o" size={24} color='#000000' style={{padding:10}} />
+    <Text style={{padding: 10, fontSize: 20}}>
+            {props.supplyItemName}
+    </Text>
+  </View>
+);
 
 const styles = StyleSheet.create({
-  avatar: {
-    height: 130,
-    width: 130,
-    borderRadius: 20,
-    margin: 10
-  },
-
-  nickname: {
-    color: colors.seafoam,
-    fontSize: 20,
-    fontWeight: '600',
-    textAlign: 'center',
-    lineHeight: 30
-  },
 
   separator: {
-    backgroundColor: colors.beige,
+    backgroundColor: colors.midgray,
     height: StyleSheet.hairlineWidth,
   },
 
