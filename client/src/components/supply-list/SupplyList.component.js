@@ -60,6 +60,15 @@ class SupplyList extends React.Component {
     })
   }
 
+  _handleSubmit = (e) => {
+    console.log(e.nativeEvent.text);
+    let updatedSupplies = this.state.supplies.slice();
+    updatedSupplies.push({name: e.nativeEvent.text, isChecked: false});
+    this.setState({
+      supplies: updatedSupplies
+    })
+  }
+
   render() {
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
@@ -87,8 +96,10 @@ class SupplyList extends React.Component {
                           borderWidth: 0.5,
                           borderRadius: 5
                         }}
-                      placeholder="Input supply list item"
-                      onChangeText={(text) => this.setState({inputText: text})}
+                    placeholder='Input supply list item'
+                    onChangeText={(text) => this.setState({inputText: text})}
+                    onSubmitEditing={this._handleSubmit.bind(this)}
+                    returnKeyType='done'
         />
         <View style=
                 {{
