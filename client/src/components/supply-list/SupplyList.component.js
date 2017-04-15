@@ -9,7 +9,8 @@ import {
   Image,
   TouchableHighlight,
   TouchableWithoutFeedback,
-  NavigatorIOS
+  NavigatorIOS,
+  ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
@@ -60,6 +61,14 @@ class SupplyList extends React.Component {
     })
   }
 
+  _handleItemDelete = (index, e) => {
+    let updatedSupplies = this.state.supplies.slice();
+    updatedSupplies.splice(index, 1);
+    this.setState({
+      supplies: updatedSupplies
+    })
+  }
+
   _handleSubmit = (e) => {
     console.log(e.nativeEvent.text);
     let updatedSupplies = this.state.supplies.slice();
@@ -100,14 +109,18 @@ class SupplyList extends React.Component {
                     onChangeText={(text) => this.setState({inputText: text})}
                     onSubmitEditing={this._handleSubmit.bind(this)}
                     returnKeyType='done'
+                    maxLength={17}
         />
         <View style=
                 {{
                   marginTop: 20,
+                  width: dimensions.windowWidth() - 14,
                   flexWrap: 'wrap',
                   alignItems: 'flex-start',
                   flexDirection:'column',
-                  backgroundColor: colors.beige,
+                  borderColor: colors.beige,
+                  borderStyle: 'solid',
+                  borderWidth: 2,
                   borderRadius: 5
                 }}
         >
@@ -118,7 +131,8 @@ class SupplyList extends React.Component {
                   index={index}
                   name={item.name}
                   isChecked={item.isChecked}
-                  onPress={this._handleItemPress.bind(this)} />
+                  onPress={this._handleItemPress.bind(this)}
+                  onDelete={this._handleItemDelete.bind(this)} />
               )
             })
           }
@@ -159,13 +173,16 @@ const SupplyListItem = (props) => (
   >
     <TouchableWithoutFeedback onPress={props.onPress.bind(this, props.index)}>
       {props.isChecked ?
-      <Icon name="check-square" size={24} color='#000000' style={{padding:10}} /> :
-      <Icon name="square" size={24} color='#000000' style={{padding:10}} />
+      <Icon name='check-square' size={24} color='#000000' style={{padding:10}} /> :
+      <Icon name='square' size={24} color='#000000' style={{padding:10}} />
       }
     </TouchableWithoutFeedback>
     <Text style={{padding: 10, fontSize: 20}}>
             {props.name}
     </Text>
+    <TouchableHighlight onPress={props.onDelete.bind(this, props.index)}>
+      <Icon name='times' size={24} color='#000000' style={{padding:10 }} />
+    </TouchableHighlight>
   </View>
 );
 
