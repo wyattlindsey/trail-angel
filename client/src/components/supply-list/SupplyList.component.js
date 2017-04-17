@@ -162,29 +162,41 @@ export default connect(
   mapDispatchToProps
 )(SupplyList);
 
-const SupplyListItem = (props) => (
-  <View style=
-          {{
-            margin: 10,
-            flexWrap: 'wrap',
-            justifyContent: 'flex-start',
-            flexDirection:'row',
-          }}
-  >
-    <TouchableWithoutFeedback onPress={props.onPress.bind(this, props.index)}>
-      {props.isChecked ?
-      <Icon name='check-square' size={24} color='#000000' style={{padding:10}} /> :
-      <Icon name='square' size={24} color='#000000' style={{padding:10}} />
-      }
-    </TouchableWithoutFeedback>
-    <Text style={{padding: 10, fontSize: 20}}>
-            {props.name}
-    </Text>
-    <TouchableHighlight onPress={props.onDelete.bind(this, props.index)}>
-      <Icon name='times' size={24} color='#000000' style={{padding:10 }} />
-    </TouchableHighlight>
-  </View>
-);
+const SupplyListItem = (props) => {
+
+  const CheckBoxIcon = props.isChecked ?  <Icon name='check-square'
+                                                size={24}
+                                                color='#000000'
+                                                style={{padding:10}}
+                                          />
+                                            :
+                                          <Icon name='square'
+                                                size={24}
+                                                color='#000000'
+                                                style={{padding:10}}
+                                          />;
+
+  return (
+    <View style=
+            {{
+              margin: 10,
+              flexWrap: 'wrap',
+              justifyContent: 'flex-start',
+              flexDirection:'row',
+            }}
+    >
+      <TouchableWithoutFeedback onPress={props.onPress.bind(this, props.index)}>
+        {CheckBoxIcon}
+      </TouchableWithoutFeedback>
+      <Text style={{padding: 10, fontSize: 20}}>
+              {props.name}
+      </Text>
+      <TouchableHighlight onPress={props.onDelete.bind(this, props.index)}>
+        <Icon name='times' size={24} color='#000000' style={{padding:10 }} />
+      </TouchableHighlight>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
 
