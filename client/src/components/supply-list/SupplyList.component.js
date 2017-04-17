@@ -8,7 +8,9 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
-  NavigatorIOS
+  TouchableWithoutFeedback,
+  NavigatorIOS,
+  ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
@@ -31,11 +33,13 @@ class SupplyList extends React.Component {
         width: 1,
         height: 1
       },
-      inputText: ''
+      inputText: '',
+      supplies: [
+        {name: 'Flashlight', isChecked: false},
+        {name: 'Emergency Blanket', isChecked: true},
+        {name: 'Canteen', isChecked: false},
+      ]
     }
-  }
-
-  componentWillMount() {
   }
 
   _onLayoutChange = (e) => {
@@ -45,6 +49,33 @@ class SupplyList extends React.Component {
         height: e.nativeEvent.layout.height
       }
     });
+  }
+
+  _handleItemPress = (index, e) => {
+    console.log(index);
+    let updatedSupplies = this.state.supplies.slice();
+    console.log(updatedSupplies[index]);
+    updatedSupplies[index].isChecked = !updatedSupplies[index].isChecked;
+    this.setState({
+      supplies: updatedSupplies
+    })
+  }
+
+  _handleItemDelete = (index, e) => {
+    let updatedSupplies = this.state.supplies.slice();
+    updatedSupplies.splice(index, 1);
+    this.setState({
+      supplies: updatedSupplies
+    })
+  }
+
+  _handleSubmit = (e) => {
+    console.log(e.nativeEvent.text);
+    let updatedSupplies = this.state.supplies.slice();
+    updatedSupplies.push({name: e.nativeEvent.text, isChecked: false});
+    this.setState({
+      supplies: updatedSupplies
+    })
   }
 
   render() {
@@ -74,27 +105,37 @@ class SupplyList extends React.Component {
                           borderWidth: 0.5,
                           borderRadius: 5
                         }}
-                      placeholder="Input supply list item"
-                      onChangeText={(text) => this.setState({inputText: text})}
+                    placeholder='Input supply list item'
+                    onChangeText={(text) => this.setState({inputText: text})}
+                    onSubmitEditing={this._handleSubmit.bind(this)}
+                    returnKeyType='done'
+                    maxLength={17}
         />
         <View style=
                 {{
                   marginTop: 20,
+                  width: dimensions.windowWidth() - 14,
                   flexWrap: 'wrap',
                   alignItems: 'flex-start',
                   flexDirection:'column',
-                  backgroundColor: colors.beige,
+                  borderColor: colors.beige,
+                  borderStyle: 'solid',
+                  borderWidth: 2,
                   borderRadius: 5
                 }}
         >
 
-          <SupplyListItem supplyItemName={`blablabla`} />
-          <View style={styles.separator} />
-          <SupplyListItem supplyItemName={`funnnnyy`} />
-          <View style={styles.separator} />
-          <SupplyListItem supplyItemName={`Emergency Blanketfdfdfd`} />
-          <View style={styles.separator} />
-          <SupplyListItem supplyItemName={`Flashlight`} />
+          {this.state.supplies.map((item, index) => {
+              return (
+                <SupplyListItem
+                  index={index}
+                  name={item.name}
+                  isChecked={item.isChecked}
+                  onPress={this._handleItemPress.bind(this)}
+                  onDelete={this._handleItemDelete.bind(this)} />
+              )
+            })
+          }
 
         </View>
       </View>
@@ -121,21 +162,41 @@ export default connect(
   mapDispatchToProps
 )(SupplyList);
 
-const SupplyListItem = (props) => (
-  <View style=
-          {{
-            margin: 10,
-            flexWrap: 'wrap',
-            justifyContent: 'flex-start',
-            flexDirection:'row',
-          }}
-  >
-    <Icon name="square-o" size={24} color='#000000' style={{padding:10}} />
-    <Text style={{padding: 10, fontSize: 20}}>
-            {props.supplyItemName}
-    </Text>
-  </View>
-);
+const SupplyListItem = (props) => {
+
+  const CheckBoxIcon = props.isChecked ?  <Icon name='check-square'
+                                                size={24}
+                                                color='#000000'
+                                                style={{padding:10}}
+                                          />
+                                            :
+                                          <Icon name='square'
+                                                size={24}
+                                                color='#000000'
+                                                style={{padding:10}}
+                                          />;
+
+  return (
+    <View style=
+            {{
+              margin: 10,
+              flexWrap: 'wrap',
+              justifyContent: 'flex-start',
+              flexDirection:'row',
+            }}
+    >
+      <TouchableWithoutFeedback onPress={props.onPress.bind(this, props.index)}>
+        {CheckBoxIcon}
+      </TouchableWithoutFeedback>
+      <Text style={{padding: 10, fontSize: 20}}>
+              {props.name}
+      </Text>
+      <TouchableHighlight onPress={props.onDelete.bind(this, props.index)}>
+        <Icon name='times' size={24} color='#000000' style={{padding:10 }} />
+      </TouchableHighlight>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
 
