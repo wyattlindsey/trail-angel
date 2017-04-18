@@ -1,7 +1,15 @@
 var Sequelize = require('sequelize');
 const config = require('./environment/index');
 
-var db = new Sequelize(config.MYSQL_DATABASE_URL);
+console.log(JSON.stringify(config));
+//var db = new Sequelize(config.MYSQL_DATABASE_URL);
+
+//Use this instead of above db connection for now while working on local backend
+var db = new Sequelize('trailangel', 'root', null, {
+  host: 'localhost',
+  dialect: 'mysql'
+});
+
 
 db.authenticate()
   .then(function() {
