@@ -135,7 +135,7 @@ class Search extends React.Component {
       <View onLayout={this._onLayoutChange}>
         <View style=
                 {{
-                  height: dimensions.windowHeight().height
+                  height: dimensions.windowHeight()
                 }}
         >
           <View style=

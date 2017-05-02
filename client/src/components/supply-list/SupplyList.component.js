@@ -23,23 +23,38 @@ import userActions from '../../actions/user-actions';
 import Login from '../../views/login';
 import colors from '..//style/colors';
 import dimensions from '..//style/dimensions';
+import trailAngelApi from '../../api/trailangel-api';
 
 class SupplyList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      userId: this.props.state.userReducer.userId,
       dimensions: {
         width: 1,
         height: 1
       },
       inputText: '',
       supplies: [
-        {name: 'Flashlight', isChecked: false},
-        {name: 'Emergency Blanket', isChecked: true},
-        {name: 'Canteen', isChecked: false},
+        // This is the shape of a supply item element in the supplies array
+        //{name: 'Flashlight', isChecked: false}
       ]
     }
+
+  }
+
+  componentDidMount() {
+    return trailAngelApi.getSupplyItems(this.state.userId)
+    .then((supplylist) => {
+      console.log(supplylist);
+      this.setState({
+        supplies: supplylist
+      });
+    })
+    .catch((err) => {
+      console.log('error getting supply list', err);
+    })
   }
 
   _onLayoutChange = (e) => {
@@ -52,36 +67,54 @@ class SupplyList extends React.Component {
   }
 
   _handleItemPress = (index, e) => {
-    console.log(index);
     let updatedSupplies = this.state.supplies.slice();
-    console.log(updatedSupplies[index]);
     updatedSupplies[index].isChecked = !updatedSupplies[index].isChecked;
     this.setState({
       supplies: updatedSupplies
+    });
+    trailAngelApi.updateSupplyItem(
+      this.state.userId,
+      updatedSupplies[index].name,
+      updatedSupplies[index].isChecked)
+    .then((res) => {
+      console.log('Successfully updated item', res);
+    })
+    .catch((err) => {
+      console.log('There was an error updating item', err);
     })
   }
 
   _handleItemDelete = (index, e) => {
+    trailAngelApi.removeSupplyItem(this.state.userId, this.state.supplies[index].name);
     let updatedSupplies = this.state.supplies.slice();
     updatedSupplies.splice(index, 1);
     this.setState({
       supplies: updatedSupplies
-    })
+    });
   }
 
   _handleSubmit = (e) => {
-    console.log(e.nativeEvent.text);
+    //console.log('Item to be added: ', e.nativeEvent.text);
+    //console.log('userId: ', this.state.userId);
     let updatedSupplies = this.state.supplies.slice();
     updatedSupplies.push({name: e.nativeEvent.text, isChecked: false});
     this.setState({
-      supplies: updatedSupplies
+        supplies: updatedSupplies,
+        inputText: ''
+      });
+    trailAngelApi.addSupplyItem(this.state.userId, e.nativeEvent.text)
+    .then((res) => {
+      //console.log('Successfully added the item to database', res);
     })
+    .catch((err) => {
+      console.error('Error adding item to database', err);
+    });
   }
 
   render() {
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
-
+    let keyId = 0 // Reset unique key counter for SupplyListItem components
     return (
       <View style=
               {{
@@ -105,6 +138,7 @@ class SupplyList extends React.Component {
                           borderWidth: 0.5,
                           borderRadius: 5
                         }}
+                    value={this.state.inputText}
                     placeholder='Input supply list item'
                     onChangeText={(text) => this.setState({inputText: text})}
                     onSubmitEditing={this._handleSubmit.bind(this)}
@@ -125,12 +159,14 @@ class SupplyList extends React.Component {
                 }}
         >
 
-          {this.state.supplies.map((item, index) => {
+          {
+            this.state.supplies.map((item, index) => {
               return (
                 <SupplyListItem
                   index={index}
                   name={item.name}
                   isChecked={item.isChecked}
+                  key={keyId++}
                   onPress={this._handleItemPress.bind(this)}
                   onDelete={this._handleItemDelete.bind(this)} />
               )
@@ -163,7 +199,6 @@ export default connect(
 )(SupplyList);
 
 const SupplyListItem = (props) => {
-
   const CheckBoxIcon = props.isChecked ?  <Icon name='check-square'
                                                 size={24}
                                                 color='#000000'

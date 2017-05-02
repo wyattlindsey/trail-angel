@@ -12,10 +12,15 @@ var Favorite = db.define('favorite', {
 
 var UsersFavorites = db.define('usersfavorites', {});
 
+var SupplyItem = db.define('supplyitem', {
+  itemName: {type: Sequelize.STRING},
+  isChecked: {type: Sequelize.BOOLEAN, defaultValue: false, allowNull: false}
+});
+
 //This will add methods getUsers, setUsers, addUsers to Favorites, and getFavorites, setFavorites and addFavorite to User.
 User.belongsToMany(Favorite, {through: UsersFavorites});
 Favorite.belongsToMany(User, {through: UsersFavorites});
-
+User.hasMany(SupplyItem);
 
 // If we are adding columns or otherwise changing the schema
 // we can add {force: true} inside .sync to drop the tables
@@ -29,7 +34,9 @@ User.sync()
 
 Favorite.sync();
 UsersFavorites.sync();
+SupplyItem.sync();
 
 exports.User = User;
 exports.Favorite = Favorite;
 exports.UsersFavorites = UsersFavorites;
+exports.SupplyItem = SupplyItem;
