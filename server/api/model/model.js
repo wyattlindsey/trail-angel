@@ -20,7 +20,7 @@ var SupplyItem = db.define('supplyitem', {
 //This will add methods getUsers, setUsers, addUsers to Favorites, and getFavorites, setFavorites and addFavorite to User.
 User.belongsToMany(Favorite, {through: UsersFavorites});
 Favorite.belongsToMany(User, {through: UsersFavorites});
-User.hasMany(SupplyItem, {foreignKey: {allowNull: false}});
+User.hasMany(SupplyItem);
 
 // If we are adding columns or otherwise changing the schema
 // we can add {force: true} inside .sync to drop the tables
