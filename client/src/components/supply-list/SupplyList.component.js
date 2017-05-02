@@ -67,13 +67,21 @@ class SupplyList extends React.Component {
   }
 
   _handleItemPress = (index, e) => {
-    console.log(index);
     let updatedSupplies = this.state.supplies.slice();
-    console.log(updatedSupplies[index]);
     updatedSupplies[index].isChecked = !updatedSupplies[index].isChecked;
     this.setState({
       supplies: updatedSupplies
     });
+    trailAngelApi.updateSupplyItem(
+      this.state.userId,
+      updatedSupplies[index].name,
+      updatedSupplies[index].isChecked)
+    .then((res) => {
+      console.log('Successfully updated item', res);
+    })
+    .catch((err) => {
+      console.log('There was an error updating item', err);
+    })
   }
 
   _handleItemDelete = (index, e) => {
