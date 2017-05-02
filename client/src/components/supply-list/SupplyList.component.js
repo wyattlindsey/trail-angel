@@ -153,7 +153,6 @@ class SupplyList extends React.Component {
 
           {
             this.state.supplies.map((item, index) => {
-              console.log(keyId + 1);
               return (
                 <SupplyListItem
                   index={index}
