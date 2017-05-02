@@ -92,12 +92,15 @@ const trailAngelApi = {
   },
 
   addSupplyItem: (userId, itemName) => {
-    console.log('addSupplyItem invoked with userID: ', userId, ' itemName: ', itemName);
     return request.add(`${baseUrl}/api/supplyitems/${itemName}`, { userId });
   },
 
+  updateSupplyItem: (userId, itemName, isChecked) => {
+    // This is currently only used to update the checkbox boolean of the item
+    return request.update(`${baseUrl}/api/supplyitems/${itemName}`, { userId, isChecked });
+  },
+
   removeSupplyItem: (userId, itemName) => {
-    console.log('removeSupplyItem invoked with userID: ', userId, ' itemName: ', itemName);
     return request.remove(`${baseUrl}/api/supplyitems/${itemName}`, { userId });
   }
 };
