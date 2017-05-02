@@ -91,7 +91,8 @@ class SupplyList extends React.Component {
     let updatedSupplies = this.state.supplies.slice();
     updatedSupplies.push({name: e.nativeEvent.text, isChecked: false});
     this.setState({
-        supplies: updatedSupplies
+        supplies: updatedSupplies,
+        inputText: ''
       });
     trailAngelApi.addSupplyItem(this.state.userId, e.nativeEvent.text)
     .then((res) => {
@@ -129,6 +130,7 @@ class SupplyList extends React.Component {
                           borderWidth: 0.5,
                           borderRadius: 5
                         }}
+                    value={this.state.inputText}
                     placeholder='Input supply list item'
                     onChangeText={(text) => this.setState({inputText: text})}
                     onSubmitEditing={this._handleSubmit.bind(this)}
