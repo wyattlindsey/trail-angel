@@ -72,6 +72,45 @@ module.exports = {
       });
     });
   },
+  update: function(req, res) {
+    db.User.find({
+      where: {
+        user: req.body.userId
+      }
+    })
+    .then( (user) => {
+      if(user === null) {
+        console.error('Error UPDATE request supplyitems: user does not exist');
+        res.sendStatus(404);
+        return;
+      }
+      return db.SupplyItem.find({
+        where: {
+          userId: user.dataValues.id,
+          itemName: req.params.name
+        }
+      })
+      .then( (supplyitem) => {
+        return db.SupplyItem.update({
+          isChecked: req.body.isChecked
+        }, {
+          where: {
+            id: supplyitem.dataValues.id
+          }
+        })
+      })
+      .then( (supplyitem) => {
+        console.log('This is after an item is updated and this is the parameter: ', supplyitem);
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log('Error updating item in SupplyItem table', err);
+      });
+    })
+    .catch((err) => {
+      console.log('Error on UPDATE request in User table', err);
+    });
+  },
   //removes supply list item for specific user
   delete: function(req, res) {
     db.User.find({

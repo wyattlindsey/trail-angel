@@ -5,6 +5,7 @@ var router = express.Router();
 
 router.get('/user/:id', supplyItemsController.get);
 router.delete('/:name', supplyItemsController.delete);
+router.put('/:name', supplyItemsController.update);
 router.post('/:name', supplyItemsController.post);
 
 module.exports = router;
