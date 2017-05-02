@@ -73,8 +73,33 @@ const trailAngelApi = {
       .catch((err) => {
         console.error('error fetching distance of mapped trail: ', err);
       });
-  }
+  },
 
+  /**
+   *      Supply List Items
+   *
+   *
+   */
+
+  getSupplyItems: (userId) => {
+    return request.get(`${baseUrl}/api/supplyitems/user/${userId}`)
+      .then((data) => {
+      return data;
+      })
+      .catch((err) => {
+        console.error('error fetching supply list items: ', err);
+      });
+  },
+
+  addSupplyItem: (userId, itemName) => {
+    console.log('addSupplyItem invoked with userID: ', userId, ' itemName: ', itemName);
+    return request.add(`${baseUrl}/api/supplyitems/${itemName}`, { userId });
+  },
+
+  removeSupplyItem: (userId, itemName) => {
+    console.log('removeSupplyItem invoked with userID: ', userId, ' itemName: ', itemName);
+    return request.remove(`${baseUrl}/api/supplyitems/${itemName}`, { userId });
+  }
 };
 
 export default trailAngelApi;
