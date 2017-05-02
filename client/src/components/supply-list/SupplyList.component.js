@@ -23,23 +23,41 @@ import userActions from '../../actions/user-actions';
 import Login from '../../views/login';
 import colors from '..//style/colors';
 import dimensions from '..//style/dimensions';
+import trailAngelApi from '../../api/trailangel-api';
+
+let id = 0;
 
 class SupplyList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      userId: this.props.state.userReducer.userId,
       dimensions: {
         width: 1,
         height: 1
       },
       inputText: '',
       supplies: [
-        {name: 'Flashlight', isChecked: false},
-        {name: 'Emergency Blanket', isChecked: true},
-        {name: 'Canteen', isChecked: false},
+        {name: 'Flashlight', isChecked: false, key: id++},
+        {name: 'Emergency Blanket', isChecked: true, key: id++},
+        {name: 'Canteen', isChecked: false, key: id++},
       ]
     }
+
+  }
+
+  componentDidMount() {
+    return trailAngelApi.getSupplyItems(this.state.userId)
+    .then((supplylist) => {
+      console.log(supplylist);
+      this.setState({
+        supplies: supplylist
+      });
+    })
+    .catch((err) => {
+      console.log('error getting supply list', err);
+    })
   }
 
   _onLayoutChange = (e) => {
@@ -62,6 +80,7 @@ class SupplyList extends React.Component {
   }
 
   _handleItemDelete = (index, e) => {
+    trailAngelApi.removeSupplyItem(this.state.userId, this.state.supplies[index].name);
     let updatedSupplies = this.state.supplies.slice();
     updatedSupplies.splice(index, 1);
     this.setState({
@@ -70,9 +89,11 @@ class SupplyList extends React.Component {
   }
 
   _handleSubmit = (e) => {
-    console.log(e.nativeEvent.text);
+    console.log('Item to be added: ', e.nativeEvent.text);
+    console.log('userId: ', this.state.userId);
+    trailAngelApi.addSupplyItem(this.state.userId, e.nativeEvent.text);
     let updatedSupplies = this.state.supplies.slice();
-    updatedSupplies.push({name: e.nativeEvent.text, isChecked: false});
+    updatedSupplies.push({name: e.nativeEvent.text, isChecked: false, key: id++});
     this.setState({
       supplies: updatedSupplies
     })
@@ -131,6 +152,7 @@ class SupplyList extends React.Component {
                   index={index}
                   name={item.name}
                   isChecked={item.isChecked}
+                  key={item.key}
                   onPress={this._handleItemPress.bind(this)}
                   onDelete={this._handleItemDelete.bind(this)} />
               )
@@ -163,7 +185,6 @@ export default connect(
 )(SupplyList);
 
 const SupplyListItem = (props) => {
-
   const CheckBoxIcon = props.isChecked ?  <Icon name='check-square'
                                                 size={24}
                                                 color='#000000'
