@@ -25,8 +25,6 @@ import colors from '..//style/colors';
 import dimensions from '..//style/dimensions';
 import trailAngelApi from '../../api/trailangel-api';
 
-let id = 0;
-
 class SupplyList extends React.Component {
   constructor(props) {
     super(props);
@@ -39,9 +37,8 @@ class SupplyList extends React.Component {
       },
       inputText: '',
       supplies: [
-        {name: 'Flashlight', isChecked: false, key: id++},
-        {name: 'Emergency Blanket', isChecked: true, key: id++},
-        {name: 'Canteen', isChecked: false, key: id++},
+        // This is the shape of a supply item element in the supplies array
+        //{name: 'Flashlight', isChecked: false}
       ]
     }
 
@@ -76,7 +73,7 @@ class SupplyList extends React.Component {
     updatedSupplies[index].isChecked = !updatedSupplies[index].isChecked;
     this.setState({
       supplies: updatedSupplies
-    })
+    });
   }
 
   _handleItemDelete = (index, e) => {
@@ -85,24 +82,30 @@ class SupplyList extends React.Component {
     updatedSupplies.splice(index, 1);
     this.setState({
       supplies: updatedSupplies
-    })
+    });
   }
 
   _handleSubmit = (e) => {
-    console.log('Item to be added: ', e.nativeEvent.text);
-    console.log('userId: ', this.state.userId);
-    trailAngelApi.addSupplyItem(this.state.userId, e.nativeEvent.text);
+    //console.log('Item to be added: ', e.nativeEvent.text);
+    //console.log('userId: ', this.state.userId);
     let updatedSupplies = this.state.supplies.slice();
-    updatedSupplies.push({name: e.nativeEvent.text, isChecked: false, key: id++});
+    updatedSupplies.push({name: e.nativeEvent.text, isChecked: false});
     this.setState({
-      supplies: updatedSupplies
+        supplies: updatedSupplies
+      });
+    trailAngelApi.addSupplyItem(this.state.userId, e.nativeEvent.text)
+    .then((res) => {
+      //console.log('Successfully added the item to database', res);
     })
+    .catch((err) => {
+      console.error('Error adding item to database', err);
+    });
   }
 
   render() {
     const orientation = this.state.dimensions.width < this.state.dimensions.height ?
       'portrait' : 'landscape';
-
+    let keyId = 0 // Reset unique key counter for SupplyListItem components
     return (
       <View style=
               {{
@@ -146,13 +149,15 @@ class SupplyList extends React.Component {
                 }}
         >
 
-          {this.state.supplies.map((item, index) => {
+          {
+            this.state.supplies.map((item, index) => {
+              console.log(keyId + 1);
               return (
                 <SupplyListItem
                   index={index}
                   name={item.name}
                   isChecked={item.isChecked}
-                  key={item.key}
+                  key={keyId++}
                   onPress={this._handleItemPress.bind(this)}
                   onDelete={this._handleItemDelete.bind(this)} />
               )
