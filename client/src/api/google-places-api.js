@@ -59,6 +59,7 @@ const googlePlacesApi = {
   },
 
   fetchDetails: (id) => {
+    if (!id) return Promise.resolve(false);
     return request.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${config.GOOGLE_API}`)
       .then((data) => {
         if (data === undefined) {

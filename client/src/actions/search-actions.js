@@ -88,13 +88,15 @@ const searchActions = {
         // they should be re-fetched
         return dataApi.google.fetchDetails(id)
           .then((details) => {
-            const now = Date.now();
-            const data = {
-              ...details,
-              cacheTimestamp: now
-            };
-            dispatch(storageActions.saveToStorage(data));
-            return details;
+            if (!!details) {
+              const now = Date.now();
+              const data = {
+                ...details,
+                cacheTimestamp: now
+              };
+              dispatch(storageActions.saveToStorage(data));
+              return details;
+            }
           });
       });
 

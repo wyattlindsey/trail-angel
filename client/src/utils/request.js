@@ -19,7 +19,9 @@ const request = {
 
   get: (url, options = {}) => {
     return fetch(url, options)
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((responseJSON) => {
         return responseJSON;
       })
